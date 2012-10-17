@@ -1239,6 +1239,9 @@ void World::LoadConfigSettings(bool reload)
 
     //Allow Two Side Interaction Chat
     m_int_configs[CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHAT_AREA] = ConfigMgr::GetIntDefault("AllowTwoSide.Interaction.Chat.Area", -1);
+    
+    //LFG Location ALL
+    m_bool_configs[CONFIG_LFG_LOCATION_ALL] = ConfigMgr::GetBoolDefault("LFG.Location.All", true); 
 
     // call ScriptMgr if we're reloading the configuration
     m_bool_configs[CONFIG_WINTERGRASP_ENABLE] = ConfigMgr::GetBoolDefault("Wintergrasp.Enable", false);
