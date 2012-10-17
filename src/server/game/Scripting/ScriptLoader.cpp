@@ -32,6 +32,8 @@ void AddSC_NPC_Transmogrify();
 void AddSC_System_Censure();
 // Argent Tournament quest scripts
 void AddSC_ArgentTournament();
+//TeleNPC2
+void AddSC_npc_teleport();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1299,6 +1301,8 @@ void AddCustomScripts()
     AddSC_System_Censure();
     // Argent Tournament quest scripts
     AddSC_ArgentTournament();
+     //TeleNPC2
+     AddSC_npc_teleport();
 
 #endif
 }
