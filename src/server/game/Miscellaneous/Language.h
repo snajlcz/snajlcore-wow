@@ -1079,6 +1079,9 @@ enum TrinityStrings
     LANG_INVALID_REALMID                = 11001,
     LANG_BAN_CHEATER                    = 11002,
 
+    // Disable Chat
+    LANG_DISABLE_CHAT                   = 11019,
+
     LANG_ANNOUNCE_ADMIN_COLOR           = 11666,
 
     LANG_REM_TRANSMOGRIFICATIONS_ITEMS  = 11100,
