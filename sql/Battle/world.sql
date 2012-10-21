@@ -113,7 +113,7 @@ VALUES
 (53, 'Зул-Аман-[2 голд]', 6846.95, -7954.5, 170.028, 530, 4.61501, 0, 20000),
 (54, 'Зул-Фаррак-[2 голд]', -6839.39, -2911.03, 8.87, 1, 0.41, 0, 20000),
 (55, 'Зул-Гуруб-[2 голд]', -11916.7, -1212.82, 92.2868, 0, 4.6095, 0, 20000),
-/*Нордскоп */
+/*Нордскол */
 (56, 'Борейская тундра-[5 голд]',2232.93, 5135.5, 5.344, 571, 0, 58, 50000),
 (57, 'Ревущий Фьорд-[5 голд]',592.33,-5095.5,6,571, 0 ,58, 50000),
 (58, 'Драконий погост-[5 голд]',2994,-431,124,571, 0 , 58, 50000),
@@ -172,3 +172,8 @@ INSERT IGNORE battleground_template (id, MinPlayersPerTeam, MaxPlayersPerTeam, M
 DELETE FROM `trinity_string` WHERE `entry` = 11019;
 INSERT INTO `trinity_string` (`entry`, `content_default`, `content_loc8`) VALUES
 (11019, 'Your chat is disabled. So you can write to chat, draw in the game for another %s seconds', 'Ваш чат отключен. Чтобы вы смогли написать в чат, проведите в игре еще %s секунд');
+
+-- npc arena_top_team
+DELETE FROM `creature_template` WHERE `entry` = 100090;
+INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `equipment_id`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
+('100090', '0', '0', '0', '0', '0', '27164', '0', '0', '0', 'Arena TeamTop', '', '', '0', '59', '61', '0', '35', '35', '1', '1.48', '1.14286', '0.0', '0', '655.0', '663.0', '0', '158', '1.0', '1500', '1900', '1', '0', '0', '0', '0', '0', '0', '0', '0.0', '0.0', '100', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '1', '3', '1.0', '1.0', '1.0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'npc_arena_teamTop', '1');
