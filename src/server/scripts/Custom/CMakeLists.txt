@@ -16,6 +16,7 @@ set(scripts_STAT_SRCS
   Custom/chat_censure.cpp
   Custom/argent_tournament.cpp
   Custom/npc_arena_teamTop.cpp
+  Custom/npc_other.cpp
 )
 
 message("  -> Prepared: Custom")
