@@ -1,3 +1,5 @@
+set names utf8;
+
 -- npc tele
 DROP TABLE IF EXISTS `custom_npc_tele_category`;
 CREATE TABLE `custom_npc_tele_category` (
