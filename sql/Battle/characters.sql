@@ -1,3 +1,5 @@
+set names utf8;
+
 -- fix https://github.com/Vitasic/Battle/commit/65584a98e6b4a9fcd48664df9eaaa5295de8c031
 DROP TABLE IF EXISTS `arena_logs`;
 CREATE TABLE `arena_logs` (
