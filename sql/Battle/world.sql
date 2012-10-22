@@ -221,3 +221,6 @@ UPDATE `script_texts` SET `content_loc8` = 'Получай, $C' WHERE `entry` = -100037
 UPDATE `script_texts` SET `content_loc8` = 'Мы почти добрались! Давай ускоримся...' WHERE `entry` = -1000378;
 UPDATE `script_texts` SET `content_loc8` = 'Ах, сладкий воздух побега.' WHERE `entry` = -1000379;
 UPDATE `script_texts` SET `content_loc8` = 'Капитан Тало`тас Сияющий, $N помог мне сбежать! $N, я уверен, капитан вознаградит ваше мужество.' WHERE `entry` = -1000380;
+
+-- Фикс квеста 4921 "Пропавшая без вести"
+UPDATE `creature_template` SET `npcflag` = 3 WHERE `entry` = 10668;
