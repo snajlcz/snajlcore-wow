@@ -44,19 +44,18 @@ void CheckMessage(Player* player, std::string& msg, uint32 lang, Player* /*recei
     std::string checks[cheksSize];
     // Strony (Sites)
     checks[0] ="http://";
-    checks[1] =".com";
-    checks[2] =".www";
-    checks[3] =".net";
-    checks[4] =".org";
+    checks[1] ="www";
+    checks[2] ="www.";
+    checks[3] ="wow-";
+    checks[4] ="-wow";
     checks[5] =".ru";
-    checks[6] ="www.";
-    checks[7] ="wow-";
-    checks[8] ="-wow";
-    checks[9] =".pl";
-    // Polskie przekleñstwa (Polish curses)
-    checks[10] ="chuj";
-    checks[11] ="huj";
-    checks[12] ="kurw";
+    checks[6] =".net";
+    checks[7] =".org";
+    checks[8] =".com";
+    checks[9] =".biz";
+    checks[10] ="zapto";
+    checks[11] ="no-ip";
+    checks[12] =".lt";
     checks[13] ="jeba";
     checks[14] ="cip";
     checks[15] ="gej";
@@ -65,22 +64,21 @@ void CheckMessage(Player* player, std::string& msg, uint32 lang, Player* /*recei
     checks[18] ="pierdo";
     checks[19] ="spierd";
     checks[20] ="zjeb";
-    // English curses
     checks[21] ="bitch";
     checks[22] ="clit";
-    checks[23] ="cock";
-    checks[24] ="cum";
-    checks[25] ="cunt";
-    checks[26] ="dick";
-    checks[27] ="faggot";
-    checks[28] ="fuck";
-    checks[29] ="gay";
-    checks[30] ="lesbian";
-    checks[31] ="penis";
-    checks[32] ="prick";
-    checks[33] ="slut";
-    checks[34] ="twat";
-    checks[35] ="whore";
+    checks[23] ="wowflag";
+    checks[24] ="uwow";
+    checks[25] ="RiverRise";
+    checks[26] ="isengard";
+    checks[27] ="wowcircle";
+    checks[28] ="jet-wow";
+    checks[29] ="wow-cool";
+    checks[30] ="fakewow";
+    checks[31] ="spzone";
+    checks[32] ="wowgear";
+    checks[33] ="izbooshka";
+    checks[34] ="sirus";
+    checks[35] ="elgracia";
     for (int i = 0; i < cheksSize; ++i)
         if (lower.find(checks[i]) != std::string::npos)
         {
