@@ -65,7 +65,7 @@ void CheckMessage(Player* player, std::string& msg, uint32 lang, Player* /*recei
     checks[19] ="spierd";
     checks[20] ="zjeb";
     checks[21] ="bitch";
-    checks[22] ="clit";
+    checks[22] ="arena-wow";
     checks[23] ="wowflag";
     checks[24] ="uwow";
     checks[25] ="RiverRise";
