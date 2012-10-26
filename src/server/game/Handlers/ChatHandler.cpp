@@ -179,7 +179,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
         {
             std::string adStr = secsToTimeString(sWorld->getIntConfig(CONFIG_INT_CHAT_DISABLE_TIME) - sender->GetTotalPlayedTime());
             SendNotification(GetTrinityString(LANG_DISABLE_CHAT), adStr.c_str());
-            recv_data.rfinish();
+            recvData.rfinish();
             return;
         }
 
