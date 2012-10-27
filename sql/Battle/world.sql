@@ -167,7 +167,7 @@ DELETE FROM `creature_template` WHERE `entry` = 100000;
 INSERT INTO `creature_template` VALUES (100000, 0, 0, 0, 0, 0, 19645, 0, 0, 0, 'Маршрутка', '', '', 0, 83, 83, 0, 35, 35, 1, 1, 1.14286, 2, 1, 509, 683, 0, 805, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 371, 535, 135, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 'npc_teleport', 1);
 
 -- Фикс пропажи арены из тк :D 
-INSERT IGNORE battleground_template (id, MinPlayersPerTeam, MaxPlayersPerTeam, MinLvl, MaxLvl, AllianceStartLoc, AllianceStartO, HordeStartLoc, HordeStartO, StartMaxDist, Weight, ScriptName, Comment) VALUES
+INSERT IGNORE INTO battleground_template (id, MinPlayersPerTeam, MaxPlayersPerTeam, MinLvl, MaxLvl, AllianceStartLoc, AllianceStartO, HordeStartLoc, HordeStartO, StartMaxDist, Weight, ScriptName, Comment) VALUES
 (6, 0, 2, 10, 80, 0, 0, 0, 0, 0, 1, '', 'All Arena');
 
 -- Запрос к моду "Возможность писать в чат, исходя из проведенного онлайна"
@@ -234,3 +234,7 @@ UPDATE `script_texts` SET `content_loc8` = 'Я выиграю свою свободу и оставлю это
 UPDATE `script_texts` SET `content_loc8` = 'Нет спасения' WHERE `entry` = -1609080;
 UPDATE `script_texts` SET `content_loc8` = 'Запомни этот день, $n, ибо это тот день, когда ты будешь повержен!' WHERE `entry` = -1609081;
 UPDATE `script_texts` SET `content_loc8` = 'Не смеши меня.' WHERE `entry` = -1609083;
+
+-- the ICC-wise buffs
+INSERT IGNORE INTO `spell_area` VALUES ('73822', '4812', '0', '0', '0', '690', '2', '1', '64', '11');
+INSERT IGNORE INTO `spell_area` VALUES ('73828', '4812', '0', '0', '0', '1101', '2', '1', '64', '11');
