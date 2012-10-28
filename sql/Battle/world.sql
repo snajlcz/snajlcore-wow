@@ -747,3 +747,14 @@ REPLACE INTO `creature_loot_template` VALUES ('33993', '42032', '0', '1', '2', '
 REPLACE INTO `creature_loot_template` VALUES ('33993', '42033', '0', '1', '2', '1', '1');
 REPLACE INTO `creature_loot_template` VALUES ('33993', '42031', '0', '1', '2', '1', '1');
 REPLACE INTO `creature_loot_template` VALUES ('33993', '47241', '100', '1', '0', '2', '2');
+
+-- Лут АМК: Книга познания символов
+-- http://ru.wowhead.com/item=45912#dropped-by:0+3-9-8+1 
+REPLACE INTO `creature_loot_template` VALUES ('30666', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30660', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30667', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30668', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('32191', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30695', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30893', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30892', '45912', '1', '1', '0', '1', '1');
