@@ -239,7 +239,8 @@ UPDATE `script_texts` SET `content_loc8` = 'Не смеши меня.' WHERE `entry` = -160
 INSERT IGNORE INTO `spell_area` VALUES ('73822', '4812', '0', '0', '0', '690', '2', '1', '64', '11');
 INSERT IGNORE INTO `spell_area` VALUES ('73828', '4812', '0', '0', '0', '1101', '2', '1', '64', '11');
 
--- Лут Склеп Аркавона
+-- Лут Склеп Аркавона 
+-- http://ru.wowhead.com/zone=4603#npcs
 -- Аркавон
 REPLACE INTO `creature_loot_template` VALUES ('31125', '40801', '3.33', '1', '2', '1', '1');
 REPLACE INTO `creature_loot_template` VALUES ('31125', '47241', '100', '1', '0', '2', '2');
