@@ -34,7 +34,6 @@ void AddSC_System_Censure();
 void AddSC_ArgentTournament();
 //TeleNPC2
 void AddSC_npc_teleport();
-void AddSC_npc_arena_setup();
 void AddSC_npc_other();
 
 // spells
@@ -1307,7 +1306,6 @@ void AddCustomScripts()
     AddSC_ArgentTournament();
      //TeleNPC2
      AddSC_npc_teleport();
-     AddSC_npc_arena_setup();
      AddSC_npc_other();
 
 #endif
