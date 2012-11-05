@@ -638,6 +638,7 @@ void AddSC_chat_log();
 
 // custom
 void AddSC_custom();
+void AddSC_crypt_run();
 
 #endif
 
@@ -1316,8 +1317,8 @@ void AddCustomScripts()
      AddSC_npc_other();
     // GC custom
     AddSC_custom();
+    AddSC_crypt_run();
     // Npc Top 10 Arena Teams
     AddSC_npc_arena_setup();
-
 #endif
 }
