@@ -11,6 +11,24 @@
 #                                                                                          #
 ############################################################################################
 
+[79] --> Core/Resistances:
+          - Remove Holy Resistance from Players
+          - Do not add Holy Resist from Items to Players
+          - Resistance Handling from Holy resist removed
+          Signed-off-by: Pointerxx <marvin.wichmann@web.de>
+[78] --> Fix Sindragosa (Test!).
+[77] --> Fix autocast petspells.
+[76] --> Misc fixs: (Test!)
+         - Fix Totems LOS.
+         - Fix combatstop spells Invisible, Shadow. Trigger, Shadowmeld.
+         - Fix Rogue: Vanish.
+         - Fix Mage: Water Elemental.
+         - Fix problem pets. (If you are dismounted, your pet had 1hp.)
+[75] --> Fix Shaman: Earthbind Totem.
+[74] --> Fix Paladin: Righteous Defense.
+[73] --> Update CCDelay.
+[72] --> Fix Grounding Totem.
+[71] --> Fix Priest: Shadowform.
 [70] --> Fixed [Item] Wrathful Gladiator's Dreadplate Gauntlets.
 [69] --> Add Npc Top 10 Arena Teams.
 [68] --> Alternate script Gunship by fiveofeight.

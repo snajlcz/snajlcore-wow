@@ -18,7 +18,7 @@ set(scripts_STAT_SRCS
   Custom/npc_other.cpp
   Custom/npc_gc_vendor.cpp
   Custom/npc_arena_team_top.cpp
-
+  Custom/npc_crypt_run.cpp
 )
 
 message("  -> Prepared: Custom")
