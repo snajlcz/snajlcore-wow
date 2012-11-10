@@ -11,12 +11,10 @@
 #                                                                                          #
 ############################################################################################
 
-<<<<<<< HEAD
-[81.1][Vitasic:] --> 100% resilens!
-=======
+[84] --> Fix loot GunShip.
 [83] --> Add Name Developer Announce.
 [82] --> Add Name Admin, GameMaster and Guard Announces.
->>>>>>> 5e8e02f31722b65eff3ba884d23ab423caa1ff2d
+[81.1][Vitasic:] --> 100% resilens!
 [81] --> Fix Sindragosa (Final version!).
 [80] --> Update CCDelay by Diton.
 [79] --> Core/Resistances:
