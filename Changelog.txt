@@ -18,7 +18,6 @@
 [87] --> Fix Magic Absorption.
 [86] --> Fix crash Trial Of The Crusader.
 [85] --> Remove unit lost control before teleport.
-[84.1][Vitasic:] --> Boss Kill History
 [84] --> Fix loot GunShip.
 [83] --> Add Name Developer Announce.
 [82] --> Add Name Admin, GameMaster and Guard Announces.
