@@ -37,7 +37,6 @@ void AddSC_npc_teleport();
 void AddSC_npc_other();
 // Npc Top 10 Arena Teams
 void AddSC_npc_arena_setup();
-void AddSC_Boss_Announcer();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1321,6 +1320,5 @@ void AddCustomScripts()
     AddSC_crypt_run();
     // Npc Top 10 Arena Teams
     AddSC_npc_arena_setup();
-    AddSC_Boss_Announcer();
 #endif
 }
