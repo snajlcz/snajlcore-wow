@@ -11,6 +11,7 @@
 #                                                                                          #
 ############################################################################################
 
+[84.1][Vitasic:] --> Boss Kill History
 [84] --> Fix loot GunShip.
 [83] --> Add Name Developer Announce.
 [82] --> Add Name Admin, GameMaster and Guard Announces.
