@@ -3096,3 +3096,19 @@ AllowTwoSide.Interaction.Chat.Area = 415
 
 #
 ###################################################################################################################
+
+###################################################################################################
+# BOSS KILL HISTORY SYSTEM
+#
+#    Boss.Kill.History.Enable
+#        Description: Enables the boss kill history system.
+#        Important:   When you kiliing the boss, if you're in guild the world receive announcement,
+#                     that your guild killed this boss, on whisch difficult and the count of kills.
+#        Default:     1 - (Enabled)
+#                     0 - (Disabled)
+#
+
+Boss.Kill.History.Enable = 1
+
+#
+###################################################################################################
