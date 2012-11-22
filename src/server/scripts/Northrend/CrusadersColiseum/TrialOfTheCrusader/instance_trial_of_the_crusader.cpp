@@ -19,6 +19,8 @@
 #include "ScriptMgr.h"
 #include "InstanceScript.h"
 #include "trial_of_the_crusader.h"
+#include "Player.h"
+#include "TemporarySummon.h"
 
 class instance_trial_of_the_crusader : public InstanceMapScript
 {
@@ -40,9 +42,8 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                 ResilienceWillFixItTimer = 0;
                 SnoboldCount = 0;
                 MistressOfPainCount = 0;
-                TributeToImmortalityElegible = true;
+                TributeToImmortalityEligible = true;
                 NeedSave = false;
-                EventNPCId = 0;
 
                 TirionFordringGUID = 0;
                 BarrentGUID = 0;
@@ -461,15 +462,15 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                         else if (data == DECREASE)
                             --MistressOfPainCount;
                         break;
-                    case DATA_TRIBUTE_TO_IMMORTALITY_ELEGIBLE:
-                        TributeToImmortalityElegible = false;
+                    case DATA_TRIBUTE_TO_IMMORTALITY_ELIGIBLE:
+                        TributeToImmortalityEligible = false;
                         break;
                     default:
                         break;
                 }
             }
 
-            uint64 GetData64(uint32 type)
+            uint64 GetData64(uint32 type) const
             {
                 switch (type)
                 {
@@ -520,7 +521,7 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                 return 0;
             }
 
-            uint32 GetData(uint32 type)
+            uint32 GetData(uint32 type) const
             {
                 switch (type)
                 {
@@ -574,7 +575,7 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                             case 6000:
                             case 6005:
                             case 6010:
-                                EventNPCId = NPC_TIRION;
+                                return NPC_TIRION;
                                 break;
                             case 5010:
                             case 5030:
@@ -583,7 +584,7 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                             case 5060:
                             case 5070:
                             case 5080:
-                                EventNPCId = NPC_LICH_KING_1;
+                                return NPC_LICH_KING_1;
                                 break;
                             case 120:
                             case 122:
@@ -592,7 +593,7 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                             case 3051:
                             case 3071:
                             case 4020:
-                                EventNPCId = NPC_VARIAN;
+                                return NPC_VARIAN;
                                 break;
                             case 130:
                             case 132:
@@ -601,7 +602,7 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                             case 3070:
                             case 3081:
                             case 4030:
-                                EventNPCId = NPC_GARROSH;
+                                return NPC_GARROSH;
                                 break;
                             case 1110:
                             case 1120:
@@ -613,13 +614,12 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                             case 1142:
                             case 1144:
                             case 1150:
-                                EventNPCId = NPC_FIZZLEBANG;
+                                return NPC_FIZZLEBANG;
                                 break;
                             default:
-                                EventNPCId = NPC_TIRION;
+                                return NPC_TIRION;
                                 break;
                         };
-                        return EventNPCId;
                     default:
                         break;
                 }
@@ -722,7 +722,7 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                         return TrialCounter == 50;
                     case A_TRIBUTE_TO_IMMORTALITY_HORDE:
                     case A_TRIBUTE_TO_IMMORTALITY_ALLIANCE:
-                        return TrialCounter == 50 && TributeToImmortalityElegible;
+                        return TrialCounter == 50 && TributeToImmortalityEligible;
                     case A_TRIBUTE_TO_DEDICATED_INSANITY:
                         return false/*uiGrandCrusaderAttemptsLeft == 50 && !bHasAtAnyStagePlayerEquippedTooGoodItem*/;
                     default:
@@ -736,7 +736,6 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                 uint32 TrialCounter;
                 uint32 EventStage;
                 uint32 EventTimer;
-                uint32 EventNPCId;
                 uint32 NorthrendBeasts;
                 bool   NeedSave;
                 std::string SaveDataBuffer;
@@ -770,7 +769,7 @@ class instance_trial_of_the_crusader : public InstanceMapScript
                 uint32 ResilienceWillFixItTimer;
                 uint8  SnoboldCount;
                 uint8  MistressOfPainCount;
-                bool   TributeToImmortalityElegible;
+                bool   TributeToImmortalityEligible;
         };
 
         InstanceScript* GetInstanceScript(InstanceMap* map) const

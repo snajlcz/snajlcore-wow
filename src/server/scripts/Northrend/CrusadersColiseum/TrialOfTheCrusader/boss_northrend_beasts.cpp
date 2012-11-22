@@ -23,6 +23,8 @@
 #include "ScriptedCreature.h"
 #include "trial_of_the_crusader.h"
 #include "Vehicle.h"
+#include "Player.h"
+#include "SpellScript.h"
 
 enum Yells
 {
@@ -548,7 +550,7 @@ struct boss_jormungarAI : public BossAI
     {
         if (who->GetTypeId() == TYPEID_PLAYER)
             if (instance)
-                instance->SetData(DATA_TRIBUTE_TO_IMMORTALITY_ELEGIBLE, 0);
+                instance->SetData(DATA_TRIBUTE_TO_IMMORTALITY_ELIGIBLE, 0);
     }
 
     void EnterCombat(Unit* /*who*/)
@@ -950,7 +952,7 @@ class boss_icehowl : public CreatureScript
                 if (who->GetTypeId() == TYPEID_PLAYER)
                 {
                     if (instance)
-                        instance->SetData(DATA_TRIBUTE_TO_IMMORTALITY_ELEGIBLE, 0);
+                        instance->SetData(DATA_TRIBUTE_TO_IMMORTALITY_ELIGIBLE, 0);
                 }
             }
 
