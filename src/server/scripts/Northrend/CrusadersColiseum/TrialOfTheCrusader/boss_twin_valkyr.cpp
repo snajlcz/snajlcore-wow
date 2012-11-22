@@ -194,7 +194,7 @@ struct boss_twin_baseAI : public BossAI
         {
             Talk(SAY_KILL_PLAYER);
             if (instance)
-                instance->SetData(DATA_TRIBUTE_TO_IMMORTALITY_ELEGIBLE, 0);
+                instance->SetData(DATA_TRIBUTE_TO_IMMORTALITY_ELIGIBLE, 0);
         }
     }
 
@@ -499,7 +499,7 @@ class mob_essence_of_twin : public CreatureScript
         {
             mob_essence_of_twinAI(Creature* creature) : ScriptedAI(creature) { }
 
-            uint32 GetData(uint32 data)
+            uint32 GetData(uint32 data) const
             {
                 uint32 spellReturned = 0;
                 switch (me->GetEntry())

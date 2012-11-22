@@ -21,6 +21,8 @@
 #include "SpellScript.h"
 #include "SpellAuraEffects.h"
 #include "trial_of_the_crusader.h"
+#include "Player.h"
+#include "GridNotifiers.h"
 
 enum Yells
 {
@@ -645,7 +647,7 @@ struct boss_faction_championsAI : public BossAI
                         temp->AI()->Talk(SAY_KILL_PLAYER);
 
 
-                instance->SetData(DATA_TRIBUTE_TO_IMMORTALITY_ELEGIBLE, 0);
+                instance->SetData(DATA_TRIBUTE_TO_IMMORTALITY_ELIGIBLE, 0);
             }
         }
     }
