@@ -17,6 +17,8 @@
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
+#include "ObjectMgr.h"
+#include "Pet.h"
 #include "halls_of_reflection.h"
 
 enum Yells
