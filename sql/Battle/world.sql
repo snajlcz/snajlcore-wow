@@ -268,3 +268,7 @@ REPLACE INTO `gameobject` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `posit
 (16394, 176083, 369, 1, 1, -45.4007, 2512.15, 6.9886, 1.5708, 0, 0, 1, 0, 120, 0, 1),
 (5864, 176084, 369, 1, 1, -45.3934, 2472.93, 6.9886, -1.5708, 0, 0, 1, 0, 120, 0, 1),
 (15363, 176085, 369, 1, 1, 4.49883, -11.3475, 7.01107, 1.5708, 0, 0, 1, 0, 120, 0, 1);
+
+-- nagrand_arena_last_boss_quest
+UPDATE `quest_template` SET `RequiredNpcOrGo1` = '18069',`RequiredNpcOrGoCount1` = '1' WHERE `Id` =9977;
+UPDATE `quest_template` SET `SpecialFlags` = '0' WHERE `Id` =9977;
