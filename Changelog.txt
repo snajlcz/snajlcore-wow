@@ -11,6 +11,19 @@
 #                                                                                          #
 ############################################################################################
 
+[105] --> Add [MOD] CharacterHistory.
+[104] --> Fix quest The Ring of Blood: The Final Challenge (Nagrand Arena).
+[103] --> Fix Zul'drak arena.
+[102] --> Scripts/BlackTemple: Fix Illidan.
+[101] --> Fix Bonus 4P T10 Rogue.
+[100] --> Scripts/BlackTemple: Prevent Akama (Shade Encounter) to aggro outside of event.
+[99] --> Fix Bonus 4P T10 Warrior.
+[98] --> Fix Sunwell Plateau. (Test!)
+[97] --> Fixed a crash with npc_boneguard_mounted script. (Thx fiveofeight)
+[96] --> Fix Isle of Conquest - Teleports.
+[95] --> Fix Halion.
+[94] --> Fix Normal and Glyph of Eternal Water - Water Elemental.
+[93] --> Fix Quests Argent Tournament.
 [92] --> Add [MOD] MultiKill.
 [91] --> Fix lowlevel pets cause big damage.
 [90] --> Fix Warlock: Spell Lock.
@@ -158,5 +171,6 @@
 #            https://github.com/tibbi                                                      #
 #            https://github.com/locksmith                                                  #
 #            https://github.com/Thainification                                             #
+#            https://github.com/fiveofeight                                                #
 #                                                                                          #
 ############################################################################################
