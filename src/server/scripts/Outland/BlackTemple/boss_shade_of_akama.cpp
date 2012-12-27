@@ -29,12 +29,15 @@ EndScriptData */
 #include "black_temple.h"
 #include "Player.h"
 
-#define SAY_DEATH                   -1564013
-#define SAY_LOW_HEALTH              -1564014
-// Ending cinematic text
-#define SAY_FREE                    -1564015
-#define SAY_BROKEN_FREE_01          -1564016
-#define SAY_BROKEN_FREE_02          -1564017
+enum ShadeOfAkama
+{
+    SAY_DEATH                   = 0,
+    SAY_LOW_HEALTH              = 1,
+    // Ending cinematic text
+    SAY_FREE                    = 2,
+    SAY_BROKEN_FREE_01          = 0,
+    SAY_BROKEN_FREE_02          = 1
+};
 
 #define GOSSIP_ITEM                 "We are ready to fight alongside you, Akama"
 
@@ -109,6 +112,9 @@ static Location BrokenWP[]=
 #define CREATURE_SORCERER           23215
 #define CREATURE_DEFENDER           23216
 #define CREATURE_BROKEN             23319
+
+// Creature Entrys
+#define NPC_SHADE_OF_AKAMA          22841
 
 const uint32 spawnEntries[4]= { 23523, 23318, 23524 };
 
@@ -626,6 +632,8 @@ public:
 
         void Reset()
         {
+            me->SetReactState(REACT_PASSIVE);
+
             DestructivePoisonTimer = 15000;
             LightningBoltTimer = 10000;
             CheckTimer = 2000;
@@ -665,6 +673,7 @@ public:
             {
                 instance->SetData(DATA_SHADEOFAKAMAEVENT, IN_PROGRESS);
                 // Prevent players from trying to restart event
+                me->SetReactState(REACT_DEFENSIVE);
                 me->RemoveFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_GOSSIP);
                 CAST_AI(boss_shade_of_akama::boss_shade_of_akamaAI, Shade->AI())->SetAkamaGUID(me->GetGUID());
                 CAST_AI(boss_shade_of_akama::boss_shade_of_akamaAI, Shade->AI())->SetSelectableChannelers();
@@ -704,7 +713,7 @@ public:
 
         void JustDied(Unit* /*killer*/)
         {
-            DoScriptText(SAY_DEATH, me);
+            Talk(SAY_DEATH);
             EventBegun = false;
             ShadeHasDied = false;
             StartCombat = false;
@@ -729,7 +738,7 @@ public:
 
             if (HealthBelowPct(15) && !HasYelledOnce)
             {
-                DoScriptText(SAY_LOW_HEALTH, me);
+                Talk(SAY_LOW_HEALTH);
                 HasYelledOnce = true;
             }
 
@@ -758,6 +767,7 @@ public:
             {
                 if (instance)
                     instance->SetData(DATA_SHADEOFAKAMAEVENT, DONE);
+                me->SetReactState(REACT_PASSIVE);
                 me->GetMotionMaster()->MovePoint(WayPointId, AkamaWP[1].x, AkamaWP[1].y, AkamaWP[1].z);
                 ++WayPointId;
             }
@@ -825,7 +835,7 @@ public:
                         SummonBrokenTimer = 1;
                         break;
                     case 1:
-                        DoScriptText(SAY_FREE, me);
+                        Talk(SAY_FREE);
                         ++EndingTalkCount;
                         SoulRetrieveTimer = 25000;
                         break;
@@ -838,7 +848,7 @@ public:
                                 {
                                     if (!Yelled)
                                     {
-                                        DoScriptText(SAY_BROKEN_FREE_01, unit);
+                                        unit->AI()->Talk(SAY_BROKEN_FREE_01);
                                         Yelled = true;
                                     }
                                     unit->HandleEmoteCommand(EMOTE_ONESHOT_KNEEL);
@@ -863,7 +873,7 @@ public:
                         {
                             for (std::list<uint64>::const_iterator itr = BrokenList.begin(); itr != BrokenList.end(); ++itr)
                                 if (Creature* unit = Unit::GetCreature((*me), *itr))
-                                    unit->MonsterYell(SAY_BROKEN_FREE_02, LANG_UNIVERSAL, 0);
+                                    unit->AI()->Talk(SAY_BROKEN_FREE_02);
                         }
                         SoulRetrieveTimer = 0;
                         break;

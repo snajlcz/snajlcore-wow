@@ -190,13 +190,6 @@ DiminishingGroup GetDiminishingReturnsGroupForSpell(SpellInfo const* spellproto,
                 return DIMINISHING_FEAR;
             break;
         }
-        case SPELLFAMILY_SHAMAN:
-        {
-            // Storm, Earth and Fire - Earthgrab
-            if (spellproto->SpellFamilyFlags[2] & 0x4000)
-                return DIMINISHING_LIMITONLY;
-            break;
-        }
         case SPELLFAMILY_DEATHKNIGHT:
         {
             // Hungering Cold (no flags)
@@ -205,6 +198,13 @@ DiminishingGroup GetDiminishingReturnsGroupForSpell(SpellInfo const* spellproto,
             // Mark of Blood
             else if ((spellproto->SpellFamilyFlags[0] & 0x10000000) && spellproto->SpellIconID == 2285)
                 return DIMINISHING_LIMITONLY;
+            break;
+        }
+        case SPELLFAMILY_SHAMAN:
+        {
+            // Earthgrab
+            if (spellproto->SpellFamilyFlags[2] & 0x00004000)
+                return DIMINISHING_NONE;
             break;
         }
         default:
@@ -2446,7 +2446,6 @@ void SpellMgr::LoadSpellAreas()
 
     //                                                  0     1         2              3               4                 5          6          7       8         9
     QueryResult result = WorldDatabase.Query("SELECT spell, area, quest_start, quest_start_status, quest_end_status, quest_end, aura_spell, racemask, gender, autocast FROM spell_area");
-
     if (!result)
     {
         sLog->outInfo(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 spell area requirements. DB table `spell_area` is empty.");
@@ -2679,6 +2678,7 @@ void SpellMgr::LoadSpellCustomAttr()
                 case SPELL_AURA_AOE_CHARM:
                 case SPELL_AURA_MOD_FEAR:
                 case SPELL_AURA_MOD_STUN:
+                case SPELL_AURA_MOD_ROOT:
                     spellInfo->AttributesCu |= SPELL_ATTR0_CU_AURA_CC;
                     break;
                 case SPELL_AURA_PERIODIC_HEAL:
@@ -2986,6 +2986,9 @@ void SpellMgr::LoadDbcDataCorrections()
 
         switch (spellInfo->Id)
         {
+            case 53096: // Quetz'lun's Judgment
+                spellInfo->MaxAffectedTargets = 1;
+                break;
             case 42730:
                 spellInfo->EffectTriggerSpell[EFFECT_1] = 42739;
                 break;
@@ -3041,9 +3044,12 @@ void SpellMgr::LoadDbcDataCorrections()
             case 5171: // Slice and Dice rank1
             case 6774: // Slice and Dice rank2
             case 52916: // Honor Among Thieves
-            case 3600: // Earthbind totem effect
+            case 3600:  // Earthbind totem effect
+                spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_INITIAL_AGGRO;
+                break;
             case 50526: // Wandering plague
                 spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_INITIAL_AGGRO;
+                spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_DONE_BONUS;
                 break;
             case 61407: // Energize Cores
             case 62136: // Energize Cores
@@ -3359,6 +3365,13 @@ void SpellMgr::LoadDbcDataCorrections()
                 break;
             case 70650: // Death Knight T10 Tank 2P Bonus
                 spellInfo->EffectApplyAuraName[0] = SPELL_AURA_ADD_PCT_MODIFIER;
+                break;
+            case 71838: // Drain Life - Bryntroll Normal
+            case 71839: // Drain Life - Bryntroll Heroic
+                spellInfo->AttributesEx2 |= SPELL_ATTR2_CANT_CRIT;
+                break;
+            case 34471: // The Beast Within
+                spellInfo->AttributesEx5 |= SPELL_ATTR5_USABLE_WHILE_CONFUSED | SPELL_ATTR5_USABLE_WHILE_FEARED | SPELL_ATTR5_USABLE_WHILE_STUNNED;
                 break;
             // ULDUAR SPELLS
             //
@@ -3697,6 +3710,10 @@ void SpellMgr::LoadDbcDataCorrections()
             case 62012: // Turkey Caller
                 spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_0_YARDS;    // 0yd
                 break;
+            case 28374: // Gluth's Decimate
+            case 54426: // Gluth's Decimate
+               spellInfo->AttributesEx |= SPELL_ATTR1_CANT_TARGET_SELF;
+               break;
             default:
                 break;
         }
