@@ -3464,6 +3464,9 @@ void SpellMgr::LoadDbcDataCorrections()
             case 71123: // Decimate (Stinky & Precious)
                 spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_100_YARDS; // 100yd
                 break;
+            case 71169: // Shadow's Fate
+                spellInfo->AttributesEx3 |= SPELL_ATTR3_STACK_FOR_DIFF_CASTERS;
+                break;
             case 72378: // Blood Nova (Deathbringer Saurfang)
             case 73058: // Blood Nova (Deathbringer Saurfang)
                 spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_200_YARDS;
@@ -3712,8 +3715,11 @@ void SpellMgr::LoadDbcDataCorrections()
                 break;
             case 28374: // Gluth's Decimate
             case 54426: // Gluth's Decimate
-               spellInfo->AttributesEx |= SPELL_ATTR1_CANT_TARGET_SELF;
-               break;
+                spellInfo->AttributesEx |= SPELL_ATTR1_CANT_TARGET_SELF;
+                break;
+            case 29307: // Infected Wounds (Zombie Chow)
+                spellInfo->AttributesEx3 |= SPELL_ATTR3_STACK_FOR_DIFF_CASTERS;
+                break;
             default:
                 break;
         }
