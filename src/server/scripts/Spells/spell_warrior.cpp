@@ -319,6 +319,67 @@ class spell_warr_slam : public SpellScriptLoader
         }
 };
 
+enum executebonus
+{
+    SPELL_EXECUTE_BONUS     = 20647,
+    SPELL_EXECUTE_PROC      = 52437,
+};
+
+class spell_warr_execute_bonus : public SpellScriptLoader
+{
+    public:
+        spell_warr_execute_bonus() : SpellScriptLoader("spell_warr_execute_bonus") { }
+
+        class spell_warr_execute_bonus_SpellScript : public SpellScript
+        {
+            PrepareSpellScript(spell_warr_execute_bonus_SpellScript);
+
+            bool Validate(SpellInfo const* /*SpellEntry*/)
+            {
+                if (!sSpellMgr->GetSpellInfo(SPELL_EXECUTE_BONUS))
+                    return false;
+                return true;
+            }
+            void HandleDummy(SpellEffIndex /* effIndex */)
+            {
+                int32 bp0 = GetEffectValue();
+                if (GetHitUnit())
+                    GetCaster()->CastCustomSpell(GetHitUnit(), SPELL_EXECUTE_BONUS, &bp0, NULL, NULL, true, 0);
+            }
+
+            void Register()
+            {
+                OnEffectHitTarget += SpellEffectFn(spell_warr_execute_bonus_SpellScript::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
+            }
+        };
+
+        class spell_warr_execute_bonus_AuraScript : public AuraScript
+        {
+            PrepareAuraScript(spell_warr_execute_bonus_AuraScript);
+
+            void HandleEffectCalcSpellMod(AuraEffect const* aurEff, SpellModifier*& spellMod)
+            {
+                if (spellMod && spellMod->spellId == SPELL_EXECUTE_PROC)
+                    spellMod->charges++;
+            }
+
+            void Register()
+            {
+                DoEffectCalcSpellMod += AuraEffectCalcSpellModFn(spell_warr_execute_bonus_AuraScript::HandleEffectCalcSpellMod, EFFECT_0, SPELL_AURA_ADD_PCT_MODIFIER);
+            }
+        };
+
+        SpellScript* GetSpellScript() const
+        {
+            return new spell_warr_execute_bonus_SpellScript();
+        }
+
+        AuraScript* GetAuraScript() const
+        {
+            return new spell_warr_execute_bonus_AuraScript();
+        }
+};
+
 enum Execute
 {
     SPELL_EXECUTE               = 20647,
@@ -537,6 +598,7 @@ void AddSC_warrior_spell_scripts()
     new spell_warr_deep_wounds();
     new spell_warr_charge();
     new spell_warr_slam();
+    new spell_warr_execute_bonus();
     new spell_warr_execute();
     new spell_warr_concussion_blow();
     new spell_warr_bloodthirst();

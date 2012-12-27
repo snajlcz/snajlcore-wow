@@ -183,10 +183,32 @@ INSERT INTO `spell_proc_event` VALUES (28305, 0, 0, 0, 0, 0, 0, 65536, 0, 0, 0);
 -- Move Shadowfiend's Mana Leech Aura from spellscript to creature addon.
 UPDATE `creature_template_addon` SET `auras`= '28305' WHERE `entry`=19668;
 
--- Argent Tournament
-UPDATE `creature_template` SET `ScriptName` = 'npc_valiant' WHERE entry IN (33559,33562,33558,33564,33306,33285,33382,33561,33383,33384,33738,33739,33740,33743,33744,33745,33746,33747,33748,33749);
-
 -- Npc Top 10 Arena Teams
 DELETE FROM `creature_template` WHERE `entry` = 500009;
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `equipment_id`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
 ('500009', '0', '0', '0', '0', '0', '27164', '0', '0', '0', 'Top 10 Arena Teams', '', '', '0', '59', '61', '0', '35', '35', '1', '1.48', '1.14286', '0.0', '0', '655.0', '663.0', '0', '158', '1.0', '1500', '1900', '1', '0', '0', '0', '0', '0', '0', '0', '0.0', '0.0', '100', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '1', '3', '1.0', '1.0', '1.0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'npc_arena_team_top', '1');
+
+-- Fix Isle of Conquest - Teleports
+UPDATE `spell_linked_spell` SET `spell_effect` = 66551 WHERE `spell_trigger` IN (66549, 66548);
+UPDATE `spell_linked_spell` SET `spell_trigger` = 66551 WHERE `spell_effect` IN (-66548, -66549);
+
+-- Fix [Warrior] T10 4P Bonus
+-- Slam
+DELETE FROM spell_script_names WHERE spell_id = 46916;
+INSERT INTO spell_script_names VALUES (46916,'spell_warr_slam');
+-- Execute
+DELETE FROM spell_script_names WHERE spell_id = 52437;
+INSERT INTO spell_script_names VALUES (52437,'spell_warr_execute_bonus');
+
+-- Fix Rogue T10 4p bonus
+DELETE FROM spell_proc_event WHERE entry = 70803;
+INSERT INTO `spell_proc_event` VALUES('70803', '0', '8', '4063232', '8', '0', '0', '0', '0', '0', '0');
+
+-- Fix Illidan
+UPDATE `creature_template` SET `unit_flags` = 33554690 WHERE `entry` = 23070; -- c eyebeam target
+UPDATE `creature_template` SET `unit_flags` = 33685510, `ScriptName` = '' WHERE `entry` IN (23069, 23336, 23259); -- Demon Fire and Flame Crash, and blaze
+
+-- Fix Zul'drak arena
+UPDATE `creature_template` SET `ScriptName` = 'npc_vladof' WHERE `entry` =30022;
+UPDATE `creature_template` SET `faction_A` = '14',`faction_H` = '14' WHERE `entry` =30093;
+UPDATE `creature_template` SET `faction_A` = '14',`faction_H` = '14' WHERE `entry` =30110;
