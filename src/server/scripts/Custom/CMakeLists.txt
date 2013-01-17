@@ -1,4 +1,4 @@
-# Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+# Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without
@@ -21,6 +21,7 @@ set(scripts_STAT_SRCS
   Custom/npc_crypt_run.cpp
   Custom/mod_MultiKill.cpp
   Custom/mod_CharacterHistory.cpp
+  Custom/npc_maniek.cpp
 )
 
 message("  -> Prepared: Custom")
