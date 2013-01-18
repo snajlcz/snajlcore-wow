@@ -932,12 +932,12 @@ public:
 
         if (sWorld->getBoolConfig(CONFIG_SHOW_KICK_IN_WORLD))
         {
-           announce = "The character '";
+           announce = "The character ";
            announce += playerName.c_str();
-           announce += "' was kicked by the character '";
-           announce += m_session->GetPlayerName();
-           announce += "'.";
-           HandleAnnounceCommand(announce.c_str());
+           announce += " was kicked by the character ";
+           announce += handler->GetSession()->GetPlayerName();
+           announce += ".";
+           sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str()); 
         }
 
         return true;
@@ -1794,8 +1794,8 @@ public:
 
         if(!muteReason)
         {
-            PSendSysMessage("You must enter a reason of mute");
-            SetSentErrorMessage(true);
+            handler->PSendSysMessage("You must enter a reason of mute");
+            handler->SetSentErrorMessage(true);
             return false;
         }
 
@@ -1843,15 +1843,15 @@ public:
 
         if (sWorld->getBoolConfig(CONFIG_SHOW_MUTE_IN_WORLD))
         {
-            announce = "The character '";
+            announce = "The character ";
             announce += nameLink.c_str();
-            announce += "' was muted for ";
+            announce += " was muted for ";
             announce += notSpeakTime;
-            announce += " minutes by the character '";
-            announce += m_session->GetPlayerName();
-            announce += "'. The reason is: ";
+            announce += " minutes by the character ";
+            announce += handler->GetSession()->GetPlayerName();
+            announce += ". The reason is: ";
             announce += muteReasonStr.c_str();
-            HandleAnnounceCommand(announce.c_str());
+            sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str()); 
         }
 
         return true;
