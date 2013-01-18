@@ -221,15 +221,15 @@ public:
           else if (mode == BAN_IP)
                        announce = "The IP '";
                    else
-                     announce = "Account '";
+                     announce = "Account ";
                      announce += nameOrIP.c_str();
-                     announce += "' was banned for ";
+                     announce += " was banned for ";
                      announce += durationStr;
-                     announce += " by the character '";
-                     announce += m_session->GetPlayerName();
-                     announce += "'. The reason is: ";
+                     announce += " by the character ";
+                     announce +=  handler->GetSession()->GetPlayerName();
+                     announce += ". The reason is: ";
                      announce += reasonStr;
-          HandleAnnounceCommand(announce.c_str());
+                     sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str()); 
         }
 
         return true;
