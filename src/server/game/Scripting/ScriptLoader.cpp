@@ -39,10 +39,12 @@ void AddSC_npc_other();
 void AddSC_npc_arena_setup();
 // [MOD] MultiKill
 void AddSC_Mod_Multikill(); // by Codels
-// [MOD] CharacterHistory
-void AddSC_Mod_CharacterHistory(); // by Codels
 // Mr.Maniek
 void AddSC_npc_maniek();
+// NPC MMR Master
+void AddSC_npc_mmr_reset();
+// NPC Astranaar SHOP
+void AddSC_npc_shop();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1350,9 +1352,11 @@ void AddCustomScripts()
     AddSC_npc_arena_setup();
     // [MOD] MultiKill
     AddSC_Mod_Multikill(); // by Codels
-    // [MOD] CharacterHistory
-    AddSC_Mod_CharacterHistory(); // by Codels
     // Mr.Maniek
     AddSC_npc_maniek();
+    // NPC MMR Master
+    AddSC_npc_mmr_reset();
+    // NPC Astranaar SHOP
+    AddSC_npc_shop();
 #endif
 }
