@@ -104,11 +104,19 @@ void ScriptedAI::AttackStartNoMove(Unit* who)
     if (!who)
         return;
 
-    if (me->Attack(who, false))
+    if (me->Attack(who, true))
         DoStartNoMovement(who);
 }
 
-void ScriptedAI::UpdateAI(uint32 const /*diff*/)
+void ScriptedAI::AttackStart(Unit* who)
+{
+    if (IsCombatMovementAllowed())
+        CreatureAI::AttackStart(who);
+    else
+        AttackStartNoMove(who);
+}
+
+void ScriptedAI::UpdateAI(uint32 /*diff*/)
 {
     //Check if we have a current target
     if (!UpdateVictim())
@@ -362,9 +370,7 @@ void ScriptedAI::SetEquipmentSlots(bool loadDefault, int32 mainHand /*= EQUIP_NO
 {
     if (loadDefault)
     {
-        if (CreatureTemplate const* creatureInfo = sObjectMgr->GetCreatureTemplate(me->GetEntry()))
-            me->LoadEquipment(creatureInfo->equipmentId, true);
-
+        me->LoadEquipment(me->GetOriginalEquipmentId(), true);
         return;
     }
 
@@ -437,15 +443,6 @@ bool ScriptedAI::EnterEvadeIfOutOfCombatArea(uint32 const diff)
 
     EnterEvadeMode();
     return true;
-}
-
-void Scripted_NoMovementAI::AttackStart(Unit* target)
-{
-    if (!target)
-        return;
-
-    if (me->Attack(target, true))
-        DoStartNoMovement(target);
 }
 
 // BossAI - for instanced bosses
@@ -569,7 +566,7 @@ void BossAI::SummonedCreatureDespawn(Creature* summon)
     summons.Despawn(summon);
 }
 
-void BossAI::UpdateAI(uint32 const diff)
+void BossAI::UpdateAI(uint32 diff)
 {
     if (!UpdateVictim())
         return;
@@ -628,7 +625,7 @@ void WorldBossAI::SummonedCreatureDespawn(Creature* summon)
     summons.Despawn(summon);
 }
 
-void WorldBossAI::UpdateAI(uint32 const diff)
+void WorldBossAI::UpdateAI(uint32 diff)
 {
     if (!UpdateVictim())
         return;
