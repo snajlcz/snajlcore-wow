@@ -404,8 +404,8 @@ void ObjectMgr::LoadCreatureTemplates()
                                              "spell2, spell3, spell4, spell5, spell6, spell7, spell8, PetSpellDataId, VehicleId, mingold, maxgold, AIName, MovementType, "
     //                                             68          69         70         71          72           73          74          75          76          77          78
                                              "InhabitType, HoverHeight, Health_mod, Mana_mod, Armor_mod, RacialLeader, questItem1, questItem2, questItem3, questItem4, questItem5, "
-    //                                            79           80           81               82                83           84
-                                             " questItem6, movementId, RegenHealth, equipment_id, mechanic_immune_mask, flags_extra, ScriptName "
+    //                                            79           80           81             82                83           84
+                                             " questItem6, movementId, RegenHealth, mechanic_immune_mask, flags_extra, ScriptName "
                                              "FROM creature_template;");
 
     if (!result)
@@ -500,10 +500,9 @@ void ObjectMgr::LoadCreatureTemplates()
 
         creatureTemplate.movementId         = fields[80].GetUInt32();
         creatureTemplate.RegenHealth        = fields[81].GetBool();
-        creatureTemplate.equipmentId        = fields[82].GetUInt32();
-        creatureTemplate.MechanicImmuneMask = fields[83].GetUInt32();
-        creatureTemplate.flags_extra        = fields[84].GetUInt32();
-        creatureTemplate.ScriptID           = GetScriptId(fields[85].GetCString());
+        creatureTemplate.MechanicImmuneMask = fields[82].GetUInt32();
+        creatureTemplate.flags_extra        = fields[83].GetUInt32();
+        creatureTemplate.ScriptID           = GetScriptId(fields[84].GetCString());
 
         ++count;
     }
@@ -858,15 +857,6 @@ void ObjectMgr::CheckCreatureTemplate(CreatureTemplate const* cInfo)
         const_cast<CreatureTemplate*>(cInfo)->MovementType = IDLE_MOTION_TYPE;
     }
 
-    if (cInfo->equipmentId > 0)                          // 0 no equipment
-    {
-        if (!GetEquipmentInfo(cInfo->equipmentId))
-        {
-            sLog->outError(LOG_FILTER_SQL, "Table `creature_template` lists creature (Entry: %u) with `equipment_id` %u not found in table `creature_equip_template`, set to no equipment.", cInfo->Entry, cInfo->equipmentId);
-            const_cast<CreatureTemplate*>(cInfo)->equipmentId = 0;
-        }
-    }
-
     /// if not set custom creature scale then load scale from CreatureDisplayInfo.dbc
     if (cInfo->scale <= 0.0f)
     {
@@ -986,11 +976,28 @@ CreatureAddon const* ObjectMgr::GetCreatureTemplateAddon(uint32 entry)
     return NULL;
 }
 
-EquipmentInfo const* ObjectMgr::GetEquipmentInfo(uint32 entry)
+EquipmentInfo const* ObjectMgr::GetEquipmentInfo(uint32 entry, int8& id)
 {
     EquipmentInfoContainer::const_iterator itr = _equipmentInfoStore.find(entry);
-    if (itr != _equipmentInfoStore.end())
-        return &(itr->second);
+    if (itr == _equipmentInfoStore.end())
+        return NULL;
+
+    if (itr->second.empty())
+        return NULL;
+
+    if (id == -1) // select a random element
+    {
+        EquipmentInfoContainerInternal::const_iterator ritr = itr->second.begin();
+        std::advance(ritr, urand(0u, itr->second.size() - 1));
+        id = std::distance(itr->second.begin(), ritr) + 1;
+        return &ritr->second;
+    }
+    else
+    {
+        EquipmentInfoContainerInternal::const_iterator itr2 = itr->second.find(id);
+        if (itr2 != itr->second.end())
+            return &itr2->second;
+    }
 
     return NULL;
 }
@@ -999,7 +1006,8 @@ void ObjectMgr::LoadEquipmentTemplates()
 {
     uint32 oldMSTime = getMSTime();
 
-    QueryResult result = WorldDatabase.Query("SELECT entry, itemEntry1, itemEntry2, itemEntry3 FROM creature_equip_template");
+    //                                                 0     1       2           3           4
+    QueryResult result = WorldDatabase.Query("SELECT entry, id, itemEntry1, itemEntry2, itemEntry3 FROM creature_equip_template");
 
     if (!result)
     {
@@ -1012,13 +1020,21 @@ void ObjectMgr::LoadEquipmentTemplates()
     {
         Field* fields = result->Fetch();
 
-        uint16 entry = fields[0].GetUInt16();
+        uint32 entry = fields[0].GetUInt32();
 
-        EquipmentInfo& equipmentInfo = _equipmentInfoStore[entry];
+        if (!sObjectMgr->GetCreatureTemplate(entry))
+        {
+            sLog->outError(LOG_FILTER_SQL, "Creature template (Entry: %u) does not exist but has a record in `creature_equip_template`", entry);
+            continue;
+        }
 
-        equipmentInfo.ItemEntry[0] = fields[1].GetUInt32();
-        equipmentInfo.ItemEntry[1] = fields[2].GetUInt32();
-        equipmentInfo.ItemEntry[2] = fields[3].GetUInt32();
+        uint8 id = fields[1].GetUInt8();
+
+        EquipmentInfo& equipmentInfo = _equipmentInfoStore[entry][id];
+
+        equipmentInfo.ItemEntry[0] = fields[2].GetUInt32();
+        equipmentInfo.ItemEntry[1] = fields[3].GetUInt32();
+        equipmentInfo.ItemEntry[2] = fields[4].GetUInt32();
 
         for (uint8 i = 0; i < MAX_EQUIPMENT_ITEMS; ++i)
         {
@@ -1029,8 +1045,8 @@ void ObjectMgr::LoadEquipmentTemplates()
 
             if (!dbcItem)
             {
-                sLog->outError(LOG_FILTER_SQL, "Unknown item (entry=%u) in creature_equip_template.itemEntry%u for entry = %u, forced to 0.",
-                    equipmentInfo.ItemEntry[i], i+1, entry);
+                sLog->outError(LOG_FILTER_SQL, "Unknown item (entry=%u) in creature_equip_template.itemEntry%u for entry = %u and id=%u, forced to 0.",
+                    equipmentInfo.ItemEntry[i], i+1, entry, id);
                 equipmentInfo.ItemEntry[i] = 0;
                 continue;
             }
@@ -1045,8 +1061,8 @@ void ObjectMgr::LoadEquipmentTemplates()
                 dbcItem->InventoryType != INVTYPE_THROWN &&
                 dbcItem->InventoryType != INVTYPE_RANGEDRIGHT)
             {
-                sLog->outError(LOG_FILTER_SQL, "Item (entry=%u) in creature_equip_template.itemEntry%u for entry = %u is not equipable in a hand, forced to 0.",
-                    equipmentInfo.ItemEntry[i], i+1, entry);
+                sLog->outError(LOG_FILTER_SQL, "Item (entry=%u) in creature_equip_template.itemEntry%u for entry = %u and id = %u is not equipable in a hand, forced to 0.",
+                    equipmentInfo.ItemEntry[i], i+1, entry, id);
                 equipmentInfo.ItemEntry[i] = 0;
             }
         }
@@ -1189,8 +1205,7 @@ void ObjectMgr::LoadLinkedRespawn()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 linked respawns. DB table `linked_respawn` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 linked respawns. DB table `linked_respawn` is empty.");
         return;
     }
 
@@ -1406,6 +1421,92 @@ bool ObjectMgr::SetCreatureLinkedRespawn(uint32 guidLow, uint32 linkedGuidLow)
     return true;
 }
 
+void ObjectMgr::LoadTempSummons()
+{
+    uint32 oldMSTime = getMSTime();
+
+    //                                               0           1             2        3      4           5           6           7            8           9
+    QueryResult result = WorldDatabase.Query("SELECT summonerId, summonerType, groupId, entry, position_x, position_y, position_z, orientation, summonType, summonTime FROM creature_summon_groups");
+
+    if (!result)
+    {
+        sLog->outInfo(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 temp summons. DB table `creature_summon_groups` is empty.");
+        return;
+    }
+
+    uint32 count = 0;
+    do
+    {
+        Field* fields = result->Fetch();
+
+        uint32 summonerId               = fields[0].GetUInt32();
+        SummonerType summonerType       = SummonerType(fields[1].GetUInt8());
+        uint8 group                     = fields[2].GetUInt8();
+
+        switch (summonerType)
+        {
+            case SUMMONER_TYPE_CREATURE:
+                if (!GetCreatureTemplate(summonerId))
+                {
+                    sLog->outError(LOG_FILTER_SQL, "Table `creature_summon_groups` has summoner with non existing entry %u for creature summoner type, skipped.", summonerId);
+                    continue;
+                }
+                break;
+            case SUMMONER_TYPE_GAMEOBJECT:
+                if (!GetGameObjectTemplate(summonerId))
+                {
+                    sLog->outError(LOG_FILTER_SQL, "Table `creature_summon_groups` has summoner with non existing entry %u for gameobject summoner type, skipped.", summonerId);
+                    continue;
+                }
+                break;
+            case SUMMONER_TYPE_MAP:
+                if (!sMapStore.LookupEntry(summonerId))
+                {
+                    sLog->outError(LOG_FILTER_SQL, "Table `creature_summon_groups` has summoner with non existing entry %u for map summoner type, skipped.", summonerId);
+                    continue;
+                }
+                break;
+            default:
+                sLog->outError(LOG_FILTER_SQL, "Table `creature_summon_groups` has unhandled summoner type %u for summoner %u, skipped.", summonerType, summonerId);
+                continue;
+        }
+
+        TempSummonData data;
+        data.entry                      = fields[3].GetUInt32();
+
+        if (!GetCreatureTemplate(data.entry))
+        {
+            sLog->outError(LOG_FILTER_SQL, "Table `creature_summon_groups` has creature in group [Summoner ID: %u, Summoner Type: %u, Group ID: %u] with non existing creature entry %u, skipped.", summonerId, summonerType, group, data.entry);
+            continue;
+        }
+
+        float posX                      = fields[4].GetFloat();
+        float posY                      = fields[5].GetFloat();
+        float posZ                      = fields[6].GetFloat();
+        float orientation               = fields[7].GetFloat();
+
+        data.pos.Relocate(posX, posY, posZ, orientation);
+
+        data.type                       = TempSummonType(fields[8].GetUInt8());
+
+        if (data.type > TEMPSUMMON_MANUAL_DESPAWN)
+        {
+            sLog->outError(LOG_FILTER_SQL, "Table `creature_summon_groups` has unhandled temp summon type %u in group [Summoner ID: %u, Summoner Type: %u, Group ID: %u] for creature entry %u, skipped.", data.type, summonerId, summonerType, group, data.entry);
+            continue;
+        }
+
+        data.time                       = fields[9].GetUInt32();
+
+        TempSummonGroupKey key(summonerId, summonerType, group);
+        _tempSummonDataStore[key].push_back(data);
+
+        ++count;
+
+    } while (result->NextRow());
+
+    sLog->outInfo(LOG_FILTER_SERVER_LOADING, ">> Loaded %u temp summons in %u ms", count, GetMSTimeDiffToNow(oldMSTime));
+}
+
 void ObjectMgr::LoadCreatures()
 {
     uint32 oldMSTime = getMSTime();
@@ -1420,8 +1521,7 @@ void ObjectMgr::LoadCreatures()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 creatures. DB table `creature` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 creatures. DB table `creature` is empty.");
         return;
     }
 
@@ -1453,7 +1553,7 @@ void ObjectMgr::LoadCreatures()
         data.id             = entry;
         data.mapid          = fields[2].GetUInt16();
         data.displayid      = fields[3].GetUInt32();
-        data.equipmentId    = fields[4].GetInt32();
+        data.equipmentId    = fields[4].GetInt8();
         data.posX           = fields[5].GetFloat();
         data.posY           = fields[6].GetFloat();
         data.posZ           = fields[7].GetFloat();
@@ -1495,13 +1595,13 @@ void ObjectMgr::LoadCreatures()
         if (!ok)
             continue;
 
-        // -1 no equipment, 0 use default
-        if (data.equipmentId > 0)
+        // -1 random, 0 no equipment,
+        if (data.equipmentId != 0)
         {
-            if (!GetEquipmentInfo(data.equipmentId))
+            if (!GetEquipmentInfo(data.id, data.equipmentId))
             {
                 sLog->outError(LOG_FILTER_SQL, "Table `creature` have creature (Entry: %u) with equipment_id %u not found in table `creature_equip_template`, set to no equipment.", data.id, data.equipmentId);
-                data.equipmentId = -1;
+                data.equipmentId = 0;
             }
         }
 
@@ -1675,7 +1775,7 @@ uint32 ObjectMgr::AddCreData(uint32 entry, uint32 /*team*/, uint32 mapId, float 
     data.id = entry;
     data.mapid = mapId;
     data.displayid = 0;
-    data.equipmentId = cInfo->equipmentId;
+    data.equipmentId = 0;
     data.posX = x;
     data.posY = y;
     data.posZ = z;
@@ -1729,7 +1829,7 @@ void ObjectMgr::LoadGameobjects()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 gameobjects. DB table `gameobject` is empty.");
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 gameobjects. DB table `gameobject` is empty.");
         return;
     }
 
@@ -2780,8 +2880,7 @@ void ObjectMgr::LoadVehicleTemplateAccessories()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 vehicle template accessories. DB table `vehicle_template_accessory` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 vehicle template accessories. DB table `vehicle_template_accessory` is empty.");
         return;
     }
 
@@ -2875,8 +2974,7 @@ void ObjectMgr::LoadPetLevelInfo()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 level pet stats definitions. DB table `pet_levelstats` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 level pet stats definitions. DB table `pet_levelstats` is empty.");
         return;
     }
 
@@ -3014,8 +3112,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-
-            sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 player create definitions. DB table `playercreateinfo` is empty.");
+            sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 player create definitions. DB table `playercreateinfo` is empty.");
             exit(1);
         }
         else
@@ -3172,8 +3269,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 player create spells. DB table `%s` is empty.", sWorld->getBoolConfig(CONFIG_START_ALL_SPELLS) ? "playercreateinfo_spell_custom" : "playercreateinfo_spell");
-
+            sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 player create spells. DB table `%s` is empty.", sWorld->getBoolConfig(CONFIG_START_ALL_SPELLS) ? "playercreateinfo_spell_custom" : "playercreateinfo_spell");
         }
         else
         {
@@ -3234,8 +3330,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 player create actions. DB table `playercreateinfo_action` is empty.");
-
+            sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 player create actions. DB table `playercreateinfo_action` is empty.");
         }
         else
         {
@@ -3280,7 +3375,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 level health/mana definitions. DB table `game_event_condition` is empty.");
+            sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 level health/mana definitions. DB table `game_event_condition` is empty.");
             exit(1);
         }
 
@@ -3362,8 +3457,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 level stats definitions. DB table `player_levelstats` is empty.");
-
+            sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 level stats definitions. DB table `player_levelstats` is empty.");
             exit(1);
         }
 
@@ -3475,8 +3569,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 xp for level definitions. DB table `player_xp_for_level` is empty.");
-
+            sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 xp for level definitions. DB table `player_xp_for_level` is empty.");
             exit(1);
         }
 
@@ -3673,7 +3766,7 @@ void ObjectMgr::LoadQuests()
         " FROM quest_template");
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 quests definitions. DB table `quest_template` is empty.");
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 quests definitions. DB table `quest_template` is empty.");
         return;
     }
 
@@ -4756,7 +4849,7 @@ void ObjectMgr::LoadWaypointScripts()
     for (ScriptMapMap::const_iterator itr = sWaypointScripts.begin(); itr != sWaypointScripts.end(); ++itr)
         actionSet.insert(itr->first);
 
-    PreparedStatement* stmt = WorldDatabase.GetPreparedStatement(WOLRD_SEL_WAYPOINT_DATA_ACTION);
+    PreparedStatement* stmt = WorldDatabase.GetPreparedStatement(WORLD_SEL_WAYPOINT_DATA_ACTION);
     PreparedQueryResult result = WorldDatabase.Query(stmt);
 
     if (result)
@@ -5025,8 +5118,7 @@ void ObjectMgr::LoadInstanceEncounters()
     QueryResult result = WorldDatabase.Query("SELECT entry, creditType, creditEntry, lastEncounterDungeon FROM instance_encounters");
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 instance encounters, table is empty!");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 instance encounters, table is empty!");
         return;
     }
 
@@ -5046,7 +5138,7 @@ void ObjectMgr::LoadInstanceEncounters()
             continue;
         }
 
-        if (lastEncounterDungeon && !sLFGMgr->GetLFGDungeon(lastEncounterDungeon))
+        if (lastEncounterDungeon && !sLFGMgr->GetLFGDungeonEntry(lastEncounterDungeon))
         {
             sLog->outError(LOG_FILTER_SQL, "Table `instance_encounters` has an encounter %u (%s) marked as final for invalid dungeon id %u, skipped!", entry, dungeonEncounter->encounterName[0], lastEncounterDungeon);
             continue;
@@ -6479,8 +6571,7 @@ void ObjectMgr::LoadExplorationBaseXP()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 BaseXP definitions. DB table `exploration_basexp` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 BaseXP definitions. DB table `exploration_basexp` is empty.");
         return;
     }
 
@@ -6627,7 +6718,7 @@ void ObjectMgr::LoadReputationRewardRate()
     QueryResult result = WorldDatabase.Query("SELECT faction, quest_rate, quest_daily_rate, quest_weekly_rate, quest_monthly_rate, creature_rate, spell_rate FROM reputation_reward_rate");
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded `reputation_reward_rate`, table is empty!");
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded `reputation_reward_rate`, table is empty!");
         return;
     }
 
@@ -6715,8 +6806,7 @@ void ObjectMgr::LoadReputationOnKill()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 creature award reputation definitions. DB table `creature_onkill_reputation` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 creature award reputation definitions. DB table `creature_onkill_reputation` is empty.");
         return;
     }
 
@@ -6894,8 +6984,7 @@ void ObjectMgr::LoadPointsOfInterest()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 Points of Interest definitions. DB table `points_of_interest` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 Points of Interest definitions. DB table `points_of_interest` is empty.");
         return;
     }
 
@@ -6940,8 +7029,7 @@ void ObjectMgr::LoadQuestPOI()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 quest POI definitions. DB table `quest_poi` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 quest POI definitions. DB table `quest_poi` is empty.");
         return;
     }
 
@@ -7008,8 +7096,7 @@ void ObjectMgr::LoadNPCSpellClickSpells()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 spellclick spells. DB table `npc_spellclick_spells` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 spellclick spells. DB table `npc_spellclick_spells` is empty.");
         return;
     }
 
@@ -7111,7 +7198,7 @@ void ObjectMgr::LoadQuestRelationsHelper(QuestRelations& map, std::string const&
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 quest relations from `%s`, table is empty.", table.c_str());
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 quest relations from `%s`, table is empty.", table.c_str());
         return;
     }
 
@@ -7486,7 +7573,7 @@ bool ObjectMgr::LoadTrinityStrings(const char* table, int32 min_value, int32 max
     if (!result)
     {
         if (min_value == MIN_TRINITY_STRING_ID)              // error only in case internal strings
-            sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 trinity strings. DB table `%s` is empty. Cannot continue.", table);
+            sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 trinity strings. DB table `%s` is empty. Cannot continue.", table);
         else
             sLog->outInfo(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 string templates. DB table `%s` is empty.", table);
 
@@ -7562,8 +7649,7 @@ void ObjectMgr::LoadFishingBaseSkillLevel()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 areas for fishing base skill level. DB table `skill_fishing_base_level` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 areas for fishing base skill level. DB table `skill_fishing_base_level` is empty.");
         return;
     }
 
@@ -7691,8 +7777,7 @@ void ObjectMgr::LoadGameTele()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 GameTeleports. DB table `game_tele` is empty!");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 GameTeleports. DB table `game_tele` is empty!");
         return;
     }
 
@@ -7831,8 +7916,7 @@ void ObjectMgr::LoadMailLevelRewards()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 level dependent mail rewards. DB table `mail_level_reward` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 level dependent mail rewards. DB table `mail_level_reward` is empty.");
         return;
     }
 
@@ -8098,8 +8182,7 @@ void ObjectMgr::LoadGossipMenu()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0  gossip_menu entries. DB table `gossip_menu` is empty!");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0  gossip_menu entries. DB table `gossip_menu` is empty!");
         return;
     }
 
@@ -8144,8 +8227,7 @@ void ObjectMgr::LoadGossipMenuItems()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 gossip_menu_option entries. DB table `gossip_menu_option` is empty!");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 gossip_menu_option entries. DB table `gossip_menu_option` is empty!");
         return;
     }
 
@@ -8352,8 +8434,7 @@ void ObjectMgr::LoadScriptNames()
 
     if (!result)
     {
-
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded empty set of Script Names!");
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded empty set of Script Names!");
         return;
     }
 
@@ -8529,8 +8610,7 @@ void ObjectMgr::LoadFactionChangeAchievements()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 faction change achievement pairs. DB table `player_factionchange_achievement` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 faction change achievement pairs. DB table `player_factionchange_achievement` is empty.");
         return;
     }
 
@@ -8600,8 +8680,7 @@ void ObjectMgr::LoadFactionChangeSpells()
 
     if (!result)
     {
-        sLog->outError(LOG_FILTER_SQL, ">> Loaded 0 faction change spell pairs. DB table `player_factionchange_spells` is empty.");
-
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 faction change spell pairs. DB table `player_factionchange_spells` is empty.");
         return;
     }
 

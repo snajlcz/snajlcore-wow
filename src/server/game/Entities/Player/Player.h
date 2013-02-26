@@ -28,6 +28,7 @@
 #include "QuestDef.h"
 #include "SpellMgr.h"
 #include "Unit.h"
+#include "Opcodes.h"
 
 #include <string>
 #include <vector>
@@ -1603,7 +1604,7 @@ class Player : public Unit, public GridObject<Player>
         void setWeaponChangeTimer(uint32 time) {m_weaponChangeTimer = time;}
 
         uint32 GetMoney() const { return GetUInt32Value(PLAYER_FIELD_COINAGE); }
-        void ModifyMoney(int32 d);
+        bool ModifyMoney(int32 amount, bool sendError = true);
         bool HasEnoughMoney(uint32 amount) const { return (GetMoney() >= amount); }
         bool HasEnoughMoney(int32 amount) const
         {
@@ -1685,6 +1686,11 @@ class Player : public Unit, public GridObject<Player>
             return mMitems.erase(id) ? true : false;
         }
 
+        void SendOnCancelExpectedVehicleRideAura()
+        {
+            WorldPacket data(SMSG_ON_CANCEL_EXPECTED_RIDE_VEHICLE_AURA, 0);
+            GetSession()->SendPacket(&data);
+        }
         void PetSpellInitialize();
         void CharmSpellInitialize();
         void PossessSpellInitialize();
@@ -2285,7 +2291,7 @@ class Player : public Unit, public GridObject<Player>
         uint32 GetBGTeam() const { return m_bgData.bgTeam ? m_bgData.bgTeam : GetTeam(); }
 
         void LeaveBattleground(bool teleportToEntryPoint = true);
-        bool CanJoinToBattleground() const;
+        bool CanJoinToBattleground(Battleground const* bg) const;
         bool CanReportAfkDueToLimit();
         void ReportedAfkBy(Player* reporter);
         void ClearAfkReports() { m_bgData.bgAfkReporter.clear(); }

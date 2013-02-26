@@ -1081,6 +1081,7 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
                         SetCreateMana(28 + 10*petlevel);
                         SetCreateHealth(28 + 30*petlevel);
                     }
+
                     // convert DK melee haste into the gargoyles spell haste, should it be like that? /tibbi
                     float ownerHaste = ((Player*)m_owner)->GetRatingBonusValue(CR_HASTE_MELEE);
                     ApplyPercentModFloatValue(UNIT_MOD_CAST_SPEED, ownerHaste, false);

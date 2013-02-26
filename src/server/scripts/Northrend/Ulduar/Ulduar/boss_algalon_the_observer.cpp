@@ -331,7 +331,7 @@ class boss_algalon_the_observer : public CreatureScript
                 }
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -344,8 +344,8 @@ class boss_algalon_the_observer : public CreatureScript
                         DoCast(me, SPELL_RIDE_THE_LIGHTNING, true);
                         me->GetMotionMaster()->MovePoint(POINT_ALGALON_LAND, AlgalonLandPos);
                         me->SetHomePosition(AlgalonLandPos);
-                        Movement::MoveSplineInit init(*me);
-                        init.MoveTo(AlgalonLandPos.GetPositionX(), AlgalonLandPos.GetPositionY(), AlgalonLandPos.GetPositionZ());
+                        Movement::MoveSplineInit init(me);
+                        init.MoveTo(AlgalonLandPos.GetPositionX(), AlgalonLandPos.GetPositionY(), AlgalonLandPos.GetPositionZ(), false);
                         init.SetOrientationFixed(true);
                         init.Launch();
                         events.Reset();
@@ -545,7 +545,7 @@ class boss_algalon_the_observer : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if ((!(events.GetPhaseMask() & PHASE_MASK_NO_UPDATE) && !UpdateVictim()) || !CheckInRoom())
                     return;
@@ -740,7 +740,7 @@ class npc_living_constellation : public CreatureScript
                 return _isActive ? 1 : 0;
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -777,7 +777,7 @@ class npc_living_constellation : public CreatureScript
                 caster->ToCreature()->DespawnOrUnsummon(1);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!(_events.GetPhaseMask() & PHASE_MASK_NO_UPDATE) && !UpdateVictim())
                     return;
@@ -873,7 +873,7 @@ class npc_brann_bronzebeard_algalon : public CreatureScript
             {
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -931,7 +931,7 @@ class npc_brann_bronzebeard_algalon : public CreatureScript
                 _events.ScheduleEvent(EVENT_BRANN_MOVE_INTRO, delay);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 UpdateVictim();
 
@@ -978,10 +978,11 @@ class npc_algalon_asteroid_target : public CreatureScript
     public:
         npc_algalon_asteroid_target() : CreatureScript("npc_algalon_asteroid_target") { }
 
-        struct npc_algalon_asteroid_targetAI : public Scripted_NoMovementAI
+        struct npc_algalon_asteroid_targetAI : public ScriptedAI
         {
-            npc_algalon_asteroid_targetAI(Creature* creature) : Scripted_NoMovementAI(creature)
+            npc_algalon_asteroid_targetAI(Creature* creature) : ScriptedAI(creature)
             {
+                SetCombatMovement(false);
             }
 
             void Reset()

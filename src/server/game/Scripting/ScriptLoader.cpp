@@ -89,9 +89,11 @@ void AddSC_list_commandscript();
 void AddSC_lookup_commandscript();
 void AddSC_message_commandscript();
 void AddSC_misc_commandscript();
+void AddSC_mmaps_commandscript();
 void AddSC_modify_commandscript();
 void AddSC_npc_commandscript();
 void AddSC_quest_commandscript();
+void AddSC_rbac_commandscript();
 void AddSC_reload_commandscript();
 void AddSC_reset_commandscript();
 void AddSC_server_commandscript();
@@ -101,6 +103,7 @@ void AddSC_titles_commandscript();
 void AddSC_wp_commandscript();
 void AddSC_rates_commandscript();
 void AddSC_character_commandscript();
+void AddSC_mmaps_commandscript();
 
 #ifdef SCRIPTS
 //world
@@ -731,9 +734,11 @@ void AddCommandScripts()
     AddSC_list_commandscript();
     AddSC_message_commandscript();
     AddSC_misc_commandscript();
+    AddSC_mmaps_commandscript();
     AddSC_modify_commandscript();
     AddSC_npc_commandscript();
     AddSC_quest_commandscript();
+    AddSC_rbac_commandscript();
     AddSC_reload_commandscript();
     AddSC_reset_commandscript();
     AddSC_server_commandscript();
@@ -743,6 +748,7 @@ void AddCommandScripts()
     AddSC_wp_commandscript();
     AddSC_rates_commandscript();
     AddSC_character_commandscript();
+    AddSC_mmaps_commandscript();
 }
 
 void AddWorldScripts()
