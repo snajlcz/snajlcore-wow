@@ -145,6 +145,7 @@ enum Spells
     SPELL_RESTORE_SOUL                  = 72595,
     SPELL_RESTORE_SOULS                 = 73650,    // Heroic
     SPELL_DARK_HUNGER                   = 69383,    // Passive proc healing
+    SPELL_DARK_HUNGER_HEAL              = 69384,
     SPELL_DESTROY_SOUL                  = 74086,    // Used when Terenas Menethil dies
     SPELL_SOUL_RIP                      = 69397,    // Deals increasing damage
     SPELL_SOUL_RIP_DAMAGE               = 69398,
@@ -278,20 +279,10 @@ enum Phases
     PHASE_THREE                 = 4,
     PHASE_TRANSITION            = 5,
     PHASE_FROSTMOURNE           = 6,    // only set on heroic mode when all players are sent into frostmourne
-    PHASE_OUTRO                 = 7,
-
-    PHASE_MASK_INTRO            = 1 << PHASE_INTRO,
-    PHASE_MASK_ONE              = 1 << PHASE_ONE,
-    PHASE_MASK_TWO              = 1 << PHASE_TWO,
-    PHASE_MASK_THREE            = 1 << PHASE_THREE,
-    PHASE_MASK_TRANSITION       = 1 << PHASE_TRANSITION,
-    PHASE_MASK_NO_CAST_CHECK    = (1 << PHASE_TRANSITION) | (1 << PHASE_FROSTMOURNE) | (1 << PHASE_OUTRO),
-    PHASE_MASK_FROSTMOURNE      = 1 << PHASE_FROSTMOURNE,
-    PHASE_MASK_OUTRO            = 1 << PHASE_OUTRO,
-    PHASE_MASK_NO_VICTIM        = (1 << PHASE_INTRO) | (1 << PHASE_OUTRO) | (1 << PHASE_FROSTMOURNE),
+    PHASE_OUTRO                 = 7
 };
 
-#define PHASE_TWO_THREE  (events.GetPhaseMask() & PHASE_MASK_TWO ? PHASE_TWO : PHASE_THREE)
+#define PHASE_TWO_THREE  (events.IsInPhase(PHASE_TWO) ? PHASE_TWO : PHASE_THREE)
 
 Position const CenterPosition     = {503.6282f, -2124.655f, 840.8569f, 0.0f};
 Position const TirionIntro        = {489.2970f, -2124.840f, 840.8569f, 0.0f};
@@ -588,11 +579,11 @@ class boss_the_lich_king : public CreatureScript
 
             void KilledUnit(Unit* victim)
             {
-                if (victim->GetTypeId() == TYPEID_PLAYER && !me->IsInEvadeMode() && !(events.GetPhaseMask() & PHASE_MASK_OUTRO))
+                if (victim->GetTypeId() == TYPEID_PLAYER && !me->IsInEvadeMode() && !events.IsInPhase(PHASE_OUTRO))
                     Talk(SAY_LK_KILL);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -668,25 +659,27 @@ class boss_the_lich_king : public CreatureScript
 
             void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/)
             {
-                if (events.GetPhaseMask() & PHASE_MASK_ONE && !HealthAbovePct(70))
+                if (events.IsInPhase(PHASE_ONE) && !HealthAbovePct(70))
                 {
                     events.SetPhase(PHASE_TRANSITION);
+                    SetImmuneToTaunt(true);
                     me->SetReactState(REACT_PASSIVE);
                     me->AttackStop();
                     me->GetMotionMaster()->MovePoint(POINT_CENTER_1, CenterPosition);
                     return;
                 }
 
-                if (events.GetPhaseMask() & PHASE_MASK_TWO && !HealthAbovePct(40))
+                if (events.IsInPhase(PHASE_TWO) && !HealthAbovePct(40))
                 {
                     events.SetPhase(PHASE_TRANSITION);
+                    SetImmuneToTaunt(true);
                     me->SetReactState(REACT_PASSIVE);
                     me->AttackStop();
                     me->GetMotionMaster()->MovePoint(POINT_CENTER_2, CenterPosition);
                     return;
                 }
 
-                if (events.GetPhaseMask() & PHASE_MASK_THREE && !HealthAbovePct(10))
+                if (events.IsInPhase(PHASE_THREE) && !HealthAbovePct(10))
                 {
                     me->SetReactState(REACT_PASSIVE);
                     me->InterruptNonMeleeSpells(true);
@@ -758,7 +751,7 @@ class boss_the_lich_king : public CreatureScript
                         summon->SetReactState(REACT_PASSIVE);
                         summon->SetSpeed(MOVE_FLIGHT, 0.5f);
                         summon->GetMotionMaster()->MoveRandom(10.0f);
-                        if (!(events.GetPhaseMask() & PHASE_MASK_FROSTMOURNE))
+                        if (!events.IsInPhase(PHASE_FROSTMOURNE))
                             summon->m_Events.AddEvent(new VileSpiritActivateEvent(summon), summon->m_Events.CalculateTime(15000));
                         return;
                     }
@@ -827,6 +820,7 @@ class boss_the_lich_king : public CreatureScript
                         me->SetFacingTo(0.0f);
                         Talk(SAY_LK_REMORSELESS_WINTER);
                         SendMusicToPlayers(MUSIC_SPECIAL);
+                        SetImmuneToTaunt(false);
                         DoCast(me, SPELL_REMORSELESS_WINTER_1);
                         events.DelayEvents(62500, EVENT_GROUP_BERSERK); // delay berserk timer, its not ticking during phase transitions
                         events.ScheduleEvent(EVENT_QUAKE, 62500, 0, PHASE_TRANSITION);
@@ -842,6 +836,7 @@ class boss_the_lich_king : public CreatureScript
                         me->SetFacingTo(0.0f);
                         Talk(SAY_LK_REMORSELESS_WINTER);
                         SendMusicToPlayers(MUSIC_SPECIAL);
+                        SetImmuneToTaunt(false);
                         DoCast(me, SPELL_REMORSELESS_WINTER_2);
                         summons.DespawnEntry(NPC_VALKYR_SHADOWGUARD);
                         events.DelayEvents(62500, EVENT_GROUP_BERSERK); // delay berserk timer, its not ticking during phase transitions
@@ -870,17 +865,17 @@ class boss_the_lich_king : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 // check phase first to prevent updating victim and entering evade mode when not wanted
-                if (!(events.GetPhaseMask() & PHASE_MASK_NO_VICTIM))
+                if (!(events.IsInPhase(PHASE_OUTRO) || events.IsInPhase(PHASE_INTRO) || events.IsInPhase(PHASE_FROSTMOURNE)))
                     if (!UpdateVictim())
                         return;
 
                 events.Update(diff);
 
                 // during Remorseless Winter phases The Lich King is channeling a spell, but we must continue casting other spells
-                if (me->HasUnitState(UNIT_STATE_CASTING) && !(events.GetPhaseMask() & PHASE_MASK_NO_CAST_CHECK))
+                if (me->HasUnitState(UNIT_STATE_CASTING) && !(events.IsInPhase(PHASE_TRANSITION) || events.IsInPhase(PHASE_OUTRO) || events.IsInPhase(PHASE_FROSTMOURNE)))
                     return;
 
                 while (uint32 eventId = events.ExecuteEvent())
@@ -936,7 +931,7 @@ class boss_the_lich_king : public CreatureScript
                             break;
                         case EVENT_INFEST:
                             DoCast(me, SPELL_INFEST);
-                            events.ScheduleEvent(EVENT_INFEST, urand(21000, 24000), 0, (events.GetPhaseMask() & PHASE_MASK_ONE) ? PHASE_ONE : PHASE_TWO);
+                            events.ScheduleEvent(EVENT_INFEST, urand(21000, 24000), 0, events.IsInPhase(PHASE_ONE) ? PHASE_ONE : PHASE_TWO);
                             break;
                         case EVENT_NECROTIC_PLAGUE:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, NecroticPlagueTargetCheck(me, NECROTIC_PLAGUE_LK, NECROTIC_PLAGUE_PLR)))
@@ -1005,7 +1000,7 @@ class boss_the_lich_king : public CreatureScript
                             break;
                         case EVENT_START_ATTACK:
                             me->SetReactState(REACT_AGGRESSIVE);
-                            if (events.GetPhaseMask() & PHASE_MASK_FROSTMOURNE)
+                            if (events.IsInPhase(PHASE_FROSTMOURNE))
                                 events.SetPhase(PHASE_THREE);
                             break;
                         case EVENT_VILE_SPIRITS:
@@ -1121,6 +1116,21 @@ class boss_the_lich_king : public CreatureScript
             }
 
         private:
+
+            void SetImmuneToTaunt(bool apply)	
+            {	
+                me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_ATTACK_ME, apply);	
+                me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_THREAT, apply);	
+                me->ApplySpellImmune(0, IMMUNITY_STATE, SPELL_AURA_MOD_TAUNT, apply);	
+
+                // Following might not be necessay, but just in case...	
+                me->ApplySpellImmune(0, IMMUNITY_STATE, SPELL_AURA_MOD_TOTAL_THREAT, apply);	
+                me->ApplySpellImmune(0, IMMUNITY_STATE, SPELL_AURA_MOD_CRITICAL_THREAT, apply);	
+                me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_THREAT_ALL, apply);	
+                me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_MODIFY_THREAT_PERCENT, apply);	
+                me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_REDIRECT_THREAT, apply);	
+            }	
+
             void SendMusicToPlayers(uint32 musicId) const
             {
                 WorldPacket data(SMSG_PLAY_MUSIC, 4);
@@ -1204,7 +1214,7 @@ class npc_tirion_fordring_tft : public CreatureScript
                 }
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -1251,9 +1261,9 @@ class npc_tirion_fordring_tft : public CreatureScript
                 me->SetFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_GOSSIP);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
-                if (!UpdateVictim() && !(_events.GetPhaseMask() & (PHASE_MASK_INTRO | PHASE_MASK_OUTRO)))
+                if (!UpdateVictim() && !(_events.IsInPhase(PHASE_OUTRO) || _events.IsInPhase(PHASE_INTRO)))
                     return;
 
                 _events.Update(diff);
@@ -1345,7 +1355,7 @@ class npc_shambling_horror_icc : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1425,7 +1435,7 @@ class npc_raging_spirit : public CreatureScript
                     summon->SetTempSummonType(TEMPSUMMON_CORPSE_DESPAWN);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1567,7 +1577,7 @@ class npc_valkyr_shadowguard : public CreatureScript
                 _grabbedPlayer = guid;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1644,7 +1654,7 @@ class npc_strangulate_vehicle : public CreatureScript
                     lichKing->AI()->JustSummoned(me);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 if (action != ACTION_TELEPORT_BACK)
                     return;
@@ -1662,7 +1672,7 @@ class npc_strangulate_vehicle : public CreatureScript
                     lichKing->AI()->SummonedCreatureDespawn(me);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 UpdateVictim();
 
@@ -1743,7 +1753,7 @@ class npc_terenas_menethil : public CreatureScript
                 return target->GetEntry() != NPC_THE_LICH_KING;
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -1812,7 +1822,7 @@ class npc_terenas_menethil : public CreatureScript
                 _events.ScheduleEvent(EVENT_OUTRO_TERENAS_TALK_2, 14000, 0, PHASE_OUTRO);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 UpdateVictim();
 
@@ -1904,7 +1914,7 @@ class npc_spirit_warden : public CreatureScript
                     terenas->AI()->DoAction(ACTION_TELEPORT_BACK);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1951,10 +1961,14 @@ class npc_spirit_bomb : public CreatureScript
 
             void IsSummonedBy(Unit* /*summoner*/)
             {
-                float destX, destY, destZ;
-                me->GetPosition(destX, destY);
+                float destX, destY, destZ, Z;
+                me->GetPosition(destX, destY, Z);
+                me->NearTeleportTo(destX, destY, Z+30.0f, me->GetOrientation());
+                me->Relocate(destX, destY, Z+30.0f);
+                me->SendMovementFlagUpdate();
                 destZ = 1055.0f;    // approximation, gets more precise later
                 me->UpdateGroundPositionZ(destX, destY, destZ);
+                me->SetSpeed(MOVE_FLIGHT, 0.5f, true);
                 me->GetMotionMaster()->MovePoint(POINT_GROUND, destX, destY, destZ);
             }
 
@@ -1972,7 +1986,7 @@ class npc_spirit_bomb : public CreatureScript
             {
             }
 
-            void UpdateAI(uint32 const /*diff*/)
+            void UpdateAI(uint32 /*diff*/)
             {
                 UpdateVictim();
                 // no melee attacks
@@ -2007,7 +2021,7 @@ class npc_broken_frostmourne : public CreatureScript
                 _events.ScheduleEvent(EVENT_OUTRO_KNOCK_BACK, 3000, 0, PHASE_OUTRO);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_SUMMON_TERENAS)
                     _events.ScheduleEvent(EVENT_OUTRO_SUMMON_TERENAS, 6000, 0, PHASE_OUTRO);
@@ -2017,7 +2031,7 @@ class npc_broken_frostmourne : public CreatureScript
             {
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 UpdateVictim();
 
@@ -2197,7 +2211,8 @@ class spell_the_lich_king_necrotic_plague_jump : public SpellScriptLoader
             void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
                 if (Unit* caster = GetCaster())
-                    caster->GetAI()->SetData(DATA_PLAGUE_STACK, GetStackAmount());
+                    if (caster->GetAI())
+                        caster->GetAI()->SetData(DATA_PLAGUE_STACK, GetStackAmount());
             }
 
             void OnRemove(AuraEffect const* aurEff, AuraEffectHandleModes /*mode*/)
@@ -2856,8 +2871,6 @@ class spell_the_lich_king_vile_spirit_damage_target_search : public SpellScriptL
             {
                 OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_the_lich_king_vile_spirit_damage_target_search_SpellScript::CheckTargetCount, EFFECT_0, TARGET_UNIT_SRC_AREA_ENEMY);
             }
-
-            Unit* _target;
         };
 
         SpellScript* GetSpellScript() const
@@ -3015,6 +3028,41 @@ class spell_the_lich_king_restore_soul : public SpellScriptLoader
         SpellScript* GetSpellScript() const
         {
             return new spell_the_lich_king_restore_soul_SpellScript();
+        }
+};
+
+class spell_the_lich_king_dark_hunger : public SpellScriptLoader
+{
+    public:
+        spell_the_lich_king_dark_hunger() : SpellScriptLoader("spell_the_lich_king_dark_hunger") { }
+
+        class spell_the_lich_king_dark_hunger_AuraScript : public AuraScript
+        {
+            PrepareAuraScript(spell_the_lich_king_dark_hunger_AuraScript);
+
+            bool Validate(SpellInfo const* /*spellInfo*/)
+            {
+                if (!sSpellMgr->GetSpellInfo(SPELL_DARK_HUNGER_HEAL))
+                    return false;
+                return true;
+            }
+
+            void HandleProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
+            {
+                PreventDefaultAction();
+                int32 heal = int32(eventInfo.GetDamageInfo()->GetDamage() / 2);
+                GetTarget()->CastCustomSpell(SPELL_DARK_HUNGER_HEAL, SPELLVALUE_BASE_POINT0, heal, GetTarget(), true, NULL, aurEff);
+            }
+
+            void Register()
+            {
+                OnEffectProc += AuraEffectProcFn(spell_the_lich_king_dark_hunger_AuraScript::HandleProc, EFFECT_0, SPELL_AURA_DUMMY);
+            }
+        };
+
+        AuraScript* GetAuraScript() const
+        {
+            return new spell_the_lich_king_dark_hunger_AuraScript();
         }
 };
 
@@ -3263,6 +3311,7 @@ void AddSC_boss_the_lich_king()
     new spell_the_lich_king_lights_favor();
     new spell_the_lich_king_soul_rip();
     new spell_the_lich_king_restore_soul();
+    new spell_the_lich_king_dark_hunger();
     new spell_the_lich_king_in_frostmourne_room();
     new spell_the_lich_king_summon_spirit_bomb();
     new spell_the_lich_king_trigger_vile_spirit();

@@ -257,7 +257,7 @@ class boss_razorscale_controller : public CreatureScript
                 damage = 0;
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 if (instance && instance->GetBossState(BOSS_RAZORSCALE) != IN_PROGRESS)
                     return;
@@ -288,7 +288,7 @@ class boss_razorscale_controller : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const Diff)
+            void UpdateAI(uint32 Diff)
             {
                 if (me->isInCombat() && instance && instance->GetBossState(BOSS_RAZORSCALE) != IN_PROGRESS)
                     EnterEvadeMode();
@@ -460,7 +460,7 @@ class boss_razorscale : public CreatureScript
                 return 0;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -645,7 +645,7 @@ class boss_razorscale : public CreatureScript
                 }
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -707,7 +707,7 @@ class npc_expedition_commander : public CreatureScript
                 _summons.Summon(summoned);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -723,7 +723,7 @@ class npc_expedition_commander : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const Diff)
+            void UpdateAI(uint32 Diff)
             {
                 if (_attackStartTimer <= Diff)
                 {
@@ -841,10 +841,12 @@ class npc_mole_machine_trigger : public CreatureScript
     public:
         npc_mole_machine_trigger() : CreatureScript("npc_mole_machine_trigger") {}
 
-        struct npc_mole_machine_triggerAI : public Scripted_NoMovementAI
+        struct npc_mole_machine_triggerAI : public ScriptedAI
         {
-            npc_mole_machine_triggerAI(Creature* creature) : Scripted_NoMovementAI(creature), _summons(me)
+            npc_mole_machine_triggerAI(Creature* creature) : ScriptedAI(creature), _summons(me)
             {
+                SetCombatMovement(false);
+
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_PACIFIED);
                 me->SetVisible(false);
             }           
@@ -856,12 +858,12 @@ class npc_mole_machine_trigger : public CreatureScript
                 _events.ScheduleEvent(EVENT_DISSAPPEAR, 10*IN_MILLISECONDS);
             }
 
-            void DoAction(int32 const /*action*/)
+            void DoAction(int32 action)
             {
                 _summons.DespawnAll();
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 _events.Update(diff);
 
@@ -923,10 +925,11 @@ class npc_devouring_flame : public CreatureScript
     public:
         npc_devouring_flame() : CreatureScript("npc_devouring_flame") {}
 
-        struct npc_devouring_flameAI : public Scripted_NoMovementAI
+        struct npc_devouring_flameAI : public ScriptedAI
         {
-            npc_devouring_flameAI(Creature* creature) : Scripted_NoMovementAI(creature)
+            npc_devouring_flameAI(Creature* creature) : ScriptedAI(creature)
             {
+                SetCombatMovement(false);
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_PACIFIED);
                 me->SetDisplayId(me->GetCreatureTemplate()->Modelid2);
             }
@@ -958,7 +961,7 @@ class npc_darkrune_watcher : public CreatureScript
                 _events.ScheduleEvent(EVENT_LIGHTNING_BOLT, urand(1*IN_MILLISECONDS, 3*IN_MILLISECONDS));
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                 {
@@ -1027,7 +1030,7 @@ class npc_darkrune_guardian : public CreatureScript
                     _killedByBreath = value;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                 {
@@ -1074,7 +1077,7 @@ class npc_darkrune_sentinel : public CreatureScript
                 _events.ScheduleEvent(EVENT_BATTLE_SHOUT, urand(15*IN_MILLISECONDS, 30*IN_MILLISECONDS));
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                 {

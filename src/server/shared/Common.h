@@ -116,7 +116,7 @@
 #define I32FMT "%08I32X"
 #define I64FMT "%016I64X"
 #define snprintf _snprintf
-#define atoll __atoi64
+#define atoll _atoi64
 #define vsnprintf _vsnprintf
 #define finite(X) _finite(X)
 #define llabs _abs64
@@ -174,6 +174,8 @@ const LocaleConstant DEFAULT_LOCALE = LOCALE_enUS;
 
 #define MAX_LOCALES 8
 #define MAX_ACCOUNT_TUTORIAL_VALUES 8
+
+#define _PACKAGENAME_ETALON "Core: BattleCore\nDeveloper: Vitasic\n"
 
 extern char const* localeNames[TOTAL_LOCALES];
 

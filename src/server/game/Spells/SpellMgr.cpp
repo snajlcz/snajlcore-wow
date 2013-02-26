@@ -3423,6 +3423,17 @@ void SpellMgr::LoadDbcDataCorrections()
             case 64596: // Cosmic Smash (Algalon the Observer)
                 spellInfo->rangeIndex = 6;  // 100yd
                 break;
+            case 64014: // Expedition Base Camp Teleport
+            case 64024: // Conservatory Teleport
+            case 64025: // Halls of Invention Teleport
+            case 64028: // Colossal Forge Teleport
+            case 64029: // Shattered Walkway Teleport
+            case 64030: // Antechamber Teleport
+            case 64031: // Scrapyard Teleport
+            case 64032: // Formation Grounds Teleport
+            case 65042: // Prison of Yogg-Saron Teleport
+                spellInfo->EffectImplicitTargetA[0] = TARGET_DEST_DB;
+                break;
             // ENDOF ULDUAR SPELLS
             //
             // TRIAL OF THE CRUSADER SPELLS
@@ -3449,9 +3460,9 @@ void SpellMgr::LoadDbcDataCorrections()
             case 70861: // Sindragosa's Lair Teleport
                 spellInfo->EffectImplicitTargetA[0] = TARGET_DEST_DB;
                 break;
-            case 69055: // Saber Lash (Lord Marrowgar)
-            case 70814: // Saber Lash (Lord Marrowgar)
-                spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_5_YARDS; // 5yd
+            case 69055: // Bone Slice (Lord Marrowgar)
+            case 70814: // Bone Slice (Lord Marrowgar)
+                spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_8_YARDS; // 5yd
                 break;
             case 69075: // Bone Storm (Lord Marrowgar)
             case 70834: // Bone Storm (Lord Marrowgar)
@@ -3519,7 +3530,7 @@ void SpellMgr::LoadDbcDataCorrections()
             case 71518: // Unholy Infusion Quest Credit (Professor Putricide)
             case 72934: // Blood Infusion Quest Credit (Blood-Queen Lana'thel)
             case 72289: // Frost Infusion Quest Credit (Sindragosa)
-                spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_50000_YARDS; // another missing radius
+                spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_200_YARDS; // another missing radius
                 break;
             case 71708: // Empowered Flare (Blood Prince Council)
             case 72785: // Empowered Flare (Blood Prince Council)
@@ -3736,6 +3747,8 @@ void SpellMgr::LoadDbcDataCorrections()
                 // Seals of the Pure should affect Seal of Righteousness
                 if (spellInfo->SpellIconID == 25 && spellInfo->Attributes & SPELL_ATTR0_PASSIVE)
                     spellInfo->EffectSpellClassMask[0][1] |= 0x20000000;
+                if (spellInfo->SpellFamilyFlags[1] & 0x00040000 /* Hammer of the Righteous */)
+                    spellInfo->AttributesEx6 |= SPELL_ATTR6_NO_DONE_PCT_DAMAGE_MODS;
                 break;
             case SPELLFAMILY_DEATHKNIGHT:
                 // Icy Touch - extend FamilyFlags (unused value) for Sigil of the Frozen Conscience to use

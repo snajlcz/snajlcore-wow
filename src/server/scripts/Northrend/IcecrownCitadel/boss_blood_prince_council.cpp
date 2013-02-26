@@ -282,7 +282,7 @@ class boss_blood_council_controller : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -450,8 +450,6 @@ class boss_prince_keleseth_icc : public CreatureScript
                 float angle = me->GetAngle(summon);
                 me->MovePositionToFirstCollision(pos, maxRange, angle);
                 summon->NearTeleportTo(pos.GetPositionX(), pos.GetPositionY(), pos.GetPositionZ(), pos.GetOrientation());
-                summon->Relocate(pos);
-                summon->SendMovementFlagUpdate();
                 summon->ToTempSummon()->SetTempSummonType(TEMPSUMMON_CORPSE_DESPAWN);
             }
 
@@ -479,7 +477,7 @@ class boss_prince_keleseth_icc : public CreatureScript
                     Talk(SAY_KELESETH_KILL);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -524,7 +522,7 @@ class boss_prince_keleseth_icc : public CreatureScript
                 return true;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || !CheckRoom())
                     return;
@@ -697,7 +695,7 @@ class boss_prince_taldaram_icc : public CreatureScript
                     Talk(SAY_TALDARAM_KILL);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -742,7 +740,7 @@ class boss_prince_taldaram_icc : public CreatureScript
                 return true;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || !CheckRoom())
                     return;
@@ -935,7 +933,7 @@ class boss_prince_valanar_icc : public CreatureScript
                     Talk(SAY_VALANAR_KILL);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -980,7 +978,7 @@ class boss_prince_valanar_icc : public CreatureScript
                 return true;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || !CheckRoom())
                     return;
@@ -1092,7 +1090,7 @@ class npc_blood_queen_lana_thel : public CreatureScript
                     me->SetVisible(false);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!_events.GetPhaseMask())
                     return;
@@ -1170,7 +1168,7 @@ class npc_ball_of_flame : public CreatureScript
                 _chaseGUID = guid;
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_FLAME_BALL_CHASE)
                     if (Player* target = ObjectAccessor::GetPlayer(*me, _chaseGUID))
@@ -1191,7 +1189,7 @@ class npc_ball_of_flame : public CreatureScript
                     _instance->SetData(DATA_ORB_WHISPERER_ACHIEVEMENT, uint32(false));
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!_despawnTimer)
                     return;
@@ -1238,19 +1236,19 @@ class npc_kinetic_bomb : public CreatureScript
                 _groundZ = me->GetMap()->GetHeight(me->GetPhaseMask(), _x, _y, _groundZ, true, 500.0f);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 if (action == SPELL_KINETIC_BOMB_EXPLOSION)
                     _events.ScheduleEvent(EVENT_BOMB_DESPAWN, 1000);
                 else if (action == ACTION_KINETIC_BOMB_JUMP)
                 {
                     if (!me->HasAura(SPELL_KINETIC_BOMB_KNOCKBACK))
-                    me->GetMotionMaster()->MoveCharge(_x, _y, me->GetPositionZ() + 100.0f, me->GetSpeed(MOVE_RUN), 0);
+                        me->GetMotionMaster()->MoveCharge(_x, _y, me->GetPositionZ() + 100.0f, me->GetSpeed(MOVE_RUN), 0);
                     _events.RescheduleEvent(EVENT_CONTINUE_FALLING, 3000);
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 _events.Update(diff);
 
@@ -1331,7 +1329,7 @@ class npc_dark_nucleus : public CreatureScript
                 me->AddThreat(attacker, 500000000.0f);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1617,7 +1615,7 @@ class spell_blood_council_shadow_prison : public SpellScriptLoader
 
             void HandleDummyTick(AuraEffect const* aurEff)
             {
-                if (GetTarget()->isMoving() && GetTarget()->GetTypeId() == TYPEID_PLAYER)
+                if (GetTarget()->isMoving())
                     GetTarget()->CastSpell(GetTarget(), SPELL_SHADOW_PRISON_DAMAGE, true, NULL, aurEff);
             }
 
