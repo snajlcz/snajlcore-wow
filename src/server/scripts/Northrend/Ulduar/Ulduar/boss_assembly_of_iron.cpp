@@ -346,7 +346,7 @@ class boss_steelbreaker : public CreatureScript
                 return 0;
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -475,7 +475,7 @@ class boss_steelbreaker : public CreatureScript
                     return 0;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -642,7 +642,7 @@ class boss_runemaster_molgeim : public CreatureScript
                 return 0;
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -706,7 +706,7 @@ class boss_runemaster_molgeim : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -771,10 +771,12 @@ class mob_rune_of_power : public CreatureScript
     public:
         mob_rune_of_power() : CreatureScript("mob_rune_of_power") {}
 
-        struct mob_rune_of_powerAI : public Scripted_NoMovementAI
+        struct mob_rune_of_powerAI : public ScriptedAI
         {
-            mob_rune_of_powerAI(Creature* creature) : Scripted_NoMovementAI(creature)
+            mob_rune_of_powerAI(Creature* creature) : ScriptedAI(creature)
             {
+                SetCombatMovement(false);
+
                 me->SetInCombatWithZone();
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
                 me->setFaction(16); // Same faction as bosses
@@ -963,7 +965,7 @@ class boss_stormcaller_brundir : public CreatureScript
                         }
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -1030,7 +1032,7 @@ class boss_stormcaller_brundir : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;

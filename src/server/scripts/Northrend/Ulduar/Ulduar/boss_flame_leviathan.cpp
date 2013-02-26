@@ -210,6 +210,12 @@ enum AchievementData
     DATA_ORBIT_ACHIEVEMENTS = 3 // Hardmode only
 };
 
+enum Achievements
+{
+    TAKE_OUT_THOSE_TURRETS_10    = 2909,
+    TAKE_OUT_THOSE_TURRETS_25    = 2910,
+};
+
 enum Actions
 {
     ACTION_ACTIVATE_HARD_MODE        = 5,
@@ -463,6 +469,8 @@ class boss_flame_leviathan : public CreatureScript
                 // Set DynFlags 12
                 // Set NPCFlags 0
                 Talk(SAY_DEATH);
+                // Add Achievements Take Out Those Turrets
+                instance->DoCompleteAchievement(RAID_MODE(TAKE_OUT_THOSE_TURRETS_10,TAKE_OUT_THOSE_TURRETS_25));
                 // TODO: These chests should be somewhere around...
                 // Check if changing the loot-mode as shown below works as considered
                 if (GameObject* go = me->FindNearestGameObject(RAID_MODE(GO_LEVIATHAN_CHEST_10, GO_LEVIATHAN_CHEST_25), 250.0f))
@@ -519,7 +527,7 @@ class boss_flame_leviathan : public CreatureScript
                 if (id == DATA_UNBROKEN) _unbroken = static_cast<bool>(data);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || !CheckInRoom())
                     return;
@@ -645,7 +653,7 @@ class boss_flame_leviathan : public CreatureScript
                 }
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 // Stripped numeric dependency
                 if (action == ACTION_TOWER_OF_FLAMES_DESTROYED || action == ACTION_TOWER_OF_FROST_DESTROYED || action == ACTION_TOWER_OF_LIFE_DESTROYED || action == ACTION_TOWER_OF_STORM_DESTROYED) // Tower destruction, debuff leviathan loot and reduce active tower count
@@ -965,7 +973,7 @@ class npc_flame_leviathan_overload_device : public CreatureScript
                 me->setActive(true);
             }
 
-            void DoAction(const int32 param)
+            void DoAction(int32 param)
             {
                 if (param == EVENT_SPELLCLICK)
                 {
@@ -1014,7 +1022,7 @@ class npc_flame_leviathan_safety_container : public CreatureScript
                 me->SetPosition(x, y, z, 0);
             }
 
-            void UpdateAI(uint32 const /*diff*/) {}
+            void UpdateAI(uint32 /*diff*/) {}
         };
 
         CreatureAI* GetAI(Creature* creature) const
@@ -1079,7 +1087,7 @@ class npc_mechanolift : public CreatureScript
 
             // Looks a little bit curious, so I'll explain:
             // We are a lift, that tries to transport containers. As there isn't any other (yet known) way to handle this, it's done using a passenger <-> vehicle relation.
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_moveTimer <= diff)
                 {
@@ -1189,7 +1197,7 @@ class npc_pool_of_tar : public CreatureScript
                     me->CastSpell(me, SPELL_BLAZE, true);
             }
 
-            void UpdateAI(uint32 const /*diff*/) {}
+            void UpdateAI(uint32 /*diff*/) {}
         };
 
         CreatureAI* GetAI(Creature* creature) const
@@ -1223,7 +1231,7 @@ class npc_colossus : public CreatureScript
                     _instance->SetData(DATA_COLOSSUS, _instance->GetData(DATA_COLOSSUS) + 1);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1255,9 +1263,9 @@ class npc_thorims_hammer : public CreatureScript
     public:
         npc_thorims_hammer() : CreatureScript("npc_thorims_hammer") {}
 
-        struct npc_thorims_hammerAI : public Scripted_NoMovementAI
+        struct npc_thorims_hammerAI : public ScriptedAI
         {
-            npc_thorims_hammerAI(Creature* creature) : Scripted_NoMovementAI(creature) {}
+            npc_thorims_hammerAI(Creature* creature) : ScriptedAI(creature) {}
 
             void Reset()
             {
@@ -1282,7 +1290,7 @@ class npc_thorims_hammer : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!me->HasAura(AURA_DUMMY_BLUE))
                     me->CastSpell(me, AURA_DUMMY_BLUE, true);
@@ -1356,7 +1364,7 @@ class npc_mimirons_inferno : public CreatureScript
 
             void WaypointReached(uint32 /*pointId*/) {}
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 npc_escortAI::UpdateAI(diff);
 
@@ -1412,7 +1420,7 @@ class npc_hodirs_fury : public CreatureScript
                 me->SetDisplayId(me->GetCreatureTemplate()->Modelid2);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!me->HasAura(AURA_DUMMY_GREEN))
                     me->CastSpell(me, AURA_DUMMY_GREEN, true);
@@ -1496,9 +1504,9 @@ class npc_freyas_ward : public CreatureScript
     public:
         npc_freyas_ward() : CreatureScript("npc_freyas_ward") {}
 
-        struct npc_freyas_wardAI : public Scripted_NoMovementAI
+        struct npc_freyas_wardAI : public ScriptedAI
         {
-            npc_freyas_wardAI(Creature* creature) : Scripted_NoMovementAI(creature) {}
+            npc_freyas_wardAI(Creature* creature) : ScriptedAI(creature) {}
 
             void InitializeAI()
             {
@@ -1516,7 +1524,7 @@ class npc_freyas_ward : public CreatureScript
                 me->SetDisplayId(me->GetCreatureTemplate()->Modelid2);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_summonTimer <= diff)
                 {
@@ -1571,7 +1579,7 @@ class npc_freya_ward_of_life : public CreatureScript
                 me->GetMotionMaster()->MoveRandom(100);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1661,7 +1669,7 @@ class npc_lorekeeper : public CreatureScript
         {
             npc_lorekeeperAI(Creature* creature) : ScriptedAI(creature) {}
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 // Start encounter
                 if (action == ACTION_SPAWN_VEHICLES)
