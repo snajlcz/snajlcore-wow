@@ -257,6 +257,11 @@ void RBACData::LoadFromDB()
         }
         while (result->NextRow());
     }
+    // add default players group if not created yet
+    else
+    {
+        sAccountMgr->UpdateAccountAccess(this, GetId(), 0, -1);
+    }
 
     // Load account roles (granted and denied) that affect current realm
     stmt = LoginDatabase.GetPreparedStatement(LOGIN_SEL_RBAC_ACCOUNT_ROLES);
