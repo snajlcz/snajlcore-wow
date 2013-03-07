@@ -13,3 +13,22 @@ CREATE TABLE `arena_logs` (
   `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`team1`,`team2`,`timestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Зарезервировал некоторые имена, присущие административному составу.
+REPLACE INTO `reserved_name` (`name`) VALUES
+('Разработчик'),
+('Гм'),
+('Gm'),
+('Администратор'),
+('Админ'),
+('Куратор'),
+('Admin'),
+('Administrator'),
+('Gamemaster'),
+('Гейммастер'),
+('Разраб'),
+('Developer'),
+('Модератор'),
+('Moderator'),
+('Moder'),
+('Модер');
