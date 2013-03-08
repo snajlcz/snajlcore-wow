@@ -239,3 +239,6 @@ REPLACE INTO `gameobject` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `posit
 -- Reload item_template and locales_item command
 DELETE FROM `command` WHERE `name` = 'reload item_template';
 INSERT INTO `command` VALUES ('reload item_template', 3, 'Syntax: .reload item_template. Reload item_template and locales_item tables.');
+
+-- Количество соединений
+UPDATE `trinity_string` SET `content_loc8`='Всего соединений: %u (максимум: %u). Игроков в очереди: %u (максимум: %u).' WHERE `entry`='12';
