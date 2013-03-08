@@ -45,6 +45,7 @@ void AddSC_npc_maniek();
 void AddSC_npc_mmr_reset();
 // NPC Astranaar SHOP
 void AddSC_npc_shop();
+void AddSC_cs_world_chat();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1364,5 +1365,6 @@ void AddCustomScripts()
     AddSC_npc_mmr_reset();
     // NPC Astranaar SHOP
     AddSC_npc_shop();
+    AddSC_cs_world_chat();
 #endif
 }

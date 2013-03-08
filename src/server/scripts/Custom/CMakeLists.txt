@@ -23,6 +23,7 @@ set(scripts_STAT_SRCS
   Custom/npc_maniek.cpp
   Custom/npc_mmr_reset.cpp
   Custom/npc_shop.cpp
+  Custom/world_chat_race.cpp
 )
 
 message("  -> Prepared: Custom")
