@@ -11,7 +11,8 @@
 #                                                                                          #
 ############################################################################################
 
-[143.1][Vitasic:] --> Р РµР°Р»РёР·Р°С†РёСЏ РєРѕРјР°РЅРґС‹ РїРµСЂРµР·Р°РіСЂСѓР·РєРё С‚Р°Р±Р»РёС† item_template Рё locales_item
+[143.2][Vitasic] --> Implementation .chat command (TEST).
+[143.1][Vitasic] --> Implementation reload commands item_template & locales_item.
 [143] --> Fix crash StopCastingCharm (TEST #9293). 
 [142] --> Revert 'Fix Gargoyle haste (TEST).'
 [141] --> Small correction arena logs.
@@ -77,7 +78,7 @@
 [84] --> Fix loot GunShip.
 [83] --> Add Name Developer Announce.
 [82] --> Add Name Admin, GameMaster and Guard Announces.
-[81.1][Vitasic:] --> 100% resilens!
+[81.1][Vitasic] --> 100% resilens!
 [81] --> Fix Sindragosa (Final version!).
 [80] --> Update CCDelay by Diton.
 [79] --> Core/Resistances:
@@ -102,14 +103,14 @@
 [69] --> Add Npc Top 10 Arena Teams.
 [68] --> Alternate script Gunship by fiveofeight.
 [67] --> Add Scripts/Trial Of The Champion.
-[66.9][Vitasic:] --> 90% resilens (рес)
-[66.8][Vitasic:] --> Boss Kill History
-[66.7][Vitasic:] --> Npc Actions
-[66.5][Vitasic:] --> Возможность писать в чат, исходя из проведенного онлайна (fix)
-[66.4][Vitasic:] --> Gm Chat Blue
-[66.3][Vitasic:] --> ADD TOOLS
-[66.2][Vitasic:] --> LFG ALL
-[66.1][Vitasic:] --> Npc Tele
+[66.9][Vitasic] --> 90% resilens (рес)
+[66.8][Vitasic] --> Boss Kill History
+[66.7][Vitasic] --> Npc Actions
+[66.5][Vitasic] --> Возможность писать в чат, исходя из проведенного онлайна (fix)
+[66.4][Vitasic] --> Gm Chat Blue
+[66.3][Vitasic] --> ADD TOOLS
+[66.2][Vitasic] --> LFG ALL
+[66.1][Vitasic] --> Npc Tele
 [66] --> Scripts/Headless Horseman: Cleanup.
 [65] --> [ICC][Lich King] Fix Val'kyr Shadowguard.
 [64] --> Fix Quests Argent Tournament.
