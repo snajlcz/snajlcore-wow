@@ -1128,6 +1128,15 @@ AccountInstancesPerHour = 5
 RBAC.DefaultGroups = ""
 
 #
+#   Update.Account.Access.Enable
+#        Description: AutoComplete table rbac_account_groups during registration through the web face.
+#                          Not to include in debug mode! (All players will be given all the rights!)
+#         Default:    0 - Disable
+#                     1 - (Enabled)
+
+Update.Account.Access.Enable = 0
+
+#
 ###################################################################################################
 
 ###################################################################################################
