@@ -1595,8 +1595,8 @@ PreserveCustomChannelDuration = 14
 
 #  
 # Includes satellite to search for work elsewhere LFG 
-# Default: 0 - Disable  
-#          1 - Enable  
+# Default: 1 - Enable  
+#          0 - Disable  
  
 LFG.Location.All = 1
 
