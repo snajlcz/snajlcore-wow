@@ -11,6 +11,7 @@
 #                                                                                          #
 ############################################################################################
 
+[143.4][Vitasic] --> AutoComplete table rbac_account_groups during registration through the web face.
 [143.3][Vitasic] --> Revert "Implementation reload commands item_template & locales_item."
 [143.2][Vitasic] --> Implementation .chat command (TEST).
 [143.1][Vitasic] --> Implementation reload commands item_template & locales_item.
