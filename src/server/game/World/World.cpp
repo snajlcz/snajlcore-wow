@@ -1267,6 +1267,9 @@ void World::LoadConfigSettings(bool reload)
     // Disable Chat
     m_int_configs[CONFIG_INT_CHAT_DISABLE_TIME]  = ConfigMgr::GetIntDefault("Chat.DisableWhenPlayerCreate", 60);
 
+    // Add default players group if not created yet
+    m_bool_configs[CONFIG_UPDATE_ACCOUNT_ACCESS_ENABLE] = ConfigMgr::GetBoolDefault("Update.Account.Access.Enable", false);
+
     // Wintergrasp battlefield
     m_bool_configs[CONFIG_WINTERGRASP_ENABLE] = ConfigMgr::GetBoolDefault("Wintergrasp.Enable", false);
     m_int_configs[CONFIG_WINTERGRASP_PLR_MAX] = ConfigMgr::GetIntDefault("Wintergrasp.PlayerMax", 100);
