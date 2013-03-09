@@ -238,3 +238,10 @@ REPLACE INTO `gameobject` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `posit
 
 -- Количество соединений
 UPDATE `trinity_string` SET `content_loc8`='Всего соединений: %u (максимум: %u). Игроков в очереди: %u (максимум: %u).' WHERE `entry`='12';
+
+-- fix bug kills and honor (spell_priest)
+-- Spell script assignment
+SET @ENTRY := 27827;
+DELETE FROM spell_script_names WHERE spell_id = @ENTRY;
+INSERT INTO spell_script_names (spell_id, ScriptName) VALUES
+(@ENTRY, 'spell_priest_spirit_of_redemption');
