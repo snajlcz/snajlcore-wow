@@ -233,3 +233,61 @@ SET @ENTRY := 27827;
 DELETE FROM spell_script_names WHERE spell_id = @ENTRY;
 INSERT INTO spell_script_names (spell_id, ScriptName) VALUES
 (@ENTRY, 'spell_priest_spirit_of_redemption');
+
+-- Npc vendor start items
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES (190011, 0, 0, 0, 0, 0, 22931, 0, 22931, 0, '��������� ����', 'RuWoW.net', '', 0, 83, 83, 0, 35, 35, 4224, 2, 2, 1, 2, 50, 150, 0, 1000, 100, 2000, 1500, 1, 2, 0, 0, 0, 0, 0, 0, 100, 200, 1000, 7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 1000, '', 0, 3, 100, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, '', 12340);   
+
+DELETE FROM `npc_vendor` WHERE (`entry`=190011);   
+INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`) VALUES   
+(190011, 0, 44100, 0, 0, 0),   
+(190011, 0, 44094, 0, 0, 0),  
+(190011, 0, 44095, 0, 0, 0),  
+(190011, 0, 42947, 0, 0, 0),  
+(190011, 0, 48687, 0, 0, 0),  
+(190011, 0, 42984, 0, 0, 0),  
+(190011, 0, 44105, 0, 0, 0),  
+(190011, 0, 48716, 0, 0, 0),  
+(190011, 0, 42945, 0, 0, 0),  
+(190011, 0, 42946, 0, 0, 0),  
+(190011, 0, 48691, 0, 0, 0),  
+(190011, 0, 42985, 0, 0, 0),  
+(190011, 0, 44107, 0, 0, 0),  
+(190011, 0, 44103, 0, 0, 0),  
+(190011, 0, 48689, 0, 0, 0),  
+(190011, 0, 42952, 0, 0, 0),  
+(190011, 0, 44096, 0, 0, 0),  
+(190011, 0, 42948, 0, 0, 0),  
+(190011, 0, 48677, 0, 0, 0),  
+(190011, 0, 48683, 0, 0, 0),  
+(190011, 0, 42950, 0, 0, 0),  
+(190011, 0, 42943, 0, 0, 0),  
+(190011, 0, 44091, 0, 0, 0),  
+(190011, 0, 44092, 0, 0, 0),  
+(190011, 0, 48685, 0, 0, 0),  
+(190011, 0, 42949, 0, 0, 0),  
+(190011, 0, 42992, 0, 0, 0),  
+(190011, 0, 48718, 0, 0, 0),  
+(190011, 0, 50255, 0, 0, 0),  
+(190011, 0, 42944, 0, 0, 0),  
+(190011, 0, 44102, 0, 0, 0),  
+(190011, 0, 42991, 0, 0, 0),  
+(190011, 0, 42951, 0, 0, 0),  
+(190011, 0, 44099, 0, 0, 0),  
+(190011, 0, 44093, 0, 0, 0),  
+(190011, 0, 44098, 0, 0, 0),  
+(190011, 0, 44097, 0, 0, 0),  
+(190011, 0, 44101, 0, 0, 0); 
+
+--Start items vendor world position
+delete from `creature` where id='190011';
+INSERT INTO `creature` VALUES (2041698, 190010, 1, 1, 1, 0, 0, 16225.4, 16263, 13.2664, 3.39211, 300, 0, 0, 6300, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2041699, 190010, 0, 1, 1, 0, 0, -8845.71, 625.332, 94.3701, 0.527352, 300, 0, 0, 6300, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2041700, 190010, 1, 1, 1, 0, 0, 1578.86, -4416.98, 8.05379, 3.37953, 300, 0, 0, 6300, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2042126, 190011, 0, 1, 1, 0, 0, -8946.95, -130.54, 83.5782, 3.35365, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2042140, 190011, 0, 1, 1, 0, 0, -6234.88, 334.657, 383.157, 3.4911, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2042143, 190011, 530, 1, 1, 0, 0, -3973.69, -13921.4, 100.225, 5.50405, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2042144, 190011, 1, 1, 1, 0, 0, 10329.9, 829.408, 1326.34, 3.18305, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2042145, 190011, 1, 1, 1, 0, 0, -605.898, -4252.05, 38.9562, 3.23192, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2042146, 190011, 0, 1, 1, 0, 0, 1656.77, 1682.65, 120.719, 0.0796728, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2042147, 190011, 1, 1, 1, 0, 0, -2909.44, -254.251, 52.9413, 3.23977, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
+INSERT INTO `creature` VALUES (2042148, 190011, 530, 1, 1, 0, 0, 10353, -6357.92, 33.6385, 2.7478, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
