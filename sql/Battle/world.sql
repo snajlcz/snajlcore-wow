@@ -186,9 +186,6 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `comment`) VALUES
 (0, 23789, 8, 'Stoneclaw Totem TEST - can crash client by spawning too many totems'),
 (0, 61904, 8, 'Magma Totem TEST - can crash client by spawning too many totems');
 
--- Фикс квеста 4921 "Пропавшая без вести"
-UPDATE `creature_template` SET `npcflag` = 3 WHERE `entry` = 10668;
-
 -- the ICC-wise buffs
 INSERT IGNORE INTO `spell_area` VALUES ('73822', '4812', '0', '0', '0', '690', '2', '1', '64', '11');
 INSERT IGNORE INTO `spell_area` VALUES ('73828', '4812', '0', '0', '0', '1101', '2', '1', '64', '11');
@@ -226,15 +223,6 @@ REPLACE INTO `gameobject` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `posit
 (16394, 176083, 369, 1, 1, -45.4007, 2512.15, 6.9886, 1.5708, 0, 0, 1, 0, 120, 0, 1),
 (5864, 176084, 369, 1, 1, -45.3934, 2472.93, 6.9886, -1.5708, 0, 0, 1, 0, 120, 0, 1),
 (15363, 176085, 369, 1, 1, 4.49883, -11.3475, 7.01107, 1.5708, 0, 0, 1, 0, 120, 0, 1);
-
--- nagrand_arena_last_boss_quest
---UPDATE `quest_template` SET `RequiredNpcOrGo1` = '18069',`RequiredNpcOrGoCount1` = '1' WHERE `Id` =9977;
---UPDATE `quest_template` SET `SpecialFlags` = '0' WHERE `Id` =9977;
---UPDATE `quest_template` SET `RequiredNpcOrGo1`='18069' WHERE `Id`=9977; 
---UPDATE `quest_template` SET `RequiredNpcOrGoCount1`='1' WHERE `Id`=9977;
---UPDATE `quest_template` SET `SpecialFlags`=0 WHERE `Id`=9977;
----UPDATE `quest_template` SET `RequiredNpcOrGo1`='30022' WHERE `Id`=12948; 
----UPDATE `quest_template` SET `SpecialFlags`=0 WHERE `Id`=12948;
 
 -- Количество соединений
 UPDATE `trinity_string` SET `content_loc8`='Всего соединений: %u (максимум: %u). Игроков в очереди: %u (максимум: %u).' WHERE `entry`='12';
