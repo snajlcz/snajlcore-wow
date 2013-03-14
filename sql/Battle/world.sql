@@ -291,3 +291,6 @@ INSERT INTO `creature` VALUES (2042145, 190011, 1, 1, 1, 0, 0, -605.898, -4252.0
 INSERT INTO `creature` VALUES (2042146, 190011, 0, 1, 1, 0, 0, 1656.77, 1682.65, 120.719, 0.0796728, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
 INSERT INTO `creature` VALUES (2042147, 190011, 1, 1, 1, 0, 0, -2909.44, -254.251, 52.9413, 3.23977, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
 INSERT INTO `creature` VALUES (2042148, 190011, 530, 1, 1, 0, 0, 10353, -6357.92, 33.6385, 2.7478, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
+
+-- Proc de Limpieza sagrada
+UPDATE `spell_proc_event` SET `Cooldown`= 16 WHERE `entry`= 53553;
