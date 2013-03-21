@@ -1,14 +1,14 @@
-/* SPGM Memeber of Trinitycore Server: http://immortalones.game-server.cc Repo: http://code.google.com/p/spgm-trinity/
-*  This is a script I combined from Buff Npc and professions, I have redesigned it and added to it. To come: Enchanting, Guildhouse, TeleNpc2, Bots so this will be a all in one NPC with options in the config file and Database.
+/*
+* By Vitasic (https://github.com/Vitasic)
+* ScriptData
+* SDName: pryds_allinone
+* SD%Complete: 100
+* SDComment: Buff Master Profession SkillUp Trainers
+* SDCategory: NPC
+* REPLACE INTO `creature_template` VALUES ('993369', '0', '0', '0', '0', '0', '26789', '0', '0', '0', 'MMOwning Morfs', 'allinone', '', '0', '80', '80', '0', '35', '35', '1', '1', '1.14286', '0.75', '2', '1755', '1755', '0', '1504', '1000', '1500', '0', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '7', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '3', '1', '100', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'pryds_allinone', '1');
+* https://github.com/Vitasic/Battle/commits/mmaps
+* EndScriptData 
 */
-
-/* ScriptData
-SDName: pryds_allinone
-SD%Complete: 100
-SDComment: Buff Master Profession SkillUp Trainers
-SDCategory: NPC
-INSERT INTO `creature_template` VALUES ('993369', '0', '0', '0', '0', '0', '26789', '0', '0', '0', 'MMOwning All-in-One', '', '', '0', '80', '80', '0', '35', '35', '1', '1', '1.14286', '0.75', '2', '1755', '1755', '0', '1504', '1000', '1500', '0', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '7', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '3', '1', '100', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'pryds_allinone', '1');
-EndScriptData */
 
 #include "ScriptPCH.h"
 
