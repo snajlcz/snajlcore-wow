@@ -11,6 +11,7 @@
 #                                                                                          #
 ############################################################################################
 
+[143.7][Vitasic] --> Implement AllInOne Buff/Trainers/Morph/PlayerTools/GivemeGold
 [143.6][Vitasic] --> Implement offlike GO-summon animation.
 [143.5][Vitasic] --> fix priest bug (kills and honour) spell_priest_spirit_of_redemption.
 [143.4][Vitasic] --> AutoComplete table rbac_account_groups during registration through the web face.
