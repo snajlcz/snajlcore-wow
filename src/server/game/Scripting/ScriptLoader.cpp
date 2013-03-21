@@ -46,6 +46,7 @@ void AddSC_npc_mmr_reset();
 // NPC Astranaar SHOP
 void AddSC_npc_shop();
 void AddSC_cs_world_chat();
+void AddSC_pryds_allinone();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1366,5 +1367,6 @@ void AddCustomScripts()
     // NPC Astranaar SHOP
     AddSC_npc_shop();
     AddSC_cs_world_chat();
+    AddSC_pryds_allinone();
 #endif
 }
