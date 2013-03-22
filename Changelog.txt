@@ -11,6 +11,13 @@
 #                                                                                          #
 ############################################################################################
 
+[150] --> Update Trial of the Champion. (Thx Faq / sioa)
+[149] --> Fix Sindragosa. [TEST] (By Elron103)
+[148] --> Fix priest bug (kills and honour) spell_priest_spirit_of_redemption. (Thx Vitasic)
+[147] --> Fix sacred shield CD. (TEST, By Odyssey & aedansilver)
+[146] --> Fix duel reset cd and Bladestorm. (By iconskater) 
+[145] --> Fix Sindragosa. (By Elron103) 
+[144] --> Fix MMaps boss sindragosa and more... (Info #9083).
 [143.7][Vitasic] --> Implement AllInOne Buff/Trainers/Morph/PlayerTools/GivemeGold
 [143.6][Vitasic] --> Implement offlike GO-summon animation.
 [143.5][Vitasic] --> fix priest bug (kills and honour) spell_priest_spirit_of_redemption.

@@ -210,7 +210,7 @@ public:
 
         void OnGameObjectCreate(GameObject* go)
         {
-            // TODO: init state depending on encounters
+            /// @todo init state depending on encounters
             switch (go->GetEntry())
             {
                 case GO_FROSTMOURNE:

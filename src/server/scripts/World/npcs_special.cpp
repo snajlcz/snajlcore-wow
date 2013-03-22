@@ -881,7 +881,7 @@ void npc_doctor::npc_doctorAI::UpdateAI(uint32 diff)
 ## npc_garments_of_quests
 ######*/
 
-//TODO: get text for each NPC
+/// @todo get text for each NPC
 
 enum Garments
 {
@@ -3245,31 +3245,6 @@ public:
     };
 };
 
-/*######
-## npc_generic_harpoon_cannon
-######*/
-
-class npc_generic_harpoon_cannon : public CreatureScript
-{
-public:
-    npc_generic_harpoon_cannon() : CreatureScript("npc_generic_harpoon_cannon") { }
-
-    struct npc_generic_harpoon_cannonAI : public ScriptedAI
-    {
-        npc_generic_harpoon_cannonAI(Creature* creature) : ScriptedAI(creature) {}
-
-        void Reset()
-        {
-            me->SetUnitMovementFlags(MOVEMENTFLAG_ROOT);
-        }
-    };
-
-    CreatureAI* GetAI(Creature* creature) const
-    {
-        return new npc_generic_harpoon_cannonAI(creature);
-    }
-};
-
 // Achievement: The Turkinator
 enum WildTurkey
 {
@@ -3574,7 +3549,6 @@ void AddSC_npcs_special()
     new npc_firework();
     new npc_spring_rabbit();
     new npc_dark_iron_guzzler();
-    new npc_generic_harpoon_cannon();
     new npc_lonely_turkey();
     new npc_wild_turkey();
     new npc_argent_pet();
