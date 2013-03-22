@@ -42,7 +42,7 @@ enum PriestSpells
     SPELL_PRIEST_REFLECTIVE_SHIELD_R1               = 33201,
     SPELL_PRIEST_SHADOW_WORD_DEATH                  = 32409,
     // -27827 Spirit of Redemption
-    SPELL_PRIEST_SPIRIT_OF_REDEMPTION                 = 27827,
+    SPELL_PRIEST_SPIRIT_OF_REDEMPTION               = 27827,
     SPELL_PRIEST_T9_HEALING_2P                      = 67201,
     SPELL_PRIEST_VAMPIRIC_TOUCH_DISPEL              = 64085,
 };
