@@ -297,3 +297,14 @@ UPDATE `spell_proc_event` SET `Cooldown`= 16 WHERE `entry`= 53553;
 
 -- allinone
 REPLACE INTO `creature_template` VALUES ('993369', '0', '0', '0', '0', '0', '26789', '0', '0', '0', 'MMOwning Morfs', 'allinone', '', '0', '80', '80', '0', '35', '35', '1', '1', '1.14286', '0.75', '2', '1755', '1755', '0', '1504', '1000', '1500', '0', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '7', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '3', '1', '100', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'pryds_allinone', '1');
+
+-- fix Disarm effects doesn't cancel bladestorm.
+DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=51722 AND `spell_effect`=-46924 ;
+DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=676 AND `spell_effect`=-46924;
+INSERT INTO `spell_linked_spell` VALUES (676, -46924, 1, '(War)Disarm Cancel Bladestorm');
+INSERT INTO `spell_linked_spell` VALUES (51722, -46924, 1, '(Rogue)Dismantle Cancel Bladestorm');
+INSERT INTO `spell_linked_spell` VALUES (64058, -46924, 1, '(Priest) Psychic Horror Cancel Bladestorm');
+DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=64346 AND `spell_effect`=-46924;
+INSERT INTO `spell_linked_spell` VALUES (64346, -46924, 1, '(Mage)Fiery Payback Cancel Bladestorm');
+DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=53359 AND `spell_effect`=-46924;
+INSERT INTO `spell_linked_spell` VALUES (53359, -46924, 1, '(Hunter)Chimera Shot(scorpid) Cancel Bladestorm');
