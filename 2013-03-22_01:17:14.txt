@@ -1,0 +1,4 @@
+Server CRASHED !!! Start Bugreport System.
+Server.log Log FILE Last 30 Lines:
+
+END bugtracker system.
