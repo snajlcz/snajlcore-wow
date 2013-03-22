@@ -62,15 +62,16 @@ class Vehicle : public TransportBase
         void RemovePassenger(Unit* passenger);
         void RelocatePassengers();
         void RemoveAllPassengers();
-        void Dismiss();
-        bool IsVehicleInUse() { return Seats.begin() != Seats.end(); }
+        bool IsVehicleInUse() const;
 
         void SetLastShootPos(Position const& pos) { _lastShootPos.Relocate(pos); }
-        Position GetLastShootPos() { return _lastShootPos; }
+        Position const& GetLastShootPos() const { return _lastShootPos; }
 
         SeatMap Seats;                                      ///< The collection of all seats on the vehicle. Including vacant ones.
 
-        VehicleSeatEntry const* GetSeatForPassenger(Unit* passenger);
+        VehicleSeatEntry const* GetSeatForPassenger(Unit const* passenger) const;
+
+        void RemovePendingEventsForPassenger(Unit* passenger);
 
     protected:
         friend class VehicleJoinEvent;
@@ -114,7 +115,7 @@ class VehicleJoinEvent : public BasicEvent
     friend class Vehicle;
     protected:
         VehicleJoinEvent(Vehicle* v, Unit* u) : Target(v), Passenger(u), Seat(Target->Seats.end()) {}
-        ~VehicleJoinEvent() { Target->RemovePendingEvent(this); }
+        ~VehicleJoinEvent();
         bool Execute(uint64, uint32);
         void Abort(uint64);
 
