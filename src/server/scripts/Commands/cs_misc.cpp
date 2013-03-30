@@ -1881,7 +1881,7 @@ public:
             announce = "The character ";
             announce += nameLink.c_str();
             announce += " was muted for ";
-            announce += notSpeakTime;
+            announce += delayStr;
             announce += " minutes by the character ";
             announce += handler->GetSession()->GetPlayerName();
             announce += ". The reason is: ";
