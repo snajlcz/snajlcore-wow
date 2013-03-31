@@ -186,6 +186,10 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `comment`) VALUES
 (0, 23789, 8, 'Stoneclaw Totem TEST - can crash client by spawning too many totems'),
 (0, 61904, 8, 'Magma Totem TEST - can crash client by spawning too many totems');
 
+-- Disable CrashSpells
+INSERT INTO `disables` VALUES ('0','61904','1','','','spellcrash1');
+INSERT INTO `disables` VALUES ('0','61905','1','','','spellcrash2');
+
 -- the ICC-wise buffs
 INSERT IGNORE INTO `spell_area` VALUES ('73822', '4812', '0', '0', '0', '690', '2', '1', '64', '11');
 INSERT IGNORE INTO `spell_area` VALUES ('73828', '4812', '0', '0', '0', '1101', '2', '1', '64', '11');
