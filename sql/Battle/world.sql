@@ -308,3 +308,7 @@ DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=64346 AND `spell_effect`
 INSERT INTO `spell_linked_spell` VALUES (64346, -46924, 1, '(Mage)Fiery Payback Cancel Bladestorm');
 DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=53359 AND `spell_effect`=-46924;
 INSERT INTO `spell_linked_spell` VALUES (53359, -46924, 1, '(Hunter)Chimera Shot(scorpid) Cancel Bladestorm');
+
+-- Implentement Arena Crystal
+DELETE FROM `gameobject_template` WHERE `entry` = 42000;
+INSERT INTO `gameobject_template`(`entry`, `type`, `displayId`, `name`, `IconName`, `size`, `ScriptName`, `WDBVerified`) VALUES(42000, 10, 327, 'Faster Start', 'PVP' , 1, 'FastArenaCrystal', 12340);
