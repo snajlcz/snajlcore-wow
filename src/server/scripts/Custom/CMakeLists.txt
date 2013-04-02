@@ -25,6 +25,7 @@ set(scripts_STAT_SRCS
   Custom/npc_shop.cpp
   Custom/world_chat_race.cpp
   Custom/allinone.cpp
+  Custom/ArenaFastStart.cpp
 )
 
 message("  -> Prepared: Custom")
