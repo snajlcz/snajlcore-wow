@@ -47,8 +47,6 @@ void AddSC_npc_mmr_reset();
 void AddSC_npc_shop();
 void AddSC_cs_world_chat();
 void AddSC_pryds_allinone();
-// Implentement Arena Crystal
-void AddSC_fast_arena_start();
 
 // spells
 void AddSC_deathknight_spell_scripts();
@@ -1372,7 +1370,5 @@ void AddCustomScripts()
     AddSC_npc_shop();
     AddSC_cs_world_chat();
     AddSC_pryds_allinone();
-    // Implentement Arena Crystal
-    AddSC_fast_arena_start();
 #endif
 }
