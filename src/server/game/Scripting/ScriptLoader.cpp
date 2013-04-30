@@ -30,17 +30,6 @@ void AddSC_npc_hunterpetvendor();
 void AddSC_NPC_Transmogrify();
 //Chat Censure
 void AddSC_System_Censure();
-// Fast Arena Start
-void AddSC_fast_arena_start();
-// Fake Players
-void AddSC_fake_commandscript();
-// Arena Spectator
-void AddSC_arena_spectator_script();
-// Argent Tournament quest scripts
-void AddSC_ArgentTournament();
-//TeleNPC2
-void AddSC_npc_teleport();
-void AddSC_npc_other();
 // Npc Top 10 Arena Teams
 void AddSC_npc_arena_setup();
 // [MOD] MultiKill
@@ -51,6 +40,15 @@ void AddSC_npc_maniek();
 void AddSC_npc_mmr_reset();
 // NPC Astranaar SHOP
 void AddSC_npc_shop();
+// Fast Arena Start
+void AddSC_fast_arena_start();
+// Fake Players
+void AddSC_fake_commandscript();
+// Arena Spectator
+void AddSC_arena_spectator_script();
+
+//TeleNPC2
+void AddSC_npc_teleport();
 void AddSC_cs_world_chat();
 void AddSC_pryds_allinone();
 
@@ -681,7 +679,6 @@ void AddScripts()
     AddKalimdorScripts();
     AddOutlandScripts();
     AddNorthrendScripts();
-    AddEventScripts();
     AddBattlegroundScripts();
     AddOutdoorPvPScripts();
     AddCustomScripts();
@@ -1355,17 +1352,6 @@ void AddCustomScripts()
     AddSC_NPC_Transmogrify();
     //Chat Censure
     AddSC_System_Censure();
-    // Fast Arena Start
-    AddSC_fast_arena_start();
-    // Fake Players
-    AddSC_fake_commandscript();
-    // Arena Spectator
-    AddSC_arena_spectator_script();
-    // Argent Tournament quest scripts
-    AddSC_ArgentTournament();
-     //TeleNPC2
-     AddSC_npc_teleport();
-     AddSC_npc_other();
     // Npc Top 10 Arena Teams
     AddSC_npc_arena_setup();
     // [MOD] MultiKill
@@ -1376,6 +1362,15 @@ void AddCustomScripts()
     AddSC_npc_mmr_reset();
     // NPC Astranaar SHOP
     AddSC_npc_shop();
+    // Fast Arena Start
+    AddSC_fast_arena_start();
+    // Fake Players
+    AddSC_fake_commandscript();
+    // Arena Spectator
+    AddSC_arena_spectator_script();
+
+     //TeleNPC2
+     AddSC_npc_teleport();
     AddSC_cs_world_chat();
     AddSC_pryds_allinone();
 #endif
