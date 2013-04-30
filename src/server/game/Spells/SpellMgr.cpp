@@ -202,9 +202,9 @@ DiminishingGroup GetDiminishingReturnsGroupForSpell(SpellInfo const* spellproto,
         }
         case SPELLFAMILY_SHAMAN:
         {
-            // Earthgrab
-            if (spellproto->SpellFamilyFlags[2] & 0x00004000)
-                return DIMINISHING_NONE;
+            // Storm, Earth and Fire - Earthgrab
+            if (spellproto->SpellFamilyFlags[2] & 0x4000)
+                return DIMINISHING_LIMITONLY;
             break;
         }
         default:
@@ -2998,7 +2998,12 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->speed = 100;
                 break;
             case 49575: // Death Grip
-                 spellInfo->EffectMiscValueB[0] = 1;
+                spellInfo->EffectMiscValueB[0] = 1;
+                break;
+            case 49224: // Magic Suppression
+            case 49610:
+            case 49611:
+                spellInfo->procCharges = 0;
                 break;
             case 30541: // Blaze (needs conditions entry)
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_TARGET_ENEMY;
@@ -3028,6 +3033,11 @@ void SpellMgr::LoadDbcDataCorrections()
             case 6774: // Slice and Dice rank2
             case 52916: // Honor Among Thieves
             case 3600:  // Earthbind totem effect
+            case 49376: // Feral Charge (Cat)
+            case 61138: // Feral Charge (Cat) effect
+            case 50259: // Feral charge (Cat) effect 2
+            case 61132: // Feral Charge (cat) effect 3
+            case 52610: // Savage Roar
                 spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_INITIAL_AGGRO;
                 break;
             case 50526: // Wandering plague
@@ -3105,6 +3115,16 @@ void SpellMgr::LoadDbcDataCorrections()
             case 71464: // Divine Surge
                 spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_100_YARDS;
                 spellInfo->DurationIndex = 28;          // 5 seconds
+                break;
+            case 7328:  // Redemption
+            case 7329:  // Redemption
+            case 10322: // Redemption
+            case 10324: // Redemption
+            case 20772: // Redemption
+            case 20773: // Redemption
+            case 48949: // Redemption
+            case 48950: // Redemption
+                spellInfo->SpellFamilyName = SPELLFAMILY_PALADIN;
                 break;
             case 38310: // Multi-Shot
             case 53385: // Divine Storm (Damage)
@@ -3750,6 +3770,11 @@ void SpellMgr::LoadDbcDataCorrections()
 
         switch (spellInfo->SpellFamilyName)
         {
+            case SPELLFAMILY_HUNTER:
+                // Silencing Shot / Scatter Shot
+                if (spellInfo->SpellFamilyFlags[0] & 0x40000)
+                    spellInfo->speed = 0; // instant
+                break;
             case SPELLFAMILY_PALADIN:
                 // Seals of the Pure should affect Seal of Righteousness
                 if (spellInfo->SpellIconID == 25 && spellInfo->Attributes & SPELL_ATTR0_PASSIVE)

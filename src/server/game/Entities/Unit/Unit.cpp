@@ -306,6 +306,19 @@ Unit::~Unit()
 
     _DeleteRemovedAuras();
 
+    // remove veiw point for spectator
+    if (!m_sharedVision.empty())
+    {
+        for (SharedVisionList::iterator itr = m_sharedVision.begin(); itr != m_sharedVision.end(); ++itr)
+            if ((*itr)->isSpectator() && (*itr)->getSpectateFrom())
+            {
+                (*itr)->SetViewpoint((*itr)->getSpectateFrom(), false);
+                if (m_sharedVision.empty())
+                    break;
+                --itr;
+            }
+    }
+
     delete m_charmInfo;
     delete movespline;
 
@@ -504,12 +517,48 @@ AuraApplication * Unit::GetVisibleAura(uint8 slot) const
 
 void Unit::SetVisibleAura(uint8 slot, AuraApplication * aur)
 {
-    m_visibleAuras[slot]=aur;
+    if (Aura* aura = aur->GetBase())
+        if (Player *player = ToPlayer())
+            if (player->HaveSpectators() && slot < MAX_AURAS)
+            {
+                SpectatorAddonMsg msg;
+                uint64 casterID = 0;
+                if (aura->GetCaster())
+                    casterID = (aura->GetCaster()->ToPlayer()) ? aura->GetCaster()->GetGUID() : 0;
+                msg.SetPlayer(player->GetName());
+                msg.CreateAura(casterID, aura->GetSpellInfo()->Id,
+                               aura->GetSpellInfo()->IsPositive(), aura->GetSpellInfo()->Dispel,
+                               aura->GetDuration(), aura->GetMaxDuration(),
+                               aura->GetStackAmount(), false);
+                player->SendSpectatorAddonMsgToBG(msg);
+            }
+
+    m_visibleAuras[slot] = aur;
     UpdateAuraForGroup(slot);
 }
 
 void Unit::RemoveVisibleAura(uint8 slot)
 {
+    AuraApplication *aurApp = GetVisibleAura(slot);
+    if (aurApp && slot < MAX_AURAS)
+    {
+        if (Aura* aura = aurApp->GetBase())
+            if (Player *player = ToPlayer())
+                if (player->HaveSpectators())
+                {
+                    SpectatorAddonMsg msg;
+                    uint64 casterID = 0;
+                    if (aura->GetCaster())
+                        casterID = (aura->GetCaster()->ToPlayer()) ? aura->GetCaster()->GetGUID() : 0;
+                    msg.SetPlayer(player->GetName());
+                    msg.CreateAura(casterID, aura->GetSpellInfo()->Id,
+                                   aurApp->IsPositive(), aura->GetSpellInfo()->Dispel,
+                                   aura->GetDuration(), aura->GetMaxDuration(),
+                                   aura->GetStackAmount(), true);
+                    player->SendSpectatorAddonMsgToBG(msg);
+                }
+    }
+
     m_visibleAuras.erase(slot);
     UpdateAuraForGroup(slot);
 }
@@ -2656,8 +2705,6 @@ SpellMissInfo Unit::SpellHitResult(Unit* victim, SpellInfo const* spell, bool Ca
                 reflectchance += (*i)->GetAmount();
         if (reflectchance > 0 && roll_chance_i(reflectchance))
         {
-            // Start triggers for remove charges if need (trigger only for victim, and mark as active spell)
-            ProcDamageAndSpell(victim, PROC_FLAG_NONE, PROC_FLAG_TAKEN_SPELL_MAGIC_DMG_CLASS_NEG, PROC_EX_REFLECT, 1, BASE_ATTACK, spell);
             return SPELL_MISS_REFLECT;
         }
     }
@@ -5872,16 +5919,6 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                 {
                     triggered_spell_id = 37378;
                     break;
-                }
-                // Glyph of Succubus
-                case 56250:
-                {
-                    if (!target)
-                        return false;
-                    target->RemoveAurasByType(SPELL_AURA_PERIODIC_DAMAGE, 0, target->GetAura(32409)); // SW:D shall not be removed.
-                    target->RemoveAurasByType(SPELL_AURA_PERIODIC_DAMAGE_PERCENT);
-                    target->RemoveAurasByType(SPELL_AURA_PERIODIC_LEECH);
-                    return true;
                 }
             }
             break;
@@ -10030,7 +10067,7 @@ uint32 Unit::SpellDamageBonusDone(Unit* victim, SpellInfo const* spellProto, uin
             AddPct(DoneTotalMod, (*i)->GetAmount());
 
     // done scripted mod (take it from owner)
-    Unit const * const owner = GetOwner() ? GetOwner() : this;
+    Unit const* owner = GetOwner() ? GetOwner() : this;
     AuraEffectList const& mOverrideClassScript= owner->GetAuraEffectsByType(SPELL_AURA_OVERRIDE_CLASS_SCRIPTS);
     for (AuraEffectList::const_iterator i = mOverrideClassScript.begin(); i != mOverrideClassScript.end(); ++i)
     {
@@ -11730,6 +11767,12 @@ void Unit::Dismount()
         }
         else
             player->ResummonPetTemporaryUnSummonedIfAny();
+            Pet* plPet = player->GetPet();
+            if (plPet != NULL)
+            {
+                plPet->SetHealth(plPet->GetMaxHealth());
+                plPet->SetPower(plPet->getPowerType(), plPet->GetMaxPower(plPet->getPowerType()));
+            }
     }
 }
 
@@ -13420,6 +13463,14 @@ void Unit::SetHealth(uint32 val)
     // group update
     if (Player* player = ToPlayer())
     {
+        if (player->HaveSpectators())
+        {
+            SpectatorAddonMsg msg;
+            msg.SetPlayer(player->GetName());
+            msg.SetCurrentHP(val);
+            player->SendSpectatorAddonMsgToBG(msg);
+        }
+
         if (player->GetGroup())
             player->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_CUR_HP);
     }
@@ -13445,6 +13496,14 @@ void Unit::SetMaxHealth(uint32 val)
     // group update
     if (GetTypeId() == TYPEID_PLAYER)
     {
+        if (ToPlayer()->HaveSpectators())
+        {
+            SpectatorAddonMsg msg;
+            msg.SetPlayer(ToPlayer()->GetName());
+            msg.SetMaxHP(val);
+            ToPlayer()->SendSpectatorAddonMsgToBG(msg);
+        }
+
         if (ToPlayer()->GetGroup())
             ToPlayer()->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_MAX_HP);
     }
@@ -13482,6 +13541,15 @@ void Unit::SetPower(Powers power, uint32 val)
     // group update
     if (Player* player = ToPlayer())
     {
+        if (player->HaveSpectators())
+        {
+            SpectatorAddonMsg msg;
+            msg.SetPlayer(player->GetName());
+            msg.SetCurrentPower(val);
+            msg.SetPowerType(power);
+            player->SendSpectatorAddonMsgToBG(msg);
+        }
+
         if (player->GetGroup())
             player->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_CUR_POWER);
     }
@@ -14246,6 +14314,15 @@ void Unit::ProcDamageAndSpellFor(bool isVictim, Unit* target, uint32 procFlag, u
 
                 switch (triggeredByAura->GetAuraType())
                 {
+                    case SPELL_AURA_ABILITY_IGNORE_AURASTATE:
+                    {
+                        // hack for Execute by Sudden Death aura
+                        if (triggeredByAura->GetId() == 52437 && !damage)
+                            takeCharges = false;
+                        else
+                            takeCharges = true;
+                        break;
+                    }
                     case SPELL_AURA_PROC_TRIGGER_SPELL:
                     {
                         sLog->outDebug(LOG_FILTER_SPELLS_AURAS, "ProcDamageAndSpell: casting spell %u (triggered by %s aura of spell %u)", spellInfo->Id, (isVictim?"a victim's":"an attacker's"), triggeredByAura->GetId());
@@ -16505,6 +16582,10 @@ void Unit::KnockbackFrom(float x, float y, float speedXY, float speedZ)
     }
     else
     {
+        // Bladestorm
+        if (player->HasAura(46924))
+            return;
+
         float vcos, vsin;
         GetSinCos(x, y, vsin, vcos);
 

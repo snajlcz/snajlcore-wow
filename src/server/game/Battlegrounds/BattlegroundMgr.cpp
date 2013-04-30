@@ -1207,4 +1207,3 @@ void BattlegroundMgr::RemoveBattleground(BattlegroundTypeId bgTypeId, uint32 ins
 {
     bgDataStore[bgTypeId].m_Battlegrounds.erase(instanceId);
 }
-

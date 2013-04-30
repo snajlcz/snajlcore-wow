@@ -169,6 +169,7 @@ enum WorldBoolConfigs
     CONFIG_CUSTOM_ARENA_LOGS,
     CONFIG_GC_TOKEN_VENDOR,
     CONFIG_CRYPT_RUN_ENABLE,
+    CONFIG_FAKE_WHO_LIST,
     CONFIG_UI_QUESTLEVELS_IN_DIALOGS,     // Should we add quest levels to the title in the NPC dialogs?
     CONFIG_EVENT_ANNOUNCE,
     BOOL_CONFIG_VALUE_COUNT

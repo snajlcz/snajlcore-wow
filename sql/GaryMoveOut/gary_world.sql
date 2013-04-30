@@ -105,8 +105,8 @@ SET
 @Entry = 190010,
 @Name = "Warpweaver";
 
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `equipment_id`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
-(@Entry, 0, 0, 0, 0, 0, 19646, 0, 0, 0, @Name, 'Transmogrifier', NULL, 0, 80, 80, 2, 35, 35, 1, 1, 1.14286, 1, 0, 500, 500, 0, 350, 1, 2000, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 'NPC_Transmogrify', 0);
+INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
+(@Entry, 0, 0, 0, 0, 0, 19646, 0, 0, 0, @Name, 'Transmogrifier', NULL, 0, 80, 80, 2, 35, 35, 1, 1, 1.14286, 1, 0, 500, 500, 0, 350, 1, 2000, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'NPC_Transmogrify', 0);
 
 REPLACE INTO `trinity_string` (`entry`, `content_default`, `content_loc1`, `content_loc2`, `content_loc3`, `content_loc4`, `content_loc5`, `content_loc6`, `content_loc7`, `content_loc8`) VALUES (11100, 'Transmogrifications removed from equipped items', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Трансмогрификация удалена из надетых предметов');
 REPLACE INTO `trinity_string` (`entry`, `content_default`, `content_loc1`, `content_loc2`, `content_loc3`, `content_loc4`, `content_loc5`, `content_loc6`, `content_loc7`, `content_loc8`) VALUES (11101, 'You have no transmogrified items equipped', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -156,17 +156,8 @@ REPLACE INTO `command` (`name`, `security`, `help`) VALUES
 REPLACE INTO `trinity_string` (`entry`, `content_default`, `content_loc1`, `content_loc2`, `content_loc3`, `content_loc4`, `content_loc5`, `content_loc6`, `content_loc7`, `content_loc8`) VALUES
 (11002, '|cFFFFFC00[ANTICHEAT]|cFF00FFFF[|cFF60FF00%s|cFF00FFFF] Banned for cheating!|r', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
--- Fix [Warrior] T10 4P Bonus.
-DELETE FROM spell_script_names WHERE spell_id = 46916;
-INSERT INTO spell_script_names VALUES (46916,'spell_warr_slam');
-
--- [Argent Tournament] Fix Npc Lake Frog.
-UPDATE `creature_template` SET `ScriptName` = 'npc_lake_frog' WHERE `entry` IN (33211,33224);
-UPDATE `creature_template` SET `gossip_menu_id` = 33220 WHERE `entry` = 33220;
-REPLACE INTO `gossip_menu_option` (`menu_id`, `option_text`, `option_id`, `npc_option_npcflag`, `action_script_id`) VALUES ('33220', 'Do you know, where I can find Ashwood Brand Sword?', '1', '1', '33220');
-REPLACE INTO `gossip_scripts` (`id`, `command`, `datalong`, `datalong2`) VALUES ('33220', '15', '62554', '3');
-
 -- Removes Master's Call stun immunity.
+DELETE FROM `spell_linked_spell` WHERE `spell_trigger` = 54216;
 INSERT INTO `spell_linked_spell`(`spell_trigger`, `spell_effect`, `type`, `comment`) VALUES (54216,-56651,1,'Removes Master''s Call stun immunity');
 
 -- Sap removes Stealth.
@@ -185,20 +176,8 @@ UPDATE `creature_template_addon` SET `auras`= '28305' WHERE `entry`=19668;
 
 -- Npc Top 10 Arena Teams
 DELETE FROM `creature_template` WHERE `entry` = 500009;
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `equipment_id`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
-('500009', '0', '0', '0', '0', '0', '27164', '0', '0', '0', 'Top 10 Arena Teams', '', '', '0', '59', '61', '0', '35', '35', '1', '1.48', '1.14286', '0.0', '0', '655.0', '663.0', '0', '158', '1.0', '1500', '1900', '1', '0', '0', '0', '0', '0', '0', '0', '0.0', '0.0', '100', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '1', '3', '1.0', '1.0', '1.0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'npc_arena_team_top', '1');
-
--- Fix Isle of Conquest - Teleports
-UPDATE `spell_linked_spell` SET `spell_effect` = 66551 WHERE `spell_trigger` IN (66549, 66548);
-UPDATE `spell_linked_spell` SET `spell_trigger` = 66551 WHERE `spell_effect` IN (-66548, -66549);
-
--- Fix [Warrior] T10 4P Bonus
--- Slam
-DELETE FROM spell_script_names WHERE spell_id = 46916;
-INSERT INTO spell_script_names VALUES (46916,'spell_warr_slam');
--- Execute
-DELETE FROM spell_script_names WHERE spell_id = 52437;
-INSERT INTO spell_script_names VALUES (52437,'spell_warr_execute_bonus');
+INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
+('500009', '0', '0', '0', '0', '0', '27164', '0', '0', '0', 'Top 10 Arena Teams', '', '', '0', '59', '61', '0', '35', '35', '1', '1.48', '1.14286', '0.0', '0', '655.0', '663.0', '0', '158', '1.0', '1500', '1900', '1', '0', '0', '0', '0', '0', '0', '0', '0.0', '0.0', '100', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '1', '3', '1.0', '1.0', '1.0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', 'npc_arena_team_top', '1');
 
 -- Fix Rogue T10 4p bonus
 DELETE FROM spell_proc_event WHERE entry = 70803;
@@ -217,7 +196,7 @@ UPDATE `creature_template` SET `faction_A` = '14',`faction_H` = '14' WHERE `entr
 UPDATE `creature_template` SET `ScriptName` = 'npc_maniek' WHERE `entry` = 91200;
 
 -- Npc MMR Master
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `equipment_id`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES ('500010', '0', '0', '0', '0', '0', '7103', '0', '7103', '0', 'Might Johny', 'MMR Master', NULL, '0', '85', '85', '2', '35', '35', '1', '1', '1.14286', '1', '3', '600000', '600000', '0', '2000', '11', '1500', '2000', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '3', '1', '50000', '1', '6740', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'npc_mmr_reset', '500009');
+INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES ('500010', '0', '0', '0', '0', '0', '7103', '0', '7103', '0', 'Might Johny', 'MMR Master', NULL, '0', '85', '85', '2', '35', '35', '1', '1', '1.14286', '1', '3', '600000', '600000', '0', '2000', '11', '1500', '2000', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '3', '1', '50000', '1', '6740', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', 'npc_mmr_reset', '500009');
 INSERT INTO `npc_text` (`ID`, `text0_0`, `text0_1`, `lang0`, `prob0`, `em0_0`, `em0_1`, `em0_2`, `em0_3`, `em0_4`, `em0_5`, `text1_0`, `text1_1`, `lang1`, `prob1`, `em1_0`, `em1_1`, `em1_2`, `em1_3`, `em1_4`, `em1_5`, `text2_0`, `text2_1`, `lang2`, `prob2`, `em2_0`, `em2_1`, `em2_2`, `em2_3`, `em2_4`, `em2_5`, `text3_0`, `text3_1`, `lang3`, `prob3`, `em3_0`, `em3_1`, `em3_2`, `em3_3`, `em3_4`, `em3_5`, `text4_0`, `text4_1`, `lang4`, `prob4`, `em4_0`, `em4_1`, `em4_2`, `em4_3`, `em4_4`, `em4_5`, `text5_0`, `text5_1`, `lang5`, `prob5`, `em5_0`, `em5_1`, `em5_2`, `em5_3`, `em5_4`, `em5_5`, `text6_0`, `text6_1`, `lang6`, `prob6`, `em6_0`, `em6_1`, `em6_2`, `em6_3`, `em6_4`, `em6_5`, `text7_0`, `text7_1`, `lang7`, `prob7`, `em7_0`, `em7_1`, `em7_2`, `em7_3`, `em7_4`, `em7_5`, `WDBVerified`) VALUES ('500010', 'Hi gladiator! I can reset your Matchmaking Rating to given values if only You are not team captain!', '', '0', '1', '0', '1', '0', '0', '0', '0', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 
 -- Fix Val'kyr Shadowguard speed
@@ -266,13 +245,15 @@ UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entr
 
 -- Fix MMaps
 UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (37955,38434,38435,38436); -- Blood-Queen Lana'thel (ICC)
-UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (37813,38402,38582,38583); -- Deathbringer Saurfang (ICC)
+-- UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (37813,38402,38582,38583); -- Deathbringer Saurfang (ICC)
 UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (36853,38265,38266,38267); -- Sindragosa (ICC)
 UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (37533,38220); -- Rimefang (ICC)
 UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (37534,38219); -- Spinestalker (ICC)
 UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (39747,39823); -- Saviana Ragefire (RS)
 UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (10184,36538); -- Onyxia (Ony)
 UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (24068,31655); -- Annhylde the Caller (UK)
+UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (11583); -- Nefarian
+UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (27829); -- Ebon Gargyole
 
 -- Fix priest bug (kills and honour) spell_priest_spirit_of_redemption.
 -- Spell script assignment
@@ -280,3 +261,92 @@ SET @ENTRY := 27827;
 DELETE FROM spell_script_names WHERE spell_id = @ENTRY;
 INSERT INTO spell_script_names (spell_id, ScriptName) VALUES
 (@ENTRY, 'spell_priest_spirit_of_redemption');
+
+-- Update ICC: Rotface
+-- Fix targetting for Ooze Flood ability in encounter Modermiene / Rotface in instance / Instanz ICC / Eiskronenzitadelle / Icecrown Citadel
+DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 13 AND `SourceGroup` = 3 AND `SourceEntry` IN (69783, 69797, 69799, 69802) AND `ConditionTypeOrReference` = 33;
+INSERT INTO `conditions` (SourceTypeOrReferenceId, SourceGroup, SourceEntry, SourceId, ElseGroup, ConditionTypeOrReference, ConditionTarget, ConditionValue1, ConditionValue2, ConditionValue3, NegativeCondition, ErrorTextId, ScriptName, Comment) VALUES
+(13, 3, 69783, 0, 0, 33, 1, 0, 0, 0, 1, 0, '', 'Rotface - Ooze Flood, not self'),
+(13, 3, 69797, 0, 0, 33, 1, 0, 0, 0, 1, 0, '', 'Rotface - Ooze Flood, not self'),
+(13, 3, 69799, 0, 0, 33, 1, 0, 0, 0, 1, 0, '', 'Rotface - Ooze Flood, not self'),
+(13, 3, 69802, 0, 0, 33, 1, 0, 0, 0, 1, 0, '', 'Rotface - Ooze Flood, not self');
+-- Add immunities to Little Ooze / Big Ooze in encounter Modermiene / Rotface in instance / Instanz ICC / Eiskronenzitadelle / Icecrown Citadel
+UPDATE `creature_template` SET `mechanic_immune_mask` = 650853247 WHERE `entry` IN (36897, 36899, 38138, 38123);
+-- Add interrupt immunity to mini bosses (Rimefang / Raufang / Spinestalker / Wirbelpirscher) in encounter Sindragosa in instance / Instanz ICC / Eiskronenzitadelle / Icecrown Citadel
+UPDATE `creature_template` SET `mechanic_immune_mask` = 650853247 WHERE `entry` IN (37533, 38220, 37534, 38219);
+-- DB/NPCs: Little Ooze (Rotface in ICC) can not be taunted, 2012_09_10_06_world_creature_template.sql
+UPDATE `creature_template` SET `flags_extra`=`flags_extra`|256 WHERE `entry` IN (36897, 38138); -- Little Ooze
+-- Set speed values to database for Valkyr Shadowguard in encounter The Lich King in instance / Instanz ICC / Eiskronenzitadelle / Icecrown Citadel
+UPDATE `creature_template` SET `speed_walk` = 0.642857, `speed_run` = 0.642857, `InhabitType` = 4 WHERE `entry` IN (36609, 39120, 39121, 39122);
+-- Set speed values to database for Vile Spirits in encounter The Lich King in instance / Instanz ICC / Eiskronenzitadelle / Icecrown Citadel
+UPDATE `creature_template` SET `speed_walk` = 0.5, `speed_run` = 0.5, `InhabitType` = 4 WHERE `entry` IN (37799, 39284, 39285, 39286);
+
+-- Fix Glyph of Succubus.
+DELETE FROM `spell_script_names` WHERE `spell_id`=6358;
+INSERT INTO `spell_script_names` (`spell_id`,`ScriptName`) VALUES
+(6358,'spell_warl_seduction');
+
+-- Revert [Warrior] T10 4P Bonus
+-- Slam
+DELETE FROM spell_script_names WHERE spell_id = 46916;
+-- Execute
+DELETE FROM spell_script_names WHERE spell_id = 52437;
+
+-- Revert 'Implement Raise ally'
+DELETE FROM creature_template WHERE entry = 30230;
+INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
+(30230, 0, 0, 0, 0, 0, 24994, 24993, 24992, 24995, 'Risen Ally', '', '', 0, 1, 1, 0, 35, 35, 0, 0.8, 0.99206, 1, 0, 2, 2, 0, 24, 1, 2000, 0, 1, 0, 2048, 8, 40, 0, 0, 0, 0, 1, 1, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8388624, 0, '', 12340);
+
+-- Spell threat entries fix
+DELETE FROM `spell_threat` WHERE `entry` IN (52372,61411,53595,20187,48818,47520,47488,20243,12809,48568);
+INSERT INTO `spell_threat` (`entry`, `flatMod`, `pctMod`, `apPctMod`) VALUES 
+(52372, 0, 7.00, 0.0), -- Icy Touch
+/*
+(61411, 0, 3.00, 0.0), -- Shield of Righteousness
+(53595, 0, 3.00, 0.0), -- Hammer of Righteousness
+(20187, 0, 2.00, 0.0), -- Judgment of Righteousness
+(48818, 0, 2.00, 0.0), -- Consecration */
+(47520, 225, 1.00, 0.0), -- Cleave (Rank 8)
+(47488, 770, 1.30, 0.0), -- Shield Slam (Rank 8)
+(20243, 315, 1.00, 0.05), -- Devastate (Rank 1)
+(12809, 0, 2.00, 0.0), -- Concussion Blow
+(48568, 1031, 0.50, 0.0);  -- Lacerate (Rank 3)
+
+-- Fix Shadowmeld.
+DELETE FROM spell_script_names WHERE spell_id = 58984;
+INSERT INTO spell_script_names VALUES (58984, 'spell_gen_shadowmeld');
+
+-- Fix Sylvanas Music Box
+DELETE FROM spell_script_names WHERE spell_id = 73331;
+INSERT INTO spell_script_names VALUES ('73331', 'spell_item_sylvanas_music_box');
+
+-- Implement Fast Arena Start
+DELETE FROM `gameobject_template` WHERE `entry` = 42000;
+INSERT INTO `gameobject_template` VALUES (42000, 10, 327, 'Arena Crystal', 'PVP', '', '', 0, 0, 1.5, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 'fast_arena_start', 12340);
+DELETE FROM `gameobject` WHERE  `id`=42000;
+INSERT INTO `gameobject` VALUES ('xxx', 42000, 562, 1, 1, 6287.79, 288.368, 5.26778, 3.91128, 0, 0, 0.926857, -0.375416, 300, 0, 1);
+INSERT INTO `gameobject` VALUES ('xxx', 42000, 562, 1, 1, 6188.78, 235.324, 5.29393, 0.891424, 0, 0, 0.431101, 0.902304, 300, 0, 1);
+INSERT INTO `gameobject` VALUES ('xxx', 42000, 559, 1, 1, 4090.01, 2873.47, 12.1158, 2.08915, 0, 0, 0.864712, 0.502267, 300, 0, 1);
+INSERT INTO `gameobject` VALUES ('xxx', 42000, 572, 1, 1, 1297.43, 1597.66, 31.6135, 4.88125, 0, 0, 0.644959, -0.764217, 300, 0, 1);
+INSERT INTO `gameobject` VALUES ('xxx', 42000, 572, 1, 1, 1274.79, 1732.94, 31.6048, 4.81449, 0, 0, 0.670103, -0.742268, 300, 0, 1);
+INSERT INTO `gameobject` VALUES ('xxx', 42000, 617, 1, 1, 1352.68, 815.687, 15.2511, 0.401281, 0, 0, 0.199297, 0.979939, 300, 0, 1);
+INSERT INTO `gameobject` VALUES ('xxx', 42000, 617, 1, 1, 1229.86, 761.566, 15.7332, 0.0471227, 0, 0, 0.0235592, 0.999722, 300, 0, 1);
+INSERT INTO `gameobject` VALUES ('xxx', 42000, 559, 1, 1, 4023.85, 2967.25, 12.1642, 5.05796, 0, 0, 0.575005, -0.81815, 300, 0, 1);
+
+-- Implement Fake Players
+DELETE FROM trinity_string WHERE entry = 12003;
+INSERT INTO trinity_string (`entry`,`content_default`) VALUES (12003, 'Player wishes to not be disturbed and cannot receive whisper messages.');
+
+-- Implement Arena Spectator
+REPLACE INTO `creature_template` VALUES (190000, 0, 0, 0, 0, 0, 29348, 0, 0, 0, 'Arena Spectator', 'Spectate Master', 'Speak', 50001, 71, 71, 2, 35, 35, 3, 1, 1.14286, 1.25, 1, 124, 256, 0, 783, 1, 2000, 0, 1, 2, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 138936390, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 168000, 190000, '', 0, 3, 1, 1.56, 1.56, 1.56, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 'npc_arena_spectator', 12340);
+DELETE FROM `command` WHERE `name` = 'spectate';
+INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate', 0, 'Syntax: .spectate $subcommand.\nUse .help sppectate');
+DELETE FROM `command` WHERE `name` = 'spectate view';
+INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate view', 0, 'Syntax: .spectate view #player\nAllow player to spectate arena from anotherplayer.');
+DELETE FROM `command` WHERE `name` = 'spectate leave';
+INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate leave', 0, 'Syntax: .spectate leave\nDisable spectator mode.');
+DELETE FROM `command` WHERE `name` = 'spectate player';
+INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate player', 0, 'Syntax: .spectate player #player\nAllow to spectate player.');
+DELETE FROM `command` WHERE `name` = 'spectate reset';
+INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate reset', 0, 'Syntax: .spectate reset\nSend addon data.');
+UPDATE `gameobject_template` SET `flags` = 36 WHERE entry IN (185918, 185917, 183970, 183971, 183972, 183973, 183977, 183979, 183978, 183980, 192642, 192643);

@@ -1278,6 +1278,9 @@ void World::LoadConfigSettings(bool reload)
     // crypt run token reward
     m_int_configs[CONFIG_CRYPT_RUN_REWARDS] = ConfigMgr::GetIntDefault("CryptRun.Reward", 10);
 
+    // Fake Players
+    m_bool_configs[CONFIG_FAKE_WHO_LIST] = ConfigMgr::GetBoolDefault("Fake.WHO.List", false);
+
     // call ScriptMgr if we're reloading the configuration
     if (reload)
         sScriptMgr->OnConfigLoad(reload);
@@ -1840,7 +1843,7 @@ void World::SetInitialWorldSettings()
     sLog->outInfo(LOG_FILTER_SERVER_LOADING, "Calculate random battleground reset time...");
     InitRandomBGResetTime();
 
-    sLog->outInfo(LOG_FILTER_SERVER_LOADING, "Calculate Guild cap reset time...");
+    sLog->outInfo(LOG_FILTER_SERVER_LOADING, "Calculate guild limitation(s) reset time...");
     InitGuildResetTime();
 
     LoadCharacterNameData();
