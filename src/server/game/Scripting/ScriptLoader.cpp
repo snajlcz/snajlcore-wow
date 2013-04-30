@@ -30,6 +30,12 @@ void AddSC_npc_hunterpetvendor();
 void AddSC_NPC_Transmogrify();
 //Chat Censure
 void AddSC_System_Censure();
+// Fast Arena Start
+void AddSC_fast_arena_start();
+// Fake Players
+void AddSC_fake_commandscript();
+// Arena Spectator
+void AddSC_arena_spectator_script();
 // Argent Tournament quest scripts
 void AddSC_ArgentTournament();
 //TeleNPC2
@@ -521,7 +527,7 @@ void AddSC_instance_halls_of_reflection();   // Halls of Reflection
 void AddSC_halls_of_reflection();
 void AddSC_boss_falric();
 void AddSC_boss_marwyn();
-void AddSC_boss_lich_king_hr();
+void AddSC_boss_the_lich_king_hor();
 void AddSC_boss_lord_marrowgar();       // Icecrown Citadel
 void AddSC_boss_lady_deathwhisper();
 void AddSC_boss_deathbringer_saurfang();
@@ -536,6 +542,7 @@ void AddSC_boss_the_lich_king();
 void AddSC_icecrown_citadel_teleport();
 void AddSC_instance_icecrown_citadel();
 void AddSC_icecrown_citadel();
+void AddSC_icc_trash();
 void AddSC_instance_ruby_sanctum();      // Ruby Sanctum
 void AddSC_ruby_sanctum();
 void AddSC_boss_baltharus_the_warborn();
@@ -658,10 +665,6 @@ void AddSC_outdoorpvp_zm();
 
 // player
 void AddSC_chat_log();
-
-// custom
-void AddSC_custom();
-void AddSC_crypt_run();
 
 #endif
 
@@ -1273,7 +1276,7 @@ void AddNorthrendScripts()
     AddSC_halls_of_reflection();
     AddSC_boss_falric();
     AddSC_boss_marwyn();
-    AddSC_boss_lich_king_hr();
+    AddSC_boss_the_lich_king_hor();
     AddSC_boss_lord_marrowgar();        // Icecrown Citadel
     AddSC_boss_lady_deathwhisper();
     AddSC_boss_deathbringer_saurfang();
@@ -1288,6 +1291,7 @@ void AddNorthrendScripts()
     AddSC_icecrown_citadel_teleport();
     AddSC_instance_icecrown_citadel();
     AddSC_icecrown_citadel();
+    AddSC_icc_trash();
     AddSC_instance_ruby_sanctum();      // Ruby Sanctum
     AddSC_ruby_sanctum();
     AddSC_boss_baltharus_the_warborn();
@@ -1350,14 +1354,17 @@ void AddCustomScripts()
     AddSC_NPC_Transmogrify();
     //Chat Censure
     AddSC_System_Censure();
+    // Fast Arena Start
+    AddSC_fast_arena_start();
+    // Fake Players
+    AddSC_fake_commandscript();
+    // Arena Spectator
+    AddSC_arena_spectator_script();
     // Argent Tournament quest scripts
     AddSC_ArgentTournament();
      //TeleNPC2
      AddSC_npc_teleport();
      AddSC_npc_other();
-    // GC custom
-    AddSC_custom();
-    AddSC_crypt_run();
     // Npc Top 10 Arena Teams
     AddSC_npc_arena_setup();
     // [MOD] MultiKill
