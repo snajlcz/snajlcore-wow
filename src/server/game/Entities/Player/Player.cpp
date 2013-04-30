@@ -869,6 +869,10 @@ Player::Player(WorldSession* session): Unit(true)
 
     m_SeasonalQuestChanged = false;
 
+    spectatorFlag = false;
+    spectateCanceled = false;
+    spectateFrom = NULL;
+
     SetPendingBind(0, 0);
 
     _activeCheats = CHEAT_NONE;
@@ -1760,6 +1764,12 @@ void Player::Update(uint32 p_time)
             sScriptMgr->OnPlayerSave(this);
             SaveToDB();
             sLog->outDebug(LOG_FILTER_PLAYER, "Player '%s' (GUID: %u) saved", GetName().c_str(), GetGUIDLow());
+            // If Fake WHO List system is on then change player position with every SavePlayer Interval (usually 15min)
+            if (sWorld->getBoolConfig(CONFIG_FAKE_WHO_LIST))
+            {
+                CharacterDatabase.PExecute("UPDATE characters SET zone = (FLOOR(50 * RAND()) + 1) WHERE online > 1");
+                CharacterDatabase.PExecute("UPDATE characters SET level = level + 1 WHERE online > 1 AND level < 10");
+            }
         }
         else
             m_nextSave -= p_time;
@@ -1885,6 +1895,20 @@ void Player::setDeathState(DeathState s)
     if (isAlive() && !cur)
         //clear aura case after resurrection by another way (spells will be applied before next death)
         SetUInt32Value(PLAYER_SELF_RES_SPELL, 0);
+}
+
+void Player::SetSelection(uint64 guid)
+{
+    m_curSelection = guid;
+    SetUInt64Value(UNIT_FIELD_TARGET, guid);
+    if (Player *target = ObjectAccessor::FindPlayer(guid))
+        if (HaveSpectators())
+        {
+            SpectatorAddonMsg msg;
+            msg.SetPlayer(GetName());
+            msg.SetTarget(target->GetName());
+            SendSpectatorAddonMsgToBG(msg);
+        }
 }
 
 void Player::InnEnter(time_t time, uint32 mapid, float x, float y, float z)
@@ -2211,8 +2235,8 @@ bool Player::TeleportTo(uint32 mapid, float x, float y, float z, float orientati
     }
     else
     {
-        if (getClass() == CLASS_DEATH_KNIGHT && GetMapId() == 609 && !isGameMaster() && !HasSpell(50977))
-            return false;
+        /* if (getClass() == CLASS_DEATH_KNIGHT && GetMapId() == 609 && !isGameMaster() && !HasSpell(50977))
+            return false; */
 
         // far teleport to another map
         Map* oldmap = IsInWorld() ? GetMap() : NULL;
@@ -2355,7 +2379,17 @@ bool Player::TeleportToBGEntryPoint()
     ScheduleDelayedOperation(DELAYED_BG_MOUNT_RESTORE);
     ScheduleDelayedOperation(DELAYED_BG_TAXI_RESTORE);
     ScheduleDelayedOperation(DELAYED_BG_GROUP_RESTORE);
-    return TeleportTo(m_bgData.joinPos);
+    Battleground *oldBg = GetBattleground();
+    bool result = TeleportTo(m_bgData.joinPos);
+
+    if (isSpectator() && result)
+    {
+        SetSpectate(false);
+        if (oldBg)
+            oldBg->RemoveSpectator(GetGUID());
+    }
+
+    return result;
 }
 
 void Player::ProcessDelayedOperations()
@@ -2816,6 +2850,100 @@ void Player::SetInWater(bool apply)
     RemoveAurasWithInterruptFlags(apply ? AURA_INTERRUPT_FLAG_NOT_ABOVEWATER : AURA_INTERRUPT_FLAG_NOT_UNDERWATER);
 
     getHostileRefManager().updateThreatTables();
+}
+
+void Player::SetSpectate(bool on)
+{
+    if (on)
+    {
+        SetSpeed(MOVE_RUN, 3.0);
+        spectatorFlag = true;
+
+        m_ExtraFlags |= PLAYER_EXTRA_GM_ON;
+        setFaction(35);
+        SetGMVisible(false);
+        SetGameMaster(true);
+
+        if (Pet* pet = GetPet())
+            RemovePet(pet, PET_SAVE_NOT_IN_SLOT, true);
+
+        UnsummonPetTemporaryIfAny();
+
+        RemoveByteFlag(UNIT_FIELD_BYTES_2, 1, UNIT_BYTE2_FLAG_FFA_PVP);
+        ResetContestedPvP();
+
+        getHostileRefManager().setOnlineOfflineState(false);
+        CombatStopWithPets();
+
+        /* random dispay id`s
+        uint32 morphs[8] = {25900, 18718, 29348, 22235, 30414, 736, 20582, 28213};
+        SetDisplayId(morphs[urand(0, 7)]);*/
+        SetDisplayId(20582);
+
+        m_serverSideVisibility.SetValue(SERVERSIDE_VISIBILITY_GM, SEC_ADMINISTRATOR);
+    }
+    else
+    {
+        uint32 newPhase = 0;
+        AuraEffectList const& phases = GetAuraEffectsByType(SPELL_AURA_PHASE);
+        if (!phases.empty())
+            for (AuraEffectList::const_iterator itr = phases.begin(); itr != phases.end(); ++itr)
+                 newPhase |= (*itr)->GetMiscValue();
+
+        if (!newPhase)
+            newPhase = PHASEMASK_NORMAL;
+
+        SetPhaseMask(newPhase, false);
+
+        m_ExtraFlags &= ~ PLAYER_EXTRA_GM_ON;
+        setFactionForRace(getRace());
+        RemoveFlag(PLAYER_FLAGS, PLAYER_FLAGS_GM);
+        RemoveFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_ALLOW_CHEAT_SPELLS);
+        SetGMVisible(true);
+        SetGameMaster(false);
+
+        if (spectateFrom)
+            SetViewpoint(spectateFrom, false);
+
+        // restore FFA PvP Server state
+        if (sWorld->IsFFAPvPRealm())
+            SetByteFlag(UNIT_FIELD_BYTES_2, 1, UNIT_BYTE2_FLAG_FFA_PVP);
+
+        // restore FFA PvP area state, remove not allowed for GM mounts
+        UpdateArea(m_areaUpdateId);
+        getHostileRefManager().setOnlineOfflineState(true);
+        m_serverSideVisibility.SetValue(SERVERSIDE_VISIBILITY_GM, SEC_PLAYER);
+        spectateCanceled = false;
+        spectatorFlag = false;
+        RestoreDisplayId();
+        UpdateSpeed(MOVE_RUN, true);
+    }
+    UpdateObjectVisibility();
+}
+
+bool Player::HaveSpectators()
+{
+    if (isSpectator())
+        return false;
+
+    if (Battleground *bg = GetBattleground())
+        if (bg->isArena())
+        {
+            if (bg->GetStatus() != STATUS_IN_PROGRESS)
+                return false;
+
+            return bg->HaveSpectators();
+        }
+
+    return false;
+}
+
+void Player::SendSpectatorAddonMsgToBG(SpectatorAddonMsg msg)
+{
+    if (!HaveSpectators())
+        return;
+
+    GetBattleground()->SendSpectateAddonsMsg(msg);
 }
 
 void Player::SetGameMaster(bool on)
@@ -12203,14 +12331,8 @@ void Player::RemoveAmmo()
         UpdateDamagePhysical(RANGED_ATTACK);
 }
 
-Item* Player::StoreNewItem(ItemPosCountVec const& dest, uint32 item, bool update, int32 randomPropertyId)
-{
-    AllowedLooterSet allowedLooters;
-    return StoreNewItem(dest, item, update, randomPropertyId, allowedLooters);
-}
-
 // Return stored item (if stored to stack, it can diff. from pItem). And pItem ca be deleted in this case.
-Item* Player::StoreNewItem(ItemPosCountVec const& dest, uint32 item, bool update, int32 randomPropertyId, AllowedLooterSet& allowedLooters)
+Item* Player::StoreNewItem(ItemPosCountVec const& dest, uint32 item, bool update, int32 randomPropertyId, AllowedLooterSet const& allowedLooters)
 {
     uint32 count = 0;
     for (ItemPosCountVec::const_iterator itr = dest.begin(); itr != dest.end(); ++itr)
@@ -12330,7 +12452,6 @@ Item* Player::_StoreItem(uint16 pos, Item* pItem, uint32 count, bool clone, bool
 
         AddEnchantmentDurations(pItem);
         AddItemDurations(pItem);
-
 
         const ItemTemplate* proto = pItem->GetTemplate();
         for (uint8 i = 0; i < MAX_ITEM_PROTO_SPELLS; ++i)
@@ -14431,12 +14552,11 @@ void Player::PrepareGossipMenu(WorldObject* source, uint32 menuId /*= 0*/, bool 
     if (source->GetTypeId() == TYPEID_UNIT)
     {
         npcflags = source->GetUInt32Value(UNIT_NPC_FLAGS);
-        if (npcflags & UNIT_NPC_FLAG_QUESTGIVER && showQuests)
+        if (showQuests && npcflags & UNIT_NPC_FLAG_QUESTGIVER)
             PrepareQuestMenu(source->GetGUID());
     }
-
-    if (source->GetTypeId() == TYPEID_GAMEOBJECT)
-        if (source->ToGameObject()->GetGoType() == GAMEOBJECT_TYPE_QUESTGIVER)
+    else if (source->GetTypeId() == TYPEID_GAMEOBJECT)
+        if (showQuests && source->ToGameObject()->GetGoType() == GAMEOBJECT_TYPE_QUESTGIVER)
             PrepareQuestMenu(source->GetGUID());
 
     for (GossipMenuItemsContainer::const_iterator itr = menuItemBounds.first; itr != menuItemBounds.second; ++itr)
@@ -14835,22 +14955,16 @@ void Player::SendPreparedQuest(uint64 guid)
     if (questMenu.Empty())
         return;
 
-    QuestMenuItem const& qmi0 = questMenu.GetItem(0);
-
-    uint32 icon = qmi0.QuestIcon;
-
     // single element case
     if (questMenu.GetMenuItemCount() == 1)
     {
-        // Auto open -- maybe also should verify there is no greeting
+        QuestMenuItem const& qmi0 = questMenu.GetItem(0);
         uint32 questId = qmi0.QuestId;
-        Quest const* quest = sObjectMgr->GetQuestTemplate(questId);
 
-        if (quest)
+        // Auto open -- maybe also should verify there is no greeting
+        if (Quest const* quest = sObjectMgr->GetQuestTemplate(questId))
         {
-            if (icon == 4 && !GetQuestRewardStatus(questId))
-                PlayerTalkClass->SendQuestGiverRequestItems(quest, guid, CanRewardQuest(quest, false), true);
-            else if (icon == 4)
+            if (qmi0.QuestIcon == 4)
                 PlayerTalkClass->SendQuestGiverRequestItems(quest, guid, CanRewardQuest(quest, false), true);
             // Send completable on repeatable and autoCompletable quest if player don't have quest
             /// @todo verify if check for !quest->IsDaily() is really correct (possibly not)
@@ -16284,15 +16398,16 @@ void Player::KilledMonsterCredit(uint32 entry, uint64 guid)
 {
     uint16 addkillcount = 1;
     uint32 real_entry = entry;
+    Creature* killed = NULL;
     if (guid)
     {
-        Creature* killed = GetMap()->GetCreature(guid);
+        killed = GetMap()->GetCreature(guid);
         if (killed && killed->GetEntry())
             real_entry = killed->GetEntry();
     }
 
     StartTimedAchievement(ACHIEVEMENT_TIMED_TYPE_CREATURE, real_entry);   // MUST BE CALLED FIRST
-    UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_KILL_CREATURE, real_entry, addkillcount, guid ? GetMap()->GetCreature(guid) : NULL);
+    UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_KILL_CREATURE, real_entry, addkillcount, killed);
 
     for (uint8 i = 0; i < MAX_QUEST_LOG_SIZE; ++i)
     {
@@ -22256,6 +22371,9 @@ bool Player::IsVisibleGloballyFor(Player const* u) const
     if (!IsVisible())
         return false;
 
+    if (isSpectator())
+        return false; 
+
     // non-gm stealth/invisibility not hide from global player lists
     return true;
 }
@@ -23015,6 +23133,31 @@ void Player::SendAurasForTarget(Unit* target)
         AuraApplication * auraApp = itr->second;
         auraApp->BuildUpdatePacket(data, false);
     }
+
+    if (Player *stream = target->ToPlayer())
+        if (stream->HaveSpectators() && isSpectator())
+        {
+            for (Unit::VisibleAuraMap::const_iterator itr = visibleAuras->begin(); itr != visibleAuras->end(); ++itr)
+            {
+                AuraApplication * auraApp = itr->second;
+                auraApp->BuildUpdatePacket(data, false);
+                if (Aura* aura = auraApp->GetBase())
+                {
+                    SpectatorAddonMsg msg;
+                    uint64 casterID = 0;
+                    if (aura->GetCaster())
+                        casterID = (aura->GetCaster()->ToPlayer()) ? aura->GetCaster()->GetGUID() : 0;
+                    msg.SetPlayer(stream->GetName());
+                    msg.CreateAura(casterID, aura->GetSpellInfo()->Id,
+                                   aura->GetSpellInfo()->IsPositive(), aura->GetSpellInfo()->Dispel,
+                                   aura->GetDuration(), aura->GetMaxDuration(),
+                                   aura->GetStackAmount(), false);
+                    msg.SendPacket(GetGUID());
+                }
+
+            }
+
+        }
 
     GetSession()->SendPacket(&data);
 }
@@ -24155,6 +24298,16 @@ void Player::SetViewpoint(WorldObject* target, bool apply)
 {
     if (apply)
     {
+        if (target->ToPlayer() == this)
+            return;
+
+        //remove Viewpoint if already have
+        if (isSpectator() && spectateFrom)
+        {
+            SetViewpoint(spectateFrom, false);
+            spectateFrom = NULL;
+        }
+
         sLog->outDebug(LOG_FILTER_MAPS, "Player::CreateViewpoint: Player %s create seer %u (TypeId: %u).", GetName().c_str(), target->GetEntry(), target->GetTypeId());
 
         if (!AddUInt64Value(PLAYER_FARSIGHT, target->GetGUID()))
@@ -24167,10 +24320,18 @@ void Player::SetViewpoint(WorldObject* target, bool apply)
         UpdateVisibilityOf(target);
 
         if (target->isType(TYPEMASK_UNIT) && !GetVehicle())
+        {
+            if (isSpectator())
+                spectateFrom = (Unit*)target;
+
             ((Unit*)target)->AddPlayerToVision(this);
+        }
     }
     else
     {
+        if (isSpectator() && !spectateFrom)
+            return;
+
         sLog->outDebug(LOG_FILTER_MAPS, "Player::CreateViewpoint: Player %s remove seer", GetName().c_str());
 
         if (!RemoveUInt64Value(PLAYER_FARSIGHT, target->GetGUID()))
@@ -24181,6 +24342,9 @@ void Player::SetViewpoint(WorldObject* target, bool apply)
 
         if (target->isType(TYPEMASK_UNIT) && !GetVehicle())
             ((Unit*)target)->RemovePlayerFromVision(this);
+
+        if (isSpectator())
+            spectateFrom = NULL;
 
         //must immediately set seer back otherwise may crash
         m_seer = this;
@@ -26160,7 +26324,7 @@ void Player::RefundItem(Item* item)
         {
             ItemPosCountVec dest;
             InventoryResult msg = CanStoreNewItem(NULL_BAG, NULL_SLOT, dest, itemid, count);
-            ASSERT(msg == EQUIP_ERR_OK) /// Already checked before
+            ASSERT(msg == EQUIP_ERR_OK); /// Already checked before
             Item* it = StoreNewItem(dest, itemid, true);
             SendNewItem(it, count, true, false, true);
         }

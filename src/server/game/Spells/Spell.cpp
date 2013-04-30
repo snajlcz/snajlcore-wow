@@ -2323,6 +2323,8 @@ void Spell::DoAllEffectOnTarget(TargetInfo* target)
         if (target->reflectResult == SPELL_MISS_NONE)       // If reflected spell hit caster -> do all effect on him
         {
             spellHitTarget = m_caster;
+            // Start triggers for remove charges if need (trigger only for victim, and mark as active spell)
+            m_caster->ProcDamageAndSpell(unit, PROC_FLAG_NONE, PROC_FLAG_TAKEN_SPELL_MAGIC_DMG_CLASS_NEG, PROC_EX_REFLECT, 1, BASE_ATTACK, m_spellInfo);
             if (m_caster->GetTypeId() == TYPEID_UNIT)
                 m_caster->ToCreature()->LowerPlayerDamageReq(target->damage);
         }
@@ -2999,7 +3001,7 @@ void Spell::prepare(SpellCastTargets const* targets, AuraEffect const* triggered
     if (m_caster->GetTypeId() == TYPEID_PLAYER)
         m_caster->ToPlayer()->SetSpellModTakingSpell(this, true);
     // calculate cast time (calculated after first CheckCast check to prevent charge counting for first CheckCast fail)
-    m_casttime = m_spellInfo->CalcCastTime(m_caster, this);
+    m_casttime = m_spellInfo->CalcCastTime(m_caster, this, _triggeredCastFlags & TRIGGERED_IGNORE_GCD); 
     if (m_caster->GetTypeId() == TYPEID_PLAYER)
     {
         m_caster->ToPlayer()->SetSpellModTakingSpell(this, false);
@@ -3022,6 +3024,16 @@ void Spell::prepare(SpellCastTargets const* targets, AuraEffect const* triggered
     ReSetTimer();
 
     sLog->outDebug(LOG_FILTER_SPELLS_AURAS, "Spell::prepare: spell id %u source %u caster %d customCastFlags %u mask %u", m_spellInfo->Id, m_caster->GetEntry(), m_originalCaster ? m_originalCaster->GetEntry() : -1, _triggeredCastFlags, m_targets.GetTargetMask());
+
+    if (GetCaster() && GetSpellInfo())
+        if (Player *tmpPlayer = GetCaster()->ToPlayer())
+            if (tmpPlayer->HaveSpectators())
+            {
+                SpectatorAddonMsg msg;
+                msg.SetPlayer(tmpPlayer->GetName());
+                msg.CastSpell(GetSpellInfo()->Id, GetSpellInfo()->CastTimeEntry->CastTime);
+                tmpPlayer->SendSpectatorAddonMsgToBG(msg);
+            }
 
     //Containers for channeled spells have to be set
     /// @todoApply this to all casted spells if needed
@@ -4740,6 +4752,10 @@ SpellCastResult Spell::CheckCast(bool strict)
                 m_caster->GetMap()->IsOutdoors(m_caster->GetPositionX(), m_caster->GetPositionY(), m_caster->GetPositionZ()))
             return SPELL_FAILED_ONLY_INDOORS;
     }
+
+    if (Player *tmpPlayer = m_caster->ToPlayer())
+        if (tmpPlayer->isSpectator())
+            return SPELL_FAILED_SPELL_UNAVAILABLE;
 
     // only check at first call, Stealth auras are already removed at second call
     // for now, ignore triggered spells
@@ -6736,6 +6752,14 @@ bool Spell::CheckEffectTarget(Unit const* target, uint32 eff) const
 {
     switch (m_spellInfo->Effects[eff].ApplyAuraName)
     {
+        // Heroism over LOS
+        if (m_spellInfo->Id == 32182) 
+            return true;
+
+        // Bloodlust over LOS
+        if (m_spellInfo->Id == 2825) 
+            return true;
+
         case SPELL_AURA_MOD_POSSESS:
         case SPELL_AURA_MOD_CHARM:
         case SPELL_AURA_MOD_POSSESS_PET:

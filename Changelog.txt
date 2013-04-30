@@ -4,6 +4,42 @@
 #                                                                                          #
 ############################################################################################
 
+[186] --> Implement Arena Spectator. (Thx Demonid)
+[185] --> Implement Fake Players. (Thx LORDofDOOM)
+[184] --> Fix Master's Call. (Thx digz6666)
+[183] --> Implement - Anti-Rollback on Crash System for Items, Loot, and Quest. (Thx Demonid)
+[182] --> Custom - Revive Pets on Arena + Remove some Debuffs. (Thx Demonid)
+[181] --> Update Target Movement Generator. (Thx Quentis)
+[180] --> Update PathPoint in Blade's Edge Arena, Dalaran Sewers and Eye of the Storm. (Thx Quentis)
+[179] --> Fix SpellFamily for Redemption (Paladin) so it scales with haste rating. (Thx  mweinelt)
+[178] --> Implement Battleground Crossfraction. (Thx Quentis)
+[177] --> Implement Fast Arena Start. (Thx Demonid)
+[176] --> Fix Sylvanas Music Box.
+[175] --> Fix Shadowmeld. (Thx Hlkz)
+[174] --> Fix - always apply paladin auras' linked spells for caster. (Thx Timothy Liang)
+[173] --> Fix - Bladestorm - Knockback Effect. (Thx Demonid)
+[172] --> Fix - Warrior - Multi Reflect + Scatter Shot - Silencing Shot Travel time delay. (Thx Demonid)
+[171] --> Fix - Water Elemental + Despawn. (Thx Demonid)
+[170] --> Fix - Misdirection. (Thx Demonid)
+[169] --> Fix Ebon Gargoyle - Target + Follow. (By Moco23)
+[168] --> Fix Bonus 4P T10 Warrior. (TEST By Ranou)
+[167] --> Revert 'Implement Raise ally. (TEST By Runico)'.
+[166] --> Fix - Vehicle Immunities. (By Demonid)
+[165] --> Implement [Strand of the Ancients] Warnings system. (By  Vincent-Michael)
+[164] --> Implement Raise ally. (TEST By Runico)
+[163] --> Updatel duel reset and fix hp pets at dismount.
+[162] --> Fix [ITEM] Black Bruise / [SPELL] Necrotic Touch. (By  joschiwald)
+[161] --> Update Halls Of Reflection by aedansilver.
+[160] --> Add Looking For Group Join All Maps.
+[159] --> Fix Ebon Gargoyle Target and make gargoyle benefit from haste auras, like unholy presence. (By Demonid)
+[158] --> Improved Mirror Images AI by A-Metaphysical-Drama. (TEST)
+[157] --> Fix Earth Shield by joschiwald.
+[156] --> Fix Glyph of Succubus. (TEST)
+[155] --> Update Sunwell Plateau by aedansilver.
+[154] --> Fix - Don't Allow Vehicles in Arena by Demonid.
+[153] --> Update Icecrown Citadel by aedansilver.
+[152] --> Update Ulduar by aedansilver.
+[151] --> Update ICC by Elron103.
 [150] --> Update Trial of the Champion. (Thx Faq / sioa)
 [149] --> Fix Sindragosa. [TEST] (By Elron103)
 [148] --> Fix priest bug (kills and honour) spell_priest_spirit_of_redemption. (Thx Vitasic)

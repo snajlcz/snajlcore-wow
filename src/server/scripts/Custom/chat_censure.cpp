@@ -1,44 +1,57 @@
+/*******************************************************************************************
+*              ______                   ______                   _____                     *
+*             / _____)                 |  ___ \                 / ___ \       _            *
+*            | /  ___  ____  ____ _   _| | _ | | ___ _   _ ____| |   | |_   _| |_          *
+*            | | (___)/ _  |/ ___) | | | || || |/ _ \ | | / _  ) |   | | | | |  _)         *
+*            | \____/( ( | | |   | |_| | || || | |_| \ V ( (/ /| |___| | |_| | |__         *
+*             \_____/ \_||_|_|    \__  |_||_||_|\___/ \_/ \____)\_____/ \____|\___)        *
+*                                (____/                                                    *
+*                               or any other files are protected. You cannot re-release    * 
+*                               anywhere unless you were given permission.                 *
+*                           (C) GaryMoveOut 2013. All rights reserved.                     *
+********************************************************************************************/
+
 #include "ScriptPCH.h"
 #include "Channel.h"
 
 class System_Censure : public PlayerScript
 {
-public:
+    public:
         System_Censure() : PlayerScript("System_Censure") {}
 
         void OnChat(Player* player, uint32 /*type*/, uint32 lang, std::string& msg)
         {
-                CheckMessage(player, msg, lang, NULL, NULL, NULL, NULL);
+            CheckMessage(player, msg, lang, NULL, NULL, NULL, NULL);
         }
 
         void OnChat(Player* player, uint32 /*type*/, uint32 lang, std::string& msg, Player* receiver)
         {
-                CheckMessage(player, msg, lang, receiver, NULL, NULL, NULL);
+            CheckMessage(player, msg, lang, receiver, NULL, NULL, NULL);
         }
 
         void OnChat(Player* player, uint32 /*type*/, uint32 lang, std::string& msg, Group* group)
         {
-                CheckMessage(player, msg, lang, NULL, group, NULL, NULL);
+            CheckMessage(player, msg, lang, NULL, group, NULL, NULL);
         }
 
         void OnChat(Player* player, uint32 /*type*/, uint32 lang, std::string& msg, Guild* guild)
         {
-                CheckMessage(player, msg, lang, NULL, NULL, guild, NULL);
+            CheckMessage(player, msg, lang, NULL, NULL, guild, NULL);
         }
 
         void OnChat(Player* player, uint32 /*type*/, uint32 lang, std::string& msg, Channel* channel)
         {
-                CheckMessage(player, msg, lang, NULL, NULL, NULL, channel);
+            CheckMessage(player, msg, lang, NULL, NULL, NULL, channel);
         }
 
-void CheckMessage(Player* player, std::string& msg, uint32 lang, Player* /*receiver*/, Group* /*group*/, Guild* /*guild*/, Channel* channel)
-{
-    //if (player->isGameMaster() || lang == LANG_ADDON)
-            //return;
+    void CheckMessage(Player* player, std::string& msg, uint32 lang, Player* /*receiver*/, Group* /*group*/, Guild* /*guild*/, Channel* channel)
+    {
+        if (player->isGameMaster() || lang == LANG_ADDON)
+            return;
 
-    // transform to lowercase (for simpler checking)
-    std::string lower = msg;
-    std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
+        // transform to lowercase (for simpler checking)
+        std::string lower = msg;
+        std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
 
     uint8 cheksSize = 36;
     std::string checks[cheksSize];

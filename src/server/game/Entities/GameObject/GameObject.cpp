@@ -469,6 +469,9 @@ void GameObject::Update(uint32 diff)
 
                     if (ok)
                     {
+                        if (Player *tmpPlayer = ok->ToPlayer())
+                            if (tmpPlayer->isSpectator())
+                                return;
                         // some traps do not have spell but should be triggered
                         if (goInfo->trap.spellId)
                             CastSpell(ok, goInfo->trap.spellId);
@@ -1119,7 +1122,7 @@ void GameObject::Use(Unit* user)
 
             Player* player = user->ToPlayer();
 
-            player->PrepareGossipMenu(this, GetGOInfo()->questgiver.gossipID);
+            player->PrepareGossipMenu(this, GetGOInfo()->questgiver.gossipID, true);
             player->SendPreparedGossip(this);
             return;
         }
@@ -1677,6 +1680,10 @@ void GameObject::Use(Unit* user)
 
 void GameObject::CastSpell(Unit* target, uint32 spellId)
 {
+    if (target)
+        if (Player *tmpPlayer = target->ToPlayer())
+            if (tmpPlayer->isSpectator())
+                return;
     SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(spellId);
     if (!spellInfo)
         return;
@@ -1842,6 +1849,8 @@ void GameObject::ModifyHealth(int32 change, Unit* attackerOrHealer /*= NULL*/, u
         data << uint32(-change);
         data << uint32(spellId);
         player->GetSession()->SendPacket(&data);
+        if (Battleground* bg = player->GetBattleground())
+            bg->EventPlayerDamagedGO(player, this, m_goInfo->building.damageEvent);
     }
 
     GameObjectDestructibleState newState = GetDestructibleState();

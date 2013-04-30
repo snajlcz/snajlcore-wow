@@ -14,11 +14,11 @@ set(scripts_STAT_SRCS
   Custom/Transmogrification.cpp
   Custom/Transmogrification.h
   Custom/chat_censure.cpp
+  Custom/arena_fast_start.cpp
+  Custom/cs_fake.cpp
+  Custom/ArenaSpectate.cpp
   Custom/argent_tournament.cpp
-  Custom/npc_other.cpp
-  Custom/npc_gc_vendor.cpp
   Custom/npc_arena_team_top.cpp
-  Custom/npc_crypt_run.cpp
   Custom/mod_MultiKill.cpp
   Custom/npc_maniek.cpp
   Custom/npc_mmr_reset.cpp
