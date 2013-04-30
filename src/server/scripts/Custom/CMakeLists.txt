@@ -17,7 +17,6 @@ set(scripts_STAT_SRCS
   Custom/arena_fast_start.cpp
   Custom/cs_fake.cpp
   Custom/ArenaSpectate.cpp
-  Custom/argent_tournament.cpp
   Custom/npc_arena_team_top.cpp
   Custom/mod_MultiKill.cpp
   Custom/npc_maniek.cpp
