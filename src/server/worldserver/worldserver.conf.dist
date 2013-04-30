@@ -2666,13 +2666,6 @@ CryptRun.Reward = 10
 UI.ShowQuestLevelsInDialogs = 0
 
 #
-# Includes satellite to search for work else where LFG
-# Default: 0 - Disable
-#          1 - Enable
-
-LFG.Location.All = 1
-
-#
 ###################################################################################################
 
 ###################################################################################################
