@@ -27,6 +27,7 @@
 #include "MapManager.h"
 #include "Object.h"
 #include "ObjectMgr.h"
+#include "Pet.h"
 #include "Player.h"
 #include "ReputationMgr.h"
 #include "SpellAuraEffects.h"
@@ -508,6 +509,8 @@ inline void Battleground::_ProcessJoin(uint32 diff)
     {
         m_Events |= BG_STARTING_EVENT_4;
 
+        DespawnCrystals();
+
         StartingEventOpenDoors();
 
         SendWarningToAll(StartMessageIds[BG_STARTING_EVENT_FOURTH]);
@@ -982,6 +985,12 @@ void Battleground::EndBattleground(uint32 winner)
                 UpdatePlayerScore(player, SCORE_BONUS_HONOR, GetBonusHonorFromKill(loser_kills));
         }
 
+        if (isArena())
+        {
+            player->SetGMVisible(true);
+            player->SetGameMaster(false);
+        }
+
         player->ResetAllPowers();
         player->CombatStopWithPets(true);
 
@@ -1141,6 +1150,8 @@ void Battleground::RemovePlayerAtLeave(uint64 guid, bool Transport, bool SendPac
         player->SetBattlegroundId(0, BATTLEGROUND_TYPE_NONE);  // We're not in BG.
         // reset destination bg team
         player->SetBGTeam(0);
+        player->SetGMVisible(true);
+        player->SetGameMaster(false);
 
         if (Transport)
             player->TeleportToBGEntryPoint();
@@ -1246,6 +1257,25 @@ void Battleground::AddPlayer(Player* player)
         {
             player->CastSpell(player, SPELL_ARENA_PREPARATION, true);
             player->ResetAllPowers();
+            player->RemoveAura(61987);
+            player->RemoveAura(25771);
+            player->RemoveAura(66233);
+
+            Powers powerType = player->getPowerType();
+            player->SetPower(powerType, player->GetMaxPower(powerType));
+
+            if (player->getClass() == CLASS_HUNTER)
+                player->CastSpell(player, 883, true);
+            Pet* pet = player->GetPet();
+            if (pet != NULL)
+            {
+                if (pet->isDead())
+                    pet->setDeathState(ALIVE);
+                pet->SetHealth(pet->GetMaxHealth());
+                pet->SetPower(POWER_MANA, pet->GetMaxPower(POWER_MANA));
+                pet->m_CreatureSpellCooldowns.clear();
+                pet->RemoveAura(55711);
+            }
         }
     }
     else
@@ -1335,13 +1365,24 @@ void Battleground::EventPlayerLoggedOut(Player* player)
     m_Players[guid].OfflineRemoveTime = sWorld->GetGameTime() + MAX_OFFLINE_TIME;
     if (GetStatus() == STATUS_IN_PROGRESS)
     {
-        // drop flag and handle other cleanups
-        RemovePlayer(player, guid, GetPlayerTeam(guid));
+        if (!player->isSpectator())
+         {
+            // drop flag and handle other cleanups
+            RemovePlayer(player, guid, GetPlayerTeam(guid));
 
-        // 1 player is logging out, if it is the last, then end arena!
-        if (isArena())
-            if (GetAlivePlayersCountByTeam(player->GetBGTeam()) <= 1 && GetPlayersCountByTeam(GetOtherTeam(player->GetBGTeam())))
-                EndBattleground(GetOtherTeam(player->GetBGTeam()));
+            // 1 player is logging out, if it is the last, then end arena!
+            if (isArena())
+                if (GetAlivePlayersCountByTeam(player->GetTeam()) <= 1 && GetPlayersCountByTeam(GetOtherTeam(player->GetTeam())))
+                    EndBattleground(GetOtherTeam(player->GetTeam()));
+        }
+    }
+
+    if (!player->isSpectator())
+        player->LeaveBattleground();
+    else
+    {
+        player->TeleportToBGEntryPoint();
+        RemoveSpectator(player->GetGUID());
     }
 }
 
@@ -2029,4 +2070,70 @@ void Battleground::HandleAreaTrigger(Player* player, uint32 trigger)
 {
     sLog->outDebug(LOG_FILTER_BATTLEGROUND, "Unhandled AreaTrigger %u in Battleground %u. Player coords (x: %f, y: %f, z: %f)",
                    trigger, player->GetMapId(), player->GetPositionX(), player->GetPositionY(), player->GetPositionZ());
+}
+
+uint8 Battleground::ClickFastStart(Player *player, GameObject *go)
+{
+    if (!isArena())
+        return 0;
+
+    std::set<uint64>::iterator pIt = m_playersWantsFastStart.find(player->GetGUID());
+    if (pIt != m_playersWantsFastStart.end() || GetStartDelayTime() < BG_START_DELAY_15S || player->isSpectator())
+        return m_playersWantsFastStart.size();
+
+    m_playersWantsFastStart.insert(player->GetGUID());
+
+    std::set<GameObject*>::iterator goIt = m_crystals.find(go);
+    if (goIt == m_crystals.end())
+        m_crystals.insert(go);
+
+    uint8 playersNeeded = 0;
+    switch(GetArenaType())
+    {
+        case ARENA_TYPE_2v2:
+            playersNeeded = 4;
+            break;
+        case ARENA_TYPE_3v3:
+            playersNeeded = 6;
+            break;
+        case ARENA_TYPE_5v5:
+            playersNeeded = 10;
+            break;
+    }
+
+    if (sBattlegroundMgr->isTesting() && isArena())
+       playersNeeded = 2;
+
+    if (m_playersWantsFastStart.size() == playersNeeded)
+    {
+        DespawnCrystals();
+        if (GetStartDelayTime() > BG_START_DELAY_15S)
+            SetStartDelayTime(BG_START_DELAY_15S);
+        else
+            DespawnCrystals();
+    }
+
+    return m_playersWantsFastStart.size();
+}
+
+void Battleground::DespawnCrystals()
+{
+    if (m_crystals.empty())
+        return;
+
+    for (std::set<GameObject*>::iterator itr = m_crystals.begin(); itr != m_crystals.end(); ++itr)
+    {
+        GameObject *go = *itr;
+        go->Delete();
+        m_crystals.erase(itr);
+    }
+}
+
+void Battleground::SendSpectateAddonsMsg(SpectatorAddonMsg msg)
+{
+    if (!HaveSpectators())
+        return;
+
+    for (SpectatorList::iterator itr = m_Spectators.begin(); itr != m_Spectators.end(); ++itr)
+         msg.SendPacket(*itr);
 }

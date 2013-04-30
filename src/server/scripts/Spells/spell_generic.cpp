@@ -3917,6 +3917,130 @@ class spell_gen_aura_service_uniform : public SpellScriptLoader
         }
 };
 
+class spell_gen_shadowmeld : public SpellScriptLoader
+{
+    public:
+        spell_gen_shadowmeld() : SpellScriptLoader("spell_gen_shadowmeld") {}
+ 
+        class spell_gen_shadowmeld_SpellScript : public SpellScript
+        {
+            PrepareSpellScript(spell_gen_shadowmeld_SpellScript);
+ 
+            void HandleDummy(SpellEffIndex /*effIndex*/)
+            {
+                Unit *caster = GetCaster();
+                if (!caster)
+                    return;
+ 
+                caster->InterruptSpell(CURRENT_AUTOREPEAT_SPELL); // break Auto Shot and autohit
+                caster->InterruptSpell(CURRENT_CHANNELED_SPELL); // break channeled spells
+ 
+                if (Player *pCaster = caster->ToPlayer()) // if is a creature instant exits combat, else check if someone in party is in combat in visibility distance
+                    pCaster->SendAttackSwingCancelAttack();
+ 
+                if (!caster->GetInstanceScript() || !caster->GetInstanceScript()->IsEncounterInProgress()) //Don't leave combat if you are in combat with a boss
+                    caster->CombatStop(); // isn't necessary to call AttackStop because is just called in CombatStop
+            }
+ 
+            void Register()
+            {
+                OnEffectHitTarget += SpellEffectFn(spell_gen_shadowmeld_SpellScript::HandleDummy, EFFECT_1, SPELL_EFFECT_DUMMY);
+            }
+        };
+ 
+        SpellScript* GetSpellScript() const
+        {
+            return new spell_gen_shadowmeld_SpellScript();
+        }
+};
+
+enum MusicBox
+{
+    SOUND_LAMENT_OF_THE_HIGHBORNE = 15095,
+};
+
+class spell_item_sylvanas_music_box : public SpellScriptLoader
+{
+    public:
+        spell_item_sylvanas_music_box() : SpellScriptLoader("spell_item_sylvanas_music_box") {}
+
+        class spell_item_sylvanas_music_box_SpellScript : public SpellScript
+        {
+            PrepareSpellScript(spell_item_sylvanas_music_box_SpellScript);
+
+            bool Load()
+            {
+                return GetCaster()->GetTypeId() == TYPEID_PLAYER;
+            }
+
+            void HandleScript(SpellEffIndex effIndex)
+            {
+                PreventHitDefaultEffect(effIndex);
+                Player* player = GetCaster()->ToPlayer();
+                player->PlayDirectSound(SOUND_LAMENT_OF_THE_HIGHBORNE, player);
+            }
+
+            void Register()
+            {
+                OnEffectHitTarget += SpellEffectFn(spell_item_sylvanas_music_box_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
+            }
+        };
+
+        SpellScript* GetSpellScript() const
+        {
+            return new spell_item_sylvanas_music_box_SpellScript();
+        }
+};
+
+enum OrcDisguiseSpells
+{
+    SPELL_ORC_DISGUISE_TRIGGER       = 45759,
+    SPELL_ORC_DISGUISE_MALE          = 45760,
+    SPELL_ORC_DISGUISE_FEMALE        = 45762,
+};
+
+class spell_gen_orc_disguise : public SpellScriptLoader
+{
+    public:
+        spell_gen_orc_disguise() : SpellScriptLoader("spell_gen_orc_disguise") { }
+
+        class spell_gen_orc_disguise_SpellScript : public SpellScript
+        {
+            PrepareSpellScript(spell_gen_orc_disguise_SpellScript);
+
+            bool Validate(SpellInfo const* /*spell*/)
+            {
+                if (!sSpellMgr->GetSpellInfo(SPELL_ORC_DISGUISE_TRIGGER) || !sSpellMgr->GetSpellInfo(SPELL_ORC_DISGUISE_MALE) || 
+                    !sSpellMgr->GetSpellInfo(SPELL_ORC_DISGUISE_FEMALE))
+                    return false;
+                return true;
+            }
+
+            void HandleScript(SpellEffIndex /*effIndex*/)
+            {
+                Unit* caster = GetCaster();
+                if (Player* target = GetHitPlayer())
+                {
+                    uint8 gender = target->getGender();
+                    if (!gender)
+                        caster->CastSpell(target, SPELL_ORC_DISGUISE_MALE, true);
+                    else
+                        caster->CastSpell(target, SPELL_ORC_DISGUISE_FEMALE, true);
+                }
+            }
+
+            void Register()
+            {
+                OnEffectHitTarget += SpellEffectFn(spell_gen_orc_disguise_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
+            }
+        };
+
+        SpellScript* GetSpellScript() const
+        {
+            return new spell_gen_orc_disguise_SpellScript();
+        }
+};
+
 void AddSC_generic_spell_scripts()
 {
     new spell_gen_absorb0_hitlimit1();
@@ -4015,4 +4139,7 @@ void AddSC_generic_spell_scripts()
     new spell_pilgrims_bounty_buff_food("spell_gen_candied_sweet_potato", SPELL_WELL_FED_HASTE_TRIGGER);
     new spell_gen_replenishment();
     new spell_gen_aura_service_uniform();
+    new spell_gen_shadowmeld();
+    new spell_item_sylvanas_music_box();
+    new spell_gen_orc_disguise();
 }

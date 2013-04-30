@@ -36,6 +36,7 @@ EndContentData */
 #include "SpellScript.h"
 #include "TemporarySummon.h"
 #include "CombatAI.h"
+#define CAST_PLR(a)     (dynamic_cast<Player*>(a))
 
 /*######
 ## npc_arete
@@ -145,11 +146,11 @@ enum eArgentSquire
     QUEST_THE_VALIANT_S_CHALLENGE_SW                    = 13699,
   
     QUEST_THE_BLACK_KNGIHT_S_FALL                       = 13664,
-	
+
     NPC_SQUIRE_DAVID                                    = 33447,
     NPC_SQUIRE_DANNY                                    = 33518,
     NPC_SQUIRE_CAVIN                                    = 33522,
-	
+
     NPC_ARGENT_VALIANT                                  = 33448,
     NPC_ARGENT_CHAMPION                                 = 33707,
     NPC_BLACK_KNIGHT                                    = 33785,
@@ -670,13 +671,17 @@ public:
 
         }
 
-        uint32 GetData(uint32 type)
+        uint32 GetData(uint32 type) const
         {
-            if (type == DATA_TYPE)
-                return GetCustomType();
-
-            if (type == DATA_DEFEATED)
-                return bDefeated ? 1 : 0;
+            switch (type)
+            {
+                case DATA_TYPE:
+                    return GetCustomType();
+                case DATA_DEFEATED:
+                    return bDefeated ? 1 : 0;
+                default:
+                    break;
+            }
 
             return 0;
         }
@@ -687,7 +692,7 @@ public:
                 challengeeGUID = data;
         }
 
-        void DoAction(int32 const type)
+        void DoAction(int32 type)
         {
             if (type == EVENT_START)
             {
@@ -725,7 +730,7 @@ public:
 
         }
 
-        uint32 GetCustomType()
+        uint32 GetCustomType() const
         {
             switch (me->GetEntry())
             {
