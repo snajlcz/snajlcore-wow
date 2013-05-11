@@ -3094,5 +3094,28 @@ MultiKill.Time.Between = 15
 
 Fake.Who.List = 0
 
+###################################################################################################################
+# Dynamic Rate SYSTEM
+# 
+# DynamicRate.Enable
+# Description: on/off dynamic rate
+#                        default rate
+#                        min set rate
+#                        max set rate
+#                        can set for account
+#                        can set for account
+#                        can set for character
+#                        cd for set dynamic rate
+#
+###################################################################################################################
+
+DynamicRate.Enable = 1
+DynamicRate.Default = 1
+DynamicRate.Min = 0
+DynamicRate.Max = 500
+DynamicRate.Account = 1
+DynamicRate.Character = 1
+DynamicRate.Cooldown = 120
+
 #
 ###################################################################################################################
