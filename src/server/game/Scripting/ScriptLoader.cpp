@@ -34,6 +34,7 @@ void AddSC_System_Censure();
 void AddSC_npc_arena_setup();
 // [MOD] MultiKill
 void AddSC_Mod_Multikill(); // by Codels
+void AddSC_Mod_DynamicRate(); // by Codels
 // Mr.Maniek
 void AddSC_npc_maniek();
 // NPC MMR Master
@@ -1356,6 +1357,7 @@ void AddCustomScripts()
     AddSC_npc_arena_setup();
     // [MOD] MultiKill
     AddSC_Mod_Multikill(); // by Codels
+    AddSC_Mod_DynamicRate();
     // Mr.Maniek
     AddSC_npc_maniek();
     // NPC MMR Master
