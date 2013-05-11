@@ -19,6 +19,7 @@ set(scripts_STAT_SRCS
   Custom/ArenaSpectate.cpp
   Custom/npc_arena_team_top.cpp
   Custom/mod_MultiKill.cpp
+  Custom/mod_DynamicRate.cpp
   Custom/npc_maniek.cpp
   Custom/npc_mmr_reset.cpp
   Custom/npc_shop.cpp
