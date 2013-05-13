@@ -316,7 +316,7 @@ INSERT INTO `trinity_string` (`entry`, `content_default`, `content_loc1`, `conte
 
 -- Fix fro NPC 18931 
 DELETE FROM `conditions` WHERE `SourceGroup`=7939; 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`,`SourceGroup`,`SourceEntry`,`ElseGroup`,`ConditionTypeOrReference`,`ConditionValue1`,`ConditionValue2`,`Condition Value3`,`ErrorTextId`,`ScriptName`,`Comment`) VALUES (15,7939,0,0,28,10140,0,0,0,'', 'Show gossip option 0 if player has complete quest 10140 "Journey to Honor Hold"'); 
+INSERT INTO `conditions` (`SourceTypeOrReferenceId`,`SourceGroup`,`SourceEntry`,`ElseGroup`,`ConditionTypeOrReference`,`ConditionValue1`,`ConditionValue2`,`ConditionValue3`,`ErrorTextId`,`ScriptName`,`Comment`) VALUES (15,7939,0,0,28,10140,0,0,0,'', 'Show gossip option 0 if player has complete quest 10140 "Journey to Honor Hold"'); 
 UPDATE `gossip_menu_option` SET `option_icon`=2, `option_id`=4, `npc_option_npcflag`=8192, `action_menu_id`=0 WHERE `menu_id` = 7939 AND `id`=0; 
 UPDATE `gossip_menu_option` SET `option_text`="Show me where I can fly." WHERE `menu_id` = 7939 AND `id`=1; 
 DELETE FROM `locales_gossip_menu_option` WHERE `menu_id`=7939 AND `id`=0; 
@@ -324,7 +324,7 @@ INSERT INTO `locales_gossip_menu_option` (`menu_id`, `id`, `option_text_loc1`, `
 
 -- Fix fro NPC 18930 
 DELETE FROM `conditions` WHERE `SourceGroup`=7938; 
-INSERT INTO `conditions` (`SourceTypeOrReferenceId`,`SourceGroup`,`SourceEntry`,`ElseGroup`,`ConditionTypeOrReference`,`ConditionValue1`,`ConditionValue2`,`Condition Value3`,`ErrorTextId`,`ScriptName`,`Comment`) VALUES (15,7938,0,0,28,10289,0,0,0,'', 'Show gossip option 0 if player has complete quest 10289 "Journey to Thrallmar"'); 
+INSERT INTO `conditions` (`SourceTypeOrReferenceId`,`SourceGroup`,`SourceEntry`,`ElseGroup`,`ConditionTypeOrReference`,`ConditionValue1`,`ConditionValue2`,`ConditionValue3`,`ErrorTextId`,`ScriptName`,`Comment`) VALUES (15,7938,0,0,28,10289,0,0,0,'', 'Show gossip option 0 if player has complete quest 10289 "Journey to Thrallmar"'); 
 UPDATE `gossip_menu_option` SET `option_icon`=2, `option_id`=4, `npc_option_npcflag`=8192, `action_menu_id`=0 WHERE `menu_id` = 7938 AND `id`=0; 
 DELETE FROM `locales_gossip_menu_option` WHERE `menu_id`=7938 AND `id`=0; 
 INSERT INTO `locales_gossip_menu_option` (`menu_id`, `id`, `option_text_loc1`, `option_text_loc2`, `option_text_loc3`, `option_text_loc4`, `option_text_loc5`, `option_text_loc6`, `option_text_loc7`, `option_text_loc8`, `box_text_loc1`, `box_text_loc2`, `box_text_loc3`, `box_text_loc4`, `box_text_loc5`, `box_text_loc6`, `box_text_loc7`, `box_text_loc8`) VALUES (7938, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Отправить Оплот Чести!.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''); 
