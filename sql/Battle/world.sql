@@ -309,10 +309,10 @@ DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=53359 AND `spell_effect`
 INSERT INTO `spell_linked_spell` VALUES (53359, -46924, 1, '(Hunter)Chimera Shot(scorpid) Cancel Bladestorm');
 
 INSERT INTO `trinity_string` (`entry`, `content_default`, `content_loc1`, `content_loc2`, `content_loc3`, `content_loc4`, `content_loc5`, `content_loc6`, `content_loc7`, `content_loc8`) VALUES
-(11002, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Подождите 2 минут после смены множителя опыта, чтобы изменить его повторно.'),
-(11003, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Множитель не может быть меньше %f и больше %f.'),
-(11004, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Установлены новый множитель опыта для учетной записи'),
-(11005, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Установлены новый множитель опыта: %f для персонажа %s');
+(11092, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Подождите 2 минут после смены множителя опыта, чтобы изменить его повторно.'),
+(11093, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Множитель не может быть меньше %f и больше %f.'),
+(11094, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Установлены новый множитель опыта для учетной записи'),
+(11095, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Установлены новый множитель опыта: %f для персонажа %s');
 
 -- Fix fro NPC 18931 
 DELETE FROM `conditions` WHERE `SourceGroup`=7939; 
