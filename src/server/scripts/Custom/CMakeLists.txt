@@ -23,8 +23,8 @@ set(scripts_STAT_SRCS
   Custom/npc_maniek.cpp
   Custom/npc_mmr_reset.cpp
   Custom/npc_shop.cpp
-  Custom/world_chat_race.cpp
-  Custom/allinone.cpp
+  Custom/cs_world_chat.cpp
+  Custom/npc_morfs.cpp
 )
 
 message("  -> Prepared: Custom")
