@@ -3109,12 +3109,12 @@ Fake.Who.List = 0
 #
 ###################################################################################################################
 
-DynamicRate.Enable = 1
+DynamicRate.Enable = 0
 DynamicRate.Default = 1
 DynamicRate.Min = 0
 DynamicRate.Max = 500
-DynamicRate.Account = 1
-DynamicRate.Character = 1
+DynamicRate.Account = 0
+DynamicRate.Character = 0
 DynamicRate.Cooldown = 120
 
 #

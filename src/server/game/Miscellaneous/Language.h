@@ -1189,6 +1189,11 @@ enum TrinityStrings
     // Fake players
     LANG_FAKE_DND                       = 12003,
 
+    LANG_RATE_WAIT                            = 11092, // "Подождите 5 минут после смены множителя опыта, чтобы изменить его повторно."
+    LANG_RATE_BETWEEN                        = 11093, // "Множитель не может быть меньше 0 и больше 100."
+    LANG_RATE_SET_ACCOUNT                    = 11094, // "Установлены новый множитель опыта для учетной записи"
+    LANG_RATE_SET_CHARACTER                    = 11095, // "Установлены новый множитель опыта: %f для персонажа %s"
+
     LANG_REM_TRANSMOGRIFICATIONS_ITEMS  = 11100,
     LANG_ERR_NO_TRANSMOGRIFICATIONS     = 11101,
     LANG_REM_TRANSMOGRIFICATION_ITEM    = 11102,
