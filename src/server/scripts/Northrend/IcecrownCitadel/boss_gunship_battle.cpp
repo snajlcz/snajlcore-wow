@@ -3300,11 +3300,11 @@ class spell_rocket_pack : public SpellScriptLoader
 {
     public:
         spell_rocket_pack() : SpellScriptLoader("spell_rocket_pack") { }
- 
-        class spell_rocket_pack_SpellScript : public SpellScript
+
+        class spell_rocket_pack_AuraScript : public AuraScript
         {
-            PrepareSpellScript(spell_rocket_pack_SpellScript);
- 
+            PrepareAuraScript(spell_rocket_pack_AuraScript);
+
             void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
                 GetTarget()->CastSpell(GetTarget(), 68645, true);
@@ -3321,7 +3321,7 @@ class spell_rocket_pack : public SpellScriptLoader
                 OnEffectRemove += AuraEffectRemoveFn(spell_rocket_pack_AuraScript::OnRemove, EFFECT_1, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL);
             }
         };
- 
+
         AuraScript* GetAuraScript() const
         {
             return new spell_rocket_pack_AuraScript();
