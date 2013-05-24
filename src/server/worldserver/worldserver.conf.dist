@@ -2630,8 +2630,9 @@ PlayerDump.DisallowOverwrite = 1
 #                     1 - (Enabled)
 #
 
-CustomArenaLogs = 1
+CustomArenaLogs = 0
 
+#
 #     GCTokenVendorLog
 #        Description: Log items/services bought through our custom gc_token vendor
 #        Default:     0 - (Disabled)
