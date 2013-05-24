@@ -1,5 +1,5 @@
 -- Creatures
-DELETE FROM `creature_template` WHERE `entry` IN (35572, 35569, 35571, 35570, 35617, 34705, 34702, 34701, 34657, 34703, 35314, 35326, 35325, 35323, 35327, 35328, 35331, 35330, 35332, 35329, 35119, 34928, 35309, 35305, 35307, 35451, 35545, 35564, 35004, 35005, 35591, 35592, 35052, 35041, 35033, 35046, 35043, 35047, 35044, 35039, 35034, 35049, 35030, 34942, 35050, 35042, 35045, 35037, 35031, 35038, 35029, 35048, 35032, 35028, 35040, 35036, 35051, 35637, 35633, 35768, 34658, 35636, 33319, 33318, 33217, 33317, 33316, 35638, 35635, 35640, 35641, 35634, 33324, 33322, 33320, 33323, 33321, 35644, 36558, 35492, 35491);
+DELETE FROM `creature_template` WHERE `entry` IN (35572, 35569, 35571, 35570, 35617, 34705, 34702, 34701, 34657, 34703, 35314, 35326, 35325, 35323, 35327, 35328, 35331, 35330, 35332, 35329, 35119, 34928, 35309, 35305, 35307, 35451, 35545, 35564, 35004, 35005, 35052, 35041, 35033, 35046, 35043, 35047, 35044, 35039, 35034, 35049, 35030, 34942, 35050, 35042, 35045, 35037, 35031, 35038, 35029, 35048, 35032, 35028, 35040, 35036, 35051, 35637, 35633, 35768, 34658, 35636, 33319, 33318, 33217, 33317, 33316, 35638, 35635, 35640, 35641, 35634, 33324, 33322, 33320, 33323, 33321, 35644, 36558, 35492, 35491);
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
 (33217, 0, 0, 0, 0, 0, 28912, 0, 0, 0, 'Stormwind Steed', '', '', 0, 80, 80, 2, 16, 16, 16777216, 1, 1.57143, 1, 1, 422, 586, 0, 642, 1, 2000, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 62544, 62575, 62960, 62552, 64077, 62863, 63034, 0, 0, 349, 0, 0, '', 0, 3, 5, 1, 1, 0, 0, 0, 0, 0, 0, 0, 157, 1, 2, 0, 'generic_vehicleAI_toc5', 12340),
 (33316, 0, 0, 0, 0, 0, 29258, 0, 0, 0, 'Ironforge Ram', '', '', 0, 80, 80, 2, 16, 16, 16777216, 1, 1.57143, 1, 1, 420, 630, 0, 157, 1, 2000, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 62544, 62575, 62960, 62552, 64077, 62863, 63034, 0, 0, 349, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 157, 1, 2, 0, 'generic_vehicleAI_toc5', 12340),
@@ -19,8 +19,8 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 (34705, 36088, 0, 0, 0, 0, 28560, 0, 0, 0, 'Marshal Jacob Alerius', 'Grand Champion of Stormwind', '', 0, 80, 80, 2, 1078, 1078, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 15, 20, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2092, */ 0, 0, 'boss_warrior_toc5', 12340),
 (34928, 35517, 0, 0, 0, 0, 29490, 0, 0, 0, 'Argent Confessor Paletress', '', '', 0, 82, 82, 2, 35, 35, 0, 1, 1.14286, 1, 1, 463, 640, 0, 726, 7.5, 0, 0, 2, 0, 8, 0, 0, 0, 0, 0, 360, 520, 91, 7, 104, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 8, 20, 1, 0, 0, 0, 0, 0, 0, 0, 151, 1, /* 235, */ 42147703, 0, 'boss_paletress', 12340),
 (34942, 35531, 0, 0, 0, 0, 29525, 0, 0, 0, 'Memory of Hogger', '', '', 0, 82, 82, 2, 16, 16, 0, 1, 1.14286, 1, 1, 488, 642, 0, 782, 7.5, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 363, 521, 121, 7, 72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 29, 25, 1, 0, 0, 0, 0, 0, 0, 0, 150, 1, 0, 0, 'npc_memory', 12340),
-(35004, 0, 0, 0, 0, 0, 29894, 0, 0, 0, 'Jaeren Sunsworn', '', '', 10614, 75, 75, 2, 35, 35, 1, 1, 1.14286, 1, 0, 342, 485, 0, 392, 1, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 295, 438, 68, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'npc_announcer_toc5', 12340),
-(35005, 0, 0, 0, 0, 0, 29893, 0, 0, 0, 'Arelas Brightstar', '', '', 0, 75, 75, 2, 35, 35, 1, 1, 1.14286, 1, 0, 342, 485, 0, 392, 1, 2000, 0, 1, 0, 8, 0, 0, 0, 0, 0, 295, 438, 68, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'npc_announcer_toc5', 12340),
+(35004, 0, 0, 0, 0, 0, 29894, 0, 0, 0, 'Jaeren Sunsworn', '', '', 10614, 75, 75, 2, 35, 35, 1, 1, 1.14286, 1, 0, 342, 485, 0, 392, 1, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 295, 438, 68, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'npc_herald_toc5', 12340),
+(35005, 0, 0, 0, 0, 0, 29893, 0, 0, 0, 'Arelas Brightstar', '', '', 0, 75, 75, 2, 35, 35, 1, 1, 1.14286, 1, 0, 342, 485, 0, 392, 1, 2000, 0, 1, 0, 8, 0, 0, 0, 0, 0, 295, 438, 68, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'npc_herald_toc5', 12340),
 (35028, 35541, 0, 0, 0, 0, 29536, 0, 0, 0, 'Memory of VanCleef', '', '', 0, 82, 82, 2, 16, 16, 0, 1, 1.14286, 1, 1, 488, 642, 0, 782, 7.5, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 363, 521, 121, 7, 72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 29, 25, 1, 0, 0, 0, 0, 0, 0, 0, 150, 1, 0, 0, 'npc_memory', 12340),
 (35029, 35538, 0, 0, 0, 0, 29556, 0, 0, 0, 'Memory of Mutanus', '', '', 0, 82, 82, 2, 16, 16, 0, 1, 1.14286, 1, 1, 488, 642, 0, 782, 7.5, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 363, 521, 121, 7, 72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 29, 25, 1, 0, 0, 0, 0, 0, 0, 0, 150, 1, 0, 0, 'npc_memory', 12340),
 (35030, 35530, 0, 0, 0, 0, 29537, 0, 0, 0, 'Memory of Herod', '', '', 0, 82, 82, 2, 16, 16, 0, 1, 1.14286, 1, 1, 488, 642, 0, 782, 7.5, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 363, 521, 121, 7, 72, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 29, 25, 1, 0, 0, 0, 0, 0, 0, 0, 150, 1, 0, 0, 'npc_memory', 12340),
@@ -50,13 +50,13 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 (35307, 0, 0, 0, 0, 0, 29760, 29761, 0, 0, 'Argent Priestess', '', '', 0, 80, 80, 2, 16, 16, 0, 1, 1.14286, 1, 1, 417, 582, 0, 608, 7.5, 2000, 0, 2, 32832, 8, 0, 0, 0, 0, 0, 341, 506, 80, 7, 8, 35307, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 8, 8, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 279, */ 0, 0, 'npc_argent_soldier', 12340),
 (35309, 0, 0, 0, 0, 0, 29762, 29763, 0, 0, 'Argent Lightwielder', '', '', 0, 80, 80, 2, 16, 16, 0, 1, 1.14286, 1, 1, 417, 582, 0, 608, 7.5, 2000, 0, 2, 32832, 8, 0, 0, 0, 0, 0, 341, 506, 80, 7, 8, 35309, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 8, 5, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 1014, */ 0, 0, 'npc_argent_soldier', 12340),
 (35314, 0, 0, 0, 0, 0, 29090, 0, 0, 0, 'Orgrimmar Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
-(35323, 0, 0, 0, 0, 0, 28702, 0, 0, 0, 'Sen''jin Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
+(35323, 0, 0, 0, 0, 0, 28702, 0, 0, 0, 'Sen''jin Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,  /* 2049, */ 0, 0, '', 12340),
 (35325, 0, 0, 0, 0, 0, 28864, 0, 0, 0, 'Thunder Bluff Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 35325, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
-(35326, 0, 0, 0, 0, 0, 28862, 0, 0, 0, 'Silvermoon Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,  /* 2049, */ 0, 0, '', 12340),
+(35326, 0, 0, 0, 0, 0, 28862, 0, 0, 0, 'Silvermoon Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
 (35327, 0, 0, 0, 0, 0, 28865, 0, 0, 0, 'Undercity Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
 (35328, 0, 0, 0, 0, 0, 28863, 0, 0, 0, 'Stormwind Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
 (35329, 0, 0, 0, 0, 0, 28860, 0, 0, 0, 'Ironforge Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
-(35330, 0, 0, 0, 0, 0, 28858, 0, 0, 0, 'Exodar Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.38571, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
+(35330, 0, 0, 0, 0, 0, 28858, 0, 0, 0, 'Exodar Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.38571, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,  /* 2049, */ 0, 0, '', 12340),
 (35331, 0, 0, 0, 0, 0, 28859, 0, 0, 0, 'Gnomeregan Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
 (35332, 0, 0, 0, 0, 0, 28857, 0, 0, 0, 'Darnassus Champion', '', '', 0, 80, 80, 2, 35, 35, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 33554434, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 5.95238, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2049, */ 0, 0, '', 12340),
 (35451, 35490, 0, 0, 0, 0, 29837, 0, 0, 0, 'The Black Knight', '', '', 0, 80, 80, 2, 14, 14, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 1500, 0, 1, 64, 8, 0, 0, 0, 0, 0, 345, 509, 103, 6, 72, 35451, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 16, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 805257215, 0, 'boss_black_knight', 12340),
@@ -68,8 +68,6 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 (35570, 36091, 0, 0, 0, 0, 28588, 0, 0, 0, 'Zul''tore', 'Grand Champion of Sen''jin', '', 0, 80, 80, 2, 126, 126, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 2400, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 15, 20, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2019, */ 0, 0, 'boss_hunter_toc5', 12340),
 (35571, 36090, 0, 0, 0, 0, 28597, 0, 0, 0, 'Runok Wildmane', 'Grand Champion of the Thunder Bluff', '', 0, 80, 80, 2, 104, 104, 0, 1, 1.14286, 1, 1, 417, 582, 0, 608, 7.5, 2400, 0, 2, 0, 8, 0, 0, 0, 0, 0, 341, 506, 80, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 15, 20, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2025, */ 0, 0, 'boss_shaman_toc5', 12340),
 (35572, 36089, 0, 0, 0, 0, 28587, 0, 0, 0, 'Mokra the Skullcrusher', 'Grand Champion of Orgrimmar', '', 0, 80, 80, 2, 29, 29, 0, 1, 1.42857, 1, 1, 422, 586, 0, 642, 7.5, 2400, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 477, 0, 0, '', 0, 3, 15, 20, 1, 0, 0, 0, 0, 0, 0, 0, 441, 1, /* 2018, */ 0, 0, 'boss_warrior_toc5', 12340),
-(35591, 0, 0, 0, 0, 0, 29894, 0, 0, 0, 'Jaeren Sunsworn', '', '', 0, 75, 75, 2, 14, 14, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 2000, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'npc_anstart', 1),
-(35592, 0, 0, 0, 0, 0, 29893, 0, 0, 0, 'Arelas Brightstar', '', '', 0, 75, 75, 2, 14, 14, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 512, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'npc_anstart', 1),
 (35617, 36084, 0, 0, 0, 0, 28589, 0, 0, 0, 'Deathstalker Visceri', 'Grand Champion of Undercity', '', 0, 80, 80, 2, 68, 68, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 15, 20, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, /* 2020, */ 0, 0, 'boss_rouge_toc5', 12340),
 (35633, 0, 0, 0, 0, 0, 28571, 0, 0, 0, 'Ambrose Boltspark''s Mount', '', '', 0, 80, 80, 2, 14, 14, 0, 1, 1.38571, 1, 1, 420, 630, 0, 157, 1, 2000, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 478, 0, 0, '', 0, 3, 15, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'generic_vehicleAI_toc5', 12340),
 (35634, 0, 0, 0, 0, 0, 10718, 0, 0, 0, 'Deathstalker Visceri''s Mount', '', '', 0, 80, 80, 2, 14, 14, 0, 1, 1.28968, 1, 1, 420, 630, 0, 157, 1, 2000, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 479, 0, 0, '', 0, 3, 15, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'generic_vehicleAI_toc5', 12340),
@@ -142,7 +140,7 @@ INSERT INTO `npc_spellclick_spells` (`npc_entry`,`spell_id`,`cast_flags`,`user_t
 (35491,46598,1,0); -- Black Knight - Ride Vehicle Hardcoded
 
 -- Creature addon
-DELETE FROM `creature_template_addon` WHERE `entry` IN (35572, 35569, 35571, 35570, 35617, 34705, 34702, 34701, 34657, 34703, 35314, 35326, 35325, 35323, 35327, 35328, 35331, 35330, 35332, 35329, 35119, 34928, 35309, 35305, 35307, 35451, 35545, 35564, 35004, 35005, 35591, 35592, 35052, 35041, 35033, 35046, 35043, 35047, 35044, 35039, 35034, 35049, 35030, 34942, 35050, 35042, 35045, 35037, 35031, 35038, 35029, 35048, 35032, 35028, 35040, 35036, 35051, 35637, 35633, 35768, 34658, 35636, 33319, 33318, 33217, 33317, 33316, 35638, 35635, 35640, 35641, 35634, 33324, 33322, 33320, 33323, 33321, 35644, 36558, 35492, 35491);
+DELETE FROM `creature_template_addon` WHERE `entry` IN (35572, 35569, 35571, 35570, 35617, 34705, 34702, 34701, 34657, 34703, 35314, 35326, 35325, 35323, 35327, 35328, 35331, 35330, 35332, 35329, 35119, 34928, 35309, 35305, 35307, 35451, 35545, 35564, 35004, 35005, 35052, 35041, 35033, 35046, 35043, 35047, 35044, 35039, 35034, 35049, 35030, 34942, 35050, 35042, 35045, 35037, 35031, 35038, 35029, 35048, 35032, 35028, 35040, 35036, 35051, 35637, 35633, 35768, 34658, 35636, 33319, 33318, 33217, 33317, 33316, 35638, 35635, 35640, 35641, 35634, 33324, 33322, 33320, 33323, 33321, 35644, 36558, 35492, 35491);
 INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `bytes2`, `emote`, `auras`) VALUES
 (33217, 0, 0, 0, 2305, 0, NULL),
 (33316, 0, 0, 0, 2305, 0, NULL),
@@ -268,23 +266,6 @@ INSERT INTO `creature_text` (`entry`, `groupid`, `id`, `text`, `type`, `language
 (34996, 24, 0, "Go now and rest; you've earned it.", 12, 0, 0, 2, 0, 0, "ToC5 - Black Knight Dies Alliance 2"),
 (34990, 13, 0, "You fought well.", 12, 0, 0, 2, 0, 0, "ToC5 - Black Knight Dies Alliance 3");
 
--- Equipment
-UPDATE `creature` SET `equipment_id`=2049 WHERE `id` in (35314,35326,35327,35325,35323,35331,35330,35329,35328,35332);
-UPDATE `creature` SET `equipment_id`=2025 WHERE `id` in (35571,36090);
-UPDATE `creature` SET `equipment_id`=2021 WHERE `id` in (35569,36085);
-UPDATE `creature` SET `equipment_id`=2018 WHERE `id` in (35572,36089);
-UPDATE `creature` SET `equipment_id`=2020 WHERE `id` in (35617,36084);
-UPDATE `creature` SET `equipment_id`=2019 WHERE `id` in (35570,36091);
-UPDATE `creature` SET `equipment_id`=2096 WHERE `id` in (34701,36803);
-UPDATE `creature` SET `equipment_id`=2093 WHERE `id` in (34703,36087);
-UPDATE `creature` SET `equipment_id`=2095 WHERE `id` in (34657,36086);
-UPDATE `creature` SET `equipment_id`=2092 WHERE `id` in (34705,36088);
-UPDATE `creature` SET `equipment_id`=834 WHERE `id` in (35119,35518);
-UPDATE `creature` SET `equipment_id`=235 WHERE `id` in (34928,35517);
-UPDATE `creature` SET `equipment_id`=279 WHERE `id` in (35307);
-UPDATE `creature` SET `equipment_id`=1014 WHERE `id` in (35309);
-UPDATE `creature` SET `equipment_id`=0 WHERE `id` in (35451,35490);
-
 -- Fountain of Light
 DELETE FROM `creature_template` WHERE `entry`=35311;
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`) VALUES 
@@ -292,9 +273,9 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 
 -- Black Knight Gryphon
 UPDATE `creature_template` SET `faction_A`=35, `faction_H`=35, `mindmg`=0, `maxdmg`=0, `attackpower`=0, `dmg_multiplier`=0, `baseattacktime`=0, `unit_flags`=33554432, `dynamicflags`=0, `minrangedmg`=0, `maxrangedmg`=0, `rangedattackpower`=0, `VehicleId`=486 WHERE `entry`=35491;
-
 REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
 (35451, 35490, 0, 0, 0, 0, 29837, 0, 0, 0, 'The Black Knight', '', '', 0, 80, 80, 2, 14, 14, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 7.5, 1800, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 6, 72, 35451, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 16, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'boss_black_knight', 12340);
+
 -- heroic mod template of DK
 REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
 (35490, 0, 0, 0, 0, 0, 29837, 0, 0, 0, 'The Black Knight (1)', '', '', 0, 80, 80, 2, 14, 14, 0, 1, 1.14286, 1, 1, 422, 586, 0, 642, 13, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 345, 509, 103, 6, 72, 35490, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 22, 1, 1, 0, 48418, 0, 0, 0, 0, 0, 0, 1, 0, 1, '', 12340);
@@ -307,15 +288,17 @@ UPDATE `creature_template` SET `mechanic_immune_mask`=`mechanic_immune_mask`|107
 35305,35306, -- Argent Monk
 35307,35308); -- Argent Priestess
 
-DELETE FROM `gameobject` WHERE `guid`=150077;
+-- DELETE FROM `gameobject` WHERE `guid`=150077;
 -- Npcs on vehicle should be passive and untargettable
 -- (not blizzlike, but only way to make the event works. On offy players must kill the champions not the vehicles..)
 UPDATE `creature_template` SET `AIName`='PassiveAI', `unit_flags`=33554434 WHERE `entry` IN (SELECT `accessory_entry` FROM `vehicle_template_accessory` WHERE `entry` IN (33324, 33321, 33322, 33320, 33323, 33319, 33318, 33317, 33316, 33324));
 
 -- scale of mokra mount
 UPDATE `creature_template` SET `scale`=1.5 WHERE `entry`=35638;
+
 -- Immune to daze
-UPDATE creature_template SET mechanic_immune_mask=mechanic_immune_mask|0x04000000 WHERE entry IN (33531,33782,36558,35644); 
+UPDATE creature_template SET mechanic_immune_mask=mechanic_immune_mask|0x04000000 WHERE entry IN (33531,33782,36558,35644);
+
 -- pendand and cosmetic stuff
 DELETE FROM `creature_template_addon` WHERE `entry` IN (34701, 34657, 34705, 35570, 35569, 35332,35330,33299,35328,35327,35331,35329,35325,35314,35326,35323, 35572, 35571, 34703, 34702, 35617);
 INSERT INTO `creature_template_addon` (`entry`,`bytes2`,`auras`) VALUES 
@@ -366,7 +349,7 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `modelid`
 (231000, 35644, 650, 3, 1, 0, 0, 722.363, 660.745, 412.468, 4.83456, 86400, 0, 0, 1, 0, 0, 0), 
 (231002, 35644, 650, 3, 1, 0, 0, 790.49, 646.533, 412.474, 3.71755, 86400, 0, 0, 1, 0, 0, 0), 
 (231004, 35644, 650, 3, 1, 0, 0, 777.564, 660.3, 412.467, 4.34587, 86400, 0, 0, 1, 0, 0, 0),
-(230961, 35591, 650, 3, 1, 0, 0, 746.626, 618.54, 411.09, 4.63158, 86400, 0, 0, 10635, 0, 0, 0),
+(230961, 35004, 650, 3, 1, 0, 0, 746.626, 618.54, 411.09, 4.63158, 86400, 0, 0, 10635, 0, 0, 0),
 (215948, 35016, 650, 3, 1, 0, 0, 746.524, 615.868, 411.172, 0, 180, 0, 0, 1, 0, 0, 0),
 (215949, 35016, 650, 3, 1, 0, 0, 795.549, 618.25, 412.477, 0, 180, 0, 0, 1, 0, 0, 0),
 (215950, 35016, 650, 3, 1, 0, 0, 782.12, 583.21, 412.474, 0, 180, 0, 0, 1, 0, 0, 0),
@@ -489,10 +472,10 @@ INSERT INTO `creature_template_addon` (`entry`,`bytes2`,`auras`) VALUES
 (34928, 1, '63501'),
 (35517, 1, '63501');
 
-UPDATE  `gameobject` SET  `state` = '1' WHERE `gameobject`.`guid` =150073;
-UPDATE  `gameobject` SET  `state` = '1' WHERE `gameobject`.`guid` =150074;
+UPDATE  `gameobject` SET  `state` =  '1' WHERE  `gameobject`.`guid` =150073;
+UPDATE  `gameobject` SET  `state` =  '1' WHERE  `gameobject`.`guid` =150074;
 
-DELETE FROM spell_script_names WHERE spell_id IN (66903, 67680);
+DELETE FROM spell_script_names WHERE `spell_id` IN (67680, 66903);
 INSERT INTO spell_script_names (spell_id, ScriptName) VALUES
 (67680, 'spell_eadric_hoj'), -- Eadric's Hammer of Justice
 (66903, 'spell_eadric_hoj'); 
