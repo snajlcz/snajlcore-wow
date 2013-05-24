@@ -263,17 +263,6 @@
 
 ############################################################################################
 #                                                                                          #
-<<<<<<< HEAD
-# Thanks to:                                                                               #
-#                                                                                          #
-#            https://github.com/garyfisher                                                 #
-#            https://github.com/diton                                                      #
-#            https://github.com/gc                                                         #
-#            https://github.com/tibbi                                                      #
-#            https://github.com/locksmith                                                  #
-#            https://github.com/Thainification                                             #
-#            https://github.com/fiveofeight                                                #
-=======
 #   Thanks to:                                                                             #
 #               https://github.com/TrinityCore                                             #
 #               https://github.com/diton                                                   #
@@ -287,6 +276,5 @@
 #               https://github.com/saqirmdev                                               #
 #               https://github.com/codels                                                  #
 #               https://github.com/Arkania                                                 #
->>>>>>> c5c14e55db60eaa413f28695bdfd0f326496c670
 #                                                                                          #
 ############################################################################################
