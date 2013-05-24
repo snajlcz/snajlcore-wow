@@ -2623,41 +2623,6 @@ PlayerDump.DisallowPaths = 1
 
 PlayerDump.DisallowOverwrite = 1
 
-#
-#    CustomArenaLogs
-#        Description: Use custom arena logs, done by gc only for website arena log purposes, doesnt effect anything ingame
-#        Default:     0 - (Disabled)
-#                     1 - (Enabled)
-#
-
-CustomArenaLogs = 0
-
-#
-#     GCTokenVendorLog
-#        Description: Log items/services bought through our custom gc_token vendor
-#        Default:     0 - (Disabled)
-#                     1 - (Enabled)
-#
-
-GCTokenVendorLog = 0
-
-#
-#     CryptRun.Enable
-#        Description: Determines whether custom Crypt run event is enabled or not
-#        Default:     0 - (Disabled)
-#                     1 - (Enabled)
-#
-
-CryptRun.Enable = 0
-
-#
-#     CryptRun.Reward
-#        Description: Amount of GC tokens rewarded to the race winner
-#        Default:     10
-#
-
-CryptRun.Reward = 10
-
 #     UI.ShowQuestLevelsInDialogs
 #        Description: Show quest levels next to quest titles in UI dialogs
 #        Example: [13] Westfall Stew
