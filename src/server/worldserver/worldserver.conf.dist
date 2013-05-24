@@ -2630,9 +2630,8 @@ PlayerDump.DisallowOverwrite = 1
 #                     1 - (Enabled)
 #
 
-CustomArenaLogs = 0
+CustomArenaLogs = 1
 
-#
 #     GCTokenVendorLog
 #        Description: Log items/services bought through our custom gc_token vendor
 #        Default:     0 - (Disabled)
@@ -3080,19 +3079,6 @@ MultiKill.Enable = 0
 MultiKill.BattleGround.Only = 0
 MultiKill.Log = 0
 MultiKill.Time.Between = 15
-
-###################################################################################################################
-# FAKE PLAYERS SYSTEM
-# 
-# Fake.WHO.List
-# Description: Add fake players to fill in WHO LIST (who is online list, "O" button) if there is less then
-#              49 real players online (need to set online=2 in character database in order to work).
-# Default: 0 (disabled)
-#          1 (enabled)
-#
-###################################################################################################################
-
-Fake.Who.List = 0
 
 ###################################################################################################################
 # Dynamic Rate SYSTEM

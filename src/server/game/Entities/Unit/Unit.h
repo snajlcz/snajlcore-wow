@@ -1307,13 +1307,13 @@ class Unit : public WorldObject
         bool Attack(Unit* victim, bool meleeAttack);
         void CastStop(uint32 except_spellid = 0);
         bool AttackStop();
-        void RemoveAllAttackers();
+        void RemoveAllAttackers(bool stopAttacks = false);
         AttackerSet const& getAttackers() const { return m_attackers; }
         bool isAttackingPlayer() const;
         Unit* getVictim() const { return m_attacking; }
 
-        void CombatStop(bool includingCast = false);
-        void CombatStopWithPets(bool includingCast = false);
+        void CombatStop(bool includingCast = false, bool includingAttacks = false);
+        void CombatStopWithPets(bool includingCast = false, bool includingAttacks = false);
         void StopAttackFaction(uint32 faction_id);
         Unit* SelectNearbyTarget(Unit* exclude = NULL, float dist = NOMINAL_MELEE_RANGE) const;
         void SendMeleeAttackStop(Unit* victim = NULL);
@@ -1463,19 +1463,19 @@ class Unit : public WorldObject
         uint32 GetRangedDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_RANGED, 2.1f, 100.0f, damage); }
         uint32 GetSpellDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_SPELL, 2.1f, 100.0f, damage); }
 
-        void ApplyResilience(const Unit* victim, float * crit, int32 * damage, bool isCrit, CombatRating type) const;
+        void ApplyResilience(Unit const* victim, float* crit, int32* damage, bool isCrit, CombatRating type) const;
 
-        float MeleeSpellMissChance(const Unit* victim, WeaponAttackType attType, int32 skillDiff, uint32 spellId) const;
+        float MeleeSpellMissChance(Unit const* victim, WeaponAttackType attType, int32 skillDiff, uint32 spellId) const;
         SpellMissInfo MeleeSpellHitResult(Unit* victim, SpellInfo const* spell);
         SpellMissInfo MagicSpellHitResult(Unit* victim, SpellInfo const* spell);
         SpellMissInfo SpellHitResult(Unit* victim, SpellInfo const* spell, bool canReflect = false);
 
-        float GetUnitDodgeChance()    const;
-        float GetUnitParryChance()    const;
-        float GetUnitBlockChance()    const;
-        float GetUnitMissChance(WeaponAttackType attType)     const;
+        float GetUnitDodgeChance() const;
+        float GetUnitParryChance() const;
+        float GetUnitBlockChance() const;
+        float GetUnitMissChance(WeaponAttackType attType) const;
         float GetUnitCriticalChance(WeaponAttackType attackType, const Unit* victim) const;
-        int32 GetMechanicResistChance(const SpellInfo* spell);
+        int32 GetMechanicResistChance(const SpellInfo* spell) const;
         bool CanUseAttackType(uint8 attacktype) const;
 
         virtual uint32 GetShieldBlockValue() const =0;
@@ -1777,9 +1777,9 @@ class Unit : public WorldObject
         bool HasAuraTypeWithMiscvalue(AuraType auratype, int32 miscvalue) const;
         bool HasAuraTypeWithAffectMask(AuraType auratype, SpellInfo const* affectedSpell) const;
         bool HasAuraTypeWithValue(AuraType auratype, int32 value) const;
-        bool HasNegativeAuraWithInterruptFlag(uint32 flag, uint64 guid = 0);
-        bool HasNegativeAuraWithAttribute(uint32 flag, uint64 guid = 0);
-        bool HasAuraWithMechanic(uint32 mechanicMask);
+        bool HasNegativeAuraWithInterruptFlag(uint32 flag, uint64 guid = 0) const;
+        bool HasNegativeAuraWithAttribute(uint32 flag, uint64 guid = 0) const;
+        bool HasAuraWithMechanic(uint32 mechanicMask) const;
 
         AuraEffect* IsScriptOverriden(SpellInfo const* spell, int32 script) const;
         uint32 GetDiseasesByCaster(uint64 casterGUID, bool remove = false);
@@ -2145,6 +2145,11 @@ class Unit : public WorldObject
         time_t GetLastDamagedTime() const { return _lastDamagedTime; }
         void SetLastDamagedTime(time_t val) { _lastDamagedTime = val; }
 
+        CalcDamageInfo GetDelayedDamageInfo() const;
+        bool HasDelayedSwing() const;
+        void SuspendDelayedSwing();
+        void ExecuteDelayedSwingHit();
+
     protected:
         explicit Unit (bool isWorldObject);
 
@@ -2255,6 +2260,10 @@ class Unit : public WorldObject
         ComboPointHolderSet m_ComboPointHolders;
 
         RedirectThreatInfo _redirectThreadInfo;
+
+        CalcDamageInfo _damageInfo;
+        uint64 _delayedDamageTargetGuid;
+        uint32 _swingDelayTimer;
 
         bool m_cleanupDone; // lock made to not add stuff after cleanup before delete
         bool m_duringRemoveFromWorld; // lock made to not add stuff after begining removing from world

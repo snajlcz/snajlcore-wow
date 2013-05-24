@@ -215,34 +215,6 @@ UPDATE creature_template SET dmg_multiplier = 100 WHERE entry IN (39864, 40143);
 UPDATE creature_template SET dmg_multiplier = 100 WHERE entry IN (39944, 40144); -- 10 hc
 UPDATE creature_template SET dmg_multiplier = 170 WHERE entry IN (39945, 40145); -- 25 hc
 
--- Fix loot Trial of Champion
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195709;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195710;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195374;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195375;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195323;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195324;
-
--- Fix loot Trial of Crusader
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195631;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195632;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195633;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195635;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195668;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195667;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195666;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195665;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195672;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195671;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195670;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 195669;
-
--- Fix loot Halls of Reflection
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 202212;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 201710;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 202337;
-UPDATE `gameobject_template` SET `flags` = '0' WHERE `gameobject_template`.`entry` = 202336;
-
 -- Fix MMaps
 UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (37955,38434,38435,38436); -- Blood-Queen Lana'thel (ICC)
 -- UPDATE creature_template SET InhabitType = InhabitType | 4 WHERE `entry` IN (37813,38402,38582,38583); -- Deathbringer Saurfang (ICC)
@@ -292,11 +264,6 @@ DELETE FROM spell_script_names WHERE spell_id = 46916;
 -- Execute
 DELETE FROM spell_script_names WHERE spell_id = 52437;
 
--- Revert 'Implement Raise ally'
-DELETE FROM creature_template WHERE entry = 30230;
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `HoverHeight`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
-(30230, 0, 0, 0, 0, 0, 24994, 24993, 24992, 24995, 'Risen Ally', '', '', 0, 1, 1, 0, 35, 35, 0, 0.8, 0.99206, 1, 0, 2, 2, 0, 24, 1, 2000, 0, 1, 0, 2048, 8, 40, 0, 0, 0, 0, 1, 1, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8388624, 0, '', 12340);
-
 -- Spell threat entries fix
 DELETE FROM `spell_threat` WHERE `entry` IN (52372,61411,53595,20187,48818,47520,47488,20243,12809,48568);
 INSERT INTO `spell_threat` (`entry`, `flatMod`, `pctMod`, `apPctMod`) VALUES 
@@ -333,20 +300,10 @@ INSERT INTO `gameobject` VALUES ('xxx', 42000, 617, 1, 1, 1352.68, 815.687, 15.2
 INSERT INTO `gameobject` VALUES ('xxx', 42000, 617, 1, 1, 1229.86, 761.566, 15.7332, 0.0471227, 0, 0, 0.0235592, 0.999722, 300, 0, 1);
 INSERT INTO `gameobject` VALUES ('xxx', 42000, 559, 1, 1, 4023.85, 2967.25, 12.1642, 5.05796, 0, 0, 0.575005, -0.81815, 300, 0, 1);
 
--- Implement Fake Players
-DELETE FROM trinity_string WHERE entry = 12003;
-INSERT INTO trinity_string (`entry`,`content_default`) VALUES (12003, 'Player wishes to not be disturbed and cannot receive whisper messages.');
+-- Fix Halion- Orb Rotation Focus visible for players
+UPDATE `creature_template` SET `modelid1`=169, `modelid2`=11686, `flags_extra` = `flags_extra` | 128 WHERE `entry` IN (40091, 43280, 43281, 43282);
 
--- Implement Arena Spectator
-REPLACE INTO `creature_template` VALUES (190000, 0, 0, 0, 0, 0, 29348, 0, 0, 0, 'Arena Spectator', 'Spectate Master', 'Speak', 50001, 71, 71, 2, 35, 35, 3, 1, 1.14286, 1.25, 1, 124, 256, 0, 783, 1, 2000, 0, 1, 2, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 138936390, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 168000, 190000, '', 0, 3, 1, 1.56, 1.56, 1.56, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 'npc_arena_spectator', 12340);
-DELETE FROM `command` WHERE `name` = 'spectate';
-INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate', 0, 'Syntax: .spectate $subcommand.\nUse .help sppectate');
-DELETE FROM `command` WHERE `name` = 'spectate view';
-INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate view', 0, 'Syntax: .spectate view #player\nAllow player to spectate arena from anotherplayer.');
-DELETE FROM `command` WHERE `name` = 'spectate leave';
-INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate leave', 0, 'Syntax: .spectate leave\nDisable spectator mode.');
-DELETE FROM `command` WHERE `name` = 'spectate player';
-INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate player', 0, 'Syntax: .spectate player #player\nAllow to spectate player.');
-DELETE FROM `command` WHERE `name` = 'spectate reset';
-INSERT INTO `command` (`name`, `security`, `help`) VALUES ('spectate reset', 0, 'Syntax: .spectate reset\nSend addon data.');
-UPDATE `gameobject_template` SET `flags` = 36 WHERE entry IN (185918, 185917, 183970, 183971, 183972, 183973, 183977, 183979, 183978, 183980, 192642, 192643);
+-- Npc Top 5 Killers
+DELETE FROM `creature_template` WHERE `entry` = 500012;
+INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
+('500012', '0', '0', '0', '0', '0', '27164', '0', '0', '0', 'Top 5 Killers', '', '', '0', '59', '61', '0', '35', '35', '1', '1.48', '1.14286', '0.0', '0', '655.0', '663.0', '0', '158', '1.0', '1500', '1900', '1', '0', '0', '0', '0', '0', '0', '0', '0.0', '0.0', '100', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '1', '3', '1.0', '1.0', '1.0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', 'top5_killers', '1');
