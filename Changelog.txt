@@ -4,6 +4,20 @@
 #                                                                                          #
 ############################################################################################
 
+[200] --> Implement Top 5 Killers.
+[199] --> Update GunShip Battle.
+[198] --> Update Argent Tournament. (Thx aedansilver)
+[197] --> Update Icecrown Citadel. (Thx aedansilver)
+[196] --> Implement [ICC] Check Heroic Achievement.
+[195] --> Implement Trial of the Champion. (Thx fiveofeight)
+[194] --> Update scripts and core... Original TrinityCore and Chaos Core.
+[193] --> Update Naxxramas. (Thx Shaco)
+[192] --> Update Naxxramas. (Thx Shaco)
+[191] --> Implement melee damage delay. (Thx trickerer)
+[190] --> Update Utgarde Pinnacle: Skadi. (Thx lostgenx)
+[189] --> Update Halls Of Reflection. (Thx lostgenx)
+[188] --> Fix halion Outside the scope of the fire. (Thx siley)
+[187] --> Implement Factions on Channel. (Thx MarWit)
 [186.1][Vitasic] --> Implement Dynamic Rate SYSTEM
 [186] --> Implement Arena Spectator. (Thx Demonid)
 [185] --> Implement Fake Players. (Thx LORDofDOOM)
@@ -249,6 +263,7 @@
 
 ############################################################################################
 #                                                                                          #
+<<<<<<< HEAD
 # Thanks to:                                                                               #
 #                                                                                          #
 #            https://github.com/garyfisher                                                 #
@@ -258,5 +273,20 @@
 #            https://github.com/locksmith                                                  #
 #            https://github.com/Thainification                                             #
 #            https://github.com/fiveofeight                                                #
+=======
+#   Thanks to:                                                                             #
+#               https://github.com/TrinityCore                                             #
+#               https://github.com/diton                                                   #
+#               https://github.com/gc                                                      #
+#               https://github.com/tibbi                                                   #
+#               https://github.com/locksmith                                               #
+#               https://github.com/Thainification                                          #
+#               https://github.com/fiveofeight                                             #
+#               https://github.com/Locknes                                                 #
+#               https://github.com/lostgenx                                                #
+#               https://github.com/saqirmdev                                               #
+#               https://github.com/codels                                                  #
+#               https://github.com/Arkania                                                 #
+>>>>>>> c5c14e55db60eaa413f28695bdfd0f326496c670
 #                                                                                          #
 ############################################################################################
