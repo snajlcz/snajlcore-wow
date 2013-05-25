@@ -366,3 +366,8 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (@SCOUT, 0, 11, 12, 2, 0, 100, 1, 0, 15, 0, 0, 21, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 'Murloc Scout - At 15% HP - Allow Combat Movement'),
 (@SCOUT, 0, 12, 0, 61, 0, 100, 0, 0, 0, 0, 0, 25, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Murloc Scout - At 15% HP - Flee For Assist'),
 (@SCOUT, 0, 13, 0, 7, 0, 100, 0, 0, 0, 0, 0, 40, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 'Murloc Scout - On Evade - Display melee weapon');
+
+-- Disable the invisible walls in trial of the Champion and Crusader.
+INSERT INTO `disables` (`sourceType`,`entry`,`flags`,`comment`) VALUES
+(7, 650, 0, '', '', 'Mmaps - Trial of the Champion'),
+(7, 649, 0, '', '', 'Mmaps - Trial of the Crusader');
