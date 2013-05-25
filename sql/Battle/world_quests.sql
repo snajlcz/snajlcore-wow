@@ -207,3 +207,8 @@ DELETE FROM `creature_text` WHERE `entry`=@NARVIR;
 INSERT INTO `creature_text` (`entry`,`groupid`,`id`,`text`,`type`,`language`,`probability`,`emote`,`duration`,`sound`,`comment`) VALUES
 (@NARVIR,0,0,'You didn''t think that I was going to let you walk in here and take the Heart of the Storm, did you?',12,0,100,6,0,0,'Overseer Narvir'),
 (@NARVIR,1,0,'You may have killed Valduran, but that will not stop me from completing the colossus.',12,0,100,1,0,0,'Overseer Narvir');
+
+-- DB/Quest: Fix: In Search Of Answers
+-- DB/Quest: Fix: Auf der Suche nach Antworten
+-- Activate GO for players.
+UPDATE `gameobject_template` SET flags = 32 WHERE entry = 191766;
