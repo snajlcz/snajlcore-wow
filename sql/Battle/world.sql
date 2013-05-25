@@ -371,3 +371,9 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 INSERT INTO `disables` (`sourceType`,`entry`,`flags`,`comment`) VALUES
 (7, 650, 0, '', '', 'Mmaps - Trial of the Champion'),
 (7, 649, 0, '', '', 'Mmaps - Trial of the Crusader');
+
+-- Exploit Fix - Crash Server with [Mind Control]
+-- 19424 - [Peiniger des Blutenden Auges]
+-- 16925 - [R�uber der Knochenmalmer]
+-- 8551 - [Dunkler Beschw�rer]
+UPDATE `creature_template` SET `mechanic_immune_mask` = 1 WHERE `entry` IN (19424,16925,8551);
