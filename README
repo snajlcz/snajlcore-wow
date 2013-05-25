@@ -1,57 +1,49 @@
-= TrinityCore / GaryMoveOut -- General information =
-  ______                   ______                   _____             
- / _____)                 |  ___ \                 / ___ \       _    
-| /  ___  ____  ____ _   _| | _ | | ___ _   _ ____| |   | |_   _| |_  
-| | (___)/ _  |/ ___) | | | || || |/ _ \ | | / _  ) |   | | | | |  _) 
-| \____/( ( | | |   | |_| | || || | |_| \ V ( (/ /| |___| | |_| | |__ 
- \_____/ \_||_|_|    \__  |_||_||_|\___/ \_/ \____)\_____/ \____|\___)
-                    (____/                                            
+= TrinityCore / Battle -- General information =
 
 Copyright (C) TrinityCore (http://www.trinitycore.org)
 Copyright (C) GaryFisher  (http://www.github.com/garyfisher)
+Copyright (C) Vitasic  (https://github.com/Vitasic/)
 
-  Trinity Core is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+Ядро основано на разработках коммьюнити Trinity Core - http://trinitycore.org/
+Следовательно, выражаю благодарность всем тем людям, которые приложили свои умения к его развитию.
+Также выражаю благодарность русскому коммьюнити Trinity Core - http://trinity-core.ru/ за своевременное информирование о некоторых багах и некоторых неточностях.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+Информация по настройке:
 
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+Порядок заливки базы мира:
 
-  In addition, as a special exception, the Trinity Core project
-  gives permission to link the code of its release of Trinity Core with
-  the OpenSSL project's "OpenSSL" library (or with modified versions of
-  it that use the same license as the "OpenSSL" library), and distribute
-  the linked executables.  You must obey the GNU General Public License
-  in all respects for all of the code used other than "OpenSSL".  If you
-  modify this file, you may extend this exception to your version of the
-  file, but you are not obligated to do so.  If you do not wish to do
-  so, delete this exception statement from your version.
+Ядро оптимизировано под базу YTDB.
+Обычно, при мердже с офф репо я пишу, под какую версию YTDB я подгоняю ядро.
+Чтобы собрать базу нужно взять эту версию, залить на нее файлы из папки sql/updates/world, если их много, их можно все объединить в один файл с помощью батника.
+Потом  нужно залить файлы в таком порядке:
 
-TrinityCore is a MMORPG Framework based mostly on C++. It is completely 
-open source, and is community supported. It is derived
-from MaNGOS, the Massive Network Game Object Server, and is based on the
-code of that project with extensive changes over time to optimize, improve
-and cleanup the codebase at the same time as improving the ingame mechanics
-and functionality. If you wish to contribute ideas or code please visit 
-our site linked below or make pull requests to our github repo at 
-https://github.com/TrinityCore/TrinityCore
+from sql/gc 
+in world: gc522.sql => day_of_the_dead.sql => pilgrims_bounty.sql
+in char: chars_gc361.sql => custom_tables.sql
+
+from sql/GaryMoveOut
+in world: gary_world.sql => ./instances/*.sql => ./misc/*.sql
+in char: gary_characters.sql => multikill_characters.sql
+
+from sql/updates/ChaosCore
+in world: ./world/*.sql
+
+from sql/Battle
+in world: world.sql => world_quests.sql => world_Piligrims_Bounty.sql
+in char: characters.sql
+
+Если вы хотите помочь:
+WebMoney
+R305933179704
+Z491164650691
+E286448477827
+B336025679578
+U132997600114
+Яндекс деньги
+410011149073685
 
 For further information on the TrinityCore project, please visit our
 project website at http://www.TrinityCore.org
-
-Documentation including installation instructions can be found inside
-the doc directory.
-
-SQL files to create the database can be found in the sql directory. Files
-to update your database from an older revision/version can be found in the
-sql/updates directory.
 
 TrinityCore Requirements
 Platform: Linux, Windows or Mac
