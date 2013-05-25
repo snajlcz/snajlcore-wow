@@ -156,10 +156,11 @@ REPLACE INTO `npc_text` (`ID`, `text0_0`) VALUES
    (100001, 'Выберите маршрут.');
 -- NPC_Tele_creature_template
 DELETE FROM `creature_template` WHERE `entry` = 100000;
-INSERT INTO `creature_template` VALUES (100000, 0, 0, 0, 0, 0, 19645, 0, 0, 0, 'Маршрутка', '', '', 0, 83, 83, 0, 35, 35, 1, 1, 1.14286, 2, 1, 509, 683, 0, 805, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 371, 535, 135, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 'npc_teleport', 1);
+INSERT INTO `creature_template` VALUES (100000, 0, 0, 0, 0, 0, 19645, 0, 0, 0, 'Маршрутка', '', '', 0, 83, 83, 0, 35, 35, 1, 1, 1.14286, 2, 1, 509, 683, 0, 805, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 371, 535, 135, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 'npc_teleport', 1);
 
 -- Npc_vendor_start_items
-REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES (190011, 0, 0, 0, 0, 0, 22931, 0, 22931, 0, '��������� ����', 'RuWoW.net', '', 0, 83, 83, 0, 35, 35, 4224, 2, 2, 1, 2, 50, 150, 0, 1000, 100, 2000, 1500, 1, 2, 0, 0, 0, 0, 0, 0, 100, 200, 1000, 7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 1000, '', 0, 3, 100, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, '', 12340);   
+REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) 
+VALUES (190011, 0, 0, 0, 0, 0, 22931, 0, 22931, 0, 'Start Items', '', '', 0, 83, 83, 0, 35, 35, 4224, 2, 2, 1, 2, 50, 150, 0, 1000, 100, 2000, 1500, 1, 2, 0, 0, 0, 0, 0, 0, 100, 200, 1000, 7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 1000, '', 0, 3, 100, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, '', 12340);   
 DELETE FROM `npc_vendor` WHERE (`entry`=190011);   
 INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`) VALUES   
 (190011, 0, 44100, 0, 0, 0),   
@@ -202,7 +203,7 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
 (190011, 0, 44101, 0, 0, 0); 
 
 -- Start items vendor world position
-delete from `creature` where id='190011';
+delete from `creature` where id in (190010,190011);
 INSERT INTO `creature` VALUES (2041698, 190010, 1, 1, 1, 0, 0, 16225.4, 16263, 13.2664, 3.39211, 300, 0, 0, 6300, 0, 0, 0, 0, 0);
 INSERT INTO `creature` VALUES (2041699, 190010, 0, 1, 1, 0, 0, -8845.71, 625.332, 94.3701, 0.527352, 300, 0, 0, 6300, 0, 0, 0, 0, 0);
 INSERT INTO `creature` VALUES (2041700, 190010, 1, 1, 1, 0, 0, 1578.86, -4416.98, 8.05379, 3.37953, 300, 0, 0, 6300, 0, 0, 0, 0, 0);
@@ -226,17 +227,16 @@ INSERT INTO `trinity_string` (`entry`, `content_default`, `content_loc8`) VALUES
 
 -- NPC_Actions
 DELETE FROM `creature_template` WHERE `entry` = 100006;
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `equipment_id`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
-('100006', '0', '0', '0', '0', '0', '19960', '0', '0', '0', 'Акционер', '', '', '0', '59', '61', '0', '35', '35', '1', '1.48', '1.14286', '0.0', '0', '655.0', '663.0', '0', '158', '1.0', '1500', '1900', '1', '0', '0', '0', '0', '0', '0', '0', '0.0', '0.0', '100', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '1', '3', '1.0', '1.0', '1.0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'npc_other', '1');
+INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
+('100006', '0', '0', '0', '0', '0', '19960', '0', '0', '0', 'Акционер', '', '', '0', '59', '61', '0', '35', '35', '1', '1.48', '1.14286', '0.0', '0', '655.0', '663.0', '0', '158', '1.0', '1500', '1900', '1', '0', '0', '0', '0', '0', '0', '0', '0.0', '0.0', '100', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '1', '3', '1.0', '1.0', '1.0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', 'npc_other', '1');
 
 -- Disable_TEST_totems
 -- Disable_CrashSpells
-DELETE FROM `disables` WHERE `sourceType`=0 AND `entry` IN (23789,61904);
+DELETE FROM `disables` WHERE `sourceType`=0 AND `entry` IN (23789,61904,61905);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `comment`) VALUES
 (0, 23789, 8, 'Stoneclaw Totem TEST - can crash client by spawning too many totems'),
-(0, 61904, 8, 'Magma Totem TEST - can crash client by spawning too many totems');
-INSERT INTO `disables` VALUES ('0','61904','1','','','spellcrash1');
-INSERT INTO `disables` VALUES ('0','61905','1','','','spellcrash2');
+(0, 61904, 8, 'Magma Totem TEST - can crash client by spawning too many totems'),
+('0','61905','1','spellcrash2');
 
 -- The ICC-wise buffs
 INSERT IGNORE INTO `spell_area` VALUES ('73822', '4812', '0', '0', '0', '690', '2', '1', '64', '11');
@@ -279,16 +279,14 @@ UPDATE `spell_proc_event` SET `Cooldown`= 16 WHERE `entry`= 53553;
 REPLACE INTO `creature_template` VALUES ('993369', '0', '0', '0', '0', '0', '26789', '0', '0', '0', 'MMOwning Morfs', 'allinone', '', '0', '80', '80', '0', '35', '35', '1', '1', '1.14286', '0.75', '2', '1755', '1755', '0', '1504', '1000', '1500', '0', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '7', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '3', '1', '100', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'pryds_allinone', '1');
 
 -- fix Disarm effects doesn't cancel bladestorm.
-DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=51722 AND `spell_effect`=-46924 ;
-DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=676 AND `spell_effect`=-46924;
+DELETE FROM `spell_linked_spell` WHERE  `spell_trigger` in (676,51722,64058,64346,53359) AND `spell_effect`=-46924;
 INSERT INTO `spell_linked_spell` VALUES (676, -46924, 1, '(War)Disarm Cancel Bladestorm');
 INSERT INTO `spell_linked_spell` VALUES (51722, -46924, 1, '(Rogue)Dismantle Cancel Bladestorm');
 INSERT INTO `spell_linked_spell` VALUES (64058, -46924, 1, '(Priest) Psychic Horror Cancel Bladestorm');
-DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=64346 AND `spell_effect`=-46924;
 INSERT INTO `spell_linked_spell` VALUES (64346, -46924, 1, '(Mage)Fiery Payback Cancel Bladestorm');
-DELETE FROM `spell_linked_spell` WHERE  `spell_trigger`=53359 AND `spell_effect`=-46924;
 INSERT INTO `spell_linked_spell` VALUES (53359, -46924, 1, '(Hunter)Chimera Shot(scorpid) Cancel Bladestorm');
 
+DELETE FROM `trinity_string` WHERE `entry` in (11092,11093,11094,11095); 
 INSERT INTO `trinity_string` (`entry`, `content_default`, `content_loc1`, `content_loc2`, `content_loc3`, `content_loc4`, `content_loc5`, `content_loc6`, `content_loc7`, `content_loc8`) VALUES
 (11092, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Подождите 2 минут после смены множителя опыта, чтобы изменить его повторно.'),
 (11093, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Множитель не может быть меньше %f и больше %f.'),
@@ -368,9 +366,10 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 (@SCOUT, 0, 13, 0, 7, 0, 100, 0, 0, 0, 0, 0, 40, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 'Murloc Scout - On Evade - Display melee weapon');
 
 -- Disable the invisible walls in trial of the Champion and Crusader.
+DELETE FROM `disables` WHERE `sourceType`=7 AND `entry` IN (650,649);
 INSERT INTO `disables` (`sourceType`,`entry`,`flags`,`comment`) VALUES
-(7, 650, 0, '', '', 'Mmaps - Trial of the Champion'),
-(7, 649, 0, '', '', 'Mmaps - Trial of the Crusader');
+(7, 650, 0, 'Mmaps - Trial of the Champion'),
+(7, 649, 0, 'Mmaps - Trial of the Crusader');
 
 -- Exploit Fix - Crash Server with [Mind Control]
 -- 19424 - [Peiniger des Blutenden Auges]
