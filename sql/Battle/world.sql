@@ -1,6 +1,5 @@
 ﻿set names utf8;
-
--- npc tele
+-- NPC Tele (C++)
 DROP TABLE IF EXISTS `custom_npc_tele_category`;
 CREATE TABLE `custom_npc_tele_category` (
   `id` int(6) unsigned NOT NULL default '0',
@@ -151,77 +150,16 @@ INSERT INTO `custom_npc_tele_association`
   (`cat_id`, `dest_id`)
 VALUES
   (1, 18), (1, 22), (1, 23),(1, 39),(1, 75),(1, 76),(1, 77),(1, 78),(1, 79),(2, 23),(2, 15),(2, 13), (2, 29), (2, 30), (2, 38), (2, 48), (2, 50), /*(3, 1), (3, 4), (3, 16), (3, 52),*/(2, 80), (2, 81),(2, 82),(2, 83),(2, 84), (3, 56), (3, 57), (3, 58), (3, 59), (3, 60), (3, 61), (3, 62), (3, 63), (3, 64), (3, 65),(3, 66),(4, 67), (4, 68), (4, 69), (4, 70), (4, 71), (4, 72), (4, 73), (4, 74), (5, 11), (5, 20), (5, 33), (5, 44), (6, 6), (6, 7), (6, 8), (6, 14), (6, 25), (6, 31), (6, 32), (6, 35), (6, 36), (6, 40), (6, 43), (6, 45), (6, 46), (6, 47), (6, 49), (6, 54), (7, 9), (7, 26), (7, 27), (7, 28), (7, 34), (7, 42), (7, 55), (8, 5), (8, 10), (8, 12), (8, 19), (8, 21), (8, 24), (8, 41), (8, 53), (9, 100), (10, 200);
-
--- npc_tele_text
+-- NPC_Tele_Text
 REPLACE INTO `npc_text` (`ID`, `text0_0`) VALUES
    (100000, 'Выберите категорию.'),
    (100001, 'Выберите маршрут.');
-
--- creature_template_npc_tele
+-- NPC_Tele_creature_template
 DELETE FROM `creature_template` WHERE `entry` = 100000;
 INSERT INTO `creature_template` VALUES (100000, 0, 0, 0, 0, 0, 19645, 0, 0, 0, 'Маршрутка', '', '', 0, 83, 83, 0, 35, 35, 1, 1, 1.14286, 2, 1, 509, 683, 0, 805, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 371, 535, 135, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 3, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 'npc_teleport', 1);
 
--- Фикс пропажи арены из тк :D 
-INSERT IGNORE INTO battleground_template (id, MinPlayersPerTeam, MaxPlayersPerTeam, MinLvl, MaxLvl, AllianceStartLoc, AllianceStartO, HordeStartLoc, HordeStartO, StartMaxDist, Weight, ScriptName, Comment) VALUES
-(6, 0, 2, 10, 80, 0, 0, 0, 0, 0, 1, '', 'All Arena');
-
--- Запрос к моду "Возможность писать в чат, исходя из проведенного онлайна"
-DELETE FROM `trinity_string` WHERE `entry` = 11019;
-INSERT INTO `trinity_string` (`entry`, `content_default`, `content_loc8`) VALUES
-(11019, 'Your chat is disabled. So you can write to chat, draw in the game for another %s seconds', 'Ваш чат отключен. Чтобы вы смогли написать в чат, проведите в игре еще %s секунд');
-
--- npc actions
-DELETE FROM `creature_template` WHERE `entry` = 100006;
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `equipment_id`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
-('100006', '0', '0', '0', '0', '0', '19960', '0', '0', '0', 'Акционер', '', '', '0', '59', '61', '0', '35', '35', '1', '1.48', '1.14286', '0.0', '0', '655.0', '663.0', '0', '158', '1.0', '1500', '1900', '1', '0', '0', '0', '0', '0', '0', '0', '0.0', '0.0', '100', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '1', '3', '1.0', '1.0', '1.0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'npc_other', '1');
-
--- Disable TEST totems
-DELETE FROM `disables` WHERE `sourceType`=0 AND `entry` IN (23789,61904);
-INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `comment`) VALUES
-(0, 23789, 8, 'Stoneclaw Totem TEST - can crash client by spawning too many totems'),
-(0, 61904, 8, 'Magma Totem TEST - can crash client by spawning too many totems');
-
--- Disable CrashSpells
-INSERT INTO `disables` VALUES ('0','61904','1','','','spellcrash1');
-INSERT INTO `disables` VALUES ('0','61905','1','','','spellcrash2');
-
--- the ICC-wise buffs
-INSERT IGNORE INTO `spell_area` VALUES ('73822', '4812', '0', '0', '0', '690', '2', '1', '64', '11');
-INSERT IGNORE INTO `spell_area` VALUES ('73828', '4812', '0', '0', '0', '1101', '2', '1', '64', '11');
-
--- Лут АМК: Книга познания символов
--- http://ru.wowhead.com/item=45912#dropped-by:0+3-9-8+1 
-REPLACE INTO `creature_loot_template` VALUES ('30666', '45912', '1', '1', '0', '1', '1');
-REPLACE INTO `creature_loot_template` VALUES ('30660', '45912', '1', '1', '0', '1', '1');
-REPLACE INTO `creature_loot_template` VALUES ('30667', '45912', '1', '1', '0', '1', '1');
-REPLACE INTO `creature_loot_template` VALUES ('30668', '45912', '1', '1', '0', '1', '1');
-REPLACE INTO `creature_loot_template` VALUES ('32191', '45912', '1', '1', '0', '1', '1');
-REPLACE INTO `creature_loot_template` VALUES ('30695', '45912', '1', '1', '0', '1', '1');
-REPLACE INTO `creature_loot_template` VALUES ('30893', '45912', '1', '1', '0', '1', '1');
-REPLACE INTO `creature_loot_template` VALUES ('30892', '45912', '1', '1', '0', '1', '1');
-
--- fix metro (штормград - стальгорн)
-REPLACE INTO `gameobject` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`) VALUES
-(5865, 176080, 369, 1, 1, 4.58065, 28.2097, 7.01107, 1.5708, 0, 0, 1, 0, 120, 0, 1),
-(5866, 176081, 369, 1, 1, 4.52807, 8.43529, 7.01107, 1.5708, 0, 0, 1, 0, 120, 0, 1),
-(5863, 176082, 369, 1, 1, -45.4005, 2492.79, 6.9886, 1.5708, 0, 0, 1, 0, 120, 0, 1),
-(16394, 176083, 369, 1, 1, -45.4007, 2512.15, 6.9886, 1.5708, 0, 0, 1, 0, 120, 0, 1),
-(5864, 176084, 369, 1, 1, -45.3934, 2472.93, 6.9886, -1.5708, 0, 0, 1, 0, 120, 0, 1),
-(15363, 176085, 369, 1, 1, 4.49883, -11.3475, 7.01107, 1.5708, 0, 0, 1, 0, 120, 0, 1);
-
--- Количество соединений
-UPDATE `trinity_string` SET `content_loc8`='Всего соединений: %u (максимум: %u). Игроков в очереди: %u (максимум: %u).' WHERE `entry`='12';
-
--- fix bug kills and honor (spell_priest)
--- Spell script assignment
-SET @ENTRY := 27827;
-DELETE FROM spell_script_names WHERE spell_id = @ENTRY;
-INSERT INTO spell_script_names (spell_id, ScriptName) VALUES
-(@ENTRY, 'spell_priest_spirit_of_redemption');
-
--- Npc vendor start items
+-- Npc_vendor_start_items
 REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES (190011, 0, 0, 0, 0, 0, 22931, 0, 22931, 0, '��������� ����', 'RuWoW.net', '', 0, 83, 83, 0, 35, 35, 4224, 2, 2, 1, 2, 50, 150, 0, 1000, 100, 2000, 1500, 1, 2, 0, 0, 0, 0, 0, 0, 100, 200, 1000, 7, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 1000, '', 0, 3, 100, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, '', 12340);   
-
 DELETE FROM `npc_vendor` WHERE (`entry`=190011);   
 INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `ExtendedCost`) VALUES   
 (190011, 0, 44100, 0, 0, 0),   
@@ -263,7 +201,7 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
 (190011, 0, 44097, 0, 0, 0),  
 (190011, 0, 44101, 0, 0, 0); 
 
---Start items vendor world position
+-- Start items vendor world position
 delete from `creature` where id='190011';
 INSERT INTO `creature` VALUES (2041698, 190010, 1, 1, 1, 0, 0, 16225.4, 16263, 13.2664, 3.39211, 300, 0, 0, 6300, 0, 0, 0, 0, 0);
 INSERT INTO `creature` VALUES (2041699, 190010, 0, 1, 1, 0, 0, -8845.71, 625.332, 94.3701, 0.527352, 300, 0, 0, 6300, 0, 0, 0, 0, 0);
@@ -276,6 +214,63 @@ INSERT INTO `creature` VALUES (2042145, 190011, 1, 1, 1, 0, 0, -605.898, -4252.0
 INSERT INTO `creature` VALUES (2042146, 190011, 0, 1, 1, 0, 0, 1656.77, 1682.65, 120.719, 0.0796728, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
 INSERT INTO `creature` VALUES (2042147, 190011, 1, 1, 1, 0, 0, -2909.44, -254.251, 52.9413, 3.23977, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
 INSERT INTO `creature` VALUES (2042148, 190011, 530, 1, 1, 0, 0, 10353, -6357.92, 33.6385, 2.7478, 300, 0, 0, 290400, 0, 0, 0, 0, 0);
+
+-- Фикс пропажи арены из тк :D 
+INSERT IGNORE INTO battleground_template (id, MinPlayersPerTeam, MaxPlayersPerTeam, MinLvl, MaxLvl, AllianceStartLoc, AllianceStartO, HordeStartLoc, HordeStartO, StartMaxDist, Weight, ScriptName, Comment) VALUES
+(6, 0, 2, 10, 80, 0, 0, 0, 0, 0, 1, '', 'All Arena');
+
+-- Запрос к моду "Возможность писать в чат, исходя из проведенного онлайна"
+DELETE FROM `trinity_string` WHERE `entry` = 11019;
+INSERT INTO `trinity_string` (`entry`, `content_default`, `content_loc8`) VALUES
+(11019, 'Your chat is disabled. So you can write to chat, draw in the game for another %s seconds', 'Ваш чат отключен. Чтобы вы смогли написать в чат, проведите в игре еще %s секунд');
+
+-- NPC_Actions
+DELETE FROM `creature_template` WHERE `entry` = 100006;
+INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `modelid1`, `modelid2`, `modelid3`, `modelid4`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction_A`, `faction_H`, `npcflag`, `speed_walk`, `speed_run`, `scale`, `rank`, `mindmg`, `maxdmg`, `dmgschool`, `attackpower`, `dmg_multiplier`, `baseattacktime`, `rangeattacktime`, `unit_class`, `unit_flags`, `dynamicflags`, `family`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `minrangedmg`, `maxrangedmg`, `rangedattackpower`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `resistance1`, `resistance2`, `resistance3`, `resistance4`, `resistance5`, `resistance6`, `spell1`, `spell2`, `spell3`, `spell4`, `spell5`, `spell6`, `spell7`, `spell8`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `InhabitType`, `Health_mod`, `Mana_mod`, `Armor_mod`, `RacialLeader`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `movementId`, `RegenHealth`, `equipment_id`, `mechanic_immune_mask`, `flags_extra`, `ScriptName`, `WDBVerified`) VALUES
+('100006', '0', '0', '0', '0', '0', '19960', '0', '0', '0', 'Акционер', '', '', '0', '59', '61', '0', '35', '35', '1', '1.48', '1.14286', '0.0', '0', '655.0', '663.0', '0', '158', '1.0', '1500', '1900', '1', '0', '0', '0', '0', '0', '0', '0', '0.0', '0.0', '100', '7', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '1', '3', '1.0', '1.0', '1.0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'npc_other', '1');
+
+-- Disable_TEST_totems
+-- Disable_CrashSpells
+DELETE FROM `disables` WHERE `sourceType`=0 AND `entry` IN (23789,61904);
+INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `comment`) VALUES
+(0, 23789, 8, 'Stoneclaw Totem TEST - can crash client by spawning too many totems'),
+(0, 61904, 8, 'Magma Totem TEST - can crash client by spawning too many totems');
+INSERT INTO `disables` VALUES ('0','61904','1','','','spellcrash1');
+INSERT INTO `disables` VALUES ('0','61905','1','','','spellcrash2');
+
+-- The ICC-wise buffs
+INSERT IGNORE INTO `spell_area` VALUES ('73822', '4812', '0', '0', '0', '690', '2', '1', '64', '11');
+INSERT IGNORE INTO `spell_area` VALUES ('73828', '4812', '0', '0', '0', '1101', '2', '1', '64', '11');
+
+-- Лут АМК: Книга познания символов
+-- http://ru.wowhead.com/item=45912#dropped-by:0+3-9-8+1 
+REPLACE INTO `creature_loot_template` VALUES ('30666', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30660', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30667', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30668', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('32191', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30695', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30893', '45912', '1', '1', '0', '1', '1');
+REPLACE INTO `creature_loot_template` VALUES ('30892', '45912', '1', '1', '0', '1', '1');
+
+-- Fix_metro (штормград - стальгорн)
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`) VALUES
+(5865, 176080, 369, 1, 1, 4.58065, 28.2097, 7.01107, 1.5708, 0, 0, 1, 0, 120, 0, 1),
+(5866, 176081, 369, 1, 1, 4.52807, 8.43529, 7.01107, 1.5708, 0, 0, 1, 0, 120, 0, 1),
+(5863, 176082, 369, 1, 1, -45.4005, 2492.79, 6.9886, 1.5708, 0, 0, 1, 0, 120, 0, 1),
+(16394, 176083, 369, 1, 1, -45.4007, 2512.15, 6.9886, 1.5708, 0, 0, 1, 0, 120, 0, 1),
+(5864, 176084, 369, 1, 1, -45.3934, 2472.93, 6.9886, -1.5708, 0, 0, 1, 0, 120, 0, 1),
+(15363, 176085, 369, 1, 1, 4.49883, -11.3475, 7.01107, 1.5708, 0, 0, 1, 0, 120, 0, 1);
+
+-- Количество соединений
+UPDATE `trinity_string` SET `content_loc8`='Всего соединений: %u (максимум: %u). Игроков в очереди: %u (максимум: %u).' WHERE `entry`='12';
+
+-- Fix bug kills and honor (spell_priest)
+-- Spell script assignment
+SET @ENTRY := 27827;
+DELETE FROM spell_script_names WHERE spell_id = @ENTRY;
+INSERT INTO spell_script_names (spell_id, ScriptName) VALUES
+(@ENTRY, 'spell_priest_spirit_of_redemption');
 
 -- Proc de Limpieza sagrada
 UPDATE `spell_proc_event` SET `Cooldown`= 16 WHERE `entry`= 53553;
