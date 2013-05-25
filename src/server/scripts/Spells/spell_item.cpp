@@ -2002,7 +2002,7 @@ class spell_item_impale_leviroth : public SpellScriptLoader
             void HandleDummy(SpellEffIndex /* effIndex */)
             {
                 if (Unit* target = GetHitCreature())
-                    if (target->GetEntry() == NPC_LEVIROTH && !target->HealthBelowPct(95))
+                    if (target->GetEntry() == NPC_LEVIROTH && target->HealthBelowPct(95)) // quest=11626
                         target->CastSpell(target, SPELL_LEVIROTH_SELF_IMPALE, true);
             }
 
