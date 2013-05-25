@@ -159,10 +159,10 @@
 [69] --> Add Npc Top 10 Arena Teams.
 [68] --> Alternate script Gunship by fiveofeight.
 [67] --> Add Scripts/Trial Of The Champion.
-[66.9][Vitasic] --> 90% resilens (рес)
+[66.9][Vitasic] --> 90% resilens (пїЅпїЅпїЅ)
 [66.8][Vitasic] --> Boss Kill History
 [66.7][Vitasic] --> Npc Actions
-[66.5][Vitasic] --> Возможность писать в чат, исходя из проведенного онлайна (fix)
+[66.5][Vitasic] --> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (fix)
 [66.4][Vitasic] --> Gm Chat Blue
 [66.3][Vitasic] --> ADD TOOLS
 [66.2][Vitasic] --> LFG ALL
@@ -276,5 +276,6 @@
 #               https://github.com/saqirmdev                                               #
 #               https://github.com/codels                                                  #
 #               https://github.com/Arkania                                                 #
+#               https://github.com/FireEmerald                                             #
 #                                                                                          #
 ############################################################################################
