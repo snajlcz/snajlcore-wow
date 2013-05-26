@@ -234,9 +234,9 @@ INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entr
 -- Disable_CrashSpells
 DELETE FROM `disables` WHERE `sourceType`=0 AND `entry` IN (23789,61904,61905);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `comment`) VALUES
-(0, 23789, 8, 'Stoneclaw Totem TEST - can crash client by spawning too many totems'),
-(0, 61904, 8, 'Magma Totem TEST - can crash client by spawning too many totems'),
-('0','61905','1','spellcrash2');
+(0, 23789, 1, 'Stoneclaw Totem TEST - can crash client by spawning too many totems'),
+(0, 61904, 1, 'Magma Totem TEST - can crash client by spawning too many totems'),
+(0, 61905, 1, 'spellcrash2');
 
 -- The ICC-wise buffs
 INSERT IGNORE INTO `spell_area` VALUES ('73822', '4812', '0', '0', '0', '690', '2', '1', '64', '11');
@@ -373,6 +373,6 @@ INSERT INTO `disables` (`sourceType`,`entry`,`flags`,`comment`) VALUES
 
 -- Exploit Fix - Crash Server with [Mind Control]
 -- 19424 - [Peiniger des Blutenden Auges]
--- 16925 - [R�uber der Knochenmalmer]
--- 8551 - [Dunkler Beschw�rer]
+-- 16925 - [Ruber der Knochenmalmer]
+-- 8551 - [Dunkler Beschwrer]
 UPDATE `creature_template` SET `mechanic_immune_mask` = 1 WHERE `entry` IN (19424,16925,8551);
