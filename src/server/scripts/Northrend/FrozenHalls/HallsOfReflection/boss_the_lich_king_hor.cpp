@@ -30,7 +30,7 @@ enum
    SPELL_HARVEST_SOUL                  = 70070,
    SPELL_PAIN_AND_SUFFERING            = 74115,
 
-   //Raging gnoul
+   //Raging ghoul
    SPELL_EMERGE_VISUAL                 = 50142,
    SPELL_GHOUL_JUMP                    = 70150,
 
@@ -49,7 +49,7 @@ enum
 
    SAY_LICH_KING_WALL_01              = 5,
    SAY_LICH_KING_WALL_02              = 6,
-   SAY_LICH_KING_GNOUL                = 7,
+   SAY_LICH_KING_GHOUL                = 7,
    SAY_LICH_KING_ABON                 = 8,
    SAY_LICH_KING_WINTER               = 9,
    SAY_LICH_KING_END_DUN              = 10,
@@ -182,7 +182,7 @@ public:
                    break;
                case 1:
                    DoCast(me, SPELL_RAISE_DEAD);
-                   Talk(SAY_LICH_KING_GNOUL);
+                   Talk(SAY_LICH_KING_GHOUL);
                    StepTimer = 7000;
                    ++Step;
                    break;
@@ -217,7 +217,7 @@ public:
            {
                case 0:
                    pInstance->SetData(DATA_SUMMONS, 3);
-                   Talk(SAY_LICH_KING_GNOUL);
+                   Talk(SAY_LICH_KING_GHOUL);
                    DoCast(me, SPELL_RAISE_DEAD);
                    StepTimer = 6000;
                    ++Step;
@@ -242,7 +242,7 @@ public:
                case 0:
                    pInstance->SetData(DATA_SUMMONS, 3);
                    DoCast(me, SPELL_RAISE_DEAD);
-                   Talk(SAY_LICH_KING_GNOUL);
+                   Talk(SAY_LICH_KING_GHOUL);
                    StepTimer = 6000;
                    ++Step;
                    break;
@@ -269,7 +269,7 @@ public:
                case 0:
                    pInstance->SetData(DATA_SUMMONS, 3);
                    DoCast(me, SPELL_RAISE_DEAD);
-                   Talk(SAY_LICH_KING_GNOUL);
+                   Talk(SAY_LICH_KING_GHOUL);
                    StepTimer = 6000;
                    ++Step;
                    break;
@@ -373,14 +373,14 @@ public:
    };
 };
 
-class npc_raging_gnoul : public CreatureScript
+class npc_raging_ghoul : public CreatureScript
 {
 public:
-    npc_raging_gnoul() : CreatureScript("npc_raging_gnoul") { }
+    npc_raging_ghoul() : CreatureScript("npc_raging_ghoul") { }
 
-    struct npc_raging_gnoulAI : public ScriptedAI
+    struct npc_raging_ghoulAI : public ScriptedAI
     {
-        npc_raging_gnoulAI(Creature *creature) : ScriptedAI(creature)
+        npc_raging_ghoulAI(Creature *creature) : ScriptedAI(creature)
         {
             instance = (InstanceScript*)creature->GetInstanceScript();
             me->setActive(true);
@@ -466,7 +466,7 @@ public:
 
     CreatureAI* GetAI(Creature* creature) const
     {
-        return new npc_raging_gnoulAI(creature);
+        return new npc_raging_ghoulAI(creature);
     }
 };
 
@@ -672,7 +672,7 @@ public:
 void AddSC_boss_the_lich_king_hor()
 {
    new boss_lich_king_hor();
-   new npc_raging_gnoul();
+   new npc_raging_ghoul();
    new npc_risen_witch_doctor();
    new npc_abon();
 }
