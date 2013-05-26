@@ -6,12 +6,10 @@ Copyright (C) Vitasic  (https://github.com/Vitasic/)
 
 Ядро основано на разработках коммьюнити Trinity Core - http://trinitycore.org/
 Следовательно, выражаю благодарность всем тем людям, которые приложили свои умения к его развитию.
-Также выражаю благодарность русскому коммьюнити Trinity Core - http://trinity-core.ru/ за своевременное информирование о некоторых багах и некоторых неточностях.
 
 Информация по настройке:
 Порядок заливки базы мира:
 Ядро оптимизировано под базу YTDB.
-Обычно, при мердже с офф репо я пишу, под какую версию YTDB я подгоняю ядро.
 Чтобы собрать базу нужно взять эту версию, залить на нее файлы из папки sql/updates/world, если их много, их можно все объединить в один файл с помощью батника.
 Потом  нужно залить файлы в таком порядке:
 
@@ -40,8 +38,8 @@ U132997600114
 Яндекс деньги
 410011149073685
 
-For further information on the TrinityCore project, please visit our
-project website at http://www.TrinityCore.org
+DOC: http://collab.kpsn.org/display/tc
+     http://docs.trinitycore.info/index.html
 
 TrinityCore Requirements
 Platform: Linux, Windows or Mac
