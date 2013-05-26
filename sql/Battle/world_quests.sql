@@ -10,8 +10,8 @@ UPDATE `quest_template` SET `RequiredNpcOrGo1`='12138' WHERE `Id`=6002;
 UPDATE `quest_template` SET `RequiredNpcOrGoCount1`='1' WHERE `Id`=6002;
 UPDATE `quest_template` SET `SpecialFlags`=0 WHERE `Id`=6002;
 
--- Quests: A Suitable Disguise, http://old.wowhead.com/quest=20438
---                              http://old.wowhead.com/quest=24556
+-- Quests: A Suitable Disguise, http://ru.wowhead.com/quest=20438
+--                              http://ru.wowhead.com/quest=24556
 SET @ENTRY := 36856;
 SET @SOURCETYPE := 0;
 SET @GOSSIP := 10854;
@@ -22,6 +22,10 @@ INSERT INTO `smart_scripts` (`entryorguid`,`source_type`,`id`,`link`,`event_type
 (@ENTRY,@SOURCETYPE,0,2,62,0,100,0,@GOSSIP,@MENUID,0,0,50,201384,60,0,0,0,0,8,0,0,0,5802.22,691.556,657.949,3.50801,"Arcanum Core - Script for quest http://wowhead.com/quest=24556"),
 (@ENTRY,@SOURCETYPE,1,2,62,0,100,0,@GOSSIP,@MENUID+1,0,0,50,201384,60,0,0,0,0,8,0,0,0,5802.22,691.556,657.949,3.50801,"Arcanum Core - Script for quest http://wowhead.com/quest=20438"),
 (@ENTRY,@SOURCETYPE,2,0,61,0,100,0,0,0,0,0,72,0,0,0,0,0,0,7,0,0,0,0,0,0,0,"On gossip option select - Close gossip");
+
+-- Nagrand thx @Dimitro
+-- Quest: Blessing of Incineratus, http://ru.wowhead.com/quest=9805
+UPDATE `item_template` SET `ScriptName` = "item_living_fire" WHERE `entry` = 24467;
 
 -- Pit_of_saron_questfixes
 DELETE FROM `creature_questrelation` WHERE `quest` IN (24510,24499,24498,24710,24711,24506,24511,24682,24683,24507,24712,24713);
