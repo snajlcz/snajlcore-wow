@@ -82,7 +82,7 @@ enum Creatures
     NPC_WAVE_LOOT_DUMMY                           = 37906,
 
     NPC_ICE_WALL                                  = 37014,
-    NPC_RAGING_GNOUL                              = 36940,
+    NPC_RAGING_GHOUL                              = 36940,
     NPC_RISEN_WITCH_DOCTOR                        = 36941,
     NPC_ABON                                      = 37069,
 
