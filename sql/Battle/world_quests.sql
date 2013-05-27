@@ -1,8 +1,11 @@
 ﻿set names utf8;
--- Quests fix 4921 "Пропавшая без вести"
+-- DB/Quests: Fix: Lost in Battle
+-- http://ru.wowhead.com/quest=4921
 UPDATE `creature_template` SET `npcflag` = 3 WHERE `entry` = 10668;
 
--- Quests fix 6001,6002 Druid
+-- DB/Quests: Fix: Body and Heart (Druid)
+-- http://ru.wowhead.com/quest=6001
+-- http://ru.wowhead.com/quest=6002
 UPDATE `quest_template` SET `RequiredNpcOrGo1`='12138' WHERE `Id`=6001; 
 UPDATE `quest_template` SET `RequiredNpcOrGoCount1`='1' WHERE `Id`=6001;
 UPDATE `quest_template` SET `SpecialFlags`=0 WHERE `Id`=6001;
@@ -10,8 +13,9 @@ UPDATE `quest_template` SET `RequiredNpcOrGo1`='12138' WHERE `Id`=6002;
 UPDATE `quest_template` SET `RequiredNpcOrGoCount1`='1' WHERE `Id`=6002;
 UPDATE `quest_template` SET `SpecialFlags`=0 WHERE `Id`=6002;
 
--- Quests: A Suitable Disguise, http://ru.wowhead.com/quest=20438
---                              http://ru.wowhead.com/quest=24556
+-- DB/Quests: Fix: A Suitable Disguise 
+-- http://ru.wowhead.com/quest=20438
+-- http://ru.wowhead.com/quest=24556
 SET @ENTRY := 36856;
 SET @SOURCETYPE := 0;
 SET @GOSSIP := 10854;
@@ -24,7 +28,8 @@ INSERT INTO `smart_scripts` (`entryorguid`,`source_type`,`id`,`link`,`event_type
 (@ENTRY,@SOURCETYPE,2,0,61,0,100,0,0,0,0,0,72,0,0,0,0,0,0,7,0,0,0,0,0,0,0,"On gossip option select - Close gossip");
 
 -- Nagrand thx @Dimitro
--- Quest: Blessing of Incineratus, http://ru.wowhead.com/quest=9805
+-- DB/Quests: Fix: Blessing of Incineratus
+-- http://ru.wowhead.com/quest=9805
 UPDATE `item_template` SET `ScriptName` = "item_living_fire" WHERE `entry` = 24467;
 
 -- Pit_of_saron_questfixes
@@ -67,10 +72,12 @@ INSERT INTO `smart_scripts` (`entryorguid`,`source_type`,`id`,`link`,`event_type
 (@GOBJ,1,0,0,64,0,100,0,0,0,0,0,33,36764,0,0,0,0,0,7,0,0,0,0,0,0,0, 'credit on gossip hello - alliance'),
 (@GOBJ,1,1,0,64,0,100,0,0,0,0,0,33,36770,0,0,0,0,0,7,0,0,0,0,0,0,0, 'credit on gossip hello - horde');
 
--- Quest 12872
+-- DB/Quests: Fix: Norgannon's Shell
+-- http://ru.wowhead.com/quest=12872
 UPDATE `creature_template` SET `unit_flags`=0 WHERE `entry`=29775;
 
--- Quest 10368 THX @Dimitro
+-- DB/Quests: Fix: The Dreghood Elders THX @Dimitro
+-- http://ru.wowhead.com/quest=10368
 SET @ENTRY := 20678;
 SET @SOURCETYPE := 0;
 DELETE FROM `smart_scripts` WHERE `entryorguid`=@ENTRY AND `source_type`=@SOURCETYPE;
@@ -149,6 +156,7 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 
 -- DB/Quest: Fix: Rallying the Troops
 -- DB/Quest: Fix: Neue Kraft für die Truppen
+-- http://ru.wowhead.com/quest=12070
 UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE entry = 26261;
 -- Grant quest credit, after spell used on npc.
 DELETE FROM `smart_scripts` WHERE entryorguid = 26261;
@@ -156,6 +164,7 @@ INSERT INTO `smart_scripts` VALUES (26261, 0, 0, 0, 8, 0, 100, 0, 47394, 0, 0, 0
 
 -- Creature_AI to Smart_AI Conversion for Proto-Drake Egg (ID 23777)
 -- Delete old Creature_AI, set new one.
+-- http://ru.wowhead.com/npc=23777
 DELETE FROM `creature_ai_scripts` WHERE `creature_id` = 23777;
 UPDATE `creature_template` SET `AIName`= 'SmartAI' WHERE `entry` = 23777;
 -- New Smart_AI
@@ -171,10 +180,12 @@ INSERT INTO `smart_scripts` (`entryorguid`,`source_type`,`id`,`link`,`event_type
 -- DB/Quest: Update: Arena Grandmaster
 -- DB/Quest: Update: Großmeister der Arena
 -- Update SpecialFlags, NOT repeatable. (hack)
+-- http://ru.wowhead.com/quest=7838
 UPDATE `quest_template` SET SpecialFlags = 0 WHERE `Id` = 7838;
 
 -- DB/Quest: Fix: The Heart of the Storm | by Pitcrawler
 -- DB/Quest: Fix: Das Herz des Sturms
+-- http://ru.wowhead.com/quest=12998
 SET @NARVIR := 30299;
 SET @HEART := 192181;
 UPDATE `gameobject_template` SET `AIName`='SmartGameObjectAI' WHERE `entry`=@HEART;
@@ -211,10 +222,12 @@ INSERT INTO `creature_text` (`entry`,`groupid`,`id`,`text`,`type`,`language`,`pr
 -- DB/Quest: Fix: In Search Of Answers
 -- DB/Quest: Fix: Auf der Suche nach Antworten
 -- Activate GO for players.
+-- http://ru.wowhead.com/quest=12902/in-search-of-answers
 UPDATE `gameobject_template` SET flags = 32 WHERE entry = 191766;
 
 -- DB/Quest: Fix: A Suitable Disguise
 -- DB/Quest: Fix: Eine passende Verkleidung
+-- http://ru.wowhead.com/quest=20438/a-suitable-disguise
 /* SUMMARY:
 Basically we are running a random script (4 in total) every 12 seconds after gossip select. Every script has a different subject. For example when we run script @ENTRY*100+1 it will require you to throw a bucket of water into the tub. If you don't do this on time, the event will fail and you'll have to start it over again.
 The gossip flags are turned off on gossip select (@ENTRY*100+0) because we don't want the same event to be ran more than once at a time.
@@ -394,6 +407,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`,`SourceGroup`,`SourceEntry`,
 
 -- DB/Quest: Hack: Investigate the Blue Recluse
 -- DB/Quest: Hack: Untersuchungen im Blauen Eremiten
+-- http://ru.wowhead.com/quest=1920/investigate-the-blue-recluse
 SET @ENTRY = 6492;
 -- Add spawns for NPC Rift Spawn
 DELETE FROM `creature` WHERE id = @ENTRY;
@@ -405,6 +419,7 @@ INSERT INTO `creature` (`id`, `map`, `spawnMask`, `phaseMask`, `modelid`, `equip
 -- DB/Quest: Fix: Mistcaller Yngvar
 -- DB/Quest: Fix: Nebelrufer Yngvar
 -- Missing event script for mob spawn.
+-- http://ru.wowhead.com/quest=14102/mistcaller-yngvar
 DELETE FROM `event_scripts` WHERE `id`=21997 AND `command`=10;
 INSERT INTO `event_scripts` (`id`,`delay`,`command`,`datalong`,`datalong2`,`dataint`,`x`,`y`,`z`,`o`) VALUES
 (21997,2,10,34965,120000,0,10181.96,1183.417,76.12115,5.934119);
@@ -416,6 +431,7 @@ INSERT INTO conditions (SourceTypeOrReferenceId, SourceGroup, SourceEntry, Sourc
 
 -- DB/Quest: Fix: Conversing With the Depths | by Pitcrawler
 -- DB/Quest: Fix: Gespräche mit den Tiefen
+-- http://ru.wowhead.com/quest=12032/conversing-with-the-depths
 SET @GUID := 62851;
 SET @TRIGGER := 4951;
 SET @ELM_BUNNY := 23837;
@@ -502,6 +518,7 @@ INSERT INTO `creature_text` (`entry`,`groupid`,`id`,`text`,`type`,`language`,`pr
 
 -- DB/Quest: Fix: The Focus on the Beach, Atop the Woodlands, The End of the Line | by Pitcrawler
 -- DB/Quest: Fix: Der Fokus am Strand, Über den Waldländern, Endstation
+-- http://ru.wowhead.com/quest=12084/atop-the-woodlands
 DELETE FROM `creature` WHERE `guid` IN (116020,116021,116022,116023,116024,116025,116026,116029,116030,116031,116032,116033,116035,116037,116038,116039,116040,116042,116043,116044,116045,116046,116047,116049,116050,116051,116053,116054,116055,116056,116057,116058,116059,116060,116061,116065);
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId`=13 AND `SourceEntry` IN (47374,47469,47634,50546,50547,50548);
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId`=17 AND `SourceEntry` IN (47374,47469,47634);
@@ -674,6 +691,7 @@ INSERT INTO `smart_scripts` (`entryorguid`,`source_type`,`id`,`link`,`event_type
 
 -- DB/Quest: Hack: The Frost Wyrm and its Master
 -- DB/Quest: Hack: Der Frostwyrm und sein Meister
+-- http://ru.wowhead.com/quest=11238/the-frost-wyrm-and-its-master
 SET @WyrmcallerVile := 24029;
 SET @Glacion := 24019;
 SET @GOPlatform := 300161; -- TEMP The Wyrmlord's Platform
@@ -694,9 +712,6 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (17, 0, @SummonSpell, 0, 0, 29, 0, @Glacion, 100, 0, 1, '', "Do not summon Glacion, if he is already spawned (100 Yards)"),
 (17, 0, @SummonSpell, 0, 0, 28, 0, @QuestH, 0, 0, 1, '', "Do not summon Glacion, if player has quest objective completed, but not yet rewarded. (Horde)"),
 (17, 0, @SummonSpell, 0, 0, 28, 0, @QuestA, 0, 0, 1, '', "Do not summon Glacion, if player has quest objective completed, but not yet rewarded. (Alliance)");
-
--- Update faction for Ribbly Schraubstutz.
-UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` IN (9543,10043); -- 735 > 7
 
 -- DB/Quest: Fix: Into the pit
 -- http://ru.wowhead.com/quest=12997/into-the-pit
