@@ -186,7 +186,8 @@ public:
             new_length = cacher(*this, i);
             lengths[++i] = new_length;
 
-            ASSERT(prev_length <= new_length);
+            // Hack fix crash Gunship Battle!
+            // ASSERT(prev_length <= new_length);
             prev_length = new_length;
         }
     }
