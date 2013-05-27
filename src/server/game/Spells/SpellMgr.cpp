@@ -3675,6 +3675,11 @@ void SpellMgr::LoadDbcDataCorrections()
             case 72405: // Broken Frostmourne
                 spellInfo->EffectRadiusIndex[1] = EFFECT_RADIUS_200_YARDS; // 200yd
                 break;
+            case 68645: // Rocket Pack! Hack untill movejump will be implemented properly.
+                spellInfo->Effect[0] = SPELL_EFFECT_KNOCK_BACK_DEST;
+                spellInfo->EffectMiscValue[0] = -250;
+                spellInfo->EffectBasePoints[0] = 150;
+                break;
             // ENDOF ICECROWN CITADEL SPELLS
             //
             // RUBY SANCTUM SPELLS
