@@ -376,3 +376,8 @@ INSERT INTO `disables` (`sourceType`,`entry`,`flags`,`comment`) VALUES
 -- 16925 - [Ruber der Knochenmalmer]
 -- 8551 - [Dunkler Beschwrer]
 UPDATE `creature_template` SET `mechanic_immune_mask` = 1 WHERE `entry` IN (19424,16925,8551);
+
+-- Update faction for Ribbly Screwspigot.
+-- http://ru.wowhead.com/npc=9543
+-- http://ru.wowhead.com/npc=10043
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` IN (9543,10043); -- 735 > 7
