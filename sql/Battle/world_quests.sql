@@ -939,3 +939,24 @@ INSERT INTO `creature_template_addon` (`entry`, `path_id`, `mount`, `bytes1`, `b
 (@Varidus, 0, 0, 0x0, 0x1, 0, '45908'),
 (@Prisoner, 0, 0, 0x0, 0x1, 0, ''),
 (@Getry, 0, 0, 0x0, 0x101, 0, '');
+
+-- DB/Conditions: Fix: Correct conditions for To Bor gorok Outpost, Quickly!, Defense of Warsong Hold | by dr-j
+-- DB/Conditions: Fix: Korrekte Conditions für Auf zum Außenposten Bor'gorok, schnell!, Die Verteidigung der Kriegshymnenfeste
+-- http://ru.wowhead.com/quest=12486/to-borgorok-outpost-quickly
+UPDATE `quest_template` SET `PrevQuestId`=0 WHERE  `Id`=12486;
+DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` IN (19,20) and `SourceEntry`IN(11595,11596,11597,12486);
+INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES 
+(20, 0, 12486, 0, 0, 8, 0, 11595, 0, 0, 0, 0, 0, '', 'To Bor gorok Outpost, Quickly! once The Defense of Warsong Hold Has been completed'),
+(19, 0, 12486, 0, 0, 8, 0, 11595, 0, 0, 0, 0, 0, '', 'To Bor gorok Outpost, Quickly! once The Defense of Warsong Hold Has been completed'),
+(20, 0, 12486, 0, 1, 8, 0, 11596, 0, 0, 0, 0, 0, '', 'To Bor gorok Outpost, Quickly! once The Defense of Warsong Hold Has been completed'),
+(19, 0, 12486, 0, 1, 8, 0, 11596, 0, 0, 0, 0, 0, '', 'To Bor gorok Outpost, Quickly! once The Defense of Warsong Hold Has been completed'),
+(20, 0, 12486, 0, 2, 8, 0, 11597, 0, 0, 0, 0, 0, '', 'To Bor gorok Outpost, Quickly! once The Defense of Warsong Hold Has been completed'),
+(19, 0, 12486, 0, 2, 8, 0, 11597, 0, 0, 0, 0, 0, '', 'To Bor gorok Outpost, Quickly! once The Defense of Warsong Hold Has been completed'),
+(20, 0, 11595, 0, 0, 8, 0, 7784, 0, 0, 0, 0, 0, '', 'Defense of Warsong Hold (11595) Only if player has completed The Lord of Blackrock'),
+(19, 0, 11595, 0, 0, 8, 0, 7784, 0, 0, 0, 0, 0, '', 'Defense of Warsong Hold (11595) Only if player has completed The Lord of Blackrock'),
+(20, 0, 11596, 0, 0, 8, 0, 7784, 0, 0, 1, 0, 0, '', 'Defense of Warsong Hold (11596) Only if player has not completed The Lord of Blackrock'),
+(19, 0, 11596, 0, 0, 8, 0, 7784, 0, 0, 1, 0, 0, '', 'Defense of Warsong Hold (11596) Only if player has not completed The Lord of Blackrock'),
+(20, 0, 11596, 0, 0, 8, 0, 8743, 0, 0, 1, 0, 0, '', 'Defense of Warsong Hold (11596) Only if player has not completed Bang a Gong'),
+(19, 0, 11596, 0, 0, 8, 0, 8743, 0, 0, 1, 0, 0, '', 'Defense of Warsong Hold (11596) Only if player has not completed Bang a Gong'),
+(20, 0, 11597, 0, 0, 8, 0, 8743, 0, 0, 0, 0, 0, '', 'Defense of Warsong Hold (11597) Only if player has completed Bang a Gong'),
+(19, 0, 11597, 0, 0, 8, 0, 8743, 0, 0, 0, 0, 0, '', 'Defense of Warsong Hold (11597) Only if player has completed Bang a Gong');
