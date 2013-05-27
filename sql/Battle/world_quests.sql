@@ -126,6 +126,7 @@ UPDATE `creature` SET `spawntimesecs`=0 WHERE `id`=18069;
 
 -- DB/Quest: Fix: Standards and Practices
 -- DB/Quest: Fix: Standarten
+-- http://ru.wowhead.com/quest=9910/standards-and-practices
 SET @SpellBattleStandard := 32205; -- Place Mag'har Battle Standard
 SET @FirstTriggerNPC := 18305; -- First trigger NPC
 SET @SecondTriggerNPC := 18306; -- Second trigger NPC
