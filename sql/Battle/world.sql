@@ -335,3 +335,8 @@ INSERT INTO `creature`(guid,id,map,spawnMask,phaseMask,modelid,equipment_id,posi
 ('42159', @SKOLL, '571', '1', '1', '0', '0', '7178.03', '-1550.96', '931.00', '0.178631', '39600', '0', '0', '1', '0', '0', '0', '0', '0'),
 ('200131', @GONDRIA, '571', '1', '1', '0', '0', '6359.04', '-3777.58', '459.06', '5.37384', '14400', '5', '0', '17068', '0', '1', '0', '0', '0'),
 ('42158', @ARCTURIS, '571', '1', '1', '0', '0', '3390.91', '-2647.57', '50.715', '0', '39600', '0', '0', '1', '0', '0', '0', '0', '0');
+
+-- DB/Spell: Fix: "Raise Death" of the Death knight Class | by Torrad
+DELETE FROM `spell_script_names` WHERE `spell_id` = -46584;
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
+(-46584, "spell_dk_raise_dead");
