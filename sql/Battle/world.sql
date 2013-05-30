@@ -340,3 +340,6 @@ INSERT INTO `creature`(guid,id,map,spawnMask,phaseMask,modelid,equipment_id,posi
 DELETE FROM `spell_script_names` WHERE `spell_id` = -46584;
 INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
 (-46584, "spell_dk_raise_dead");
+
+-- DB/Instance: Update: Delete all non attackable npc's in Drak'Tharon Keep | by Torrad
+DELETE FROM `creature` WHERE `guid` IN (127446, 127448, 127590, 127589, 127580, 127582, 127591, 127579, 127578);
