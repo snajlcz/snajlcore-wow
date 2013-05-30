@@ -3307,12 +3307,12 @@ class spell_rocket_pack : public SpellScriptLoader
 
             void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
-                GetTarget()->CastSpell(GetTarget(), 68645, true);
+                GetTarget()->CastSpell(GetTarget(), 68721, true);
             }
 
             void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
-                GetTarget()->RemoveAurasDueToSpell(68645);
+                GetTarget()->RemoveAurasDueToSpell(68721);
             }
 
             void Register()
