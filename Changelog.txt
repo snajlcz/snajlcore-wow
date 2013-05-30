@@ -4,6 +4,7 @@
 #                                                                                          #
 ############################################################################################
 
+[200.1][Vitasic] --> Pet - baseXP!
 [200] --> Implement Top 5 Killers.
 [199] --> Update GunShip Battle.
 [198] --> Update Argent Tournament. (Thx aedansilver)
