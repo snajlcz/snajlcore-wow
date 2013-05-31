@@ -358,3 +358,16 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 17 AND `SourceEntry` 
 INSERT INTO `conditions` (SourceTypeOrReferenceId, SourceGroup, SourceEntry, SourceId, ElseGroup, ConditionTypeOrReference, ConditionValue1, ConditionValue2, ConditionValue3, NegativeCondition, ErrorType, comment ) VALUES
 (17, 0, @SPELL, 0, 0, 29, @PARASITE, 100, 0, 1, 0, "Cant use Temporal Displacer within 100 yards of Temporal Parasite"),
 (17, 0, @SPELL, 0, 0, 28, @QUEST, 0, 0, 1, 0, "Cant use Temporal Displacer, if player has quest objective completed, but not yet rewarded");
+
+-- DB/Exploit: Fix: Duplicate gold with buy/sell this items | by FireEmerald
+SET @ELEKK      := 46745; -- Great Red Elekk
+SET @STEED      := 46752; -- Swift Gray Steed
+SET @MOONSABER  := 46744; -- Swift Moonsaber
+SET @RAM        := 46748; -- Swift Violet Ram
+SET @TURBO      := 46747; -- Turbostrider
+SET @KODO       := 46750; -- Great Golden Kodo
+SET @WOLF       := 46749; -- Swift Burgundy Wolf
+SET @RAPTOR     := 46743; -- Swift Purple Raptor
+SET @STRIDER    := 46751; -- Swift Red Hawkstrider
+SET @WARHORSE   := 46746; -- White Skeletal Warhorse
+UPDATE `item_template` SET `maxcount` = 1 WHERE `entry` IN (@ELEKK, @STEED, @MOONSABER, @RAM, @TURBO, @KODO, @WOLF, @RAPTOR, @STRIDER, @WARHORSE);
