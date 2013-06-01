@@ -343,3 +343,31 @@ INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES
 
 -- DB/Instance: Update: Delete all non attackable npc's in Drak'Tharon Keep | by Torrad
 DELETE FROM `creature` WHERE `guid` IN (127446, 127448, 127590, 127589, 127580, 127582, 127591, 127579, 127578);
+
+-- DB/Exploit: Fix: Exp-Exploit with: | by FireEmerald
+-- * NPC Skittering Swarmer / Azjol-Nerub.
+-- * NPC Temporal Parasite / Western Plaguelands.
+SET @SWARMER   := 32593; -- Skittering Swarmer
+SET @PARASITE  := 10717; -- Temporal Parasite
+SET @SPELL     := 16613; -- Displacing Temporal Rift
+SET @QUEST     :=  4971; -- A Matter of Time
+UPDATE `creature_template` SET `flags_extra` = 64 WHERE `entry` IN (@SWARMER, @PARASITE);
+UPDATE `creature` SET `spawntimesecs` = 36000 WHERE `id` = @SWARMER;
+-- Disable quest item if the npc is already summoned or the player has the quest completed, but not yet rewarded.
+DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 17 AND `SourceEntry` = @SPELL;
+INSERT INTO `conditions` (SourceTypeOrReferenceId, SourceGroup, SourceEntry, SourceId, ElseGroup, ConditionTypeOrReference, ConditionValue1, ConditionValue2, ConditionValue3, NegativeCondition, ErrorType, comment ) VALUES
+(17, 0, @SPELL, 0, 0, 29, @PARASITE, 100, 0, 1, 0, "Cant use Temporal Displacer within 100 yards of Temporal Parasite"),
+(17, 0, @SPELL, 0, 0, 28, @QUEST, 0, 0, 1, 0, "Cant use Temporal Displacer, if player has quest objective completed, but not yet rewarded");
+
+-- DB/Exploit: Fix: Duplicate gold with buy/sell this items | by FireEmerald
+SET @ELEKK      := 46745; -- Great Red Elekk
+SET @STEED      := 46752; -- Swift Gray Steed
+SET @MOONSABER  := 46744; -- Swift Moonsaber
+SET @RAM        := 46748; -- Swift Violet Ram
+SET @TURBO      := 46747; -- Turbostrider
+SET @KODO       := 46750; -- Great Golden Kodo
+SET @WOLF       := 46749; -- Swift Burgundy Wolf
+SET @RAPTOR     := 46743; -- Swift Purple Raptor
+SET @STRIDER    := 46751; -- Swift Red Hawkstrider
+SET @WARHORSE   := 46746; -- White Skeletal Warhorse
+UPDATE `item_template` SET `maxcount` = 1 WHERE `entry` IN (@ELEKK, @STEED, @MOONSABER, @RAM, @TURBO, @KODO, @WOLF, @RAPTOR, @STRIDER, @WARHORSE);
