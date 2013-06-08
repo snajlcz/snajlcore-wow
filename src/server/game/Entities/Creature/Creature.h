@@ -482,7 +482,6 @@ class Creature : public Unit, public GridObject<Creature>, public MapCreature
         void InitializeReactState();
 
         /// @todo Rename these properly
-        bool isCanTrainingOf(Player* player, bool msg) const;
         bool isCanInteractWithBattleMaster(Player* player, bool msg) const;
         bool isCanTrainingAndResetTalentsOf(Player* player) const;
         bool canCreatureAttack(Unit const* victim, bool force = true) const;
@@ -522,6 +521,9 @@ class Creature : public Unit, public GridObject<Creature>, public MapCreature
         bool HasSpell(uint32 spellID) const;
 
         bool UpdateEntry(uint32 entry, uint32 team=ALLIANCE, const CreatureData* data=NULL);
+
+        void UpdateMovementFlags();
+
         bool UpdateStats(Stats stat);
         bool UpdateAllStats();
         void UpdateResistances(uint32 school);
