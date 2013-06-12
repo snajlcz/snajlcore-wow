@@ -1272,6 +1272,13 @@ void World::LoadConfigSettings(bool reload)
     // custom arena logs just for webpage purposes
     m_bool_configs[CONFIG_CUSTOM_ARENA_LOGS] = ConfigMgr::GetBoolDefault("CustomArenaLogs", false);
 
+    // Stats limits
+    m_bool_configs[CONFIG_STATS_LIMITS_ENABLE] = ConfigMgr::GetBoolDefault("Stats.Limits.Enable", false);
+    m_float_configs[CONFIG_STATS_LIMITS_DODGE] = ConfigMgr::GetFloatDefault("Stats.Limits.Dodge", 95.0f);
+    m_float_configs[CONFIG_STATS_LIMITS_PARRY] = ConfigMgr::GetFloatDefault("Stats.Limits.Parry", 95.0f);
+    m_float_configs[CONFIG_STATS_LIMITS_BLOCK] = ConfigMgr::GetFloatDefault("Stats.Limits.Block", 95.0f);
+    m_float_configs[CONFIG_STATS_LIMITS_CRIT] = ConfigMgr::GetFloatDefault("Stats.Limits.Crit", 95.0f);
+
     // call ScriptMgr if we're reloading the configuration
     if (reload)
         sScriptMgr->OnConfigLoad(reload);
@@ -2740,14 +2747,12 @@ void World::SendAutoBroadcast()
 
     if (abcenter == 0)
         sWorld->SendWorldText(LANG_AUTO_BROADCAST, msg.c_str());
-
     else if (abcenter == 1)
     {
         WorldPacket data(SMSG_NOTIFICATION, (msg.size()+1));
         data << msg;
         sWorld->SendGlobalMessage(&data);
     }
-
     else if (abcenter == 2)
     {
         sWorld->SendWorldText(LANG_AUTO_BROADCAST, msg.c_str());
