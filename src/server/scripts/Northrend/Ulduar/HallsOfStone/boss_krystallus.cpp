@@ -154,8 +154,9 @@ public:
 
         void KilledUnit(Unit* victim)
         {
-            if (victim == me)
+            if (victim->GetTypeId() != TYPEID_PLAYER)
                 return;
+
             Talk(SAY_KILL);
         }
 
@@ -173,8 +174,8 @@ public:
                     //and correct movement, if not already
                     if (me->GetMotionMaster()->GetCurrentMovementGeneratorType() != CHASE_MOTION_TYPE)
                     {
-                        if (me->getVictim())
-                            me->GetMotionMaster()->MoveChase(me->getVictim());
+                        if (me->GetVictim())
+                            me->GetMotionMaster()->MoveChase(me->GetVictim());
                     }
                 }
             }

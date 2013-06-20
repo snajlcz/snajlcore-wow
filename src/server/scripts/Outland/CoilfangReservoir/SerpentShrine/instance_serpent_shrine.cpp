@@ -137,9 +137,9 @@ class instance_serpent_shrine : public InstanceMapScript
                         return;
                     for (Map::PlayerList::const_iterator i = PlayerList.begin(); i != PlayerList.end(); ++i)
                     {
-                        if (Player* player = i->getSource())
+                        if (Player* player = i->GetSource())
                         {
-                            if (player->isAlive() && /*i->getSource()->GetPositionZ() <= -21.434931f*/player->IsInWater())
+                            if (player->IsAlive() && /*i->GetSource()->GetPositionZ() <= -21.434931f*/player->IsInWater())
                             {
                                 if (Water == WATERSTATE_SCALDING)
                                 {
@@ -156,7 +156,8 @@ class instance_serpent_shrine : public InstanceMapScript
                                         if (Creature* frenzy = player->SummonCreature(MOB_COILFANG_FRENZY, player->GetPositionX(), player->GetPositionY(), player->GetPositionZ(), player->GetOrientation(), TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 2000))
                                         {
                                             frenzy->Attack(player, false);
-                                            frenzy->AddUnitMovementFlag(MOVEMENTFLAG_SWIMMING | MOVEMENTFLAG_DISABLE_GRAVITY);
+                                            frenzy->SetSwim(true);
+                                            frenzy->SetDisableGravity(true);
                                         }
                                         DoSpawnFrenzy = false;
                                     }

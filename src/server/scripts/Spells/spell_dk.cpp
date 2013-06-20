@@ -318,78 +318,40 @@ class spell_dk_corpse_explosion : public SpellScriptLoader
         {
             PrepareSpellScript(spell_dk_corpse_explosion_SpellScript);
 
-            int32 bp;
-            Unit* unitTarget;
-            Unit* caster;
-
-            bool Load()
+            bool Validate(SpellInfo const* /*spellInfo*/)
             {
-                unitTarget = GetExplTargetUnit();
-                caster = GetCaster();
+                if (!sSpellMgr->GetSpellInfo(SPELL_DK_CORPSE_EXPLOSION_TRIGGERED) || !sSpellMgr->GetSpellInfo(SPELL_DK_GHOUL_EXPLODE))
+                    return false;
+                if (!sSpellMgr->GetSpellInfo(SPELL_DK_CORPSE_EXPLOSION_VISUAL))
+                    return false;
                 return true;
             }
 
-            SpellCastResult CheckIfCorpseNear()
+            void HandleDummy(SpellEffIndex /*effIndex*/)
             {
-                // check if the target exploded already
-                if (unitTarget && !unitTarget->HasAura(51270))
+                if (Unit* unitTarget = GetHitUnit())
                 {
-                    // if we have ghoul selected
-                    if (unitTarget->GetEntry() == 26125)
+                    int32 bp = 0;
+                    if (unitTarget->IsAlive()) // Living ghoul as a target
                     {
                         bp = int32(unitTarget->CountPctFromMaxHealth(25));
                         unitTarget->CastCustomSpell(unitTarget, SPELL_DK_GHOUL_EXPLODE, &bp, NULL, NULL, false);
-                        caster->CastSpell(unitTarget, SPELL_DK_CORPSE_EXPLOSION_VISUAL, true);
-                        return SPELL_CAST_OK;
                     }
-                    else if (unitTarget->isDead())
+                    else // Some corpse
                     {
-                        bp = GetSpellInfo()->Effects[EFFECT_0].BasePoints;
-                        caster->CastCustomSpell(unitTarget, GetSpellInfo()->Effects[EFFECT_1].CalcValue(), &bp, NULL, NULL, true);
+                        bp = GetEffectValue();
+                        GetCaster()->CastCustomSpell(unitTarget, GetSpellInfo()->Effects[EFFECT_1].CalcValue(), &bp, NULL, NULL, true);
+                        // Corpse Explosion (Suicide)
                         unitTarget->CastSpell(unitTarget, SPELL_DK_CORPSE_EXPLOSION_TRIGGERED, true);
-                        caster->CastSpell(unitTarget, SPELL_DK_CORPSE_EXPLOSION_VISUAL, true);
-                        return SPELL_CAST_OK;
                     }
+                    // Set corpse look
+                    GetCaster()->CastSpell(unitTarget, SPELL_DK_CORPSE_EXPLOSION_VISUAL, true);
                 }
-
-                float max_range = 20;
-                unitTarget = NULL;
-
-                // search for nearby corpse in range
-                std::list<Unit*> targetList;
-                Trinity::AnyDeadUnitSpellTargetInRangeCheck check(caster, max_range, GetSpellInfo(), TARGET_CHECK_DEFAULT);
-                Trinity::UnitListSearcher<Trinity::AnyDeadUnitSpellTargetInRangeCheck> searcher(caster, targetList, check);
-                caster->GetMap()->VisitAll(caster->m_positionX, caster->m_positionY, max_range, searcher);
-
-                // check if the target exploded already (if it has aura 51270)
-                for (std::list<Unit*>::iterator itr = targetList.begin(); itr != targetList.end(); ++itr)
-                {
-                    if (!((Unit*)*itr)->HasAura(51270))
-                    {
-                        unitTarget = ((Unit*)*itr);
-                        break;
-                    }
-                }
-
-                if (unitTarget)
-                {
-                    bp = GetSpellInfo()->Effects[EFFECT_0].BasePoints;
-                    caster->CastCustomSpell(unitTarget, GetSpellInfo()->Effects[EFFECT_1].CalcValue(), &bp, NULL, NULL, true);
-                    unitTarget->CastSpell(unitTarget, SPELL_DK_CORPSE_EXPLOSION_TRIGGERED, true);
-                    caster->CastSpell(unitTarget, SPELL_DK_CORPSE_EXPLOSION_VISUAL, true);
-                    return SPELL_CAST_OK;
-                }
-
-                // proper handling of these should be done in Spell.cpp, its too late for calling "finish(false)" here
-                ((Player*)caster)->RemoveSpellCooldown(GetSpellInfo()->Id, true);
-                ((Player*)caster)->ModifyPower(POWER_RUNIC_POWER, 400);
-                SetCustomCastResultMessage(SPELL_CUSTOM_ERROR_NO_NEARBY_CORPSES);
-                return SPELL_FAILED_CUSTOM_ERROR;
             }
 
             void Register()
             {
-                OnCheckCast += SpellCheckCastFn(spell_dk_corpse_explosion_SpellScript::CheckIfCorpseNear);
+                OnEffectHitTarget += SpellEffectFn(spell_dk_corpse_explosion_SpellScript::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
             }
         };
 
@@ -560,7 +522,7 @@ class spell_dk_death_pact : public SpellScriptLoader
                 if (Player* player = GetCaster()->ToPlayer())
                     for (Unit::ControlList::const_iterator itr = player->m_Controlled.begin(); itr != player->m_Controlled.end(); ++itr)
                         if (Creature* undeadPet = (*itr)->ToCreature())
-                            if (undeadPet->isAlive() &&
+                            if (undeadPet->IsAlive() &&
                                 undeadPet->GetOwnerGUID() == player->GetGUID() &&
                                 undeadPet->GetCreatureType() == CREATURE_TYPE_UNDEAD &&
                                 undeadPet->IsWithinDist(player, 100.0f, false))
