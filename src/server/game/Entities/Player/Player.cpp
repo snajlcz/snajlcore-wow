@@ -26326,6 +26326,29 @@ bool Player::IsInWhisperWhiteList(uint64 guid)
     return false;
 }
 
+void Player::HandleRates()
+{
+    Player* player = this;
+    
+    bool hasXPIncreased = player->HasAtLoginFlag(CUSTOMFLAG_DOUBLE_RATE);
+     
+    if (player->getLevel() < 60 && player->getClass() != CLASS_DEATH_KNIGHT) // check required level and class
+    {
+        if (hasXPIncreased)
+        {
+            player->RemoveAtLoginFlag(CUSTOMFLAG_DOUBLE_RATE);
+            GetSession()->SendAreaTriggerMessage("Experience rates are now set to 1x","");
+        }
+        else
+        {
+            player->SetAtLoginFlag(CUSTOMFLAG_DOUBLE_RATE);
+            GetSession()->SendAreaTriggerMessage("Experience rates are now set to 2x","");
+        }
+    }
+    else
+        GetSession()->SendAreaTriggerMessage("Experience rates change is available only below level 60.","");
+}
+
 bool Player::SetDisableGravity(bool disable, bool packetOnly /*= false*/)
 {
     if (!packetOnly && !Unit::SetDisableGravity(disable))

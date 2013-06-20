@@ -1859,8 +1859,8 @@ public:
             events.Update(diff);
 
             bool hasCC = false;
-            if (me->GetCharmerOrOwnerGUID() && me->getVictim())
-                hasCC = me->getVictim()->HasAuraType(SPELL_AURA_MOD_CONFUSE);
+            if (me->GetCharmerOrOwnerGUID() && me->GetVictim())
+                hasCC = me->GetVictim()->HasAuraType(SPELL_AURA_MOD_CONFUSE);
 
             if (hasCC)
             {
@@ -3069,7 +3069,7 @@ class npc_lonely_turkey : public CreatureScript
 
             void Reset()
             {
-                if (me->isSummon())
+                if (me->IsSummon())
                     if (Unit* owner = me->ToTempSummon()->GetSummoner())
                         me->GetMotionMaster()->MovePoint(0, owner->GetPositionX() + 25 * cos(owner->GetOrientation()), owner->GetPositionY() + 25 * cos(owner->GetOrientation()), owner->GetPositionZ());
 

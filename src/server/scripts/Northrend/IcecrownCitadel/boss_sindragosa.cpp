@@ -1341,9 +1341,9 @@ class spell_sindragosa_icy_grip : public SpellScriptLoader
 
                 if (unit && caster)
                 {
-                    if (caster->GetTypeId() == TYPEID_UNIT && unit->GetTypeId() == TYPEID_PLAYER && caster->getVictim())
+                    if (caster->GetTypeId() == TYPEID_UNIT && unit->GetTypeId() == TYPEID_PLAYER && caster->GetVictim())
                     {
-                        if (caster->getVictim()->GetGUID() != unit->GetGUID()) // exclude tank
+                        if (caster->GetVictim()->GetGUID() != unit->GetGUID()) // exclude tank
                         {
                             float x, y, z;
                             caster->GetPosition(x, y, z);

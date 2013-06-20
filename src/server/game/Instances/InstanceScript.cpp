@@ -338,7 +338,7 @@ void InstanceScript::DoCompleteAchievement(uint32 achievement)
 
     if (!PlayerList.isEmpty())
         for(Map::PlayerList::const_iterator i = PlayerList.begin(); i != PlayerList.end(); ++i)
-            if (Player *player = i->getSource())
+            if (Player *player = i->GetSource())
                 player->CompletedAchievement(pAE);
 }
 
@@ -491,7 +491,7 @@ uint32 InstanceScript::GetMajorityTeam()
         const Map::PlayerList& players = instance->GetPlayers();
         if (!players.isEmpty())
         {
-            Player* arbitraryPlayer = players.getFirst()->getSource();  // Just get the first one - it doesn't matter, we may take anyone. 
+            Player* arbitraryPlayer = players.getFirst()->GetSource();  // Just get the first one - it doesn't matter, we may take anyone. 
             if (!arbitraryPlayer)
                 return 0;   // Cannot make a decision if there's no player
 
@@ -501,9 +501,9 @@ uint32 InstanceScript::GetMajorityTeam()
 
             for (GroupReference* it = group->GetFirstMember(); it != 0; it = it->next())
             {
-                if (Player* member = it->getSource())
+                if (Player* member = it->GetSource())
                 {
-                    if (!member->isGameMaster())
+                    if (!member->IsGameMaster())
                     {
                         // If it's not an alliance member, it's a horde member... should be logical :)
                         if (member->GetTeam() == ALLIANCE)
