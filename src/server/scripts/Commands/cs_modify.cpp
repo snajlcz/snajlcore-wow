@@ -451,7 +451,7 @@ public:
             target->ToPlayer()->SendTalentsInfoData(false);
             return true;
         }
-        else if (target->ToCreature()->isPet())
+        else if (target->ToCreature()->IsPet())
         {
             Unit* owner = target->GetOwner();
             if (owner && owner->GetTypeId() == TYPEID_PLAYER && ((Pet*)target)->IsPermanentPetFor(owner->ToPlayer()))
@@ -499,7 +499,7 @@ public:
 
         std::string targetNameLink = handler->GetNameLink(target);
 
-        if (target->isInFlight())
+        if (target->IsInFlight())
         {
             handler->PSendSysMessage(LANG_CHAR_IN_FLIGHT, targetNameLink.c_str());
             handler->SetSentErrorMessage(true);
@@ -547,7 +547,7 @@ public:
 
         std::string targetNameLink = handler->GetNameLink(target);
 
-        if (target->isInFlight())
+        if (target->IsInFlight())
         {
             handler->PSendSysMessage(LANG_CHAR_IN_FLIGHT, targetNameLink.c_str());
             handler->SetSentErrorMessage(true);
@@ -592,7 +592,7 @@ public:
 
         std::string targetNameLink = handler->GetNameLink(target);
 
-        if (target->isInFlight())
+        if (target->IsInFlight())
         {
             handler->PSendSysMessage(LANG_CHAR_IN_FLIGHT, targetNameLink.c_str());
             handler->SetSentErrorMessage(true);
@@ -637,7 +637,7 @@ public:
 
         std::string targetNameLink = handler->GetNameLink(target);
 
-        if (target->isInFlight())
+        if (target->IsInFlight())
         {
             handler->PSendSysMessage(LANG_CHAR_IN_FLIGHT, targetNameLink.c_str());
             handler->SetSentErrorMessage(true);
