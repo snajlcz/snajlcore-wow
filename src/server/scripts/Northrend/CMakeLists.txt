@@ -117,7 +117,6 @@ set(scripts_STAT_SRCS
   Northrend/Naxxramas/boss_sapphiron.cpp
   Northrend/Naxxramas/boss_grobbulus.cpp
   Northrend/Naxxramas/boss_noth.cpp
-  Northrend/Naxxramas/naxxramas.cpp
   Northrend/Naxxramas/instance_naxxramas.cpp
   Northrend/Naxxramas/naxxramas.h
   Northrend/zone_crystalsong_forest.cpp

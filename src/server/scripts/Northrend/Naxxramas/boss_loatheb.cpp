@@ -27,7 +27,9 @@ enum Spells
     SPELL_WARN_NECROTIC_AURA                = 59481,
     SPELL_SUMMON_SPORE                      = 29234,
     SPELL_DEATHBLOOM                        = 29865,
+    H_SPELL_DEATHBLOOM                      = 55053,
     SPELL_INEVITABLE_DOOM                   = 29204,
+    H_SPELL_INEVITABLE_DOOM                 = 55052
 };
 
 enum Texts
@@ -58,7 +60,7 @@ class boss_loatheb : public CreatureScript
 
         struct boss_loathebAI : public BossAI
         {
-            boss_loathebAI(Creature* creature) : BossAI(creature, DATA_LOATHEB)
+            boss_loathebAI(Creature* creature) : BossAI(creature, BOSS_LOATHEB)
             {
             }
 
@@ -109,12 +111,12 @@ class boss_loatheb : public CreatureScript
                             events.ScheduleEvent(EVENT_NECROTIC_AURA_FADING, 14000);
                             break;
                         case EVENT_DEATHBLOOM:
-                            DoCastAOE(SPELL_DEATHBLOOM);
+                            DoCastAOE(RAID_MODE(SPELL_DEATHBLOOM, H_SPELL_DEATHBLOOM));
                             events.ScheduleEvent(EVENT_DEATHBLOOM, 30000);
                             break;
                         case EVENT_INEVITABLE_DOOM:
                             _doomCounter++;
-                            DoCastAOE(SPELL_INEVITABLE_DOOM);
+                            DoCastAOE(RAID_MODE(SPELL_INEVITABLE_DOOM, H_SPELL_INEVITABLE_DOOM));
                             events.ScheduleEvent(EVENT_INEVITABLE_DOOM, std::max(120000 - _doomCounter * 15000, 15000)); // needs to be confirmed
                             break;
                         case EVENT_SPORE:
@@ -122,7 +124,7 @@ class boss_loatheb : public CreatureScript
                             events.ScheduleEvent(EVENT_SPORE, IsHeroic() ? 18000 : 36000);
                             break;
                         case EVENT_NECROTIC_AURA_FADING:
-                            TalkToMap(SAY_NECROTIC_AURA_FADING);
+                            Talk(SAY_NECROTIC_AURA_FADING);
                             break;
                         default:
                             break;
@@ -139,7 +141,7 @@ class boss_loatheb : public CreatureScript
 
         CreatureAI* GetAI(Creature* creature) const
         {
-            return GetNaxxramasAI<boss_loathebAI>(creature);
+            return new boss_loathebAI(creature);
         }
 };
 
@@ -175,13 +177,13 @@ class spell_loatheb_necrotic_aura_warning : public SpellScriptLoader
             void HandleEffectApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
                 if (GetTarget()->IsAIEnabled)
-                    CAST_AI(LoathebAI, GetTarget()->GetAI())->TalkToMap(SAY_NECROTIC_AURA_APPLIED);
+                    CAST_AI(LoathebAI, GetTarget()->GetAI())->Talk(SAY_NECROTIC_AURA_APPLIED);
             }
 
             void HandleEffectRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
                 if (GetTarget()->IsAIEnabled)
-                    CAST_AI(LoathebAI, GetTarget()->GetAI())->TalkToMap(SAY_NECROTIC_AURA_REMOVED);
+                    CAST_AI(LoathebAI, GetTarget()->GetAI())->Talk(SAY_NECROTIC_AURA_REMOVED);
             }
 
             void Register()

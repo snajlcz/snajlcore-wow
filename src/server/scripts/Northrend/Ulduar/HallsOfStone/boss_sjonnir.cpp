@@ -27,13 +27,20 @@ Script Data End */
 #include "ScriptedCreature.h"
 #include "halls_of_stone.h"
 
-#define SPELL_LIGHTING_RING                                 DUNGEON_MODE(51849,59861) //Periodic Trigger (interval 2s) spell = 50841/59849
-#define SPELL_LIGHTING_RING_1                               DUNGEON_MODE(50840,59848) //Periodic Trigger (interval 2s) spell = 50841/59849
-#define SPELL_STATIC_CHARGE                                 DUNGEON_MODE(50834,59846) //Periodic Trigger /interval 2s) spell = 50835/50847
-#define SPELL_CHAIN_LIGHTING                                DUNGEON_MODE(50830,59844)
-#define SPELL_LIGHTING_SHIELD                               DUNGEON_MODE(50831,59845)
-#define SPELL_TOXIC_VOLLEY                                  DUNGEON_MODE(50838,59853)
-#define SPELL_FRENZY                                        28747
+enum Spells
+{
+    SPELL_LIGHTING_RING                                    = 51849, //Periodic Trigger (interval 2s) spell = 50841
+    H_SPELL_LIGHTING_RING                                  = 59861, //Periodic Trigger (interval 2s) spell = 59849
+    SPELL_LIGHTING_RING_1                                  = 50840, //Periodic Trigger (interval 2s) spell = 50841
+    H_SPELL_LIGHTING_RING_1                                = 59848, //Periodic Trigger (interval 2s) spell = 59849
+    SPELL_STATIC_CHARGE                                    = 50834, //Periodic Trigger 2s interval, spell =50835
+    H_SPELL_STATIC_CHARGE                                  = 59846, //Periodic Trigger 2s interval, spell =50847
+    SPELL_CHAIN_LIGHTING                                   = 50830,
+    H_SPELL_CHAIN_LIGHTING                                 = 59844,
+    SPELL_LIGHTING_SHIELD                                  = 50831,
+    H_SPELL_LIGHTING_SHIELD                                = 59845,
+    SPELL_FRENZY                                           = 28747
+};
 
 enum Yells
 {
@@ -88,9 +95,6 @@ public:
         }
 
         bool bIsFrenzy;
-		bool phase_eins;
-		bool phase_zwei;
-		bool phase_drei;
 
         uint32 uiChainLightningTimer;
         uint32 uiLightningShieldTimer;
@@ -108,9 +112,6 @@ public:
         void Reset()
         {
             bIsFrenzy = false;
-			phase_eins = true;
-			phase_zwei = false;
-			phase_drei = false;
 
             uiEncounterTimer = 0;
             uiChainLightningTimer = urand(3000, 8000);
@@ -126,18 +127,6 @@ public:
             if (instance)
                 instance->SetData(DATA_SJONNIR_EVENT, NOT_STARTED);
         }
-
-		void SummonAdds()
-		{
-			uint32 rnd = urand(0, 1);
-
-			if (phase_eins)
-				me->SummonCreature(CREATURE_FORGED_IRON_DWARF, PipeLocations[rnd].x, PipeLocations[rnd].y, PipeLocations[rnd].z, 0.0f, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 30000);
-			if (phase_zwei)
-				me->SummonCreature(CREATURE_FORGED_IRON_TROGG, PipeLocations[rnd].x, PipeLocations[rnd].y, PipeLocations[rnd].z, 0.0f, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 30000);
-			if (phase_drei)
-				me->SummonCreature(CREATURE_MALFORMED_OOZE, PipeLocations[rnd].x, PipeLocations[rnd].y, PipeLocations[rnd].z, 0.0f, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 30000);
-		}
 
         void EnterCombat(Unit* /*who*/)
         {
@@ -164,17 +153,6 @@ public:
             if (!UpdateVictim())
                 return;
 
-			if (HealthBelowPct(75) && phase_eins)
-			{
-				phase_eins = false;
-				phase_zwei = true;
-			}
-			else if (HealthBelowPct(50) && phase_zwei)
-			{
-				phase_zwei = false;
-				phase_drei = true;
-			}
-
             if (uiChainLightningTimer <= diff)
             {
                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
@@ -190,7 +168,7 @@ public:
 
             if (uiStaticChargeTimer <= diff)
             {
-                DoCast(me->getVictim(), SPELL_STATIC_CHARGE);
+                DoCast(me->GetVictim(), SPELL_STATIC_CHARGE);
                 uiStaticChargeTimer = urand(20000, 25000);
             } uiStaticChargeTimer -= diff;
 
@@ -204,14 +182,12 @@ public:
 
             if (uiSummonTimer <= diff)
             {
-				SummonAdds();
-				
-				if (phase_eins)
-				    uiSummonTimer = 20000;
-				if (phase_zwei)
-				    uiSummonTimer = 15000;
-				if (phase_drei)
-				    uiSummonTimer = 10000;
+                uint32 uiSummonPipe = rand()%2;
+                me->SummonCreature(uiEncounterTimer > DATA_TIME_BEFORE_OOZE ? CREATURE_MALFORMED_OOZE :
+                                           RAND(CREATURE_FORGED_IRON_DWARF, CREATURE_FORGED_IRON_TROGG),
+                                           PipeLocations[uiSummonPipe].x, PipeLocations[uiSummonPipe].y, PipeLocations[uiSummonPipe].z, 0.0f,
+                                           TEMPSUMMON_CORPSE_TIMED_DESPAWN, 30000);
+                uiSummonTimer = 20000;
             } else uiSummonTimer -= diff;
 
             if (!bIsFrenzy)
@@ -245,10 +221,12 @@ public:
             if (instance)
                 instance->SetData(DATA_SJONNIR_EVENT, DONE);
         }
+
         void KilledUnit(Unit* victim)
         {
-            if (victim == me)
+            if (victim->GetTypeId() != TYPEID_PLAYER)
                 return;
+
             Talk(SAY_SLAY);
         }
 
@@ -281,42 +259,32 @@ public:
 
     struct mob_malformed_oozeAI : public ScriptedAI
     {
-        mob_malformed_oozeAI(Creature *c) : ScriptedAI(c)
-        {
-            pInstance = c->GetInstanceScript();
-        }
+        mob_malformed_oozeAI(Creature* creature) : ScriptedAI(creature) {}
 
-        InstanceScript* pInstance;
         uint32 uiMergeTimer;
 
         void Reset()
         {
-            uiMergeTimer = 7500;
-        }
-
-        void JustSummoned(Creature* pSummon)
-        {
-            if (pInstance)
-                if (Creature* pSjonnir = Unit::GetCreature(*me, pInstance->GetData64(DATA_SJONNIR)))
-                    if (Unit* pTarget = CAST_AI(boss_sjonnir::boss_sjonnirAI, pSjonnir->AI())->SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
-                        pSummon->AI()->AttackStart(pTarget);
+            uiMergeTimer = 10000;
         }
 
         void UpdateAI(uint32 diff)
         {
             if (uiMergeTimer <= diff)
             {
-                if (Creature* pTemp = me->FindNearestCreature(CREATURE_MALFORMED_OOZE, 5.0f, true)) // can return self?
-                    if (pTemp != me)
-                    {
-                        DoSpawnCreature(CREATURE_IRON_SLUDGE, 0, 0, 0, 0, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 10000);
-
-                        pTemp->DisappearAndDie();
-                        me->DisappearAndDie();
-                    }
-
-                uiMergeTimer = 7500;
+                if (Creature* temp = me->FindNearestCreature(CREATURE_MALFORMED_OOZE, 3.0f, true))
+                {
+                    DoSpawnCreature(CREATURE_IRON_SLUDGE, 0, 0, 0, 0, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 20000);
+                    temp->DisappearAndDie();
+                    me->DisappearAndDie();
+                }
+                uiMergeTimer = 3000;
             } else uiMergeTimer -= diff;
+
+            if (!UpdateVictim())
+                return;
+
+            DoMeleeAttackIfReady();
         }
     };
 
@@ -334,40 +302,19 @@ public:
 
     struct mob_iron_sludgeAI : public ScriptedAI
     {
-        mob_iron_sludgeAI(Creature* c) : ScriptedAI(c)
+        mob_iron_sludgeAI(Creature* creature) : ScriptedAI(creature)
         {
-            pInstance = c->GetInstanceScript();
+            instance = creature->GetInstanceScript();
         }
 
-        InstanceScript* pInstance;
-        uint32 uiToxicVolleyTimer;
-
-        void Reset()
-        {
-            uiToxicVolleyTimer = 2000;
-        }
-
-        void UpdateAI(uint32 diff)
-        {
-            if (!UpdateVictim())
-                return;
-
-            if (uiToxicVolleyTimer <= diff)
-            {
-                DoCast(me->getVictim(), SPELL_TOXIC_VOLLEY);
-                uiToxicVolleyTimer = urand(5000, 10000);
-            } else uiToxicVolleyTimer -= diff;
-
-            DoMeleeAttackIfReady();
-        }
+        InstanceScript* instance;
 
         void JustDied(Unit* /*killer*/)
         {
-            if (pInstance)
-                if (Creature* Sjonnir = ObjectAccessor::GetCreature(*me, pInstance->GetData64(DATA_SJONNIR)))
+            if (instance)
+                if (Creature* Sjonnir = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_SJONNIR)))
                     Sjonnir->AI()->DoAction(ACTION_OOZE_DEAD);
         }
-
     };
 
 };

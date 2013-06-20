@@ -117,19 +117,16 @@ public:
             {
                 if (PartingSorrowTimer <= diff)
                 {
-                    if(!me->IsNonMeleeSpellCasted(false))
-                    {
-                        if (Unit *pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0))
-                            DoCast(pTarget, SPELL_PARTING_SORROW);
+                    if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0))
+                        DoCast(target, SPELL_PARTING_SORROW);
 
-                        PartingSorrowTimer = 10000 + rand()%7000;
-                    }
+                    PartingSorrowTimer = urand(30000, 40000);
                 } else PartingSorrowTimer -= diff;
             }
 
             if (StormOfGriefTimer <= diff)
             {
-                DoCast(me->getVictim(), SPELL_STORM_OF_GRIEF_N, true);
+                DoCast(me->GetVictim(), SPELL_STORM_OF_GRIEF_N, true);
                 StormOfGriefTimer = urand(15000, 20000);
             } else StormOfGriefTimer -= diff;
 
@@ -148,7 +145,7 @@ public:
                 if (target)
                     DoCast(target, SPELL_PILLAR_OF_WOE_N);
                 else
-                    DoCast(me->getVictim(), SPELL_PILLAR_OF_WOE_N);
+                    DoCast(me->GetVictim(), SPELL_PILLAR_OF_WOE_N);
 
                 PillarOfWoeTimer = urand(5000, 25000);
             } else PillarOfWoeTimer -= diff;
@@ -166,7 +163,7 @@ public:
 
         void KilledUnit(Unit* victim)
         {
-            if (victim == me)
+            if (victim->GetTypeId() != TYPEID_PLAYER)
                 return;
 
             Talk(SAY_SLAY);
