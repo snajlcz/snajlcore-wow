@@ -192,7 +192,7 @@ void PathGenerator::BuildPolyPath(G3D::Vector3 const& startPos, G3D::Vector3 con
         if (_sourceUnit->GetTypeId() == TYPEID_UNIT)
         {
             if ((startPoly == INVALID_POLYREF && _sourceUnit->GetBaseMap()->IsUnderWater(startPos.x, startPos.y, startPos.z)) || (endPoly == INVALID_POLYREF && _sourceUnit->GetBaseMap()->IsUnderWater(endPos.x, endPos.y, endPos.z)))
-                _type = ((Creature*)_sourceUnit)->canSwim() ? PathType(PATHFIND_NORMAL | PATHFIND_NOT_USING_PATH) : PATHFIND_NOPATH;
+                _type = ((Creature*)_sourceUnit)->CanSwim() ? PathType(PATHFIND_NORMAL | PATHFIND_NOT_USING_PATH) : PATHFIND_NOPATH;
             else
                 _type = ((Creature*)_sourceUnit)->CanFly() ? PathType(PATHFIND_NORMAL | PATHFIND_NOT_USING_PATH) : PATHFIND_NOPATH;
         }

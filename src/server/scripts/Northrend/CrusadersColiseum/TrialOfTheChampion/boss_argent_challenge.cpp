@@ -670,7 +670,7 @@ class npc_memory : public CreatureScript
 
         void JustDied(Unit* killer)
         {
-            if (me->isSummon())
+            if (me->IsSummon())
             {
                 if (Unit* summoner = me->ToTempSummon()->GetSummoner())
                 {

@@ -1366,7 +1366,7 @@ public:
 
             if (BloodPlague_timer <= uiDiff)
             {
-                DoCast(me->getVictim(), SPELL_BLOOD_PLAGUE);
+                DoCast(me->GetVictim(), SPELL_BLOOD_PLAGUE);
                 BloodPlague_timer = 9000;
             }
             else
@@ -1382,7 +1382,7 @@ public:
 
             if (FrostFever_timer <= uiDiff)
             {
-                DoCast(me->getVictim(), SPELL_FROST_FEWER);
+                DoCast(me->GetVictim(), SPELL_FROST_FEWER);
                 FrostFever_timer = 9000;
             }
             else
