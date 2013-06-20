@@ -311,7 +311,7 @@ class generic_vehicleAI_toc5 : public CreatureScript
                     for (Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
                     {
                         Player* player = itr->GetSource();
-                        if (player && !player->IsGameMaster() && player->isAlive())
+                        if (player && !player->IsGameMaster() && player->IsAlive())
                         {
                             // Handle combat variable
                             if (combat)
@@ -369,7 +369,7 @@ class generic_vehicleAI_toc5 : public CreatureScript
                 Map::PlayerList const &players = pMap->GetPlayers();
                 for(Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
                 {
-                    if (itr->GetSource() && itr->GetSource()->isAlive() && !itr->GetSource()->IsGameMaster())
+                    if (itr->GetSource() && itr->GetSource()->IsAlive() && !itr->GetSource()->IsGameMaster())
                         return true;
                 }
             }
@@ -461,8 +461,8 @@ class generic_vehicleAI_toc5 : public CreatureScript
 
             if (uiThrustTimer <= uiDiff)
             {
-                if (me->getVictim() && me->GetDistance(me->getVictim()) < 5.0f)
-                    DoCast(me->getVictim(), SPELL_THRUST);
+                if (me->GetVictim() && me->GetDistance(me->GetVictim()) < 5.0f)
+                    DoCast(me->GetVictim(), SPELL_THRUST);
 
                 uiThrustTimer = urand(8000, 14000);
             } else uiThrustTimer -= uiDiff;
@@ -1024,7 +1024,7 @@ class boss_hunter_toc5 : public CreatureScript
                 Map::PlayerList const &players = pMap->GetPlayers();
                 for(Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
                 {
-                    if (itr->GetSource() && itr->GetSource()->isAlive() && !itr->GetSource()->IsGameMaster())
+                    if (itr->GetSource() && itr->GetSource()->IsAlive() && !itr->GetSource()->IsGameMaster())
                         return;
                 }
 
@@ -1097,7 +1097,7 @@ class boss_hunter_toc5 : public CreatureScript
 
             if (uiDisengageCooldown <= uiDiff)
             {
-                if (me->IsWithinDistInMap(me->getVictim(), 5) && uiDisengageCooldown == 0)
+                if (me->IsWithinDistInMap(me->GetVictim(), 5) && uiDisengageCooldown == 0)
                 {
                     DoCast(me, SPELL_DISENGAGE);
                     uiDisengageCooldown = 35000;
@@ -1234,7 +1234,7 @@ class boss_rouge_toc5 : public CreatureScript
                 Map::PlayerList const &players = pMap->GetPlayers();
                 for(Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
                 {
-                    if (itr->GetSource() && itr->GetSource()->isAlive() && !itr->GetSource()->IsGameMaster())
+                    if (itr->GetSource() && itr->GetSource()->IsAlive() && !itr->GetSource()->IsGameMaster())
                         return;
                 }
 
@@ -1307,7 +1307,7 @@ class boss_rouge_toc5 : public CreatureScript
 
             if (uiEviscerateTimer <= uiDiff)
             {
-                DoCast(me->getVictim(),DUNGEON_MODE(SPELL_EVISCERATE,SPELL_EVISCERATE_H));
+                DoCast(me->GetVictim(),DUNGEON_MODE(SPELL_EVISCERATE,SPELL_EVISCERATE_H));
                 uiEviscerateTimer = 12000;
             } else uiEviscerateTimer -= uiDiff;
 

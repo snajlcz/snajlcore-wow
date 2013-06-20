@@ -1024,7 +1024,7 @@ void Creature::SelectLevel(const CreatureTemplate* cinfo)
 {
     uint32 rank = IsPet() ? 0 : cinfo->rank;
 
-    if (isGuardian() && (ToTempSummon()->GetSummoner() && ToTempSummon()->GetSummoner()->GetTypeId() != TYPEID_PLAYER))
+    if (IsGuardian() && (ToTempSummon()->GetSummoner() && ToTempSummon()->GetSummoner()->GetTypeId() != TYPEID_PLAYER))
         return;
 
     // level
