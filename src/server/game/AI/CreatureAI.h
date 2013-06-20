@@ -79,7 +79,6 @@ class CreatureAI : public UnitAI
 
     public:
         void Talk(uint8 id, uint64 WhisperGuid = 0);
-        void TalkToMap(uint8 id, uint64 WhisperGuid = 0);
         explicit CreatureAI(Creature* creature) : UnitAI(creature), me(creature), m_MoveInLineOfSight_locked(false) {}
 
         virtual ~CreatureAI() {}
@@ -161,7 +160,7 @@ class CreatureAI : public UnitAI
         virtual void CorpseRemoved(uint32& /*respawnDelay*/) {}
 
         // Called when victim entered water and creature can not enter water
-        //virtual bool canReachByRangeAttack(Unit*) { return false; }
+        //virtual bool CanReachByRangeAttack(Unit*) { return false; }
 
         /// == Fields =======================================
 

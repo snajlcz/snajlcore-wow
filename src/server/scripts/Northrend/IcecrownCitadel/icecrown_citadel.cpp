@@ -320,7 +320,7 @@ class FrostwingVrykulSearcher
 
         bool operator()(Unit* unit)
         {
-            if (!unit->isAlive())
+            if (!unit->IsAlive())
                 return false;
 
             switch (unit->GetEntry())
@@ -784,7 +784,7 @@ class boss_sister_svalna : public CreatureScript
                 {
                     if (Creature* crusader = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_CAPTAIN_ARNATH + i)))
                     {
-                        if (crusader->isAlive() && crusader->GetEntry() == crusader->GetCreatureData()->id)
+                        if (crusader->IsAlive() && crusader->GetEntry() == crusader->GetCreatureData()->id)
                         {
                             crusader->m_Events.AddEvent(new CaptainSurviveTalk(*crusader), crusader->m_Events.CalculateTime(delay));
                             delay += 6000;
@@ -998,7 +998,7 @@ class npc_crok_scourgebane : public CreatureScript
             {
                 if (action == ACTION_START_GAUNTLET)
                 {
-                    if (_isEventDone || !me->isAlive())
+                    if (_isEventDone || !me->IsAlive())
                         return;
 
                     _isEventActive = true;
@@ -1853,7 +1853,7 @@ class spell_icc_sprit_alarm : public SpellScriptLoader
                 wards.sort(Trinity::ObjectDistanceOrderPred(GetCaster()));
                 for (std::list<Creature*>::iterator itr = wards.begin(); itr != wards.end(); ++itr)
                 {
-                    if ((*itr)->isAlive() && (*itr)->HasAura(SPELL_STONEFORM))
+                    if ((*itr)->IsAlive() && (*itr)->HasAura(SPELL_STONEFORM))
                     {
                         (*itr)->AI()->Talk(SAY_TRAP_ACTIVATE);
                         (*itr)->RemoveAurasDueToSpell(SPELL_STONEFORM);
@@ -2000,7 +2000,7 @@ class AliveCheck
         bool operator()(WorldObject* object) const
         {
             if (Unit* unit = object->ToUnit())
-                return unit->isAlive();
+                return unit->IsAlive();
             return true;
         }
 };

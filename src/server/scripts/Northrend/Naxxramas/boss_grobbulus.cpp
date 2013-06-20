@@ -23,137 +23,134 @@
 enum Spells
 {
     SPELL_BOMBARD_SLIME         = 28280,
-    SPELL_MUTATING_INJECTION    = 28169,
     SPELL_POISON_CLOUD          = 28240,
-    SPELL_POISON_CLOUD_ADD      = 59116,
+    SPELL_MUTATING_INJECTION    = 28169,
     SPELL_SLIME_SPRAY           = 28157,
+    H_SPELL_SLIME_SPRAY         = 54364,
     SPELL_BERSERK               = 26662,
+    SPELL_POISON_CLOUD_ADD      = 59116
 };
 
 enum Events
 {
-    EVENT_BERSERK               = 0,
-    EVENT_CLOUD                 = 1,
-    EVENT_INJECT                = 2,
-    EVENT_SPRAY                 = 3,
-};
-
-enum ScriptTexts
-{
-    EMOTE_SPRAY                 = 0,
+    EVENT_BERSERK               = 1,
+    EVENT_CLOUD                 = 2,
+    EVENT_INJECT                = 3,
+    EVENT_SPRAY                 = 4
 };
 
 enum CreatureId
 {
-    MOB_FALLOUT_SLIME           = 16290,
+    MOB_FALLOUT_SLIME           = 16290
 };
 
 class boss_grobbulus : public CreatureScript
 {
-    public: boss_grobbulus() : CreatureScript("boss_grobbulus") { }
+public:
+    boss_grobbulus() : CreatureScript("boss_grobbulus") { }
 
-        struct boss_grobbulusAI : public BossAI
+    CreatureAI* GetAI(Creature* creature) const
+    {
+        return new boss_grobbulusAI (creature);
+    }
+
+    struct boss_grobbulusAI : public BossAI
+    {
+        boss_grobbulusAI(Creature* creature) : BossAI(creature, BOSS_GROBBULUS)
         {
-            boss_grobbulusAI(Creature* creature) : BossAI(creature, DATA_GROBBULUS)
-            {
-                me->ApplySpellImmune(0, IMMUNITY_ID, SPELL_POISON_CLOUD_ADD, true);
-            }
+            me->ApplySpellImmune(0, IMMUNITY_ID, SPELL_POISON_CLOUD_ADD, true);
+        }
 
-            void EnterCombat(Unit* /*who*/)
-            {
-                _EnterCombat();
-                events.ScheduleEvent(EVENT_CLOUD, 15000);
-                events.ScheduleEvent(EVENT_INJECT, 20000);
-                events.ScheduleEvent(EVENT_SPRAY, 15000+rand()%15000); //not sure
-                events.ScheduleEvent(EVENT_BERSERK, 12*60000);
-            }
+        void EnterCombat(Unit* /*who*/)
+        {
+            _EnterCombat();
+            events.ScheduleEvent(EVENT_CLOUD, 15000);
+            events.ScheduleEvent(EVENT_INJECT, 20000);
+            events.ScheduleEvent(EVENT_SPRAY, 15000+rand()%15000); //not sure
+            events.ScheduleEvent(EVENT_BERSERK, 12*60000);
+        }
 
-            void SpellHitTarget(Unit* target, const SpellInfo* spell)
+        void SpellHitTarget(Unit* target, const SpellInfo* spell)
+        {
+            if (spell->Id == uint32(SPELL_SLIME_SPRAY))
             {
-                if (spell->Id == uint32(SPELL_SLIME_SPRAY))
-                {
-                    if (TempSummon* slime = me->SummonCreature(MOB_FALLOUT_SLIME, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), 0, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 0))
-                        DoZoneInCombat(slime);
-                }
+                if (TempSummon* slime = me->SummonCreature(MOB_FALLOUT_SLIME, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), 0, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 0))
+                    DoZoneInCombat(slime);
             }
+        }
 
-            void UpdateAI(uint32 diff)
-            {
-                if (!UpdateVictim())
+        void UpdateAI(uint32 diff)
+        {
+            if (!UpdateVictim())
                 return;
 
-                events.Update(diff);
+            events.Update(diff);
 
-                while (uint32 eventId = events.ExecuteEvent())
+            while (uint32 eventId = events.ExecuteEvent())
+            {
+                switch (eventId)
                 {
-                    switch (eventId)
-                    {
-                        case EVENT_CLOUD:
-                            DoCastAOE(SPELL_POISON_CLOUD);
-                            events.ScheduleEvent(EVENT_CLOUD, 15000);
-                            break;
-                        case EVENT_BERSERK:
-                            DoCastAOE(SPELL_BERSERK);
-                            break;
-                        case EVENT_SPRAY:
-                            TalkToMap(EMOTE_SPRAY);
-                            DoCastAOE(SPELL_SLIME_SPRAY);
-                            events.ScheduleEvent(EVENT_SPRAY, 15000+rand()%15000);
-                            break;
-                        case EVENT_INJECT:
-                            if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1))
-                                if (!target->HasAura(SPELL_MUTATING_INJECTION))
-                                    DoCast(target, SPELL_MUTATING_INJECTION);
-                            events.ScheduleEvent(EVENT_INJECT, 8000 + uint32(120 * me->GetHealthPct()));
-                            break;
-                    }
+                    case EVENT_CLOUD:
+                        DoCastAOE(SPELL_POISON_CLOUD);
+                        events.ScheduleEvent(EVENT_CLOUD, 15000);
+                        return;
+                    case EVENT_BERSERK:
+                        DoCastAOE(SPELL_BERSERK);
+                        return;
+                    case EVENT_SPRAY:
+                        DoCastAOE(SPELL_SLIME_SPRAY);
+                        events.ScheduleEvent(EVENT_SPRAY, 15000+rand()%15000);
+                        return;
+                    case EVENT_INJECT:
+                        if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1))
+                            if (!target->HasAura(SPELL_MUTATING_INJECTION))
+                                DoCast(target, SPELL_MUTATING_INJECTION);
+                        events.ScheduleEvent(EVENT_INJECT, 8000 + uint32(120 * me->GetHealthPct()));
+                        return;
                 }
-                DoMeleeAttackIfReady();
             }
-        };
 
-        CreatureAI* GetAI(Creature* creature) const
-        {
-            return GetNaxxramasAI<boss_grobbulusAI>(creature);
+            DoMeleeAttackIfReady();
         }
+    };
+
 };
 
 class npc_grobbulus_poison_cloud : public CreatureScript
 {
-    public:
-        npc_grobbulus_poison_cloud() : CreatureScript("npc_grobbulus_poison_cloud") { }
+public:
+    npc_grobbulus_poison_cloud() : CreatureScript("npc_grobbulus_poison_cloud") { }
 
-        struct npc_grobbulus_poison_cloudAI : public ScriptedAI
+    CreatureAI* GetAI(Creature* creature) const
+    {
+        return new npc_grobbulus_poison_cloudAI(creature);
+    }
+
+    struct npc_grobbulus_poison_cloudAI : public ScriptedAI
+    {
+        npc_grobbulus_poison_cloudAI(Creature* creature) : ScriptedAI(creature)
         {
-            npc_grobbulus_poison_cloudAI(Creature* creature) : ScriptedAI(creature)
-            {
-                SetCombatMovement(false);
-            }
-
-            uint32 Cloud_Timer;
-
-            void Reset()
-            {
-                Cloud_Timer = 1000;
-                me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
-            }
-
-            void UpdateAI(uint32 diff)
-            {
-                if (Cloud_Timer <= diff)
-                {
-                    DoCast(me, SPELL_POISON_CLOUD_ADD);
-                    Cloud_Timer = 10000;
-                }
-                else
-                    Cloud_Timer -= diff;
-            }
-        };
-
-        CreatureAI* GetAI(Creature* creature) const
-        {
-            return GetNaxxramasAI<npc_grobbulus_poison_cloudAI>(creature);
+            SetCombatMovement(false);
         }
+
+        uint32 Cloud_Timer;
+
+        void Reset()
+        {
+            Cloud_Timer = 1000;
+            me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
+        }
+
+        void UpdateAI(uint32 diff)
+        {
+            if (Cloud_Timer <= diff)
+            {
+                DoCast(me, SPELL_POISON_CLOUD_ADD);
+                Cloud_Timer = 10000;
+            } else Cloud_Timer -= diff;
+        }
+    };
+
 };
 
 void AddSC_boss_grobbulus()
