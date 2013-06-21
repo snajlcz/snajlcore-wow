@@ -4393,8 +4393,7 @@ void AuraEffect::HandleModDamagePercentDone(AuraApplication const* aurApp, uint8
                 target->ToPlayer()->_ApplyWeaponDependentAuraDamageMod(item, WeaponAttackType(i), this, apply);
     }
 
-    if (((GetMiscValue() & SPELL_SCHOOL_MASK_NORMAL) && (GetSpellInfo()->EquippedItemClass == -1 || target->GetTypeId() != TYPEID_PLAYER))
-        || GetId() == 31869)    // Sanctified Retribution
+    if (((GetMiscValue() & SPELL_SCHOOL_MASK_NORMAL) && (GetSpellInfo()->EquippedItemClass == -1 || target->GetTypeId() != TYPEID_PLAYER)) || GetId() == 31869) // Sanctified Retribution
     {
         target->HandleStatModifier(UNIT_MOD_DAMAGE_MAINHAND,         TOTAL_PCT, float (GetAmount()), apply);
         target->HandleStatModifier(UNIT_MOD_DAMAGE_OFFHAND,          TOTAL_PCT, float (GetAmount()), apply);
@@ -5748,6 +5747,35 @@ void AuraEffect::HandlePeriodicTriggerSpellAuraTick(Unit* target, Unit* caster) 
         // Spell exist but require custom code
         switch (auraId)
         {
+            // Pursuing Spikes (Anub'arak)
+            case 65920:
+            case 65922:
+            case 65923:
+            {
+                Unit* permafrostCaster = NULL;
+                Aura* permafrostAura = target->GetAura(66193);
+                if (!permafrostAura)
+                    permafrostAura = target->GetAura(67855);
+                if (!permafrostAura)
+                    permafrostAura = target->GetAura(67856);
+                if (!permafrostAura)
+                    permafrostAura = target->GetAura(67857);
+
+                if (permafrostAura)
+                    permafrostCaster = permafrostAura->GetCaster();
+
+                if (permafrostCaster)
+                {
+                    if (Creature* permafrostCasterCreature = permafrostCaster->ToCreature())
+                        permafrostCasterCreature->DespawnOrUnsummon(3000);
+
+                    target->CastSpell(target, 66181, false);
+                    target->RemoveAllAuras();
+                    if (Creature* targetCreature = target->ToCreature())
+                        targetCreature->DisappearAndDie();
+                }
+                break;
+            }
             // Mana Tide
             case 16191:
                 target->CastCustomSpell(target, triggerSpellId, &m_amount, NULL, NULL, true, NULL, this);
