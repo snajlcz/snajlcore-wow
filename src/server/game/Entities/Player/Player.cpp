@@ -2510,15 +2510,16 @@ void Player::Regenerate(Powers power)
 
     uint32 curValue = GetPower(power);
 
+    /// @todo possible use of miscvalueb instead of amount
+    if (HasAuraTypeWithValue(SPELL_AURA_PREVENT_REGENERATE_POWER, power))
+        return;
+
     float addvalue = 0.0f;
 
     switch (power)
     {
         case POWER_MANA:
         {
-            if (HasAuraType(SPELL_AURA_PREVENT_REGENERATE_POWER))
-                break;
-
             bool recentCast = IsUnderLastManaUseEffect();
             float ManaIncreaseRate = sWorld->getRate(RATE_POWER_MANA);
 
@@ -14597,7 +14598,7 @@ void Player::SendPreparedGossip(WorldObject* source)
 void Player::OnGossipSelect(WorldObject* source, uint32 gossipListId, uint32 menuId)
 {
     GossipMenu& gossipMenu = PlayerTalkClass->GetGossipMenu();
-    
+
     // if not same, then something funky is going on
     if (menuId != gossipMenu.GetMenuId())
         return;
@@ -22154,6 +22155,15 @@ bool Player::CanJoinToBattleground(Battleground const* bg) const
 {
     // check Deserter debuff
     if (HasAura(26013))
+        return false;
+
+    if (bg->isArena() && !GetSession()->HasPermission(RBAC_PERM_JOIN_ARENAS))
+        return false;
+
+    if (bg->IsRandom() && !GetSession()->HasPermission(RBAC_PERM_JOIN_RANDOM_BG))
+        return false;
+
+    if (!GetSession()->HasPermission(RBAC_PERM_JOIN_NORMAL_BG))
         return false;
 
     return true;
