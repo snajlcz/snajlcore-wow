@@ -301,7 +301,7 @@ public:
                 DoMeleeAttackIfReady();
             }
 
-            if (me->isInCombat() && instance->GetData(DATA_LICHKING_EVENT) == IN_PROGRESS)
+            if (me->IsInCombat() && instance->GetData(DATA_LICHKING_EVENT) == IN_PROGRESS)
             {
                 npc_escortAI::EnterEvadeMode();
             }

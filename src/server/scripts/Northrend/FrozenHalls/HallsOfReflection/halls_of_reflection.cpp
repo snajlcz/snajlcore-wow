@@ -1118,7 +1118,7 @@ public:
                 return;
 
             if (Player* player = who->ToPlayer())
-                if (player->isGameMaster())
+                if (player->IsGameMaster())
                     return;
 
             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
@@ -1333,7 +1333,7 @@ public:
         if (instance->GetData(DATA_LICHKING_EVENT) == DONE)
             return false;
 
-        if (creature->isQuestGiver())
+        if (creature->IsQuestGiver())
             player->PrepareQuestMenu( creature->GetGUID());
 
         player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "We are ready!", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+1);
@@ -1788,7 +1788,7 @@ public:
             {
                 Map::PlayerList const &PlayerList = instance->instance->GetPlayers();
                 for (Map::PlayerList::const_iterator i = PlayerList.begin(); i != PlayerList.end(); ++i)
-                    i->getSource()->KilledMonsterCredit(killCredit, 0);
+                    i->GetSource()->KilledMonsterCredit(killCredit, 0);
             }
         }
 
@@ -1835,7 +1835,7 @@ public:
             else
                 _castTimer -= diff;
 
-            if (_wallCast == true && _holdTimer < 10000 && ( instance->GetData(DATA_SUMMONS) == 0 || !me->isInCombat()))
+            if (_wallCast == true && _holdTimer < 10000 && ( instance->GetData(DATA_SUMMONS) == 0 || !me->IsInCombat()))
             {
                 _wallCast = false;
                 me->InterruptNonMeleeSpells(false);
@@ -1902,7 +1902,7 @@ class at_hor_waves_restarter : public AreaTriggerScript
         {
             InstanceScript* instance = player->GetInstanceScript();
 
-            if (player->isGameMaster())
+            if (player->IsGameMaster())
                 return true;
 
             if (instance->GetData(DATA_WAVE_COUNT) == SPECIAL)
