@@ -387,9 +387,53 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recvData)
     {
         plrMover->UpdateFallInformationIfNeed(movementInfo, opcode);
 
+        float underMapValueZ;
+        switch (plrMover->GetMapId())
+        {
+            case 617: // Dalaran Sewers
+                underMapValueZ = 3.0f;
+                break; 
+            case 618: // Ring of Valor
+                underMapValueZ = 28.0f;
+                break;
+            case 562: // Blade Edge Arena
+                underMapValueZ = -10.0f;
+                break;
+            case 559: // Nagrand arena
+                underMapValueZ = -18.0f;
+                break;
+            case 572: // Lordearon
+                underMapValueZ = 28.0f;
+                break;
+            case 571: // Northrend
+                underMapValueZ = -400.0f;
+                break;
+            default:
+                underMapValueZ = -500.0f;
+                break;
+        }
+
+        if (plrMover->GetMapId() == 617 && movementInfo.pos.GetPositionZ() < 3.0) // Dalaran Arena
+            plrMover->TeleportTo(617, 13313.605f, 813.23f, 7.11f, 5.1f);
+
         if (movementInfo.pos.GetPositionZ() < -500.0f)
         {
-            if (!(plrMover->GetBattleground() && plrMover->GetBattleground()->HandlePlayerUnderMap(_player)))
+            if (underMapValueZ != -500) // Only Case Values
+            {
+                // Hackfix for ArenaUnderZ -> Teleport
+                if (plrMover->GetMapId() == 572) // Lordaeron Arena
+                    plrMover->TeleportTo(572, 1286.14868f, 1667.32f, 41.0f, 1.6f);
+
+                if (plrMover->GetMapId() == 559) // Nagrand Arena
+                    plrMover->TeleportTo(559, 4052.79868f, 2926.32f, 16.0f, 1.6f);
+
+                if (plrMover->GetMapId() == 562) // Blade Edge arena
+                    plrMover->TeleportTo(562, 6237.79768f, 261.142f, 2.0f, 4.0f);
+
+                if (plrMover->GetMapId() == 617) // Dalaran Arena
+                    plrMover->TeleportTo(617, 1292.34868f, 790.40f, 8.5f, 1.6f);
+            }
+            else if (!(plrMover->GetBattleground() && plrMover->GetBattleground()->HandlePlayerUnderMap(_player)))
             {
                 // NOTE: this is actually called many times while falling
                 // even after the player has been teleported away
