@@ -6,7 +6,7 @@
 * SDComment: Buff Master Profession SkillUp Trainers
 * SDCategory: NPC
 * REPLACE INTO `creature_template` VALUES ('993369', '0', '0', '0', '0', '0', '26789', '0', '0', '0', 'MMOwning Morfs', 'allinone', '', '0', '80', '80', '0', '35', '35', '1', '1', '1.14286', '0.75', '2', '1755', '1755', '0', '1504', '1000', '1500', '0', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '7', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '3', '1', '100', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'pryds_allinone', '1');
-* https://github.com/Vitasic/Battle/commits/mmaps
+* https://github.com/Vitasic/Battle
 * EndScriptData 
 */
 
@@ -50,7 +50,7 @@ bool OnGossipHello(Player  *player, Creature* pCreature)
 void SendDefaultMenu_pryds_allinone(Player  *player, Creature* pCreature, uint32 uiAction)
 {
 //  Not allow in combat
-if (player->isInCombat())
+if (player->IsInCombat())
 {
     player->CLOSE_GOSSIP_MENU();
     pCreature->MonsterSay("You are in combat!", LANG_UNIVERSAL, NULL);
