@@ -32,7 +32,6 @@
 #include "World.h"
 #include "WorldPacket.h"
 #include "WorldSession.h"
-#include "InstanceSaveMgr.h"
 
 class Aura;
 
@@ -85,14 +84,14 @@ void WorldSession::HandleGroupInviteOpcode(WorldPacket& recvData)
     }
 
     // restrict invite to GMs
-    if (!sWorld->getBoolConfig(CONFIG_ALLOW_GM_GROUP) && !GetPlayer()->isGameMaster() && player->isGameMaster())
+    if (!sWorld->getBoolConfig(CONFIG_ALLOW_GM_GROUP) && !GetPlayer()->IsGameMaster() && player->IsGameMaster())
     {
         SendPartyResult(PARTY_OP_INVITE, membername, ERR_BAD_PLAYER_NAME_S);
         return;
     }
 
     // can't group with
-    if (!GetPlayer()->isGameMaster() && !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GROUP) && GetPlayer()->GetTeam() != player->GetTeam())
+    if (!GetPlayer()->IsGameMaster() && !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GROUP) && GetPlayer()->GetTeam() != player->GetTeam())
     {
         SendPartyResult(PARTY_OP_INVITE, membername, ERR_PLAYER_WRONG_FACTION);
         return;
@@ -381,32 +380,6 @@ void WorldSession::HandleGroupSetLeaderOpcode(WorldPacket& recvData)
 
     if (!group->IsLeader(GetPlayer()->GetGUID()) || player->GetGroup() != group)
         return;
-
-    //FIX INSTANCE COOLDOWN EXPLOIT
-    Group::MemberSlotList members = group->GetMemberSlots();
-    Player* plr = NULL;
-    bool ch = false;
-
-    for (Group::member_citerator itr = members.begin(); itr != members.end(); ++itr)
-    {
-        plr = sObjectMgr->GetPlayerByLowGUID(itr->guid);
-        for (int i = 0; i < MAX_DIFFICULTY; ++i)
-        {
-            for (Player::BoundInstancesMap::iterator it = player->m_boundInstances[i].begin(); it != player->m_boundInstances[i].end(); ++it)
-            {
-                if (plr && it->first == plr->GetMapId() && plr->GetGUID() != player->GetGUID())
-                {
-                    group->BindToInstance(it->second.save, false);
-                    ch = true;
-                    break;
-                }
-            }
-            if (ch)
-                break;
-        }
-        if (ch)
-            break;
-    }
 
     // Everything's fine, accepted.
     group->ChangeLeader(guid);
@@ -762,7 +735,7 @@ void WorldSession::BuildPartyMemberStatsChangedPacket(Player* player, WorldPacke
             if (player->IsPvP())
                 playerStatus |= MEMBER_STATUS_PVP;
 
-            if (!player->isAlive())
+            if (!player->IsAlive())
             {
                 if (player->HasFlag(PLAYER_FLAGS, PLAYER_FLAGS_GHOST))
                     playerStatus |= MEMBER_STATUS_GHOST;
@@ -916,7 +889,7 @@ void WorldSession::BuildPartyMemberStatsChangedPacket(Player* player, WorldPacke
     if (mask & GROUP_UPDATE_FLAG_VEHICLE_SEAT)
     {
         if (Vehicle* veh = player->GetVehicle())
-            *data << uint32(veh->GetVehicleInfo()->m_seatID[player->m_movementInfo.t_seat]);
+            *data << uint32(veh->GetVehicleInfo()->m_seatID[player->m_movementInfo.transport.seat]);
         else
             *data << uint32(0);
     }
@@ -967,7 +940,7 @@ void WorldSession::HandleRequestPartyMemberStatsOpcode(WorldPacket &recvData)
     if (player->IsPvP())
         playerStatus |= MEMBER_STATUS_PVP;
 
-    if (!player->isAlive())
+    if (!player->IsAlive())
     {
         if (player->HasFlag(PLAYER_FLAGS, PLAYER_FLAGS_GHOST))
             playerStatus |= MEMBER_STATUS_GHOST;
@@ -1053,7 +1026,7 @@ void WorldSession::HandleRequestPartyMemberStatsOpcode(WorldPacket &recvData)
     data.put<uint64>(maskPos, petAuraMask);                 // GROUP_UPDATE_FLAG_PET_AURAS
 
     if (updateFlags & GROUP_UPDATE_FLAG_VEHICLE_SEAT)
-        data << uint32(player->GetVehicle()->GetVehicleInfo()->m_seatID[player->m_movementInfo.t_seat]);
+        data << uint32(player->GetVehicle()->GetVehicleInfo()->m_seatID[player->m_movementInfo.transport.seat]);
 
     SendPacket(&data);
 }

@@ -365,7 +365,9 @@ public:
                             Nefarian->setFaction(103);
                             NefarianGUID = Nefarian->GetGUID();
                         }
-                        else TC_LOG_ERROR(LOG_FILTER_TSCR, "Blackwing Lair: Unable to spawn nefarian properly.");
+                        else
+                            TC_LOG_ERROR(LOG_FILTER_TSCR, "Blackwing Lair: Unable to spawn nefarian properly.");
+                        me->DespawnOrUnsummon();
                     }
 
                     AddSpawnTimer = 4000;
@@ -379,7 +381,7 @@ public:
 
                     //If nef is dead then we die to so the players get out of combat
                     //and cannot repeat the event
-                    if (!Nefarian || !Nefarian->isAlive())
+                    if (!Nefarian || !Nefarian->IsAlive())
                     {
                         NefarianGUID = 0;
                         me->DespawnOrUnsummon();

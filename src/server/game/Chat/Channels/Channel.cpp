@@ -615,7 +615,7 @@ void Channel::Say(uint64 guid, std::string const& what, uint32 lang)
         SendToOne(&data, guid);
         return;
     }
-    
+
     if (playersStore[guid].IsMuted())
     {
         WorldPacket data;

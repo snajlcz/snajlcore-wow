@@ -46,7 +46,7 @@ class System_Censure : public PlayerScript
 
     void CheckMessage(Player* player, std::string& msg, uint32 lang, Player* /*receiver*/, Group* /*group*/, Guild* /*guild*/, Channel* channel)
     {
-        if (player->isGameMaster() || lang == LANG_ADDON)
+        if (player->IsGameMaster() || lang == LANG_ADDON)
             return;
 
         // transform to lowercase (for simpler checking)

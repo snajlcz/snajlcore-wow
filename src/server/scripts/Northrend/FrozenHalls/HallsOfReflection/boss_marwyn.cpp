@@ -23,9 +23,8 @@ enum Yells
 {
     SAY_AGGRO                                     = 0,
     SAY_SLAY                                      = 1,
-    SAY_CORRUPTED_FLESH_1                         = 2,
-    SAY_WELL_OF_CORRUPTION                        = 3,
-    SAY_DEATH                                     = 4,
+    SAY_DEATH                                     = 2,
+    SAY_CORRUPTED_FLESH                           = 3
 };
 
 enum Spells
@@ -66,11 +65,6 @@ public:
             if (instance)
                 instance->SetData(DATA_MARWYN_EVENT, NOT_STARTED);
         }
-        
-        void JustReachedHome()
-        {
-            instance->SetData(DATA_WAVE_STATE, FAIL);
-        }
 
         void EnterCombat(Unit* /*who*/)
         {
@@ -78,10 +72,10 @@ public:
             if (instance)
                 instance->SetData(DATA_MARWYN_EVENT, IN_PROGRESS);
 
-            events.ScheduleEvent(EVENT_OBLITERATE, 30000);          // TODO Check timer
+            events.ScheduleEvent(EVENT_OBLITERATE, 30000);          /// @todo Check timer
             events.ScheduleEvent(EVENT_WELL_OF_CORRUPTION, 13000);
             events.ScheduleEvent(EVENT_CORRUPTED_FLESH, 20000);
-            // events.ScheduleEvent(EVENT_SHARED_SUFFERING, 20000);    // I don't believe this spell is working properly atm, it will 1 shot a player when it ends
+            events.ScheduleEvent(EVENT_SHARED_SUFFERING, 20000);    /// @todo Check timer
         }
 
         void JustDied(Unit* /*killer*/)
@@ -89,10 +83,7 @@ public:
             Talk(SAY_DEATH);
 
             if (instance)
-            {
                 instance->SetData(DATA_MARWYN_EVENT, DONE);
-                instance->SetData(DATA_WAVE_STATE, DONE);
-            }
         }
 
         void KilledUnit(Unit* /*victim*/)
@@ -118,12 +109,11 @@ public:
                     events.ScheduleEvent(EVENT_OBLITERATE, 30000);
                     break;
                 case EVENT_WELL_OF_CORRUPTION:
-                    Talk(SAY_WELL_OF_CORRUPTION);
                     DoCast(SPELL_WELL_OF_CORRUPTION);
                     events.ScheduleEvent(EVENT_WELL_OF_CORRUPTION, 13000);
                     break;
                 case EVENT_CORRUPTED_FLESH:
-                    Talk(SAY_CORRUPTED_FLESH_1);
+                    Talk(SAY_CORRUPTED_FLESH);
                     DoCast(SPELL_CORRUPTED_FLESH);
                     events.ScheduleEvent(EVENT_CORRUPTED_FLESH, 20000);
                     break;
