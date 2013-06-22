@@ -211,7 +211,7 @@ class boss_eadric : public CreatureScript
                 Map::PlayerList const &players = pMap->GetPlayers();
                 for (Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
                 {
-                     if (itr->getSource() && itr->getSource()->isAlive() && !itr->getSource()->isGameMaster())
+                     if (itr->GetSource() && itr->GetSource()->IsAlive() && !itr->GetSource()->IsGameMaster())
                          return;
                 }
                 
@@ -295,7 +295,7 @@ class boss_eadric : public CreatureScript
 
                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 250, true))
                 {
-                    if (target && target->isAlive())
+                    if (target && target->IsAlive())
                     {
                         Talk(SAY_EADRIC_HAMMER);
                         DoCast(target, SPELL_HAMMER_JUSTICE);
@@ -377,7 +377,7 @@ class boss_paletress : public CreatureScript
             bDone = false;
 
             if (Creature* pMemory = Unit::GetCreature(*me, MemoryGUID))
-                if (pMemory->isAlive())
+                if (pMemory->IsAlive())
                     pMemory->RemoveFromWorld();
 
             Map* pMap = me->GetMap();
@@ -386,7 +386,7 @@ class boss_paletress : public CreatureScript
                 Map::PlayerList const &players = pMap->GetPlayers();
                 for (Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
                 {
-                    if (itr->getSource() && itr->getSource()->isAlive() && !itr->getSource()->isGameMaster())
+                    if (itr->GetSource() && itr->GetSource()->IsAlive() && !itr->GetSource()->IsGameMaster())
                         return;
                 }
 
@@ -467,7 +467,7 @@ class boss_paletress : public CreatureScript
             {
                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 250, true))
                 {
-                    if (target && target->isAlive())
+                    if (target && target->IsAlive())
                         DoCast(target,DUNGEON_MODE(SPELL_HOLY_FIRE,SPELL_HOLY_FIRE_H));
                 }
                 if (me->HasAura(SPELL_SHIELD))
@@ -480,7 +480,7 @@ class boss_paletress : public CreatureScript
             {
                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 250, true))
                 {
-                    if (target && target->isAlive())
+                    if (target && target->IsAlive())
                         DoCast(target,DUNGEON_MODE(SPELL_SMITE,SPELL_SMITE_H));
                 }
                 if (me->HasAura(SPELL_SHIELD))
@@ -502,7 +502,7 @@ class boss_paletress : public CreatureScript
                             break;
                         case 1:
                             if (Creature* pMemory = Unit::GetCreature(*me, MemoryGUID))
-                                if (pMemory->isAlive())
+                                if (pMemory->IsAlive())
                                     DoCast(pMemory, DUNGEON_MODE(SPELL_RENEW,SPELL_RENEW_H));
                             break;
                     }
@@ -643,7 +643,7 @@ class npc_memory : public CreatureScript
             {
                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM,0))
                 {
-                    if (target && target->isAlive())
+                    if (target && target->IsAlive())
                         DoCast(target, DUNGEON_MODE(SPELL_OLD_WOUNDS,SPELL_OLD_WOUNDS_H));
                 }
                 uiOldWoundsTimer = 23000;
@@ -659,7 +659,7 @@ class npc_memory : public CreatureScript
             {
                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM,1))
                 {
-                    if (target && target->isAlive())
+                    if (target && target->IsAlive())
                         DoCast(target,DUNGEON_MODE(SPELL_SHADOWS_PAST,SPELL_SHADOWS_PAST_H));
                 }
                 uiShadowPastTimer = 20000;
@@ -670,11 +670,11 @@ class npc_memory : public CreatureScript
 
         void JustDied(Unit* killer)
         {
-            if (me->isSummon())
+            if (me->IsSummon())
             {
                 if (Unit* summoner = me->ToTempSummon()->GetSummoner())
                 {
-                    if (summoner && summoner->isAlive())
+                    if (summoner && summoner->IsAlive())
                         CAST_CRE(summoner)->AI()->SetData(1,0);
                 }
             }
