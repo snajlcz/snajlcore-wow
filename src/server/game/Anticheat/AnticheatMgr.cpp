@@ -52,7 +52,7 @@ void AnticheatMgr::WalkOnWaterHackDetection(Player* player, MovementInfo movemen
         return;
 
     // if we are a ghost we can walk on water
-    if (!player->isAlive())
+    if (!player->IsAlive())
         return;
 
     if (player->HasAuraType(SPELL_AURA_FEATHER_FALL) ||
@@ -122,7 +122,7 @@ void AnticheatMgr::StartHackDetection(Player* player, MovementInfo movementInfo,
 
     uint32 key = player->GetGUIDLow();
 
-    if (player->isInFlight() || player->GetTransport() || player->GetVehicle())
+    if (player->IsInFlight() || player->GetTransport() || player->GetVehicle())
     {
         m_Players[key].SetLastMovementInfo(movementInfo);
         m_Players[key].SetLastOpcode(opcode);
@@ -201,7 +201,7 @@ void AnticheatMgr::SpeedHackDetection(Player* player,MovementInfo movementInfo)
         moveType = MOVE_RUN;
 
     // how many yards the player can do in one sec.
-    uint32 speedRate = (uint32)(player->GetSpeed(UnitMoveType(moveType)) + movementInfo.j_xyspeed);
+    uint32 speedRate = (uint32)(player->GetSpeed(UnitMoveType(moveType)) + movementInfo.jump.xyspeed);
 
     // how long the player took to move to here.
     uint32 timeDiff = getMSTimeDiff(m_Players[key].GetLastMovementInfo().time,movementInfo.time);

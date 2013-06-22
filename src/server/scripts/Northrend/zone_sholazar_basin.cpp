@@ -98,13 +98,13 @@ public:
                 case 16:
                 case 17:
                 case 18:
-                    me->RemoveUnitMovementFlag(MOVEMENTFLAG_SWIMMING);
                     me->RemoveUnitMovementFlag(MOVEMENTFLAG_FALLING);
                     me->SetSpeed(MOVE_SWIM, 0.85f, true);
-                    me->AddUnitMovementFlag(MOVEMENTFLAG_SWIMMING | MOVEMENTFLAG_DISABLE_GRAVITY);
+                    me->SetSwim(true);
+                    me->SetDisableGravity(true);
                     break;
                 case 19:
-                    me->SetUnitMovementFlags(MOVEMENTFLAG_FALLING);
+                    me->GetMotionMaster()->MoveFall();
                     break;
                 case 28:
                     player->GroupEventHappens(QUEST_FORTUNATE_MISUNDERSTANDINGS, me);
@@ -130,7 +130,7 @@ public:
 
     bool OnGossipHello(Player* player, Creature* creature)
     {
-        if (creature->isQuestGiver())
+        if (creature->IsQuestGiver())
             player->PrepareQuestMenu(creature->GetGUID());
 
         if (player->GetQuestStatus(QUEST_FORTUNATE_MISUNDERSTANDINGS) == QUEST_STATUS_INCOMPLETE)
@@ -148,7 +148,6 @@ public:
         {
             CAST_AI(npc_escortAI, (creature->AI()))->Start(true, false, player->GetGUID());
             CAST_AI(npc_escortAI, (creature->AI()))->SetMaxPlayerDistance(35.0f);
-            creature->SetUnitMovementFlags(MOVEMENTFLAG_FALLING);
             creature->AI()->Talk(SAY_START_IRO);
 
             switch (player->GetTeam()){
@@ -201,7 +200,7 @@ public:
 
     bool OnGossipHello(Player* player, Creature* creature)
     {
-        if (creature->isQuestGiver())
+        if (creature->IsQuestGiver())
             player->PrepareQuestMenu(creature->GetGUID());
 
         if (player->GetQuestStatus(QUEST_MAKING_PEACE) == QUEST_STATUS_INCOMPLETE)
@@ -262,7 +261,7 @@ public:
 
     bool OnGossipHello(Player* player, Creature* creature)
     {
-        if (creature->isQuestGiver())
+        if (creature->IsQuestGiver())
             player->PrepareQuestMenu(creature->GetGUID());
 
         if (player->GetQuestStatus(QUEST_FREYA_PACT) == QUEST_STATUS_INCOMPLETE)
@@ -844,7 +843,7 @@ public:
                     std::list<Creature*> saboteurs;
                     caster->GetCreatureListWithEntryInGrid(saboteurs, NPC_SABOTEUR, 200.0f);
                     for (std::list<Creature*>::iterator itr = saboteurs.begin(); itr != saboteurs.end(); ++itr)
-                        if ((*itr)->isAlive())
+                        if ((*itr)->IsAlive())
                             // Lifeforce has a cast duration, it should be cast at all saboteurs one by one
                             presence->CastSpell((*itr), SPELL_LIFEFORCE, false);
                 }

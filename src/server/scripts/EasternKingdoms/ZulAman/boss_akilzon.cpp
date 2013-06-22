@@ -153,7 +153,7 @@ class boss_akilzon : public CreatureScript
                 for (uint8 i = 0; i < 8; ++i)
                 {
                     Unit* bird = Unit::GetUnit(*me, BirdGUIDs[i]);
-                    if (bird && bird->isAlive())
+                    if (bird && bird->IsAlive())
                     {
                         bird->SetVisible(false);
                         bird->setDeathState(JUST_DIED);
@@ -248,7 +248,7 @@ class boss_akilzon : public CreatureScript
                 if (StormCount)
                 {
                     Unit* target = Unit::GetUnit(*me, CloudGUID);
-                    if (!target || !target->isAlive())
+                    if (!target || !target->IsAlive())
                     {
                         EnterEvadeMode();
                         return;
@@ -274,10 +274,10 @@ class boss_akilzon : public CreatureScript
                 if (StaticDisruption_Timer <= diff)
                 {
                     Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1);
-                    if (!target) target = me->getVictim();
+                    if (!target) target = me->GetVictim();
                     TargetGUID = target->GetGUID();
                     DoCast(target, SPELL_STATIC_DISRUPTION, false);
-                    me->SetInFront(me->getVictim());
+                    me->SetInFront(me->GetVictim());
                     StaticDisruption_Timer = (10+rand()%8)*1000; // < 20s
 
                     /*if (float dist = me->IsWithinDist3d(target->GetPositionX(), target->GetPositionY(), target->GetPositionZ(), 5.0f) dist = 5.0f;
@@ -287,14 +287,14 @@ class boss_akilzon : public CreatureScript
                 if (GustOfWind_Timer <= diff)
                 {
                     Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1);
-                    if (!target) target = me->getVictim();
+                    if (!target) target = me->GetVictim();
                     DoCast(target, SPELL_GUST_OF_WIND);
                     GustOfWind_Timer = urand(20, 30) * 1000; //20 to 30 seconds(bosskillers)
                 } else GustOfWind_Timer -= diff;
 
                 if (CallLighting_Timer <= diff)
                 {
-                    DoCast(me->getVictim(), SPELL_CALL_LIGHTNING);
+                    DoCast(me->GetVictim(), SPELL_CALL_LIGHTNING);
                     CallLighting_Timer = urand(12, 17) * 1000; //totaly random timer. can't find any info on this
                 } else CallLighting_Timer -= diff;
 
@@ -318,14 +318,14 @@ class boss_akilzon : public CreatureScript
                     target->GetPosition(x, y, z);
                     if (target)
                     {
-                        target->SetUnitMovementFlags(MOVEMENTFLAG_DISABLE_GRAVITY);
+                        target->SetDisableGravity(true);
                         target->MonsterMoveWithSpeed(x, y, me->GetPositionZ()+15, 0);
                     }
                     Unit* Cloud = me->SummonTrigger(x, y, me->GetPositionZ()+16, 0, 15000);
                     if (Cloud)
                     {
                         CloudGUID = Cloud->GetGUID();
-                        Cloud->SetUnitMovementFlags(MOVEMENTFLAG_DISABLE_GRAVITY);
+                        Cloud->SetDisableGravity(true);
                         Cloud->StopMoving();
                         Cloud->SetObjectScale(1.0f);
                         Cloud->setFaction(35);
@@ -361,8 +361,8 @@ class boss_akilzon : public CreatureScript
                             Creature* creature = me->SummonCreature(MOB_SOARING_EAGLE, x, y, z, 0, TEMPSUMMON_CORPSE_DESPAWN, 0);
                             if (creature)
                             {
-                                creature->AddThreat(me->getVictim(), 1.0f);
-                                creature->AI()->AttackStart(me->getVictim());
+                                creature->AddThreat(me->GetVictim(), 1.0f);
+                                creature->AI()->AttackStart(me->GetVictim());
                                 BirdGUIDs[i] = creature->GetGUID();
                             }
                         }
@@ -398,7 +398,7 @@ class mob_akilzon_eagle : public CreatureScript
                 EagleSwoop_Timer = urand(5000, 10000);
                 arrived = true;
                 TargetGUID = 0;
-                me->SetUnitMovementFlags(MOVEMENTFLAG_DISABLE_GRAVITY);
+                me->SetDisableGravity(true);
             }
 
             void EnterCombat(Unit* /*who*/)

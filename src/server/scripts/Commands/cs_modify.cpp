@@ -99,20 +99,11 @@ public:
         }
 
         Player* target = handler->getSelectedPlayer();
-        Unit* target2 = handler->getSelectedUnit();
-
-        if (!target && !target2)
+        if (!target)
         {
             handler->SendSysMessage(LANG_NO_CHAR_SELECTED);
             handler->SetSentErrorMessage(true);
             return false;
-        }
-
-        if (target2)
-        {
-            target2->SetMaxHealth(hpm);
-            target2->SetHealth(hp);
-            return true;
         }
 
         if (handler->HasLowerSecurity(target, 0))
@@ -451,7 +442,7 @@ public:
             target->ToPlayer()->SendTalentsInfoData(false);
             return true;
         }
-        else if (target->ToCreature()->isPet())
+        else if (target->ToCreature()->IsPet())
         {
             Unit* owner = target->GetOwner();
             if (owner && owner->GetTypeId() == TYPEID_PLAYER && ((Pet*)target)->IsPermanentPetFor(owner->ToPlayer()))
@@ -499,7 +490,7 @@ public:
 
         std::string targetNameLink = handler->GetNameLink(target);
 
-        if (target->isInFlight())
+        if (target->IsInFlight())
         {
             handler->PSendSysMessage(LANG_CHAR_IN_FLIGHT, targetNameLink.c_str());
             handler->SetSentErrorMessage(true);
@@ -547,7 +538,7 @@ public:
 
         std::string targetNameLink = handler->GetNameLink(target);
 
-        if (target->isInFlight())
+        if (target->IsInFlight())
         {
             handler->PSendSysMessage(LANG_CHAR_IN_FLIGHT, targetNameLink.c_str());
             handler->SetSentErrorMessage(true);
@@ -592,7 +583,7 @@ public:
 
         std::string targetNameLink = handler->GetNameLink(target);
 
-        if (target->isInFlight())
+        if (target->IsInFlight())
         {
             handler->PSendSysMessage(LANG_CHAR_IN_FLIGHT, targetNameLink.c_str());
             handler->SetSentErrorMessage(true);
@@ -637,7 +628,7 @@ public:
 
         std::string targetNameLink = handler->GetNameLink(target);
 
-        if (target->isInFlight())
+        if (target->IsInFlight())
         {
             handler->PSendSysMessage(LANG_CHAR_IN_FLIGHT, targetNameLink.c_str());
             handler->SetSentErrorMessage(true);

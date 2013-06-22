@@ -24,10 +24,10 @@
 enum Yells
 {
     SAY_AGGRO           = 0,
-    SAY_CORRUPT_SOUL    = 1,
-    SAY_SOUL_STORM      = 2,
-    SAY_SLAY            = 3,
-    SAY_DEATH           = 4
+    SAY_SLAY            = 1,
+    SAY_DEATH           = 2,
+    SAY_SOUL_STORM      = 3,
+    SAY_CORRUPT_SOUL    = 4,
 };
 
 enum Spells
@@ -47,10 +47,10 @@ enum Spells
 enum Events
 {
     EVENT_MAGIC_BANE    = 1,
-    EVENT_SHADOW_BOLT,
-    EVENT_CORRUPT_SOUL,
-    EVENT_SOULSTORM,
-    EVENT_FEAR
+    EVENT_SHADOW_BOLT   = 2,
+    EVENT_CORRUPT_SOUL  = 3,
+    EVENT_SOULSTORM     = 4,
+    EVENT_FEAR          = 5,
 };
 
 enum CombatPhases
@@ -81,11 +81,13 @@ class boss_bronjahm : public CreatureScript
 
             void Reset()
             {
-                _Reset();
+                events.Reset();
                 events.SetPhase(PHASE_1);
-                events.ScheduleEvent(EVENT_SHADOW_BOLT, 2*IN_MILLISECONDS);
-                events.ScheduleEvent(EVENT_MAGIC_BANE, urand(8*IN_MILLISECONDS, 20*IN_MILLISECONDS));
-                events.ScheduleEvent(EVENT_CORRUPT_SOUL, urand(25*IN_MILLISECONDS, 35*IN_MILLISECONDS), 0, PHASE_1);
+                events.ScheduleEvent(EVENT_SHADOW_BOLT, 2000);
+                events.ScheduleEvent(EVENT_MAGIC_BANE, urand(8000, 20000));
+                events.ScheduleEvent(EVENT_CORRUPT_SOUL, urand(25000, 35000), 0, PHASE_1);
+
+                instance->SetBossState(DATA_BRONJAHM, NOT_STARTED);
             }
 
            void JustReachedHome()
@@ -95,15 +97,17 @@ class boss_bronjahm : public CreatureScript
 
             void EnterCombat(Unit* /*who*/)
             {
-                _EnterCombat();
                 Talk(SAY_AGGRO);
                 me->RemoveAurasDueToSpell(SPELL_SOULSTORM_CHANNEL);
+
+                instance->SetBossState(DATA_BRONJAHM, IN_PROGRESS);
             }
 
             void JustDied(Unit* /*killer*/)
             {
-                _JustDied();
                 Talk(SAY_DEATH);
+
+                instance->SetBossState(DATA_BRONJAHM, DONE);
             }
 
             void KilledUnit(Unit* who)
@@ -118,7 +122,7 @@ class boss_bronjahm : public CreatureScript
                 {
                     events.SetPhase(PHASE_2);
                     DoCast(me, SPELL_TELEPORT);
-                    events.ScheduleEvent(EVENT_FEAR, urand(12*IN_MILLISECONDS, 16*IN_MILLISECONDS), 0, PHASE_2);
+                    events.ScheduleEvent(EVENT_FEAR, urand(12000, 16000), 0, PHASE_2);
                     events.ScheduleEvent(EVENT_SOULSTORM, 100, 0, PHASE_2);
                 }
             }
@@ -148,33 +152,33 @@ class boss_bronjahm : public CreatureScript
                     {
                         case EVENT_MAGIC_BANE:
                             DoCastVictim(SPELL_MAGIC_S_BANE);
-                            events.ScheduleEvent(EVENT_MAGIC_BANE, urand(8*IN_MILLISECONDS, 20*IN_MILLISECONDS));
-                            return;
+                            events.ScheduleEvent(EVENT_MAGIC_BANE, urand(8000, 20000));
+                            break;
                         case EVENT_SHADOW_BOLT:
-                            if (!me->IsWithinMeleeRange(me->getVictim()))
+                            if (!me->IsWithinMeleeRange(me->GetVictim()))
                                 DoCastVictim(SPELL_SHADOW_BOLT);
-                            events.ScheduleEvent(EVENT_SHADOW_BOLT, 2*IN_MILLISECONDS);
-                            return;
+                            events.ScheduleEvent(EVENT_SHADOW_BOLT, 2000);
+                            break;
                         case EVENT_CORRUPT_SOUL:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
                             {
                                 Talk(SAY_CORRUPT_SOUL);
                                 DoCast(target, SPELL_CORRUPT_SOUL);
                             }
-                            events.ScheduleEvent(EVENT_CORRUPT_SOUL, urand(25*IN_MILLISECONDS, 35*IN_MILLISECONDS), 0, PHASE_1);
-                            return;
+                            events.ScheduleEvent(EVENT_CORRUPT_SOUL, urand(25000, 35000), 0, PHASE_1);
+                            break;
                         case EVENT_SOULSTORM:
                             Talk(SAY_SOUL_STORM);
                             me->CastSpell(me, SPELL_SOULSTORM_VISUAL, true);
                             me->CastSpell(me, SPELL_SOULSTORM, false);
-                            return;
+                            break;
                         case EVENT_FEAR:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
                                 me->CastCustomSpell(SPELL_FEAR, SPELLVALUE_MAX_TARGETS, 1, target, false);
-                            events.ScheduleEvent(EVENT_FEAR, urand(8*IN_MILLISECONDS, 12*IN_MILLISECONDS), 0, PHASE_2);
+                            events.ScheduleEvent(EVENT_FEAR, urand(8000, 12000), 0, PHASE_2);
                             break;
                         default:
-                            return;
+                            break;
                     }
                 }
 
