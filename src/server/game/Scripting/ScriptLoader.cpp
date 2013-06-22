@@ -441,7 +441,6 @@ void AddSC_boss_faerlina();
 void AddSC_boss_heigan();
 void AddSC_boss_gothik();
 void AddSC_boss_thaddius();
-void AddSC_naxxramas();
 void AddSC_instance_naxxramas();
 void AddSC_boss_magus_telestra();        //The Nexus Nexus
 void AddSC_boss_anomalus();
@@ -463,7 +462,6 @@ void AddSC_boss_loken();
 void AddSC_boss_ionar();
 void AddSC_boss_volkhan();
 void AddSC_instance_halls_of_lightning();
-void AddSC_halls_of_lightning();
 void AddSC_boss_maiden_of_grief();       //Ulduar Halls of Stone
 void AddSC_boss_krystallus();
 void AddSC_boss_sjonnir();
@@ -527,7 +525,8 @@ void AddSC_instance_halls_of_reflection();   // Halls of Reflection
 void AddSC_halls_of_reflection();
 void AddSC_boss_falric();
 void AddSC_boss_marwyn();
-void AddSC_boss_the_lich_king_hor();
+void AddSC_npc_the_lich_king_hor();
+void AddSC_boss_lich_king_hr();
 void AddSC_boss_lord_marrowgar();       // Icecrown Citadel
 void AddSC_boss_lady_deathwhisper();
 void AddSC_boss_deathbringer_saurfang();
@@ -1191,7 +1190,6 @@ void AddNorthrendScripts()
     AddSC_boss_heigan();
     AddSC_boss_gothik();
     AddSC_boss_thaddius();
-    AddSC_naxxramas();
     AddSC_instance_naxxramas();
     AddSC_boss_magus_telestra();        //The Nexus Nexus
     AddSC_boss_anomalus();
@@ -1213,7 +1211,6 @@ void AddNorthrendScripts()
     AddSC_boss_ionar();
     AddSC_boss_volkhan();
     AddSC_instance_halls_of_lightning();
-    AddSC_halls_of_lightning();
     AddSC_boss_maiden_of_grief();       //Ulduar Halls of Stone
     AddSC_boss_krystallus();
     AddSC_boss_sjonnir();
@@ -1277,7 +1274,8 @@ void AddNorthrendScripts()
     AddSC_halls_of_reflection();
     AddSC_boss_falric();
     AddSC_boss_marwyn();
-    AddSC_boss_the_lich_king_hor();
+    AddSC_npc_the_lich_king_hor();
+    AddSC_boss_lich_king_hr();
     AddSC_boss_lord_marrowgar();        // Icecrown Citadel
     AddSC_boss_lady_deathwhisper();
     AddSC_boss_deathbringer_saurfang();

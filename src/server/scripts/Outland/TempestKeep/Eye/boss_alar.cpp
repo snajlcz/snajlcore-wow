@@ -132,7 +132,7 @@ class boss_alar : public CreatureScript
                 //me->SetFloatValue(UNIT_FIELD_BOUNDINGRADIUS, 10);
                 //me->SetFloatValue(UNIT_FIELD_COMBATREACH, 10);
                 me->ApplySpellImmune(0, IMMUNITY_SCHOOL, SPELL_SCHOOL_MASK_FIRE, true);
-                me->SetUnitMovementFlags(MOVEMENTFLAG_DISABLE_GRAVITY);
+                me->SetDisableGravity(true);
                 me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
                 me->setActive(false);
             }
@@ -142,7 +142,7 @@ class boss_alar : public CreatureScript
                 if (instance)
                     instance->SetData(DATA_ALAREVENT, IN_PROGRESS);
 
-                me->SetUnitMovementFlags(MOVEMENTFLAG_DISABLE_GRAVITY); // after enterevademode will be set walk movement
+                me->SetDisableGravity(true); // after enterevademode will be set walk movement
                 DoZoneInCombat();
                 me->setActive(true);
             }
@@ -214,7 +214,7 @@ class boss_alar : public CreatureScript
 
             void UpdateAI(uint32 diff)
             {
-                if (!me->isInCombat()) // sometimes isincombat but !incombat, faction bug?
+                if (!me->IsInCombat()) // sometimes IsInCombat but !incombat, faction bug?
                     return;
 
                 if (Berserk_Timer <= diff)
@@ -383,7 +383,7 @@ class boss_alar : public CreatureScript
 
                     if (MeltArmor_Timer <= diff)
                     {
-                        DoCast(me->getVictim(), SPELL_MELT_ARMOR);
+                        DoCast(me->GetVictim(), SPELL_MELT_ARMOR);
                         MeltArmor_Timer = 60000;
                     }
                     else
@@ -431,9 +431,9 @@ class boss_alar : public CreatureScript
             {
                 if (me->isAttackReady() && !me->IsNonMeleeSpellCasted(false))
                 {
-                    if (me->IsWithinMeleeRange(me->getVictim()))
+                    if (me->IsWithinMeleeRange(me->GetVictim()))
                     {
-                        me->AttackerStateUpdate(me->getVictim());
+                        me->AttackerStateUpdate(me->GetVictim());
                         me->resetAttackTimer();
                     }
                     else
@@ -472,7 +472,7 @@ class mob_ember_of_alar : public CreatureScript
             mob_ember_of_alarAI(Creature* creature) : ScriptedAI(creature)
             {
                 instance = creature->GetInstanceScript();
-                creature->SetUnitMovementFlags(MOVEMENTFLAG_DISABLE_GRAVITY);
+                creature->SetDisableGravity(true);
                 creature->ApplySpellImmune(0, IMMUNITY_SCHOOL, SPELL_SCHOOL_MASK_FIRE, true);
             }
 
