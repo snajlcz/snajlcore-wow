@@ -650,3 +650,10 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (19, 0, 11596, 0, 0, 8, 0, 8743, 0, 0, 1, 0, 0, '', 'Defense of Warsong Hold (11596) Only if player has not completed Bang a Gong'),
 (20, 0, 11597, 0, 0, 8, 0, 8743, 0, 0, 0, 0, 0, '', 'Defense of Warsong Hold (11597) Only if player has completed Bang a Gong'),
 (19, 0, 11597, 0, 0, 8, 0, 8743, 0, 0, 0, 0, 0, '', 'Defense of Warsong Hold (11597) Only if player has completed Bang a Gong');
+
+-- DB/Quest: Update: Quest_template for Alchemist Finklestein (28205)
+-- http://www.wowhead.com/npc=28205/alchemist-finklestein
+-- Troll Patrol: The Alchemist's Apprentice (Daily)
+UPDATE `quest_template` SET `PrevQuestId` = 0 WHERE `id` = 12541;
+-- Lab Work
+UPDATE `quest_template` SET `PrevQuestId` = 0 WHERE `id` = 12557;
