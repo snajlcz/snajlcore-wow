@@ -904,6 +904,7 @@ public:
 
             while (uint32 eventId = events.ExecuteEvent())
             {
+<<<<<<< HEAD
                 switch (eventId)
                 {
                     case EVENT_SHADOW_STEP:
@@ -924,6 +925,25 @@ public:
                         events.ScheduleEvent(EVENT_KIDNEY_SHOT, 10000);
                         return;
                 }
+=======
+                case EVENT_SHADOW_STEP:
+                    DoCast(SPELL_SHADOW_STEP);
+                    events.ScheduleEvent(EVENT_SHADOW_STEP, 8000);
+                    break;
+                case EVENT_DEADLY_POISON:
+                    DoCastVictim(SPELL_DEADLY_POISON);
+                    events.ScheduleEvent(EVENT_DEADLY_POISON, 10000);
+                    break;
+                case EVENT_ENVENOMED_DAGGER_THROW:
+                    if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM))
+                        DoCast(target, SPELL_ENVENOMED_DAGGER_THROW);
+                    events.ScheduleEvent(EVENT_ENVENOMED_DAGGER_THROW, 10000);
+                    break;
+                case EVENT_KIDNEY_SHOT:
+                    DoCastVictim(SPELL_KIDNEY_SHOT);
+                    events.ScheduleEvent(EVENT_KIDNEY_SHOT, 10000);
+                    break;
+>>>>>>> 53e5fc2fbcb3c1f32645e8e003e6c70202c32d0d
             }
             DoMeleeAttackIfReady();
         }
@@ -972,6 +992,7 @@ public:
 
             while (uint32 eventId = events.ExecuteEvent())
             {
+<<<<<<< HEAD
                 switch (eventId)
                 {
                     case EVENT_SPECTRAL_STRIKE:
@@ -987,6 +1008,20 @@ public:
                         events.ScheduleEvent(EVENT_TORTURED_ENRAGE, 15000);
                         return;
                 }
+=======
+                case EVENT_SPECTRAL_STRIKE:
+                    DoCastVictim(SPELL_SPECTRAL_STRIKE);
+                    events.ScheduleEvent(EVENT_SPECTRAL_STRIKE, 5000);
+                    break;
+                case EVENT_SHIELD_BASH:
+                    DoCastVictim(SPELL_SHIELD_BASH);
+                    events.ScheduleEvent(EVENT_SHIELD_BASH, 5000);
+                    break;
+                case EVENT_TORTURED_ENRAGE:
+                    DoCast(SPELL_TORTURED_ENRAGE);
+                    events.ScheduleEvent(EVENT_TORTURED_ENRAGE, 15000);
+                    break;
+>>>>>>> 53e5fc2fbcb3c1f32645e8e003e6c70202c32d0d
             }
             DoMeleeAttackIfReady();
         }

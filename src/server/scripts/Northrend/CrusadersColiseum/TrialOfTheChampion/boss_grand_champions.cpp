@@ -1307,8 +1307,13 @@ class boss_rouge_toc5 : public CreatureScript
 
             if (uiEviscerateTimer <= uiDiff)
             {
+<<<<<<< HEAD
                 DoCast(me->GetVictim(),DUNGEON_MODE(SPELL_EVISCERATE,SPELL_EVISCERATE_H));
                 uiEviscerateTimer = 12000;
+=======
+                DoCastVictim(SPELL_EVISCERATE);
+                uiEviscerateTimer = 8000;
+>>>>>>> 53e5fc2fbcb3c1f32645e8e003e6c70202c32d0d
             } else uiEviscerateTimer -= uiDiff;
 
             if (uiFanKivesTimer <= uiDiff)
