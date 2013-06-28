@@ -1965,7 +1965,6 @@ class spell_fetch_ingredient_aura : public SpellScriptLoader
 
 void AddSC_zuldrak()
 {
-<<<<<<< HEAD
     new npc_drakuru_shackles;
     new npc_captured_rageclaw;
     new npc_gurgthock;
@@ -1985,24 +1984,4 @@ void AddSC_zuldrak()
     new spell_random_ingredient;
     new spell_pot_check;
     new spell_fetch_ingredient_aura;
-=======
-    new npc_drakuru_shackles();
-    new npc_captured_rageclaw();
-    new npc_gurgthock();
-    new npc_orinoko_tuskbreaker();
-    new npc_korrak_bloodrager();
-    new npc_yggdras();
-    new npc_stinkbeard();
-    new npc_released_offspring_harkoa();
-    new npc_crusade_recruit();
-    new npc_elemental_lord();
-    new npc_fiend_elemental();
-    new go_scourge_enclosure();
-    new npc_alchemist_finklestein();
-    new go_finklesteins_cauldron();
-    new spell_random_ingredient_aura();
-    new spell_random_ingredient();
-    new spell_pot_check();
-    new spell_fetch_ingredient_aura();
->>>>>>> 53e5fc2fbcb3c1f32645e8e003e6c70202c32d0d
 }
