@@ -24,13 +24,9 @@ void AddSC_example_escort();
 void AddSC_example_gossip_codebox();
 void AddSC_example_misc();
 void AddSC_example_commandscript();
+
 //Transmogrification
 void AddSC_NPC_Transmogrify();
-
-//TeleNPC2
-void AddSC_npc_teleport();
-void AddSC_cs_world_chat();
-void AddSC_pryds_allinone();
 
 // spells
 void AddSC_deathknight_spell_scripts();
