@@ -24,29 +24,8 @@ void AddSC_example_escort();
 void AddSC_example_gossip_codebox();
 void AddSC_example_misc();
 void AddSC_example_commandscript();
-//Hunter Pet Vendor
-void AddSC_npc_hunterpetvendor();
 //Transmogrification
 void AddSC_NPC_Transmogrify();
-//Chat Censure
-void AddSC_System_Censure();
-// Npc Top 10 Arena Teams
-void AddSC_npc_arena_setup();
-// [MOD] MultiKill
-void AddSC_Mod_Multikill(); // by Codels
-void AddSC_Mod_DynamicRate(); // by Codels
-// Mr.Maniek
-void AddSC_npc_maniek();
-// NPC MMR Master
-void AddSC_npc_mmr_reset();
-// NPC Astranaar SHOP
-void AddSC_npc_shop();
-// Fast Arena Start
-void AddSC_fast_arena_start();
-// Factions on Channel
-void AddSC_channel_factions();
-// Top5 Killers
-void AddSC_top5_killers();
 
 //TeleNPC2
 void AddSC_npc_teleport();
@@ -1347,33 +1326,7 @@ void AddCustomScripts()
 {
 #ifdef SCRIPTS
     /* This is where custom scripts should be added. */
-    //Hunter Pet Vendor
-    AddSC_npc_hunterpetvendor();
     //Transmogrification
     AddSC_NPC_Transmogrify();
-    //Chat Censure
-    AddSC_System_Censure();
-    // Npc Top 10 Arena Teams
-    AddSC_npc_arena_setup();
-    // [MOD] MultiKill
-    AddSC_Mod_Multikill(); // by Codels
-    AddSC_Mod_DynamicRate();
-    // Mr.Maniek
-    AddSC_npc_maniek();
-    // NPC MMR Master
-    AddSC_npc_mmr_reset();
-    // NPC Astranaar SHOP
-    AddSC_npc_shop();
-    // Fast Arena Start
-    AddSC_fast_arena_start();
-    // Factions on Channel
-    AddSC_channel_factions();
-    // Top5 Killers
-    AddSC_top5_killers();
-
-     //TeleNPC2
-     AddSC_npc_teleport();
-    AddSC_cs_world_chat();
-    AddSC_pryds_allinone();
-#endif
+ #endif
 }
