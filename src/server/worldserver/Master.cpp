@@ -127,16 +127,7 @@ int Master::Run()
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "%s (worldserver-daemon)", _FULLVERSION);
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "<Ctrl-C> to stop.\n");
 
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "                                                                                 ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "   #####                      #     #                      #######               ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  #     #   ##   #####  #   # ##   ##  ####  #    # ###### #     # #    # #####  ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  #        #  #  #    #  # #  # # # # #    # #    # #      #     # #    #   #    ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  #  #### #    # #    #   #   #  #  # #    # #    # #####  #     # #    #   #    ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  #     # ###### #####    #   #     # #    # #    # #      #     # #    #   #    ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  #     # #    # #   #    #   #     # #    #  #  #  #      #     # #    #   #    ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "   #####  #    # #    #   #   #     #  ####    ##   ###### #######  ####    #    ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "                                                                                 ");
-    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "                                                           C O R E               ");
+    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  SnajlCore														              ");
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  Based on TrinityCore http://www.TrinityCore.org\n                              ");
 
     /// worldserver PID file creation
