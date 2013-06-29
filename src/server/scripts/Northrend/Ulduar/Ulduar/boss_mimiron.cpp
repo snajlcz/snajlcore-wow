@@ -706,6 +706,7 @@ class boss_mimiron : public CreatureScript
                             }
                             break;
                         case EVENT_TIMER:
+                            if (Creature* computer = me->FindNearestCreature(NPC_COMPUTER,100.0f))
                             {
                                 timer++;
                                 switch(timer)
