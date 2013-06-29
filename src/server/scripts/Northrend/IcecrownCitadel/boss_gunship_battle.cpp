@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2013 ChaosCore and GaryMoveOut
  *
  */
@@ -764,12 +764,13 @@ class npc_muradin_gunship : public CreatureScript
             {
                 if ((!player->GetGroup() || !player->GetGroup()->IsLeader(player->GetGUID())) && !player->IsGameMaster())
                 {
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "I'm not the raid leader...", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Я не лидер рейда...", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
                     player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, pCreature->GetGUID());
                     return true;
                 }
 
-                player->ADD_GOSSIP_ITEM(0, "My companions are all accounted for, Muradin. Let's go!", 631, 1001);
+                player->ADD_GOSSIP_ITEM(0, "Мои спутники все учтено, Мурадин. Поехали!", 631, 1001);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Пропустить Бой на Кораблях..!", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+3);
                 player->SEND_GOSSIP_MENU(player->GetGossipTextId(pCreature), pCreature->GetGUID());
                 return true;
             }
@@ -783,7 +784,13 @@ class npc_muradin_gunship : public CreatureScript
             player->CLOSE_GOSSIP_MENU();
 
             if (action == GOSSIP_ACTION_INFO_DEF+2)
-                pCreature->MonsterSay("I'll wait for the raid leader", LANG_UNIVERSAL, player->GetGUID());
+                pCreature->MonsterSay("Я буду ждать рейд лидера.", LANG_UNIVERSAL, player->GetGUID());
+
+            if (action == GOSSIP_ACTION_INFO_DEF+3)
+            {
+                instance->SetBossState(DATA_GUNSHIP_EVENT, DONE);
+                pCreature->MonsterSay("Телепорт к Саурфану Смертоносному открыт!", LANG_UNIVERSAL, player->GetGUID());
+            }
 
             if (action == 1001)
             {
@@ -1995,12 +2002,13 @@ class npc_saurfang_gunship : public CreatureScript
             {
                 if ((!player->GetGroup() || !player->GetGroup()->IsLeader(player->GetGUID())) && !player->IsGameMaster())
                 {
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "I'm not the raid leader...", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Я не лидер рейда...", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
                     player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, pCreature->GetGUID());
                     return true;
                 }
 
-                player->ADD_GOSSIP_ITEM(0, "My companions are all accounted for, Saurfang. Let's go!", 631, 1001);
+                player->ADD_GOSSIP_ITEM(0, "Мои спутники все учтено, Мурадин. Поехали!", 631, 1001);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Пропустить Бой на Кораблях..!", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+3);
                 player->SEND_GOSSIP_MENU(player->GetGossipTextId(pCreature), pCreature->GetGUID());
                 return true;
             }
@@ -2014,7 +2022,13 @@ class npc_saurfang_gunship : public CreatureScript
             player->CLOSE_GOSSIP_MENU();
 
             if (action == GOSSIP_ACTION_INFO_DEF+2)
-                pCreature->MonsterSay("I'll wait for the raid leader.", LANG_UNIVERSAL, player->GetGUID());
+                pCreature->MonsterSay("Я буду ждать рейд лидера.", LANG_UNIVERSAL, player->GetGUID());
+
+            if (action == GOSSIP_ACTION_INFO_DEF+3)
+            {
+                instance->SetBossState(DATA_GUNSHIP_EVENT, DONE);
+                pCreature->MonsterSay("Телепорт к Саурфану Смертоносному открыт!", LANG_UNIVERSAL, player->GetGUID());
+            }
 
             if (action == 1001)
             {
@@ -3131,17 +3145,14 @@ class spell_remove_rocket_pack : public SpellScriptLoader
  
             void HandleEffect(SpellEffIndex /*effIndex*/)
             {
-                Player* player = GetHitPlayer();
-                int32 itemId = 49278;
-                if (!player->GetItemCount(itemId) == 1)
-                    return;
-
-                player->DestroyItemCount(itemId, -1, true, false);
+//                Player* player = GetHitPlayer();
+//                int32 itemId = 49278;
+//                player->DestroyItemCount(itemId, -1, true, false);
             }
  
             void Register()
             {
-                OnEffectHit += SpellEffectFn(spell_remove_rocket_pack_SpellScript::HandleEffect, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
+//                OnEffectHit += SpellEffectFn(spell_remove_rocket_pack_SpellScript::HandleEffect, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
             }
         };
  
