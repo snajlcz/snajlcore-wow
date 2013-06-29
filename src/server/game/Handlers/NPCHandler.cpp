@@ -64,6 +64,10 @@ void WorldSession::HandleTabardVendorActivateOpcode(WorldPacket& recvData)
     if (GetPlayer()->HasUnitState(UNIT_STATE_DIED))
         GetPlayer()->RemoveAurasByType(SPELL_AURA_FEIGN_DEATH);
 
+    // trainer list loaded at check;
+    if (!unit->IsCanTrainingOf(_player, true))
+        return;
+
     SendTabardVendorActivate(guid);
 }
 
@@ -92,6 +96,9 @@ void WorldSession::HandleBankerActivateOpcode(WorldPacket& recvData)
     // remove fake death
     if (GetPlayer()->HasUnitState(UNIT_STATE_DIED))
         GetPlayer()->RemoveAurasByType(SPELL_AURA_FEIGN_DEATH);
+
+    if (!unit->IsCanTrainingOf(_player, true))
+        return;
 
     SendShowBank(guid);
 }
