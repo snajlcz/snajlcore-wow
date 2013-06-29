@@ -208,6 +208,7 @@ Milestone7.0: Código custom, utilitario y caracteristicas interesantes varias.
 1.132 - 04/06/2013: InstanceReset: kickeando a los players de un mapa cuando esta a punto de resetear, asegurando la eliminacion de datos y otros por Eilo
 1.133 - 05/06/2013: Anti-Flood: Control de flood solo en canales por Eilo
 1.134 - 29/06/2013: Las spells Place Seaforium Bomb,Place Huge Seaforium Bomb y Place Seaforium Charge, ahora colocara la carga en la posición correcta, evitando que atraviese las texturas por Jar
+1.135 - 29/06/2013: Algunos ajustes en MotionMaster::MoveKnockbackFrom, solucionado log  cuando speedXY=0, ahora las spells que utilizan este efecto realizarán la animación de forma correcta. (Necesario  para la spell "CRUSHING LEAP" utilizada por los Boss de Isla de la conquista) por Jar
 
 
 ########################
