@@ -4,6 +4,7 @@
 #                                                                                          #
 ############################################################################################
 
+[209] --> Returned "Creature::IsCanTrainingOf"
 [208] --> Script/Mimiron: Some work on computer timers and fix Achievement Fire fighter Not so Friendly Fire (Thx Locknes^_^)
 [207] --> Script/Mimiron: Fix Rocket Strike
 [206] --> Script/Mimiron: Add Computer yells
