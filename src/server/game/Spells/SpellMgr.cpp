@@ -3368,6 +3368,12 @@ void SpellMgr::LoadDbcDataCorrections()
             case 34471: // The Beast Within
                 spellInfo->AttributesEx5 |= SPELL_ATTR5_USABLE_WHILE_CONFUSED | SPELL_ATTR5_USABLE_WHILE_FEARED | SPELL_ATTR5_USABLE_WHILE_STUNNED;
                 break;
+            // Without reduced range the Earth, Wind & Fire achievement would be undoable. 
+            // The damage would hit you everywherr in the instance, even when not in LoS.
+            case 66670: // Burning Breath (Koralon-10)
+            case 67329: // Burning Breath (Koralon-25)
+                spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_100_YARDS; // reduce range from 50.000 yards to 100 yards
+                break;
             //
             // ULDUAR SPELLS
             //
