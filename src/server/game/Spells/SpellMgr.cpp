@@ -3616,6 +3616,13 @@ void SpellMgr::LoadDbcDataCorrections()
             case 49345: // Call Emerald Drake
                 spellInfo->Effect[1] = 0;
                 break;
+            //Strand of the Ancients and Isle of Conquest Seaforium Spells
+            //Seaforium Charge set target :"target self"
+            case 66268: //Seaforium Bomb
+            case 66674: //Huge Seaforium Bomb
+            case 52410: //Seaforium Charge
+                spellInfo->EffectImplicitTargetA[0] = TARGET_DEST_DEST;
+                break;
             default:
                 break;
         }
