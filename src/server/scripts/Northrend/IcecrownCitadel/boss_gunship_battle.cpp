@@ -1952,7 +1952,7 @@ class npc_zafod_boombox : public CreatureScript
         {
             // Maybe this isn't blizzlike but I can't find any spell in the DBCs
             if (pPlayer->GetItemCount(49278, false) == 0)
-                pPlayer->ADD_GOSSIP_ITEM(0, "Yeah, I'm sure that safety is your top priority. Give me a jetpack.", 631, 1);
+                pPlayer->ADD_GOSSIP_ITEM(0, "Да, я уверен, что безопасность является главным приоритетом. Дайте мне Jetpack.", 631, 1);
             pPlayer->SEND_GOSSIP_MENU(pPlayer->GetGossipTextId(pCreature), pCreature->GetGUID());
             return true;
         }
@@ -1967,7 +1967,7 @@ class npc_zafod_boombox : public CreatureScript
                 uint32 curItemCount = player->GetItemCount(49278, false);
                 if (curItemCount >= 1)
                 {
-                    pCreature->MonsterWhisper("You already have my jetpack!", player->GetGUIDLow());
+                    pCreature->MonsterWhisper("У вас уже есть реактивный ранец!", player->GetGUIDLow());
                     return false;
                 }
 
@@ -1980,7 +1980,7 @@ class npc_zafod_boombox : public CreatureScript
                 }
                 else
                 {
-                    pCreature->MonsterWhisper("You do not have empty space for my jet-pack!", player->GetGUIDLow());
+                    pCreature->MonsterWhisper("У вас нет пустого пространства для реактивного ранца!", player->GetGUIDLow());
                     return false;
                 }
             }
