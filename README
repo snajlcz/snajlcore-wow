@@ -211,7 +211,6 @@ Milestone7.0: Código custom, utilitario y caracteristicas interesantes varias.
 1.135 - 29/06/2013: Algunos ajustes en MotionMaster::MoveKnockbackFrom, solucionado log  cuando speedXY=0, ahora las spells que utilizan este efecto realizarán la animación de forma correcta. (Necesario  para la spell "CRUSHING LEAP" utilizada por los Boss de Isla de la conquista) por Jar
 1.136 - 29/06/2013: Algunos ajustes en Creature::canCreatureAttack, añadido check para evitar que los  boss de Isla de la conquista entren en “EvadeMode” de forma prematura, permitiendo una batalla más blizzlike por Jar
 1.137 - 30/06/2013: IoC: Fix level High Commander Halford Wyrmbane por Apa 
-1.138 - 30/06/2013: IoC: Fix level Overlord Agmar por Apa
 
 
 ########################
