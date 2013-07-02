@@ -751,37 +751,17 @@ class npc_argent_soldier : public CreatureScript
             {
                 switch(uiWaypoint)
                 {
+                    case 0:
+                        me->SetFacingTo(5.81f);
+                        break;
                     case 1:
-                        me->SetOrientation(4.60f);
-                        me->SetReactState(REACT_AGGRESSIVE);
-                        me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE|UNIT_FLAG_NOT_SELECTABLE);
-                        bStarted = true;
+                        me->SetFacingTo(4.60f);
+                        break;
+                    case 2:
+                        me->SetFacingTo(2.79f);
                         break;
                 }
             }
-
-            if (uiPoint == 1)
-            {
-                switch(uiWaypoint)
-                {
-                    case 0:
-                        me->SetOrientation(5.81f);
-                        me->SetReactState(REACT_AGGRESSIVE);
-                        me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE|UNIT_FLAG_NOT_SELECTABLE);
-                        bStarted = true;
-                        break;
-                    case 2:
-                        me->SetOrientation(3.39f);
-                        me->SetReactState(REACT_AGGRESSIVE);
-                        me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE|UNIT_FLAG_NOT_SELECTABLE);
-                        bStarted = true;
-                        if (GameObject* pGO = GameObject::GetGameObject(*me, pInstance->GetData64(DATA_MAIN_GATE)))
-                            pInstance->HandleGameObject(pGO->GetGUID(),false);
-                        break;
-                }
-
-                me->SendMovementFlagUpdate();
-            }  
         }
 
         void SetData(uint32 uiType, uint32 uiData)
