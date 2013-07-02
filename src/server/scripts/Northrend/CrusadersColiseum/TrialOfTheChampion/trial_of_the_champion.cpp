@@ -354,10 +354,7 @@ class npc_herald_toc5 : public CreatureScript
                 return;
 
             if (uiPointId == 1)
-            {
-                me->SetOrientation(ORIENTATION);
-                me->SendMovementFlagUpdate();
-            }
+                me->SetFacingTo(ORIENTATION);
         }
 
         void JustSummoned(Creature* summon)
