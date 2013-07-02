@@ -8845,6 +8845,43 @@ VehicleAccessoryList const* ObjectMgr::GetVehicleAccessoryList(Vehicle* veh) con
     return NULL;
 }
 
+void ObjectMgr::LoadDbcDataCorrections()
+ {
+     uint32 oldMSTime = getMSTime();
+ 
+     VehicleSeatEntry * veSeatInfo = NULL;
+     for (uint32 i = 0; i < sVehicleSeatStore.GetNumRows(); ++i)
+     {
+         veSeatInfo = (VehicleSeatEntry*)sVehicleSeatStore.LookupEntry(i);
+         if (!veSeatInfo)
+             continue;
+ 
+         switch (veSeatInfo->m_ID)
+         {
+             case 3064: // Ignis
+             case 3206: // Ignis
+             case 2772: // XT
+             case 4773: // ToC Snowbold
+             case 3690: // Kologarn's right arm
+             case 3691: // Kologarn's right arm
+             case 3692: // Kologarn's right arm
+                 veSeatInfo->m_flags = 0;
+                 break;
+             case 6206: // Bone Spike
+             case 7554: // Bone Spike
+             case 7555: // Bone Spike
+                 veSeatInfo->m_flags = 17408;
+                 break;
+             case 5986: //Ick - seat for Krick
+             case 28670: // aveho id
+                 veSeatInfo->m_flags |= VEHICLE_SEAT_FLAG_CAN_ATTACK;
+                 break;
+         }
+     }
+ 
+     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING,">> Loading vehicle dbc data corrections  in %u ms", GetMSTimeDiffToNow(oldMSTime));
+ }
+
 PlayerInfo const* ObjectMgr::GetPlayerInfo(uint32 race, uint32 class_) const
 {
     if (race >= MAX_RACES)
