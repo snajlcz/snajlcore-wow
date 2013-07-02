@@ -33,6 +33,10 @@ enum PaladinSpells
     SPELL_PALADIN_BLESSING_OF_SANCTUARY_BUFF     = 67480,
     SPELL_PALADIN_BLESSING_OF_SANCTUARY_ENERGIZE = 57319,
 
+    SPELL_BLESSING_OF_KINGS                      = 20217,
+    SPELL_GREATER_BLESSING_OF_KINGS              = 25898,
+    SPELL_BLESSING_OF_FORGOTTEN_KINGS            = 72586,
+
     SPELL_PALADIN_HOLY_SHOCK_R1                  = 20473,
     SPELL_PALADIN_HOLY_SHOCK_R1_DAMAGE           = 25912,
     SPELL_PALADIN_HOLY_SHOCK_R1_HEALING          = 25914,
@@ -913,6 +917,96 @@ class spell_pal_seal_of_righteousness : public SpellScriptLoader
         }
 };
 
+class spell_pal_blessing_stack : public SpellScriptLoader
+{
+public:
+   spell_pal_blessing_stack() : SpellScriptLoader("spell_pal_blessing_stack") { }
+
+   class spell_pal_blessing_stack_AuraScript : public AuraScript
+   {
+       PrepareAuraScript(spell_pal_blessing_stack_AuraScript)
+       bool Validate(SpellInfo const* /*entry*/)
+       {
+           if (!sSpellMgr->GetSpellInfo(SPELL_PALADIN_BLESSING_OF_SANCTUARY_BUFF))
+               return false;
+           return true;
+       }
+
+       void HandleEffectApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
+       {
+           Unit* target = GetTarget();
+           if (!target)
+               return;
+
+           switch (GetSpellInfo()->Id)
+           {
+               case SPELL_BLESSING_OF_KINGS:
+               case SPELL_GREATER_BLESSING_OF_KINGS:
+               case SPELL_BLESSING_OF_FORGOTTEN_KINGS:
+               {
+                   target->RemoveAura(SPELL_PALADIN_BLESSING_OF_SANCTUARY_BUFF);
+                   break;
+               }
+               case SPELL_PALADIN_BLESSING_OF_SANCTUARY_BUFF:
+               {
+                   bool found = false;
+
+                   if (target->HasAura(SPELL_BLESSING_OF_FORGOTTEN_KINGS))
+                        found = true;
+                   if (target->HasAura(SPELL_GREATER_BLESSING_OF_KINGS))
+                       found = true;
+                   if (target->HasAura(SPELL_BLESSING_OF_KINGS))
+                       found = true;
+
+                   if (found)
+                       target->RemoveAura(SPELL_PALADIN_BLESSING_OF_SANCTUARY_BUFF);
+                   break;
+               }
+               default:
+                   break;
+           }
+       }
+
+       void HandleEffectRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
+       {
+           switch (GetSpellInfo()->Id)
+           {
+               case SPELL_BLESSING_OF_KINGS:
+               case SPELL_GREATER_BLESSING_OF_KINGS:
+               case SPELL_BLESSING_OF_FORGOTTEN_KINGS:
+               {
+                   if (Unit* target = GetTarget())
+                   {
+                       Aura* bless = NULL;
+                       bless = target->GetAura(20911); // 20911 Blessing of Sanctuary
+                       if (!bless)
+                           bless = target->GetAura(25899); // 25899 Greater Blessing of Sanctuary
+                       if (bless)
+                       {
+                           if (Unit* blessCaster = bless->GetCaster())
+                               blessCaster->CastSpell(target, SPELL_PALADIN_BLESSING_OF_SANCTUARY_BUFF, true);
+                       }
+                   }
+                   break;
+               }
+               default:
+                   break;
+           }
+       }
+
+       void Register()
+       {
+            AfterEffectApply += AuraEffectApplyFn(spell_pal_blessing_stack_AuraScript::HandleEffectApply, EFFECT_ALL, SPELL_AURA_MOD_TOTAL_STAT_PERCENTAGE, AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK);
+            AfterEffectRemove += AuraEffectRemoveFn(spell_pal_blessing_stack_AuraScript::HandleEffectRemove, EFFECT_ALL, SPELL_AURA_MOD_TOTAL_STAT_PERCENTAGE, AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK);
+       }
+   };
+
+   AuraScript* GetAuraScript() const
+   {
+       return new spell_pal_blessing_stack_AuraScript();
+   }
+};
+
 void AddSC_paladin_spell_scripts()
 {
     new spell_pal_ardent_defender();
@@ -932,4 +1026,5 @@ void AddSC_paladin_spell_scripts()
     new spell_pal_righteous_defense();
     new spell_pal_sacred_shield();
     new spell_pal_seal_of_righteousness();
+    new spell_pal_blessing_stack();
 }

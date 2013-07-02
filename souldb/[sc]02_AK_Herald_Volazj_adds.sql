@@ -1,0 +1,1 @@
+UPDATE `creature_template` SET dmg_multiplier=1 WHERE `name`= 'Twisted Visage';
