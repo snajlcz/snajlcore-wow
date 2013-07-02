@@ -1359,6 +1359,9 @@ void World::SetInitialWorldSettings()
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, "Loading SpellInfo store...");
     sSpellMgr->LoadSpellInfoStore();
 
+    TC_LOG_INFO(LOG_FILTER_SERVER_LOADING,"Loading object dbc data corrections...");
+    sObjectMgr->LoadDbcDataCorrections();
+
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, "Loading SkillLineAbilityMultiMap Data...");
     sSpellMgr->LoadSkillLineAbilityMap();
 
