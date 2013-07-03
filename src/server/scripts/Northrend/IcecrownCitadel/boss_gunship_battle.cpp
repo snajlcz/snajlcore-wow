@@ -764,13 +764,13 @@ class npc_muradin_gunship : public CreatureScript
             {
                 if ((!player->GetGroup() || !player->GetGroup()->IsLeader(player->GetGUID())) && !player->IsGameMaster())
                 {
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Я не лидер рейда...", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "I'm not the raid leader...", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
                     player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, pCreature->GetGUID());
                     return true;
                 }
 
-                player->ADD_GOSSIP_ITEM(0, "Мои спутники все учтено, Мурадин. Поехали!", 631, 1001);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Пропустить Бой на Кораблях..!", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+3);
+                player->ADD_GOSSIP_ITEM(0, "My companions are all accounted for, Saurfang. Let's go!", 631, 1001);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Skip to fight on the ship ..!", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+3);
                 player->SEND_GOSSIP_MENU(player->GetGossipTextId(pCreature), pCreature->GetGUID());
                 return true;
             }
@@ -784,12 +784,12 @@ class npc_muradin_gunship : public CreatureScript
             player->CLOSE_GOSSIP_MENU();
 
             if (action == GOSSIP_ACTION_INFO_DEF+2)
-                pCreature->MonsterSay("Я буду ждать рейд лидера.", LANG_UNIVERSAL, player->GetGUID());
+                pCreature->MonsterSay("I'll wait for the raid leader.", LANG_UNIVERSAL, player->GetGUID());
 
             if (action == GOSSIP_ACTION_INFO_DEF+3)
             {
                 instance->SetBossState(DATA_GUNSHIP_EVENT, DONE);
-                pCreature->MonsterSay("Телепорт к Саурфану Смертоносному открыт!", LANG_UNIVERSAL, player->GetGUID());
+                pCreature->MonsterSay("Teleport to open Saurfanu of deadly!", LANG_UNIVERSAL, player->GetGUID());
             }
 
             if (action == 1001)
@@ -1952,7 +1952,7 @@ class npc_zafod_boombox : public CreatureScript
         {
             // Maybe this isn't blizzlike but I can't find any spell in the DBCs
             if (pPlayer->GetItemCount(49278, false) == 0)
-                pPlayer->ADD_GOSSIP_ITEM(0, "Да, я уверен, что безопасность является главным приоритетом. Дайте мне Jetpack.", 631, 1);
+                pPlayer->ADD_GOSSIP_ITEM(0, "Yeah, I'm sure that safety is your top priority. Give me a jetpack.", 631, 1);
             pPlayer->SEND_GOSSIP_MENU(pPlayer->GetGossipTextId(pCreature), pCreature->GetGUID());
             return true;
         }
@@ -1967,7 +1967,7 @@ class npc_zafod_boombox : public CreatureScript
                 uint32 curItemCount = player->GetItemCount(49278, false);
                 if (curItemCount >= 1)
                 {
-                    pCreature->MonsterWhisper("У вас уже есть реактивный ранец!", player->GetGUIDLow());
+                    pCreature->MonsterWhisper("You already have my jetpack!", player->GetGUIDLow());
                     return false;
                 }
 
@@ -1980,7 +1980,7 @@ class npc_zafod_boombox : public CreatureScript
                 }
                 else
                 {
-                    pCreature->MonsterWhisper("У вас нет пустого пространства для реактивного ранца!", player->GetGUIDLow());
+                    pCreature->MonsterWhisper("You do not have empty space for my jet-pack!", player->GetGUIDLow());
                     return false;
                 }
             }
@@ -2002,13 +2002,13 @@ class npc_saurfang_gunship : public CreatureScript
             {
                 if ((!player->GetGroup() || !player->GetGroup()->IsLeader(player->GetGUID())) && !player->IsGameMaster())
                 {
-                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Я не лидер рейда...", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "I'm not the raid leader...", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
                     player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, pCreature->GetGUID());
                     return true;
                 }
 
-                player->ADD_GOSSIP_ITEM(0, "Мои спутники все учтено, Мурадин. Поехали!", 631, 1001);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Пропустить Бой на Кораблях..!", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+3);
+                player->ADD_GOSSIP_ITEM(0, "My companions are all accounted for, Muradin. Let's go!", 631, 1001);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Skip to fight on the ship ..!", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+3);
                 player->SEND_GOSSIP_MENU(player->GetGossipTextId(pCreature), pCreature->GetGUID());
                 return true;
             }
@@ -2022,12 +2022,12 @@ class npc_saurfang_gunship : public CreatureScript
             player->CLOSE_GOSSIP_MENU();
 
             if (action == GOSSIP_ACTION_INFO_DEF+2)
-                pCreature->MonsterSay("Я буду ждать рейд лидера.", LANG_UNIVERSAL, player->GetGUID());
+                pCreature->MonsterSay("I'll wait for the raid leader", LANG_UNIVERSAL, player->GetGUID());
 
             if (action == GOSSIP_ACTION_INFO_DEF+3)
             {
                 instance->SetBossState(DATA_GUNSHIP_EVENT, DONE);
-                pCreature->MonsterSay("Телепорт к Саурфану Смертоносному открыт!", LANG_UNIVERSAL, player->GetGUID());
+                pCreature->MonsterSay("Teleport to open Saurfanu of deadly", LANG_UNIVERSAL, player->GetGUID());
             }
 
             if (action == 1001)
