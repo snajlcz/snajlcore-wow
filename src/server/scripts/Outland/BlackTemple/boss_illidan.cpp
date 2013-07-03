@@ -159,6 +159,7 @@ enum CreatureEntry
     ILLIDAN_DOOR_TRIGGER            =   23412,
     SPIRIT_OF_OLUM                  =   23411,
     SPIRIT_OF_UDALO                 =   23410,
+    NPC_ILLIDAN_TARGET              =   23070,
     ILLIDARI_ELITE                  =   23226,
     PARASITIC_SHADOWFIEND           =   23498,
     CAGE_TRAP_TRIGGER               =   23292
@@ -495,7 +496,7 @@ public:
             instance = creature->GetInstanceScript();
             DoCast(me, SPELL_DUAL_WIELD, true);
         }
-
+        float m_fTargetMoveX, m_fTargetMoveY, m_fTargetMoveZ;
         void Reset();
 
         void JustSummoned(Creature* summon);
