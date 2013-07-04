@@ -1390,7 +1390,7 @@ void Spell::SelectImplicitCasterDestTargets(SpellEffIndex effIndex, SpellImplici
              float liquidLevel = m_caster->GetMap()->GetWaterOrGroundLevel(x, y, z, &ground);
              if (liquidLevel <= ground) // When there is no liquid Map::GetWaterOrGroundLevel returns ground level
              {
-                 SendCastResult(SPELL_FAILED_NOT_HERE);
+                 SendCastResult(SPELL_FAILED_TOO_SHALLOW);
                  SendChannelUpdate(0);
                  finish(false);
                  return;
