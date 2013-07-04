@@ -401,25 +401,14 @@ class spell_brazier_hit : public SpellScriptLoader
     public:
         spell_brazier_hit() : SpellScriptLoader("spell_brazier_hit") { }
 
-        class spell_brazier_hit_SpellScript : public SpellScript
+        class spell_brazier_hit_AuraScript : public AuraScript
         {
-            PrepareSpellScript(spell_brazier_hit_SpellScript);
+            PrepareAuraScript(spell_brazier_hit_AuraScript);
 
-            bool Validate(SpellInfo const* /*spellInfo*/)
+            void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
-                if (!sSpellMgr->GetSpellInfo(SPELL_TORCH_TOSSING_TRAINING_SUCCESS_H) ||
-                    !sSpellMgr->GetSpellInfo(SPELL_TORCH_TOSSING_TRAINING_SUCCESS_A) ||
-                    !sSpellMgr->GetSpellInfo(SPELL_TORCH_CATCHING_TRAINING_SUCCESS_H) ||
-                    !sSpellMgr->GetSpellInfo(SPELL_TORCH_CATCHING_TRAINING_SUCCESS_A))
-                    return false;
-                return true;
-            }
-
-       void HandleScript(SpellEffIndex /*effIndex*/)
-{
-        if (Player* target = GetHitPlayer())
-        {
-                if (Aura* pAura = target->GetAura(45724))
+                Unit* target = GetTarget();
+                 if (Aura* pAura = target->GetAura(45724))
                 {
                         if (pAura->GetStackAmount() >= 8)
                         {
@@ -437,21 +426,21 @@ class spell_brazier_hit : public SpellScriptLoader
                                 target->RemoveAurasDueToSpell(45693);
                         }
                 }
-        }
-}
+            }
 
             void Register()
             {
-                OnEffectHitTarget += SpellEffectFn(spell_brazier_hit_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
+                AfterEffectApply += AuraEffectApplyFn(spell_brazier_hit_AuraScript::OnApply, EFFECT_0, SPELL_AURA_PERIODIC_DUMMY, AURA_EFFECT_HANDLE_REAL);
+
             }
 
         private:
 
         };
 
-        SpellScript* GetSpellScript() const
+        AuraScript* GetAuraScript() const
         {
-            return new spell_brazier_hit_SpellScript();
+            return new spell_brazier_hit_AuraScript();
         }
 };
 
