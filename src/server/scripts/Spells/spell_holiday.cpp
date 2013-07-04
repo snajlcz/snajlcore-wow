@@ -388,6 +388,73 @@ class spell_winter_veil_px_238_winter_wondervolt : public SpellScriptLoader
         }
 };
 
+enum brazierhit
+{
+    SPELL_TORCH_TOSSING_TRAINING_SUCCESS_H = 46651,
+    SPELL_TORCH_TOSSING_TRAINING_SUCCESS_A = 45719,
+    SPELL_TORCH_CATCHING_TRAINING_SUCCESS_H = 46654,
+    SPELL_TORCH_CATCHING_TRAINING_SUCCESS_A = 46081
+};
+
+class spell_brazier_hit : public SpellScriptLoader
+{
+    public:
+        spell_brazier_hit() : SpellScriptLoader("spell_brazier_hit") { }
+
+        class spell_brazier_hit_SpellScript : public SpellScript
+        {
+            PrepareSpellScript(spell_brazier_hit_SpellScript);
+
+            bool Validate(SpellInfo const* /*spellInfo*/)
+            {
+                if (!sSpellMgr->GetSpellInfo(SPELL_TORCH_TOSSING_TRAINING_SUCCESS_H) ||
+                    !sSpellMgr->GetSpellInfo(SPELL_TORCH_TOSSING_TRAINING_SUCCESS_A) ||
+                    !sSpellMgr->GetSpellInfo(SPELL_TORCH_CATCHING_TRAINING_SUCCESS_H) ||
+                    !sSpellMgr->GetSpellInfo(SPELL_TORCH_CATCHING_TRAINING_SUCCESS_A))
+                    return false;
+                return true;
+            }
+
+       void HandleScriptEffect(SpellEffIndex /*effIndex*/)
+{
+        if (Unit* target = GetHitUnit())
+        {
+                if (Aura* pAura = target->GetAura(45724))
+                {
+                        if (pAura->GetStackAmount() >= 8)
+                        {
+                                target->CastSpell(target, SPELL_TORCH_TOSSING_TRAINING_SUCCESS_H, true);
+                                target->CastSpell(target, SPELL_TORCH_TOSSING_TRAINING_SUCCESS_A, true);
+                                target->RemoveAurasDueToSpell(45724);
+                        }
+                }
+                if (Aura* pAura = target->GetAura(45693))
+                {
+                        if (pAura->GetStackAmount() >= 4)
+                        {
+                                target->CastSpell(target, SPELL_TORCH_CATCHING_TRAINING_SUCCESS_H, true);
+                                target->CastSpell(target, SPELL_TORCH_CATCHING_TRAINING_SUCCESS_A, true);
+                                target->RemoveAurasDueToSpell(45693);
+                        }
+                }
+        }
+}
+
+            void Register()
+            {
+                OnEffectHitTarget += SpellEffectFn(spell_brazier_hit_SpellScript::HandleScriptEffect, EFFECT_1, SPELL_EFFECT_SCRIPT_EFFECT);
+            }
+
+        private:
+
+        };
+
+        SpellScript* GetSpellScript() const
+        {
+            return new spell_brazier_hit_SpellScript();
+        }
+};
+
 void AddSC_holiday_spell_scripts()
 {
     // Love is in the Air
@@ -399,4 +466,6 @@ void AddSC_holiday_spell_scripts()
     // Winter Veil
     new spell_winter_veil_mistletoe();
     new spell_winter_veil_px_238_winter_wondervolt();
+    // Midsummer Fire Festival
+    new spell_brazier_hit();
 }
