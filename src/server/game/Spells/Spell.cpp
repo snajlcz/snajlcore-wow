@@ -1384,11 +1384,11 @@ void Spell::SelectImplicitCasterDestTargets(SpellEffIndex effIndex, SpellImplici
              float dis = (float)rand_norm() * (max_dis - min_dis) + min_dis;
              float x, y, z, angle;
              angle = (float)rand_norm() * static_cast<float>(M_PI * 35.0f / 180.0f) - static_cast<float>(M_PI * 17.5f / 180.0f);
-             m_caster->GetClosePoint(x, y, z, CONTACT_DISTANCE, dis, angle);
+             m_caster->GetClosePoint(x, y, z, DEFAULT_WORLD_OBJECT_SIZE, dis, angle);
 
              float ground = z;
              float liquidLevel = m_caster->GetMap()->GetWaterOrGroundLevel(x, y, z, &ground);
-             if (liquidLevel <= ground) // When there is no liquid Map::GetWaterOrGroundLevel returns ground level
+             if (liquidLevel < ground) // When there is no liquid Map::GetWaterOrGroundLevel returns ground level
              {
                  SendCastResult(SPELL_FAILED_NOT_HERE);
                  SendChannelUpdate(0);
