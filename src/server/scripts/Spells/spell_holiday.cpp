@@ -415,9 +415,9 @@ class spell_brazier_hit : public SpellScriptLoader
                 return true;
             }
 
-       void HandleScriptEffect(SpellEffIndex /*effIndex*/)
+       void HandleScript(SpellEffIndex /*effIndex*/)
 {
-        if (Unit* target = GetHitUnit())
+        if (Player* target = GetHitPlayer())
         {
                 if (Aura* pAura = target->GetAura(45724))
                 {
@@ -442,7 +442,7 @@ class spell_brazier_hit : public SpellScriptLoader
 
             void Register()
             {
-                OnEffectHitTarget += SpellEffectFn(spell_brazier_hit_SpellScript::HandleScriptEffect, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
+                OnEffectHitTarget += SpellEffectFn(spell_brazier_hit_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
             }
 
         private:
