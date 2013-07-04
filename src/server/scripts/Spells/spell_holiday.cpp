@@ -408,18 +408,18 @@ class spell_brazier_hit : public SpellScriptLoader
             void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
                 Unit* target = GetTarget();
-                 if (Aura* pAura = target->GetAura(45724))
+                 if (AuraEffect* pAura = target->GetAuraEffect(45724,EFFECT_0))
                 {
-                        if (pAura->GetStackAmount() >= 8)
+                        if (pAura->GetAmount() >= 8)
                         {
                                 target->CastSpell(target, SPELL_TORCH_TOSSING_TRAINING_SUCCESS_H, true);
                                 target->CastSpell(target, SPELL_TORCH_TOSSING_TRAINING_SUCCESS_A, true);
                                 target->RemoveAurasDueToSpell(45724);
                         }
                 }
-                if (Aura* pAura = target->GetAura(45693))
+                if (AuraEffect* pAura = target->GetAuraEffect(45724,EFFECT_0))
                 {
-                        if (pAura->GetStackAmount() >= 4)
+                        if (pAura->GetAmount() >= 4)
                         {
                                 target->CastSpell(target, SPELL_TORCH_CATCHING_TRAINING_SUCCESS_H, true);
                                 target->CastSpell(target, SPELL_TORCH_CATCHING_TRAINING_SUCCESS_A, true);
