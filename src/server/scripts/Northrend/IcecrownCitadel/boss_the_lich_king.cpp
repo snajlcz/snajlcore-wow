@@ -117,7 +117,7 @@ enum Spells
     SPELL_SOUL_REAPER_BUFF              = 69410,
     SPELL_WINGS_OF_THE_DAMNED           = 74352,
     SPELL_VALKYR_TARGET_SEARCH          = 69030,
-    SPELL_CHARGE                        = 74399,    // cast on selected target
+    SPELL_CHARGE                        = 52538,    // cast on selected target
     SPELL_VALKYR_CARRY                  = 74445,    // removes unselectable flag
     SPELL_LIFE_SIPHON                   = 73488,
     SPELL_LIFE_SIPHON_HEAL              = 73489,
