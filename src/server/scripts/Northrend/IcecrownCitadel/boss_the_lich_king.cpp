@@ -118,7 +118,6 @@ enum Spells
     SPELL_WINGS_OF_THE_DAMNED           = 74352,
     SPELL_VALKYR_TARGET_SEARCH          = 69030,
     SPELL_CHARGE                        = 74399,    // cast on selected target
-    SPELL_CHARGE_VISUAL                 = 52538,
     SPELL_VALKYR_CARRY                  = 74445,    // removes unselectable flag
     SPELL_LIFE_SIPHON                   = 73488,
     SPELL_LIFE_SIPHON_HEAL              = 73489,
@@ -1490,7 +1489,7 @@ class npc_valkyr_shadowguard : public CreatureScript
                 _events.Reset();
                 me->SetReactState(REACT_PASSIVE);
                 DoCast(me, SPELL_WINGS_OF_THE_DAMNED, false);
-                me->SetSpeed(MOVE_FLIGHT, 0.642857f, true);
+                me->SetSpeed(MOVE_FLIGHT, 0.5, true);
             }
 
             void IsSummonedBy(Unit* /*summoner*/)
@@ -2511,13 +2510,14 @@ class spell_the_lich_king_summon_into_air : public SpellScriptLoader
 
             void ModDestHeight(SpellEffIndex effIndex)
             {
-                static Position const offset = {0.0f, 0.0f, 15.0f, 0.0f};
+                static Position const offset = {0.0f, 0.0f, 5.0f, 0.0f};
                 WorldLocation* dest = const_cast<WorldLocation*>(GetExplTargetDest());
                 dest->RelocateOffset(offset);
                 GetHitDest()->RelocateOffset(offset);
                 // spirit bombs get higher
                 if (GetSpellInfo()->Effects[effIndex].MiscValue == NPC_SPIRIT_BOMB)
                 {
+                    static Position const offset = {0.0f, 0.0f, 25.0f, 0.0f}; 
                     dest->RelocateOffset(offset);
                     GetHitDest()->RelocateOffset(offset);
                 }
@@ -2616,7 +2616,6 @@ class spell_the_lich_king_valkyr_target_search : public SpellScriptLoader
             void HandleScript(SpellEffIndex effIndex)
             {
                 PreventHitDefaultEffect(effIndex);
-                GetCaster()->CastSpell(GetHitUnit(), SPELL_CHARGE_VISUAL, true);
                 GetCaster()->CastSpell(GetHitUnit(), SPELL_CHARGE, true);
             }
 
