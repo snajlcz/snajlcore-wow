@@ -3161,6 +3161,9 @@ void SpellMgr::LoadDbcDataCorrections()
             case 44401: // Missile Barrage
                 spellInfo->procCharges = 1;
                 break;
+            case 61851: // Killing Spree
+				spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
+				break;
             case 44544: // Fingers of Frost
                 spellInfo->EffectSpellClassMask[0] = flag96(685904631, 1151048, 0);
                 break;

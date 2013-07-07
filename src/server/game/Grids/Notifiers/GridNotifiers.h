@@ -836,7 +836,7 @@ namespace Trinity
     class AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck
     {
         public:
-            AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck(Unit const* funit, float range)
+            AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck(WorldObject const* obj, Unit const* funit, float range)
                 : i_funit(funit), i_range(range) {}
 
             bool operator()(const Unit* u)
@@ -845,7 +845,9 @@ namespace Trinity
                     && i_funit->IsWithinDistInMap(u, i_range)
                     && !i_funit->IsFriendlyTo(u)
                     && i_funit->IsValidAttackTarget(u)
+                    && !u->IsTotem() 
                     && u->GetCreatureType() != CREATURE_TYPE_CRITTER
+                    && !u->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC) // do not select passive units (eg. minipets)
                     && i_funit->CanSeeOrDetect(u);
             }
         private:
