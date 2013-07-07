@@ -702,6 +702,16 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
     // selection by spell family
     switch (m_spellInfo->SpellFamilyName)
     {
+        case SPELLFAMILY_ROGUE:
+         {
+           // Killing Spree - dmg buff
+           if (m_spellInfo->Id == 51690)
+           {
+               m_caster->CastSpell(m_caster,61851, true);
+               return;
+           }
+         }
+         break;
         case SPELLFAMILY_PALADIN:
             switch (m_spellInfo->Id)
             {
