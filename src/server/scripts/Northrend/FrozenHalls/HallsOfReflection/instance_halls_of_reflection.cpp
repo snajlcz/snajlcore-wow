@@ -352,7 +352,7 @@ public:
         {
             if (type == DATA_WAVE_COUNT && data == SPECIAL)
             {
-                uiWaveCount == 0;
+                uiWaveCount = 0;
                 bIntroDone = true;
                 CloseDoor(uiFrontDoor);
                 CloseDoor(uiRunDoor);
