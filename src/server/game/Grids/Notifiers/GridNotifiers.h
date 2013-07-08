@@ -836,7 +836,7 @@ namespace Trinity
     class AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck
     {
         public:
-            AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck(WorldObject const* obj, Unit const* funit, float range)
+            AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck(Unit const* funit, float range)
                 : i_funit(funit), i_range(range) {}
 
             bool operator()(const Unit* u)
