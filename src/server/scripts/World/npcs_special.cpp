@@ -3076,7 +3076,7 @@ class npc_lonely_turkey : public CreatureScript
                 _stinkerBrokenHeartTimer = 3.5 * IN_MILLISECONDS;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_stinkerBrokenHeartTimer <= diff)
                 {
@@ -3274,7 +3274,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 const diff)
+        void UpdateAI(uint32 diff)
         {
 
             if (me->HasAura(SPELL_SQUIRE_TIRED) && me->HasFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_BANKER | UNIT_NPC_FLAG_MAILBOX | UNIT_NPC_FLAG_VENDOR))
