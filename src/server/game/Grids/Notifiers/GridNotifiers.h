@@ -846,7 +846,6 @@ namespace Trinity
                     && !i_funit->IsFriendlyTo(u)
                     && i_funit->IsValidAttackTarget(u)
                     && !u->IsTotem() 
-                    && u->GetCreatureType() != CREATURE_TYPE_CRITTER
                     && !u->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC) // do not select passive units (eg. minipets)
                     && i_funit->CanSeeOrDetect(u);
             }
