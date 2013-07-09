@@ -262,6 +262,8 @@ class boss_sindragosa : public CreatureScript
                 instance->SetBossState(DATA_SINDRAGOSA, FAIL);
                 me->SetCanFly(false);
                 me->SetDisableGravity(false);
+                me->GetMap()->SummonCreature(NPC_SPINESTALKER, SpinestalkerFlyPos);
+                me->GetMap()->SummonCreature(NPC_RIMEFANG, RimefangFlyPos);
                 me->DisappearAndDie();
             }
 
