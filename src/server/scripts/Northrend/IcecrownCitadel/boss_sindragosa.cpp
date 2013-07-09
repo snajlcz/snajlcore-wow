@@ -262,6 +262,7 @@ class boss_sindragosa : public CreatureScript
                 instance->SetBossState(DATA_SINDRAGOSA, FAIL);
                 me->SetCanFly(false);
                 me->SetDisableGravity(false);
+                me->DisappearAndDie();
             }
 
             void KilledUnit(Unit* victim)
