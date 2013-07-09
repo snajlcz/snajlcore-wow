@@ -5099,25 +5099,6 @@ SpellCastResult Spell::CheckCast(bool strict)
                     if (!target || !target->IsFriendlyTo(m_caster) || target->getAttackers().empty())
                         return SPELL_FAILED_BAD_TARGETS;
                 }
-                else if (m_spellInfo->Id == 51690)          // Killing Spree
-                {
-                   UnitList targets;
-                   float radius = 10.0f;
-                   Unit *target = NULL;
-                   Trinity::AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck u_check(target, radius);
-                   Trinity::UnitListSearcher<Trinity::AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck> checker(target, targets, u_check);
-                   TypeContainerVisitor<Trinity::UnitListSearcher<Trinity::AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck>, GridTypeMapContainer > grid_object_checker(checker);
-                   TypeContainerVisitor<Trinity::UnitListSearcher<Trinity::AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck>, WorldTypeMapContainer > world_object_checker(checker);
-                   m_caster->VisitNearbyObject(radius, checker);
-                  
-                   if (target)
-                   {
-                       if (m_caster->GetUnitMovementFlags() & MOVEMENTFLAG_ONTRANSPORT)
-                           return SPELL_FAILED_NOT_HERE;
-                   }
-                   else
-                           return SPELL_FAILED_OUT_OF_RANGE;
-                }
                 break;
             }
             case SPELL_EFFECT_LEARN_SPELL:
