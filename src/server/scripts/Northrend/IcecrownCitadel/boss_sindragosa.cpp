@@ -262,9 +262,10 @@ class boss_sindragosa : public CreatureScript
                 instance->SetBossState(DATA_SINDRAGOSA, FAIL);
                 me->SetCanFly(false);
                 me->SetDisableGravity(false);
-                instance->SetData(DATA_SINDRAGOSA_FROSTWYRMS,0);
-                me->GetMap()->SummonCreature(NPC_SPINESTALKER, SpinestalkerFlyPos);
-                me->GetMap()->SummonCreature(NPC_RIMEFANG, RimefangFlyPos);
+                Creature* drak1 = me->SummonCreature(NPC_SPINESTALKER,SpinestalkerFlyPos);
+                instance->SetData(DATA_SINDRAGOSA_FROSTWYRMS,drak1->GetDBTableGUIDLow());
+                Creature* drak2 = me->SummonCreature(NPC_RIMEFANG,RimefangFlyPos);
+                instance->SetData(DATA_SINDRAGOSA_FROSTWYRMS,drak2->GetDBTableGUIDLow());
                 me->DisappearAndDie();
             }
 
