@@ -168,7 +168,7 @@ class boss_ahune : public CreatureScript
             void JustDied(Unit* killer)
             {
                 Map::PlayerList const& players = me->GetMap()->GetPlayers();
-                    if (!players.isEmpty() && !players.begin()->GetSource()->GetGroup()->GetGUID())
+                if (!players.isEmpty() && players.begin()->GetSource()->GetGroup()->GetGUID())
                 sLFGMgr->FinishDungeon(players.begin()->GetSource()->GetGroup()->GetGUID(), 286);
 
                 me->SummonCreature(NPC_AHUNE_LOOT_LOC_BUNNY, SummonPositions[4], TEMPSUMMON_CORPSE_TIMED_DESPAWN, 3000);
