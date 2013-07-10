@@ -107,11 +107,11 @@ enum DataTypes
 
 Position const SummonPositions[5] =
 {
-        {-88.495071f, -254.462997f, -1.077302f}, // Ahune / Frozen-Core
-        {-90.891891f, -243.488068f, -1.116222f}, // Hailstone
-        {-97.389175f, -239.780701f, -1.264044f}, // Coldweave #1
-        {-85.160637f, -236.127808f, -1.572418f}, // Coldweave #2
-		{-99.459748f, -191.873424f, -1.705781f}, // Loot Bunny
+        {-88.49f, -254.46f, -1.07f}, // Ahune / Frozen-Core
+        {-90.89f, -243.48f, -1.11f}, // Hailstone
+        {-97.38f, -239.78f, -1.26f}, // Coldweave #1
+        {-85.16f, -236.12f, -1.57f}, // Coldweave #2
+		{-99.45f, -191.87f, -1.70f}, // Loot Bunny
 };
 
 class boss_ahune : public CreatureScript
@@ -129,7 +129,7 @@ class boss_ahune : public CreatureScript
             boss_ahuneAI(Creature* creature) : BossAI(creature, DATA_AHUNE) { }
 
             EventMap events;
-            // SummonList summons;
+            //SummonList summons;
 
             uint64 frozenCoreGUID;
 
