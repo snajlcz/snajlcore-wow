@@ -263,7 +263,6 @@ class boss_sindragosa : public CreatureScript
                 me->SetCanFly(false);
                 me->SetDisableGravity(false);
                 me->DisappearAndDie();
-                me->SummonCreature(NPC_SINDRAGOSA, SindragosaLandPos);
             }
 
             void KilledUnit(Unit* victim)
