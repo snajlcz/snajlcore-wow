@@ -107,11 +107,11 @@ enum DataTypes
 
 Position const SummonPositions[5] =
 {
-        {-88.49f, -254.46f, -1.07f}, // Ahune / Frozen-Core
-        {-90.89f, -243.48f, -1.11f}, // Hailstone
-        {-97.38f, -239.78f, -1.26f}, // Coldweave #1
-        {-85.16f, -236.12f, -1.57f}, // Coldweave #2
-		{-99.45f, -191.87f, -1.70f}, // Loot Bunny
+        {-97.357f, -222.144f, -1.278f}, // Ahune / Frozen-Core
+        {-97.357f, -222.144f, -1.278f}, // Hailstone
+        {-85.854f, -212.931f, -1.552f}, // Coldweave #1
+        {-109.56f, -213.421f, -1.397f}, // Coldweave #2
+        {-99.459f, -191.873f, -1.705f}, // Loot Bunny
 };
 
 class boss_ahune : public CreatureScript
@@ -168,7 +168,7 @@ class boss_ahune : public CreatureScript
             void JustDied(Unit* killer)
             {
                 Map::PlayerList const& players = me->GetMap()->GetPlayers();
-                    if (!players.isEmpty())
+                    if (!players.isEmpty() && !players.begin()->GetSource()->GetGroup()->GetGUID())
                 sLFGMgr->FinishDungeon(players.begin()->GetSource()->GetGroup()->GetGUID(), 286);
 
                 me->SummonCreature(NPC_AHUNE_LOOT_LOC_BUNNY, SummonPositions[4], TEMPSUMMON_CORPSE_TIMED_DESPAWN, 3000);
