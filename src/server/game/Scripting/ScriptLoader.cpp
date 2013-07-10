@@ -540,6 +540,7 @@ void AddSC_crystalsong_forest();
 void AddSC_isle_of_conquest();
 
 //outland
+void AddSC_boss_ahune();
 void AddSC_boss_exarch_maladaar();           //Auchindoun Auchenai Crypts
 void AddSC_boss_shirrak_the_dead_watcher();
 void AddSC_boss_nexusprince_shaffar();       //Auchindoun Mana Tombs
@@ -1035,6 +1036,7 @@ void AddKalimdorScripts()
 void AddOutlandScripts()
 {
 #ifdef SCRIPTS
+    AddSC_boss_ahune();
     AddSC_boss_exarch_maladaar();           //Auchindoun Auchenai Crypts
     AddSC_boss_shirrak_the_dead_watcher();
     AddSC_boss_nexusprince_shaffar();       //Auchindoun Mana Tombs
