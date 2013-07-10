@@ -169,7 +169,7 @@ class boss_ahune : public CreatureScript
             {
                 Map::PlayerList const& players = me->GetMap()->GetPlayers();
                 if (!players.isEmpty() && players.begin()->GetSource()->GetGroup()->GetGUID())
-                sLFGMgr->FinishDungeon(players.begin()->GetSource()->GetGroup()->GetGUID(), 286);
+                    sLFGMgr->FinishDungeon(players.begin()->GetSource()->GetGroup()->GetGUID(), 286);
 
                 me->SummonCreature(NPC_AHUNE_LOOT_LOC_BUNNY, SummonPositions[4], TEMPSUMMON_CORPSE_TIMED_DESPAWN, 3000);
             }
@@ -199,7 +199,7 @@ class boss_ahune : public CreatureScript
                     {
                         case EVENT_SWITCH_PHASE:
                             TC_LOG_INFO(LOG_FILTER_GENERAL,"Phase Change!");
-                            if (events.GetPhaseMask() & PHASE_ONE)
+                            if (events.GetPhaseMask() && PHASE_ONE)
                             {
                                 events.SetPhase(PHASE_TWO);
                                 events.ScheduleEvent(EVENT_SWITCH_PHASE, 30000);
@@ -244,9 +244,8 @@ class boss_ahune : public CreatureScript
                             events.ScheduleEvent(EVENT_COLD_SLAP, 500, 0, PHASE_ONE);
                             break;
                         case EVENT_ICE_SPIKE:
-                            // TODO: lots of spells involved, no idea of their order yet
-							DoCastVictim(SPELL_ICE_SPIKE);
-							events.ScheduleEvent(EVENT_ICE_SPIKE, 5000, 0, PHASE_ONE);
+                            DoCastVictim(SPELL_ICE_SPIKE);
+                            events.ScheduleEvent(EVENT_ICE_SPIKE, 5000, 0, PHASE_ONE);
                             break;
                         case EVENT_SUMMON_HAILSTONE:
                             me->SummonCreature(NPC_AHUNITE_HAILSTONE, SummonPositions[1], TEMPSUMMON_CORPSE_TIMED_DESPAWN, 3000);
