@@ -199,7 +199,7 @@ class boss_ahune : public CreatureScript
                     {
                         case EVENT_SWITCH_PHASE:
                             TC_LOG_INFO(LOG_FILTER_GENERAL,"Phase Change!");
-                            if (events.GetPhaseMask() && PHASE_ONE)
+                            if (PHASE_ONE)
                             {
                                 events.SetPhase(PHASE_TWO);
                                 events.ScheduleEvent(EVENT_SWITCH_PHASE, 30000);
