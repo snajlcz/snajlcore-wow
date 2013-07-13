@@ -88,8 +88,8 @@ enum Events
 
 enum Phases
 {
-    PHASE_ONE    = 0,
-    PHASE_TWO    = 1,
+    PHASE_ONE    = 1,
+    PHASE_TWO    = 2,
 };
 
 enum DataTypes
@@ -199,7 +199,7 @@ class boss_ahune : public CreatureScript
                     {
                         case EVENT_SWITCH_PHASE:
                             TC_LOG_INFO(LOG_FILTER_GENERAL,"Phase Change!");
-                            if (PHASE_ONE)
+                            if (events.GetPhaseMask() & PHASE_ONE)
                             {
                                 events.SetPhase(PHASE_TWO);
                                 events.ScheduleEvent(EVENT_SWITCH_PHASE, 30000);
