@@ -145,7 +145,7 @@ class boss_ahune : public CreatureScript
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
 				
-				me->SetReactState(REACT_AGGRESSIVE);//test
+                me->SetReactState(REACT_AGGRESSIVE);//test
                 me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);//test
                 me->SetUInt32Value(UNIT_NPC_EMOTESTATE, 0);
                 me->HandleEmoteCommand(EMOTE_ONESHOT_EMERGE);
@@ -174,6 +174,7 @@ class boss_ahune : public CreatureScript
                     sLFGMgr->FinishDungeon(players.begin()->GetSource()->GetGroup()->GetGUID(), 286);
 
                 me->SummonCreature(NPC_AHUNE_LOOT_LOC_BUNNY, SummonPositions[4], TEMPSUMMON_CORPSE_TIMED_DESPAWN, 3000);
+                summons.DespawnAll();
             }
 
             void JustSummoned(Creature* summoned)
@@ -227,11 +228,11 @@ class boss_ahune : public CreatureScript
                             events.ScheduleEvent(EVENT_SUMMON_HAILSTONE, 1000, 0, PHASE_ONE);
                             events.ScheduleEvent(EVENT_SUMMON_FROSTWIND, 9000, 0, PHASE_ONE);
                             events.ScheduleEvent(EVENT_SUMMON_COLDWEAVE, 8000, 0, PHASE_ONE);
-							events.ScheduleEvent(EVENT_ICE_SPIKE, 8000, 0, PHASE_ONE);
-							events.ScheduleEvent(EVENT_COLD_SLAP, 500, 0, PHASE_ONE);
+                            events.ScheduleEvent(EVENT_ICE_SPIKE, 8000, 0, PHASE_ONE);
+                            events.ScheduleEvent(EVENT_COLD_SLAP, 500, 0, PHASE_ONE);
 							
-							me->AddAura(SPELL_AHUNES_SHIELD, me);
-							DoCast(me, SPELL_RESURFACE);
+                            me->AddAura(SPELL_AHUNES_SHIELD, me);
+                            DoCast(me, SPELL_RESURFACE);
 							
                             me->SetReactState(REACT_AGGRESSIVE);
                             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
@@ -240,15 +241,15 @@ class boss_ahune : public CreatureScript
 
                             // despawn core
                             if (Creature* frozenCore = me->GetCreature(*me, frozenCoreGUID))
-							{
-							    me->SetHealth(frozenCore->GetHealth()); // sync health on phase change
+                            {
+                                me->SetHealth(frozenCore->GetHealth()); // sync health on phase change
                                 frozenCore->DespawnOrUnsummon(0);
                             }
                             break;
                         case EVENT_COLD_SLAP:
                             if (Unit* target = SelectTarget(SELECT_TARGET_NEAREST, 0, 8.0f, true))
                                 DoCast(target, SPELL_COLD_SLAP);
-                            events.ScheduleEvent(EVENT_COLD_SLAP, 500, 0, PHASE_ONE);
+                            events.ScheduleEvent(EVENT_COLD_SLAP, 1000, 0, PHASE_ONE);
                             break;
                         case EVENT_ICE_SPIKE:
                             DoCastVictim(SPELL_ICE_SPIKE);
