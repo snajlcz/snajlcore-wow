@@ -3019,6 +3019,9 @@ void SpellMgr::LoadDbcDataCorrections()
             case 36350: //They Must Burn Bomb Aura (self)
                 spellInfo->EffectTriggerSpell[0] = 36325; // They Must Burn Bomb Drop (DND)
                 break;
+            case 20577: // Cannibalize
+               spellInfo->AttributesEx6 |= SPELL_ATTR6_CAN_TARGET_INVISIBLE;
+               break;
             case 49838: // Stop Time
             case 5171: // Slice and Dice rank1
             case 6774: // Slice and Dice rank2
