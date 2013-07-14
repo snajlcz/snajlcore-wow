@@ -3121,9 +3121,13 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->SpellFamilyName = SPELLFAMILY_PALADIN;
                 break;
             case 38310: // Multi-Shot
-            case 53385: // Divine Storm (Damage)
                 spellInfo->MaxAffectedTargets = 4;
                 break;
+            case 53385: // Divine Storm
+               spellInfo->MaxAffectedTargets = 4;
+               spellInfo->EffectBasePoints[EFFECT_0] = 0;
+               spellInfo->Effect[EFFECT_0] = SPELL_EFFECT_NORMALIZED_WEAPON_DMG;
+               break;
             case 42005: // Bloodboil
             case 38296: // Spitfire Totem
             case 37676: // Insidious Whisper
@@ -3297,6 +3301,19 @@ void SpellMgr::LoadDbcDataCorrections()
             case 53245: // Marked for Death (Rank 4)
             case 53246: // Marked for Death (Rank 5)
                 spellInfo->EffectSpellClassMask[0] = flag96(0x00067801, 0x10820001, 0x00000801);
+                break;
+            case 20467: // Judgement of Command (Rank 1)
+				spellInfo->EffectBasePoints[EFFECT_1] = 18;
+				break;
+            case 12163:	// Two-Handed Weapon Specialization (Warrior) Rank 1
+            case 12711:	// Two-Handed Weapon Specialization (Warrior) Rank 2
+            case 12712:	// Two-Handed Weapon Specialization (Warrior) Rank 3
+            case 20111:	// Two-Handed Weapon Specialization (Paladin) Rank 1
+            case 20112:	// Two-Handed Weapon Specialization (Paladin) Rank 2
+            case 20113:	// Two-Handed Weapon Specialization (Paladin) Rank 3
+            case 55107:	// Two-Handed Weapon Specialization (DK) Rank 1
+            case 55108:	// Two-Handed Weapon Specialization (DK) Rank 2
+                spellInfo->EffectMiscValue[EFFECT_0] = 127;
                 break;
             case 70728: // Exploit Weakness (needs target selection script)
             case 70840: // Devious Minds (needs target selection script)
