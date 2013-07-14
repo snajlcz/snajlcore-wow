@@ -64,26 +64,27 @@ enum Spells
 enum Events
 {
     // Ahune
-    EVENT_SWITCH_PHASE          = 0,
-    EVENT_SUMMON_HAILSTONE      = 1,
-    EVENT_SUMMON_COLDWEAVE      = 2,
-    EVENT_SUMMON_FROSTWIND      = 3,
-    EVENT_ICE_SPIKE             = 4,
-    EVENT_COLD_SLAP             = 5,
+    EVENT_SUBMERGE              = 1,
+	EVENT_EMERGE                = 2,
+    EVENT_SUMMON_HAILSTONE      = 3,
+    EVENT_SUMMON_COLDWEAVE      = 4,
+    EVENT_SUMMON_FROSTWIND      = 5,
+    EVENT_ICE_SPIKE             = 6,
+    EVENT_COLD_SLAP             = 7,
 
     // Frozen Core
-    EVENT_GHOST_VISUAL          = 6,
-    EVENT_RESURFACE_SOON        = 7,
+    EVENT_GHOST_VISUAL          = 8,
+    EVENT_RESURFACE_SOON        = 9,
 
     // Coldweave
-    EVENT_BITTER_BLAST          = 8,
+    EVENT_BITTER_BLAST          = 10,
 
     // Frostwind
-    EVENT_WIND_BUFFET           = 9,
+    EVENT_WIND_BUFFET           = 11,
 
     // Hailstone
-    EVENT_CHILLING_AURA         = 10,
-    EVENT_PULVERIZE             = 11,
+    EVENT_CHILLING_AURA         = 12,
+    EVENT_PULVERIZE             = 13,
 };
 
 enum Phases
@@ -155,7 +156,7 @@ class boss_ahune : public CreatureScript
 
                 events.Reset();
                 events.SetPhase(PHASE_ONE);
-                events.ScheduleEvent(EVENT_SWITCH_PHASE, 90000); // phase 2 after 90 seconds
+                events.ScheduleEvent(EVENT_SUBMERGE, 90000); // phase 2 after 90 seconds
                 events.ScheduleEvent(EVENT_COLD_SLAP, 500, 0, PHASE_ONE); // every 500ms in melee range in phase 1
                 events.ScheduleEvent(EVENT_SUMMON_HAILSTONE, 1000, 0, PHASE_ONE); // once in every phase 1
                 events.ScheduleEvent(EVENT_SUMMON_COLDWEAVE, 8000, 0, PHASE_ONE); // every 7 seconds in phase 1
@@ -197,46 +198,41 @@ class boss_ahune : public CreatureScript
                 {
                     switch (eventId)
                     {
-                        case EVENT_SWITCH_PHASE:
-                            TC_LOG_INFO(LOG_FILTER_GENERAL,"Phase Change!");
-                            if (events.GetPhaseMask() & PHASE_ONE)
-                            {
-                                events.SetPhase(PHASE_TWO);
-                                events.ScheduleEvent(EVENT_SWITCH_PHASE, 30000);
+                        case EVENT_SUBMERGE:
+							events.SetPhase(PHASE_TWO);
+							events.ScheduleEvent(EVENT_EMERGE, 30000);
 
-                                DoCast(me, SPELL_MAKE_BONFIRE);
+							DoCast(me, SPELL_MAKE_BONFIRE);
 
-                                me->SetReactState(REACT_PASSIVE);
-                                me->AttackStop();
-                                me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
-                                me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_SUBMERGED);
-                                me->HandleEmoteCommand(EMOTE_ONESHOT_SUBMERGE);
+							me->SetReactState(REACT_PASSIVE);
+							me->AttackStop();
+							me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
+							me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_SUBMERGED);
+							me->HandleEmoteCommand(EMOTE_ONESHOT_SUBMERGE);
 
-                                // Emote: Ahune retreats. His defenses diminish.
+							// Emote: Ahune retreats. His defenses diminish.
 
-                                // spawn core
-                                if (Unit* frozenCore = me->SummonCreature(NPC_FROZEN_CORE, SummonPositions[0], TEMPSUMMON_CORPSE_DESPAWN))
-                                {
-                                    frozenCoreGUID = frozenCore->GetGUID();
-                                    frozenCore->SetHealth(me->GetHealth()); // sync health on phase change
-                                }
-                            }
-                            else
-                            {
-                                events.SetPhase(PHASE_ONE);
-                                events.ScheduleEvent(EVENT_SWITCH_PHASE, 90000);
-                                events.ScheduleEvent(EVENT_SUMMON_HAILSTONE, 1000, 0, PHASE_ONE);
-                                events.ScheduleEvent(EVENT_SUMMON_FROSTWIND, 9000, 0, PHASE_ONE);
+							// spawn core
+							if (Unit* frozenCore = me->SummonCreature(NPC_FROZEN_CORE, SummonPositions[0], TEMPSUMMON_CORPSE_DESPAWN))
+							{
+								frozenCoreGUID = frozenCore->GetGUID();
+								frozenCore->SetHealth(me->GetHealth()); // sync health on phase change
+							}
+							break;
+                        case EVENT_EMERGE:
+							events.SetPhase(PHASE_ONE);
+							events.ScheduleEvent(EVENT_SUBMERGE, 90000);
+							events.ScheduleEvent(EVENT_SUMMON_HAILSTONE, 1000, 0, PHASE_ONE);
+							events.ScheduleEvent(EVENT_SUMMON_FROSTWIND, 9000, 0, PHASE_ONE);
 
-                                me->SetReactState(REACT_AGGRESSIVE);
-                                me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
-                                me->SetUInt32Value(UNIT_NPC_EMOTESTATE, 0);
-                                me->HandleEmoteCommand(EMOTE_ONESHOT_EMERGE);
+							me->SetReactState(REACT_AGGRESSIVE);
+							me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
+							me->SetUInt32Value(UNIT_NPC_EMOTESTATE, 0);
+							me->HandleEmoteCommand(EMOTE_ONESHOT_EMERGE);
 
-                                // despawn core
-                                if (Creature* frozenCore = me->GetCreature(*me, frozenCoreGUID))
-                                    frozenCore->DespawnOrUnsummon(0);
-                            }
+							// despawn core
+							if (Creature* frozenCore = me->GetCreature(*me, frozenCoreGUID))
+								frozenCore->DespawnOrUnsummon(0);
                             break;
                         case EVENT_COLD_SLAP:
                             if (Unit* target = SelectTarget(SELECT_TARGET_NEAREST, 0, 8.0f, true))
