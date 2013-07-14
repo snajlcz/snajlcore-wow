@@ -46,7 +46,6 @@ enum Spells
     SPELL_SUMMONING_VISUAL1     = 45937, // below Ahune (?)
     SPELL_SUMMONING_VISUAL2     = 45938, // below the Summoning Stone (?)
     SPELL_SUMMON_MINION_VISUAL  = 46103, // Midsummer - Ahune - Summon Minion, Lower
-    SPELL_GHOST_VISUAL          = 46786,
     SPELL_RESURFACE             = 46402, // Ahune Resurfaces
 
     // Coldweave
@@ -65,7 +64,7 @@ enum Events
 {
     // Ahune
     EVENT_SUBMERGE              = 1,
-	EVENT_EMERGE                = 2,
+    EVENT_EMERGE                = 2,
     EVENT_SUMMON_HAILSTONE      = 3,
     EVENT_SUMMON_COLDWEAVE      = 4,
     EVENT_SUMMON_FROSTWIND      = 5,
@@ -145,7 +144,9 @@ class boss_ahune : public CreatureScript
 
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
-
+				
+                me->SetReactState(REACT_AGGRESSIVE);//test
+                me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);//test
                 me->SetUInt32Value(UNIT_NPC_EMOTESTATE, 0);
                 me->HandleEmoteCommand(EMOTE_ONESHOT_EMERGE);
             }
@@ -173,6 +174,7 @@ class boss_ahune : public CreatureScript
                     sLFGMgr->FinishDungeon(players.begin()->GetSource()->GetGroup()->GetGUID(), 286);
 
                 me->SummonCreature(NPC_AHUNE_LOOT_LOC_BUNNY, SummonPositions[4], TEMPSUMMON_CORPSE_TIMED_DESPAWN, 3000);
+                summons.DespawnAll();
             }
 
             void JustSummoned(Creature* summoned)
@@ -199,45 +201,55 @@ class boss_ahune : public CreatureScript
                     switch (eventId)
                     {
                         case EVENT_SUBMERGE:
-							events.SetPhase(PHASE_TWO);
-							events.ScheduleEvent(EVENT_EMERGE, 30000);
+                            events.SetPhase(PHASE_TWO);
+                            events.ScheduleEvent(EVENT_EMERGE, 30000);
+							
+                            me->RemoveAurasDueToSpell(SPELL_AHUNES_SHIELD);
+                            DoCast(me, SPELL_MAKE_BONFIRE);
 
-							DoCast(me, SPELL_MAKE_BONFIRE);
+                            me->SetReactState(REACT_PASSIVE);
+                            me->AttackStop();
+                            me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
+                            me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_SUBMERGED);
+                            me->HandleEmoteCommand(EMOTE_ONESHOT_SUBMERGE);
 
-							me->SetReactState(REACT_PASSIVE);
-							me->AttackStop();
-							me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
-							me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_SUBMERGED);
-							me->HandleEmoteCommand(EMOTE_ONESHOT_SUBMERGE);
+                            // Emote: Ahune retreats. His defenses diminish.
 
-							// Emote: Ahune retreats. His defenses diminish.
-
-							// spawn core
-							if (Unit* frozenCore = me->SummonCreature(NPC_FROZEN_CORE, SummonPositions[0], TEMPSUMMON_CORPSE_DESPAWN))
-							{
-								frozenCoreGUID = frozenCore->GetGUID();
-								frozenCore->SetHealth(me->GetHealth()); // sync health on phase change
-							}
-							break;
+                            // spawn core
+                            if (Unit* frozenCore = me->SummonCreature(NPC_FROZEN_CORE, SummonPositions[0], TEMPSUMMON_CORPSE_DESPAWN))
+                            {
+                                frozenCoreGUID = frozenCore->GetGUID();
+                                frozenCore->SetHealth(me->GetHealth()); // sync health on phase change
+                            }
+                            break;
                         case EVENT_EMERGE:
-							events.SetPhase(PHASE_ONE);
-							events.ScheduleEvent(EVENT_SUBMERGE, 90000);
-							events.ScheduleEvent(EVENT_SUMMON_HAILSTONE, 1000, 0, PHASE_ONE);
-							events.ScheduleEvent(EVENT_SUMMON_FROSTWIND, 9000, 0, PHASE_ONE);
+                            events.SetPhase(PHASE_ONE);
+                            events.ScheduleEvent(EVENT_SUBMERGE, 90000);
+                            events.ScheduleEvent(EVENT_SUMMON_HAILSTONE, 1000, 0, PHASE_ONE);
+                            events.ScheduleEvent(EVENT_SUMMON_FROSTWIND, 9000, 0, PHASE_ONE);
+                            events.ScheduleEvent(EVENT_SUMMON_COLDWEAVE, 8000, 0, PHASE_ONE);
+                            events.ScheduleEvent(EVENT_ICE_SPIKE, 8000, 0, PHASE_ONE);
+                            events.ScheduleEvent(EVENT_COLD_SLAP, 500, 0, PHASE_ONE);
+							
+                            me->AddAura(SPELL_AHUNES_SHIELD, me);
+                            DoCast(me, SPELL_RESURFACE);
+							
+                            me->SetReactState(REACT_AGGRESSIVE);
+                            me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
+                            me->SetUInt32Value(UNIT_NPC_EMOTESTATE, 0);
+                            me->HandleEmoteCommand(EMOTE_ONESHOT_EMERGE);
 
-							me->SetReactState(REACT_AGGRESSIVE);
-							me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
-							me->SetUInt32Value(UNIT_NPC_EMOTESTATE, 0);
-							me->HandleEmoteCommand(EMOTE_ONESHOT_EMERGE);
-
-							// despawn core
-							if (Creature* frozenCore = me->GetCreature(*me, frozenCoreGUID))
-								frozenCore->DespawnOrUnsummon(0);
+                            // despawn core
+                            if (Creature* frozenCore = me->GetCreature(*me, frozenCoreGUID))
+                            {
+                                me->SetHealth(frozenCore->GetHealth()); // sync health on phase change
+                                frozenCore->DespawnOrUnsummon(0);
+                            }
                             break;
                         case EVENT_COLD_SLAP:
                             if (Unit* target = SelectTarget(SELECT_TARGET_NEAREST, 0, 8.0f, true))
                                 DoCast(target, SPELL_COLD_SLAP);
-                            events.ScheduleEvent(EVENT_COLD_SLAP, 500, 0, PHASE_ONE);
+                            events.ScheduleEvent(EVENT_COLD_SLAP, 1000, 0, PHASE_ONE);
                             break;
                         case EVENT_ICE_SPIKE:
                             DoCastVictim(SPELL_ICE_SPIKE);
@@ -256,73 +268,6 @@ class boss_ahune : public CreatureScript
                         case EVENT_SUMMON_FROSTWIND: // not in first phase 1
                             me->SummonCreature(NPC_AHUNITE_FROSTWIND, SummonPositions[urand(2,3)], TEMPSUMMON_CORPSE_TIMED_DESPAWN, 3000);
                             events.ScheduleEvent(EVENT_SUMMON_FROSTWIND, 7000, 0, PHASE_ONE);
-                            break;
-                    }
-                }
-
-                DoMeleeAttackIfReady();
-            }
-        };
-};
-
-class npc_frozen_core : public CreatureScript
-{
-    public:
-        npc_frozen_core() : CreatureScript("npc_frozen_core") { }
-
-        CreatureAI* GetAI(Creature* creature) const
-        {
-            return new npc_frozen_coreAI(creature);
-        }
-
-        struct npc_frozen_coreAI : public ScriptedAI
-        {
-            npc_frozen_coreAI(Creature* creature) : ScriptedAI(creature) { }
-
-            EventMap events;
-
-            void Reset()
-            {
-                events.Reset();
-
-                events.ScheduleEvent(EVENT_GHOST_VISUAL, 6000); // every 6 seconds Ghost Visual
-                events.ScheduleEvent(EVENT_RESURFACE_SOON, 15000); // after 15 seconds Emote: Ahune will soon resurface.
-
-                me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
-                me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
-            }
-
-            void DamageTaken(Unit* who, uint32& damage)
-            {
-                if (me->IsSummon())
-                {
-                    if (Unit* owner = me->GetOwner())
-                    {
-                        if (owner->GetHealth() > damage)
-                            owner->SetHealth(owner->GetHealth() - damage);
-                        else
-                            who->Kill(owner);
-                    }
-                }
-            }
-
-            void UpdateAI(uint32 diff)
-            {
-                if (!UpdateVictim())
-                    return;
-
-                events.Update(diff);
-
-                while (uint32 eventId = events.ExecuteEvent())
-                {
-                    switch (eventId)
-                    {
-                        case EVENT_GHOST_VISUAL:
-                            DoCast(me, SPELL_GHOST_VISUAL);
-                            events.ScheduleEvent(EVENT_GHOST_VISUAL, 6000);
-                            break;
-                        case EVENT_RESURFACE_SOON:
-                            // Emote: Ahune will soon resurface.
                             break;
                     }
                 }
@@ -475,7 +420,6 @@ class npc_ahunite_frostwind : public CreatureScript
 void AddSC_boss_ahune()
 {
     new boss_ahune();
-    new npc_frozen_core();
     new npc_ahunite_hailstone();
     new npc_ahunite_coldweave();
     new npc_ahunite_frostwind();
