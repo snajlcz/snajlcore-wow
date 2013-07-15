@@ -67,13 +67,13 @@ class ulduar_teleporter : public GameObjectScript
 public:
     ulduar_teleporter() : GameObjectScript("ulduar_teleporter") { }
 
-    bool OnGossipSelect(Player *pPlayer, GameObject * /*pGO*/, uint32 sender, uint32 action)
-    {
-        pPlayer->PlayerTalkClass->ClearMenus();
-        if (sender != GOSSIP_SENDER_MAIN)
-            return false;
-        if (!pPlayer->getAttackers().empty())
-            return false;
+        bool OnGossipSelect(Player* player, GameObject* /*gameObject*/, uint32 sender, uint32 action) OVERRIDE
+        {
+            player->PlayerTalkClass->ClearMenus();
+            if (sender != GOSSIP_SENDER_MAIN)
+                return false;
+            if (!player->getAttackers().empty())
+                return false;
 
         int pos = action - GOSSIP_ACTION_INFO_DEF;
         if (pos >= 0 && pos < MAX)
@@ -83,10 +83,8 @@ public:
         return true;
     }
 
-    bool OnGossipHello(Player *player, GameObject *go)
-    {
-        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Expedition Base Camp", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + BASE_CAMP);
-        if (InstanceScript* instance = go->GetInstanceScript())
+
+        bool OnGossipHello(Player* player, GameObject* gameObject) OVERRIDE
         {
             if (instance->GetData(DATA_COLOSSUS) == 2) //count of 2 collossus death
                 player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Formation Grounds", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + GROUNDS);

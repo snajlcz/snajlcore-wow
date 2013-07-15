@@ -123,14 +123,18 @@ class spell_eadric_radiance : public SpellScriptLoader
                 targets.remove_if(OrientationCheck(GetCaster()));
             }
 
-            void Register()
+            void Register() OVERRIDE
             {
                 OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_eadric_radiance_SpellScript::FilterTargets, EFFECT_0, TARGET_UNIT_SRC_AREA_ENEMY);
                 OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_eadric_radiance_SpellScript::FilterTargets, EFFECT_1, TARGET_UNIT_SRC_AREA_ENEMY);
             }
         };
 
+<<<<<<< HEAD
         SpellScript *GetSpellScript() const
+=======
+        SpellScript* GetSpellScript() const OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             return new spell_eadric_radiance_SpellScript();
         }
@@ -197,7 +201,7 @@ class boss_eadric : public CreatureScript
         bool hasBeenInCombat;
         bool bCredit;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             uiVenganceTimer = 10000;
             uiRadianceTimer = 16000;
@@ -229,7 +233,11 @@ class boss_eadric : public CreatureScript
             }
         }
 
+<<<<<<< HEAD
         void DamageTaken(Unit* /*who*/, uint32& damage)
+=======
+        void DamageTaken(Unit* /*done_by*/, uint32 &damage) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (damage >= me->GetHealth())
             {
@@ -253,7 +261,11 @@ class boss_eadric : public CreatureScript
             }
         }
 
+<<<<<<< HEAD
         void MovementInform(uint32 MovementType, uint32 Data)
+=======
+        void MovementInform(uint32 MovementType, uint32 /*Data*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (MovementType != POINT_MOTION_TYPE)
                 return;
@@ -276,7 +288,7 @@ class boss_eadric : public CreatureScript
                         DoCast(caster, SPELL_EADRIC_ACHIEVEMENT);
         }
 
-        void UpdateAI(uint32 uiDiff)
+        void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             if (bDone && uiResetTimer <= uiDiff)
             {
@@ -323,7 +335,7 @@ class boss_eadric : public CreatureScript
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new boss_eadricAI(creature);
     };
@@ -363,7 +375,7 @@ class boss_paletress : public CreatureScript
         uint32 uiRenewTimer;
         uint32 uiResetTimer;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             me->RemoveAllAuras();
 
@@ -413,14 +425,22 @@ class boss_paletress : public CreatureScript
             Talk(SAY_PALETRESS_AGGRO);
         }
 
+<<<<<<< HEAD
         void SetData(uint32 uiId, uint32 uiValue)
+=======
+        void SetData(uint32 uiId, uint32 /*uiValue*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (uiId == 1)
                 me->RemoveAura(SPELL_SHIELD);
                 Talk(SAY_PALETRESS_MEMORY_DIES);
         }
 
+<<<<<<< HEAD
         void DamageTaken(Unit* /*who*/, uint32& damage)
+=======
+        void DamageTaken(Unit* /*done_by*/, uint32 &damage) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (damage >= me->GetHealth())
             {
@@ -443,14 +463,18 @@ class boss_paletress : public CreatureScript
             }
         }
 
+<<<<<<< HEAD
         void MovementInform(uint32 MovementType, uint32 Data)
+=======
+        void MovementInform(uint32 MovementType, uint32 Point) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (MovementType != POINT_MOTION_TYPE)
                 return;
 
         }
 
-        void UpdateAI(uint32 uiDiff)
+        void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             if (bDone && uiResetTimer <= uiDiff)
             {
@@ -602,13 +626,13 @@ class boss_paletress : public CreatureScript
             DoMeleeAttackIfReady();
         }
 
-        void JustSummoned(Creature* summon)
+        void JustSummoned(Creature* summon) OVERRIDE
         {
             MemoryGUID = summon->GetGUID();
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new boss_paletressAI(creature);
     };
@@ -627,14 +651,14 @@ class npc_memory : public CreatureScript
         uint32 uiShadowPastTimer;
         uint32 uiWakingNightmare;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             uiOldWoundsTimer = 12000;
             uiShadowPastTimer = 5000;
             uiWakingNightmare = 7000;
         }
 
-        void UpdateAI(uint32 uiDiff)
+        void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             if (!UpdateVictim())
                 return;
@@ -668,7 +692,11 @@ class npc_memory : public CreatureScript
             DoMeleeAttackIfReady();
         }
 
+<<<<<<< HEAD
         void JustDied(Unit* killer)
+=======
+        void JustDied(Unit* /*killer*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (me->IsSummon())
             {
@@ -681,7 +709,7 @@ class npc_memory : public CreatureScript
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_memoryAI(creature);
     };
@@ -712,6 +740,7 @@ class npc_argent_soldier : public CreatureScript
 
         uint8 uiWaypoint;
 
+<<<<<<< HEAD
         uint32 uiStrikeTimer;
         uint32 uiCleaveTimer;
         uint32 uiPummelTimer;
@@ -726,6 +755,9 @@ class npc_argent_soldier : public CreatureScript
         bool bStarted;
 
         void Reset()
+=======
+        void WaypointReached(uint32 waypointId) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             uiStrikeTimer = 5000;
             uiCleaveTimer = 6000;
@@ -764,7 +796,11 @@ class npc_argent_soldier : public CreatureScript
             }
         }
 
+<<<<<<< HEAD
         void SetData(uint32 uiType, uint32 uiData)
+=======
+        void SetData(uint32 uiType, uint32 /*uiData*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             switch(me->GetEntry())
             {
@@ -822,7 +858,7 @@ class npc_argent_soldier : public CreatureScript
             uiWaypoint = uiType;
         }
 
-        void UpdateAI(uint32 uiDiff)
+        void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             npc_escortAI::UpdateAI(uiDiff);
 
@@ -898,14 +934,18 @@ class npc_argent_soldier : public CreatureScript
             DoMeleeAttackIfReady();
         }
 
+<<<<<<< HEAD
         void JustDied(Unit* killer)
+=======
+        void JustDied(Unit* /*killer*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (pInstance)
                 pInstance->SetData(DATA_ARGENT_SOLDIER_DEFEATED,pInstance->GetData(DATA_ARGENT_SOLDIER_DEFEATED) + 1);
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_argent_soldierAI(creature);
     };
