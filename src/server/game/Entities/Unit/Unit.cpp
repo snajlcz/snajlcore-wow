@@ -10089,25 +10089,9 @@ uint32 Unit::SpellDamageBonusDone(Unit* victim, SpellInfo const* spellProto, uin
                        continue;
            }
 
-            if (((*i)->GetMiscValue() & spellProto->GetSchoolMask()) == 0)
-              continue;
-
-            if ((*i)->GetSpellInfo()->EquippedItemClass == ITEM_CLASS_WEAPON) // Weapon dependent case should affect all spells based on same damage class
-            {
-
-                if ( spellProto->DmgClass == SPELL_DAMAGE_CLASS_NONE || 
-                spellProto->DmgClass == SPELL_DAMAGE_CLASS_MAGIC ||
-               (spellProto->DmgClass == SPELL_DAMAGE_CLASS_RANGED && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) || 
-               (spellProto->DmgClass == SPELL_DAMAGE_CLASS_MELEE && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ~ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0))
-                if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id != 20196)	//One-Handed Weapon Specialization (Paladin) increases all damage even if is weapon specific
-                   continue;
-
-               if (spellProto->SpellFamilyName == SPELLFAMILY_HUNTER && spellProto->SpellFamilyFlags[0] & 0x00004000) // Serpent Sting should not be affected by
-               if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id == 19507) // Ranged Weapon Specialization
-                   continue;
-            }
             else if (spellProto->EquippedItemClass == -1 && (*i)->GetSpellInfo()->EquippedItemClass != -1) //prevent apply mods from weapon specific case to non weapon specific spells (Example: thunder clap and two-handed weapon specialization)
             continue;
+
             if ((*i)->GetSpellInfo()->EquippedItemClass == -1)
            AddPct(DoneTotalMod, (*i)->GetAmount());
             else if (!((*i)->GetSpellInfo()->AttributesEx5 & SPELL_ATTR5_SPECIAL_ITEM_CLASS_CHECK) && ((*i)->GetSpellInfo()->EquippedItemSubClassMask == 0))
@@ -11428,13 +11412,12 @@ uint32 Unit::MeleeDamageBonusDone(Unit* victim, uint32 pdamage, WeaponAttackType
             AuraEffectList const& mModDamagePercentDone = GetAuraEffectsByType(SPELL_AURA_MOD_DAMAGE_PERCENT_DONE);
             for (AuraEffectList::const_iterator i = mModDamagePercentDone.begin(); i != mModDamagePercentDone.end(); ++i)
             {
-                /* SC0014
+                /* 
                 if ((*i)->GetMiscValue() & spellProto->GetSchoolMask() && !(spellProto->GetSchoolMask() & SPELL_SCHOOL_MASK_NORMAL))
                */
-               // SC0014
                if ((*i)->GetMiscValue() & spellProto->GetSchoolMask()) // we must add pct mods here because of flat benefits should be modified too
                 {
-                   // SC0014
+                   
                    if ((*i)->GetSpellInfo()->EquippedItemClass == ITEM_CLASS_WEAPON) // Weapon dependent case should affect all spells based on same damage class
                    {
                        if ((attType == RANGED_ATTACK && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) || 
