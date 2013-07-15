@@ -3344,8 +3344,6 @@ void SpellMgr::LoadDbcDataCorrections()
                 break;
             case 46619: // rise ally
                 spellInfo->Attributes &= ~SPELL_ATTR0_CANT_CANCEL;
-                spellInfo->EffectImplicitTargetA[0] = TARGET_DEST_DEST;
-                spellInfo->EffectImplicitTargetB[0] = TARGET_DEST_DEST;
                 break;
             case 54800: // Sigil of the Frozen Conscience - change class mask to custom extended flags of Icy Touch
                         // this is done because another spell also uses the same SpellFamilyFlags as Icy Touch
