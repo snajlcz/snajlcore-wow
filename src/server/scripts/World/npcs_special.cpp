@@ -3345,10 +3345,10 @@ public:
 
         void JustDied(Unit* /*killer*/)
         {
-           if (me->GetOwner())
+            if (me->GetCharmer())
               {
-                 me->GetOwner()->RemoveAurasDueToSpell(62218);
-                 me->GetOwner()->RemoveAurasDueToSpell(46619);
+                 me->GetCharmer()->RemoveAurasDueToSpell(62218);
+                 me->GetCharmer()->RemoveAurasDueToSpell(46619);
               }
         }
 
