@@ -3345,7 +3345,6 @@ public:
 
         void JustDied(Unit* /*killer*/)
         {
-            me->RemoveAurasDueToSpell(46619);
            if (me->GetOwner())
               {
                  me->GetOwner()->RemoveAurasDueToSpell(62218);
@@ -3356,7 +3355,10 @@ public:
         void UpdateAI(uint32 diff)
         {
            if (!me->IsCharmed())
-              me->DespawnOrUnsummon();
+              {          
+                  me->GetOwner()->RemoveAurasDueToSpell(46619);
+                  me->DespawnOrUnsummon();
+              }
 
            if (me->IsInCombat())
               DoMeleeAttackIfReady();
