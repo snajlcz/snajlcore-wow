@@ -302,8 +302,32 @@ public:
                 case GO_ICE_WALL_2:
                     uiWallID[1] = go->GetGUID();
                     break;
+<<<<<<< HEAD
                 case GO_ICE_WALL_3:
                     uiWallID[2] = go->GetGUID();
+=======
+            }
+
+            return true;
+        }
+
+        void SetData(uint32 type, uint32 data) OVERRIDE
+        {
+            switch (type)
+            {
+                case DATA_INTRO_EVENT:
+                    if (data == IN_PROGRESS)
+                    {
+                        if (!_introEvent)
+                        {
+                            if (_teamInInstance == ALLIANCE)
+                                instance->SummonCreature(NPC_JAINA_PART1, JainaSpawnPos);
+                            else
+                                instance->SummonCreature(NPC_SYLVANAS_PART1, SylvanasSpawnPos);
+                        }
+                    }
+                    _introEvent = data;
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
                     break;
                 case GO_ICE_WALL_4:
                     uiWallID[3] = go->GetGUID();
@@ -467,7 +491,7 @@ public:
                 SaveToDB();
         }
 
-        uint32 GetData(uint32 type) const
+        uint32 GetData(uint32 type) const OVERRIDE
         {
             switch (type)
             {
@@ -489,7 +513,11 @@ public:
             return 0;
         }
 
+<<<<<<< HEAD
         uint64 GetData64(uint32 identifier) const
+=======
+        uint64 GetData64(uint32 type) const OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             switch (identifier)
             {
@@ -709,6 +737,7 @@ public:
             index = urand(0, ENCOUNTER_WAVE_RIFLEMAN-1);
             summoner->SummonCreature(NPC_WAVE_RIFLEMAN, RiflemanSpawnPos[index], TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 0);
 
+<<<<<<< HEAD
             index = urand(0, ENCOUNTER_WAVE_PRIEST-1);
             summoner->SummonCreature(NPC_WAVE_PRIEST, PriestSpawnPos[index], TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 0);
 
@@ -737,6 +766,12 @@ public:
             }
         }
     };
+=======
+    InstanceScript* GetInstanceScript(InstanceMap* map) const OVERRIDE
+    {
+        return new instance_halls_of_reflection_InstanceMapScript(map);
+    }
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 };
 
 void AddSC_instance_halls_of_reflection()
