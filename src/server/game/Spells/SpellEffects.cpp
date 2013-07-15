@@ -751,6 +751,21 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                 case 46584: // Raise Dead
                     // rest of the spell handled in spell_dk.cpp
                     m_caster->ToPlayer()->RemoveSpellCooldown(46584, true);
+                case 61999:
+                     if (!unitTarget || m_caster->GetTypeId() != TYPEID_PLAYER || unitTarget->IsAlive())
+                      {
+                          SendCastResult(SPELL_FAILED_TARGET_NOT_DEAD);
+                          finish(true);
+                          CancelGlobalCooldown();
+                          m_caster->ToPlayer()->RemoveSpellCooldown(m_spellInfo->Id, true);
+                          return;
+                       }else
+                          {
+                          unitTarget->CastSpell(unitTarget, 46619, true);
+                          CancelGlobalCooldown();
+                          return;
+                          }
+                              break;
                     break;
             }
             break;
@@ -3318,12 +3333,27 @@ void Spell::EffectWeaponDmg(SpellEffIndex effIndex)
         }
         case SPELLFAMILY_PALADIN:
         {
-            // Seal of Command Unleashed
-            if (m_spellInfo->Id == 20467)
-            {
-                spell_bonus += int32(0.08f * m_caster->GetTotalAttackPowerValue(BASE_ATTACK));
-                spell_bonus += int32(0.13f * m_caster->SpellBaseDamageBonusDone(m_spellInfo->GetSchoolMask()));
-            }
+            //// Seal of Command Unleashed
+            //if (m_spellInfo->Id == 20467)
+            //{
+            //    spell_bonus += int32(0.08f * m_caster->GetTotalAttackPowerValue(BASE_ATTACK));
+            //    spell_bonus += int32(0.13f * m_caster->SpellBaseDamageBonusDone(m_spellInfo->GetSchoolMask()));
+            //}
+            // SC0105
+           switch (m_spellInfo->Id)
+           {
+               case 20467: 
+                   spell_bonus += int32(0.08f * m_caster->GetTotalAttackPowerValue(BASE_ATTACK));
+                   spell_bonus += int32(0.13f * m_caster->SpellBaseDamageBonusDone(m_spellInfo->GetSchoolMask()));
+                   break;
+               case 42463: // Seal of Vengeance
+               case 53739: // Seal of Corruption
+                   if (Aura* aur = unitTarget->GetAura(m_spellInfo->Id == 42463 ? 31803 : 53742, m_caster->GetGUID()))
+                       totalDamagePercentMod *= float(aur->GetStackAmount()) / 5.0f;
+                   else
+                       return;
+                   break;
+           }
             break;
         }
         case SPELLFAMILY_SHAMAN:
@@ -3473,7 +3503,15 @@ void Spell::EffectWeaponDmg(SpellEffIndex effIndex)
             spell_bonus = int32(spell_bonus * weapon_total_pct);
     }
 
-    int32 weaponDamage = m_caster->CalculateDamage(m_attackType, normalized, true);
+     int32 weaponDamage = m_caster->CalculateDamage(m_attackType, normalized, false); // Pct mods added later in Unit::MeleeDamageBonus() because of flat mods
+     
+     if (m_attackType == OFF_ATTACK) // we must add off-hand bonuses now
+    {
+       float coeffOH = 1.0f; // TODO: find cleaner solution + more info on nuances
+       coeffOH *= m_caster->GetModifierValue(UNIT_MOD_DAMAGE_OFFHAND, TOTAL_PCT);
+       coeffOH /= m_caster->GetModifierValue(UNIT_MOD_DAMAGE_MAINHAND, TOTAL_PCT);  // add off-hand but do not add global bonuses
+       weaponDamage = int32(weaponDamage * coeffOH);
+    }
 
     // Sequence is important
     for (int j = 0; j < MAX_SPELL_EFFECTS; ++j)
