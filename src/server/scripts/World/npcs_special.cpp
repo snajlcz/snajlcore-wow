@@ -1924,11 +1924,16 @@ public:
         void InitializeAI()
         {
             CasterAI::InitializeAI();
+              // Not needed to be despawned now
+            despawnTimer = 0;
+            // Do no seach target here because aura is not applied yet and owner is not set
+        }
+
+        void FindVictim()
+        {
             uint64 ownerGuid = me->GetOwnerGUID();
             if (!ownerGuid)
                 return;
-            // Not needed to be despawned now
-            despawnTimer = 0;
             // Find victim of Summon Gargoyle spell
             std::list<Unit*> targets;
             Trinity::AnyUnfriendlyUnitInObjectRangeCheck u_check(me, me, 30);
@@ -1995,6 +2000,8 @@ public:
                     me->AddThreat((*iter), 1000000.0f);
                     break;
                 }
+            if (me->GetVictim() == NULL)
+               FindVictim();
 
             if (despawnTimer > 0)
             {
