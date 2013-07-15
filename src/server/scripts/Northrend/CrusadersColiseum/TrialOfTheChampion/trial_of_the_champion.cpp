@@ -638,11 +638,7 @@ class npc_herald_toc5 : public CreatureScript
             }
         }
 
-<<<<<<< HEAD
-        void DoAction(int32 action)
-=======
        void UpdateAI(uint32 uiDiff) OVERRIDE
->>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             switch (action)
             {
@@ -773,8 +769,6 @@ class npc_herald_toc5 : public CreatureScript
                                 varian->AI()->Talk(SAY_OUTRO_3_ALLY);
                         break;
                 }
-<<<<<<< HEAD
-=======
             } else uiTimer -= uiDiff;
 
             if (!UpdateVictim())
@@ -806,17 +800,12 @@ class npc_herald_toc5 : public CreatureScript
                 case VEHICLE_DARKSPEAR_RAPTOR:
                     me->AI()->SetData(DATA_LESSER_CHAMPIONS_DEFEATED, 0);
                     break;
->>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
             }
         }
     };
 
     CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-<<<<<<< HEAD
-        return new npc_herald_toc5AI (creature);
-    };
-=======
         return new npc_announcer_toc5AI(creature);
     }
 
@@ -856,7 +845,6 @@ class npc_herald_toc5 : public CreatureScript
 
         return true;
     }
->>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 };
 
 void AddSC_trial_of_the_champion()
