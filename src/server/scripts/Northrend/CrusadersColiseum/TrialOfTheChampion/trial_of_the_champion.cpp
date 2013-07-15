@@ -289,7 +289,7 @@ class npc_herald_toc5 : public CreatureScript
             }
         }
 
-        void SetData(uint32 uiType, uint32 /*uiData*/)
+        void SetData(uint32 uiType, uint32 /*uiData*/) OVERRIDE
         {
             switch (uiType)
             {
@@ -348,7 +348,7 @@ class npc_herald_toc5 : public CreatureScript
             }
         }
 
-        void MovementInform(uint32 uiType, uint32 uiPointId)
+        void MovementInform(uint32 uiType, uint32 uiPointId) OVERRIDE
         {
             if (uiType != POINT_MOTION_TYPE)
                 return;
@@ -638,7 +638,7 @@ class npc_herald_toc5 : public CreatureScript
             }
         }
 
-        void DoAction(int32 action)
+       void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             switch (action)
             {
@@ -769,14 +769,82 @@ class npc_herald_toc5 : public CreatureScript
                                 varian->AI()->Talk(SAY_OUTRO_3_ALLY);
                         break;
                 }
+            } else uiTimer -= uiDiff;
+
+            if (!UpdateVictim())
+                return;
+        }
+
+        void JustSummoned(Creature* summon) OVERRIDE
+        {
+            if (instance && instance->GetData(BOSS_GRAND_CHAMPIONS) == NOT_STARTED)
+            {
+                summon->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
+                summon->SetReactState(REACT_PASSIVE);
+            }
+        }
+
+        void SummonedCreatureDespawn(Creature* summon) OVERRIDE
+        {
+            switch (summon->GetEntry())
+            {
+                case VEHICLE_DARNASSIA_NIGHTSABER:
+                case VEHICLE_EXODAR_ELEKK:
+                case VEHICLE_STORMWIND_STEED:
+                case VEHICLE_GNOMEREGAN_MECHANOSTRIDER:
+                case VEHICLE_IRONFORGE_RAM:
+                case VEHICLE_FORSAKE_WARHORSE:
+                case VEHICLE_THUNDER_BLUFF_KODO:
+                case VEHICLE_ORGRIMMAR_WOLF:
+                case VEHICLE_SILVERMOON_HAWKSTRIDER:
+                case VEHICLE_DARKSPEAR_RAPTOR:
+                    me->AI()->SetData(DATA_LESSER_CHAMPIONS_DEFEATED, 0);
+                    break;
             }
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-        return new npc_herald_toc5AI (creature);
-    };
+        return new npc_announcer_toc5AI(creature);
+    }
+
+    bool OnGossipHello(Player* player, Creature* creature) OVERRIDE
+    {
+        InstanceScript* instance = creature->GetInstanceScript();
+
+        if (instance &&
+            ((instance->GetData(BOSS_GRAND_CHAMPIONS) == DONE &&
+            instance->GetData(BOSS_BLACK_KNIGHT) == DONE &&
+            instance->GetData(BOSS_ARGENT_CHALLENGE_E) == DONE) ||
+            instance->GetData(BOSS_ARGENT_CHALLENGE_P) == DONE))
+            return false;
+
+        if (instance &&
+            instance->GetData(BOSS_GRAND_CHAMPIONS) == NOT_STARTED &&
+            instance->GetData(BOSS_ARGENT_CHALLENGE_E) == NOT_STARTED &&
+            instance->GetData(BOSS_ARGENT_CHALLENGE_P) == NOT_STARTED &&
+            instance->GetData(BOSS_BLACK_KNIGHT) == NOT_STARTED)
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_START_EVENT1, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+1);
+        else if (instance)
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_START_EVENT2, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+1);
+
+        player->SEND_GOSSIP_MENU(player->GetGossipTextId(creature), creature->GetGUID());
+
+        return true;
+    }
+
+    bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 action) OVERRIDE
+    {
+        player->PlayerTalkClass->ClearMenus();
+        if (action == GOSSIP_ACTION_INFO_DEF+1)
+        {
+            player->CLOSE_GOSSIP_MENU();
+            CAST_AI(npc_announcer_toc5::npc_announcer_toc5AI, creature->AI())->StartEncounter();
+        }
+
+        return true;
+    }
 };
 
 void AddSC_trial_of_the_champion()
