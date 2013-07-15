@@ -78,7 +78,11 @@ enum Talk
     WARNING_WEAPONS                 = 1,
 };
 
+<<<<<<< HEAD
 enum Seat
+=======
+enum Seats
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 {
     SEAT_ID_0                       = 0,
 };
@@ -186,7 +190,7 @@ class generic_vehicleAI_toc5 : public CreatureScript
         uint32 uiThrustTimer;
         uint32 uiWaypointPath;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             combatCheckTimer = 500;
             uiShieldBreakerTimer = 8000;
@@ -197,7 +201,11 @@ class generic_vehicleAI_toc5 : public CreatureScript
             uiDefendTimer = urand(30000, 60000);
         }
 
+<<<<<<< HEAD
         void SetData(uint32 uiType, uint32 /*uiData8*/)
+=======
+        void SetData(uint32 uiType, uint32 /*uiData*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             switch(uiType)
             {
@@ -239,7 +247,11 @@ class generic_vehicleAI_toc5 : public CreatureScript
                 Start(false,true,0,NULL);
         }
 
+<<<<<<< HEAD
         void WaypointReached(uint32 i)
+=======
+        void WaypointReached(uint32 waypointId) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             switch(i)
             {
@@ -254,7 +266,11 @@ class generic_vehicleAI_toc5 : public CreatureScript
             }
         }
 
+<<<<<<< HEAD
         void EnterCombat(Unit* who)
+=======
+        void EnterCombat(Unit* /*who*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             hasBeenInCombat = true;
             DoCastSpellDefend();
@@ -266,7 +282,11 @@ class generic_vehicleAI_toc5 : public CreatureScript
                 DoCast(me, SPELL_DEFEND, true);
         }
 
+<<<<<<< HEAD
         void SpellHit(Unit* source, const SpellInfo* spell)
+=======
+        void UpdateAI(uint32 uiDiff) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
 
             uint32 defendAuraStackAmount = 0;
@@ -471,7 +491,7 @@ class generic_vehicleAI_toc5 : public CreatureScript
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new generic_vehicleAI_toc5AI(creature);
     }
@@ -512,14 +532,14 @@ class boss_warrior_toc5 : public CreatureScript
         bool bCredit;
         bool hasBeenInCombat;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             uiBladeStormTimer = urand(15000,20000);
             uiInterceptTimer  = 7000;
             uiMortalStrikeTimer = urand(8000, 12000);
         }
 
-        void JustReachedHome()
+        void JustReachedHome() OVERRIDE
         {
             ScriptedAI::JustReachedHome();
 
@@ -532,6 +552,7 @@ class boss_warrior_toc5 : public CreatureScript
             bHome = false;
         }
 
+<<<<<<< HEAD
         void EnterCombat(Unit* who)
         {
             _EnterCombat();
@@ -539,6 +560,9 @@ class boss_warrior_toc5 : public CreatureScript
         }
 
         void UpdateAI(uint32 uiDiff)
+=======
+        void UpdateAI(uint32 uiDiff) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (!bDone && GrandChampionsOutVehicle(me))
             {
@@ -604,6 +628,7 @@ class boss_warrior_toc5 : public CreatureScript
             DoMeleeAttackIfReady();
         }
 
+<<<<<<< HEAD
         void DamageTaken(Unit* /*who*/, uint32& damage)
         {
             if (damage >= me->GetHealth())
@@ -630,13 +655,16 @@ class boss_warrior_toc5 : public CreatureScript
         }
 
         void JustDied(Unit* /*killer*/)
+=======
+        void JustDied(Unit* /*killer*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
            if (instance)
                 instance->SetData(BOSS_GRAND_CHAMPIONS, DONE);
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new boss_warrior_toc5AI(creature);
     }
@@ -678,7 +706,7 @@ class boss_mage_toc5 : public CreatureScript
         bool hasBeenInCombat;
         bool bCredit;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             uiFireBallTimer = 5000;
             uiPolymorphTimer  = 8000;
@@ -686,7 +714,7 @@ class boss_mage_toc5 : public CreatureScript
             uiHasteTimer = 22000;
         }
 
-        void JustReachedHome()
+        void JustReachedHome() OVERRIDE
         {
             ScriptedAI::JustReachedHome();
 
@@ -699,6 +727,7 @@ class boss_mage_toc5 : public CreatureScript
             bHome = false;
         }
 
+<<<<<<< HEAD
         void EnterCombat(Unit* who)
         {
             _EnterCombat();
@@ -706,6 +735,9 @@ class boss_mage_toc5 : public CreatureScript
         }
 
         void UpdateAI(uint32 uiDiff)
+=======
+        void UpdateAI(uint32 uiDiff) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (!bDone && GrandChampionsOutVehicle(me))
             {
@@ -769,7 +801,11 @@ class boss_mage_toc5 : public CreatureScript
             DoMeleeAttackIfReady();
         }
 
+<<<<<<< HEAD
         void DamageTaken(Unit* /*who*/, uint32& damage)
+=======
+        void JustDied(Unit* /*killer*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (damage >= me->GetHealth())
             {
@@ -795,7 +831,7 @@ class boss_mage_toc5 : public CreatureScript
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new boss_mage_toc5AI(creature);
     };
@@ -836,7 +872,7 @@ class boss_shaman_toc5 : public CreatureScript
         bool hasBeenInCombat;
         bool bCredit;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             uiChainLightningTimer = 16000;
             uiHealingWaveTimer = 12000;
@@ -844,7 +880,7 @@ class boss_shaman_toc5 : public CreatureScript
             uiHexMendingTimer = urand(20000, 25000);
         }
 
-        void EnterCombat(Unit* who)
+        void EnterCombat(Unit* who) OVERRIDE
         {
             _EnterCombat();
             hasBeenInCombat = true;
@@ -852,7 +888,7 @@ class boss_shaman_toc5 : public CreatureScript
             DoCast(who,SPELL_HEX_OF_MENDING);
         };
 
-        void JustReachedHome()
+        void JustReachedHome() OVERRIDE
         {
             ScriptedAI::JustReachedHome();
 
@@ -865,7 +901,7 @@ class boss_shaman_toc5 : public CreatureScript
             bHome = false;
         }
 
-        void UpdateAI(uint32 uiDiff)
+        void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             if (!bDone && GrandChampionsOutVehicle(me))
             {
@@ -938,7 +974,11 @@ class boss_shaman_toc5 : public CreatureScript
             DoMeleeAttackIfReady();
         }
 
+<<<<<<< HEAD
         void DamageTaken(Unit* /*who*/, uint32& damage)
+=======
+        void JustDied(Unit* /*killer*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (damage >= me->GetHealth())
             {
@@ -964,7 +1004,7 @@ class boss_shaman_toc5 : public CreatureScript
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new boss_shaman_toc5AI(creature);
     }
@@ -1008,7 +1048,7 @@ class boss_hunter_toc5 : public CreatureScript
         bool hasBeenInCombat;
         bool bCredit;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             uiShootTimer = 12000;
             uiMultiShotTimer = 0;
@@ -1042,7 +1082,7 @@ class boss_hunter_toc5 : public CreatureScript
             }
         }
 
-        void JustReachedHome()
+        void JustReachedHome() OVERRIDE
         {
             ScriptedAI::JustReachedHome();
 
@@ -1055,6 +1095,7 @@ class boss_hunter_toc5 : public CreatureScript
             bHome = false;
         }
 
+<<<<<<< HEAD
         void EnterCombat(Unit* who)
         {
             _EnterCombat();
@@ -1062,6 +1103,9 @@ class boss_hunter_toc5 : public CreatureScript
         }
 
         void UpdateAI(uint32 uiDiff)
+=======
+        void UpdateAI(uint32 uiDiff) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (!bDone && GrandChampionsOutVehicle(me))
             {
@@ -1154,7 +1198,11 @@ class boss_hunter_toc5 : public CreatureScript
             DoMeleeAttackIfReady();
         }
 
+<<<<<<< HEAD
         void DamageTaken(Unit* /*who*/, uint32& damage)
+=======
+        void JustDied(Unit* /*killer*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (damage >= me->GetHealth())
             {
@@ -1180,7 +1228,7 @@ class boss_hunter_toc5 : public CreatureScript
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new boss_hunter_toc5AI(creature);
     }
@@ -1221,7 +1269,7 @@ class boss_rouge_toc5 : public CreatureScript
         bool hasBeenInCombat;
         bool bCredit;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             uiEviscerateTimer = 8000;
             uiFanKivesTimer   = 14000;
@@ -1252,7 +1300,7 @@ class boss_rouge_toc5 : public CreatureScript
             }
         }
 
-        void JustReachedHome()
+        void JustReachedHome() OVERRIDE
         {
             ScriptedAI::JustReachedHome();
 
@@ -1265,6 +1313,7 @@ class boss_rouge_toc5 : public CreatureScript
             bHome = false;
         }
 
+<<<<<<< HEAD
         void EnterCombat(Unit* who)
         {
             _EnterCombat();
@@ -1272,6 +1321,9 @@ class boss_rouge_toc5 : public CreatureScript
         }
 
         void UpdateAI(uint32 uiDiff)
+=======
+        void UpdateAI(uint32 uiDiff) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (!bDone && GrandChampionsOutVehicle(me))
             {
@@ -1327,7 +1379,11 @@ class boss_rouge_toc5 : public CreatureScript
             DoMeleeAttackIfReady();
         }
 
+<<<<<<< HEAD
         void DamageTaken(Unit* /*who*/, uint32& damage)
+=======
+        void JustDied(Unit* /*killer*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (damage >= me->GetHealth())
             {
@@ -1353,7 +1409,7 @@ class boss_rouge_toc5 : public CreatureScript
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new boss_rouge_toc5AI(creature);
     }

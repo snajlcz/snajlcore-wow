@@ -387,23 +387,23 @@ static const Animation DemonTransformation[10]=
     {0, SPELL_DEMON_TRANSFORM_3, 0, 0, 0, 8, true}
 };
 
-class mob_flame_of_azzinoth : public CreatureScript
+class npc_flame_of_azzinoth : public CreatureScript
 {
 public:
-    mob_flame_of_azzinoth() : CreatureScript("mob_flame_of_azzinoth") { }
+    npc_flame_of_azzinoth() : CreatureScript("npc_flame_of_azzinoth") { }
 
     struct flame_of_azzinothAI : public ScriptedAI
     {
         flame_of_azzinothAI(Creature* creature) : ScriptedAI(creature) {}
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             FlameBlastTimer = 15000;
             CheckTimer = 5000;
             GlaiveGUID = 0;
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             DoZoneInCombat();
         }
@@ -448,7 +448,7 @@ public:
             GlaiveGUID = guid;
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim())
                 return;
@@ -477,9 +477,9 @@ public:
         uint64 GlaiveGUID;
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-        return new flame_of_azzinothAI (creature);
+        return new flame_of_azzinothAI(creature);
     }
 };
 
@@ -496,12 +496,11 @@ public:
             instance = creature->GetInstanceScript();
             DoCast(me, SPELL_DUAL_WIELD, true);
         }
-        float m_fTargetMoveX, m_fTargetMoveY, m_fTargetMoveZ;
-        void Reset();
+        void Reset() OVERRIDE;
 
-        void JustSummoned(Creature* summon);
+        void JustSummoned(Creature* summon) OVERRIDE;
 
-        void SummonedCreatureDespawn(Creature* summon)
+        void SummonedCreatureDespawn(Creature* summon) OVERRIDE
         {
             if (summon->GetCreatureTemplate()->Entry == FLAME_OF_AZZINOTH)
             {
@@ -518,7 +517,7 @@ public:
             Summons.Despawn(summon);
         }
 
-        void MovementInform(uint32 /*MovementType*/, uint32 /*Data*/)
+        void MovementInform(uint32 /*MovementType*/, uint32 /*Data*/) OVERRIDE
         {
             if (FlightCount == 7) // change hover point
             {
@@ -533,13 +532,13 @@ public:
                 Timer[EVENT_FLIGHT_SEQUENCE] = 1000;
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             me->setActive(true);
             DoZoneInCombat();
         }
 
-        void AttackStart(Unit* who)
+        void AttackStart(Unit* who) OVERRIDE
         {
             if (!who || Phase >= PHASE_TALK_SEQUENCE)
                 return;
@@ -550,9 +549,10 @@ public:
                 ScriptedAI::AttackStart(who);
         }
 
-        void MoveInLineOfSight(Unit*) {}
+        void MoveInLineOfSight(Unit*) OVERRIDE {}
 
-        void JustDied(Unit* /*killer*/)
+
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
@@ -565,7 +565,7 @@ public:
                 instance->HandleGameObject(instance->GetData64(i), true);
         }
 
-        void KilledUnit(Unit* victim)
+        void KilledUnit(Unit* victim) OVERRIDE
         {
             if (victim->GetTypeId() != TYPEID_PLAYER)
                 return;
@@ -573,7 +573,7 @@ public:
             Talk(SAY_ILLIDAN_KILL);
         }
 
-        void DamageTaken(Unit* done_by, uint32 &damage)
+        void DamageTaken(Unit* done_by, uint32 &damage) OVERRIDE
         {
             if (damage >= me->GetHealth() && done_by != me)
                 damage = 0;
@@ -581,7 +581,7 @@ public:
                 done_by->AddThreat(me, -(3*(float)damage)/4); // do not let maiev tank him
         }
 
-        void SpellHit(Unit* /*caster*/, const SpellInfo* spell)
+        void SpellHit(Unit* /*caster*/, const SpellInfo* spell) OVERRIDE
         {
             if (spell->Id == SPELL_GLAIVE_RETURNS) // Re-equip our warblades!
             {
@@ -750,7 +750,7 @@ public:
                         Flame->setFaction(me->getFaction()); // Just in case the database has it as a different faction
                         Flame->SetMeleeDamageSchool(SPELL_SCHOOL_FIRE);
                         FlameGUID[i] = Flame->GetGUID(); // Record GUID in order to check if they're dead later on to move to the next phase
-                        CAST_AI(mob_flame_of_azzinoth::flame_of_azzinothAI, Flame->AI())->SetGlaiveGUID(GlaiveGUID[i]);
+                        CAST_AI(npc_flame_of_azzinoth::flame_of_azzinothAI, Flame->AI())->SetGlaiveGUID(GlaiveGUID[i]);
                         Glaive->CastSpell(Flame, SPELL_AZZINOTH_CHANNEL, false); // Glaives do some random Beam type channel on it.
                     }
                 }
@@ -921,7 +921,7 @@ public:
             ++TransformCount;
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if ((!UpdateVictim()) && Phase < PHASE_TALK_SEQUENCE)
                 return;
@@ -1125,9 +1125,9 @@ public:
         SummonList Summons;
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-        return new boss_illidan_stormrageAI (creature);
+        return new boss_illidan_stormrageAI(creature);
     }
 };
 
@@ -1143,7 +1143,7 @@ public:
     {
         boss_maievAI(Creature* creature) : ScriptedAI(creature) {};
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             MaxTimer = 0;
             Phase = PHASE_NORMAL_MAIEV;
@@ -1155,16 +1155,17 @@ public:
             me->SetUInt32Value(UNIT_VIRTUAL_ITEM_SLOT_ID + 2, 45738);
         }
 
-        void EnterCombat(Unit* /*who*/) {}
-        void MoveInLineOfSight(Unit* /*who*/) {}
-        void EnterEvadeMode() {}
+        void EnterCombat(Unit* /*who*/) OVERRIDE {}
+        void MoveInLineOfSight(Unit* /*who*/) OVERRIDE {}
+
+        void EnterEvadeMode() OVERRIDE {}
 
         void GetIllidanGUID(uint64 guid)
         {
             IllidanGUID = guid;
         }
 
-        void DamageTaken(Unit* done_by, uint32 &damage)
+        void DamageTaken(Unit* done_by, uint32 &damage) OVERRIDE
         {
             if (done_by->GetGUID() != IllidanGUID)
                 damage = 0;
@@ -1178,7 +1179,7 @@ public:
             }
         }
 
-        void AttackStart(Unit* who)
+        void AttackStart(Unit* who) OVERRIDE
         {
             if (!who || Timer[EVENT_MAIEV_STEALTH])
                 return;
@@ -1196,7 +1197,7 @@ public:
                 ScriptedAI::AttackStart(who);
         }
 
-        void DoAction(int32 param)
+        void DoAction(int32 param) OVERRIDE
         {
             if (param > PHASE_ILLIDAN_NULL && param < PHASE_ILLIDAN_MAX)
                 EnterPhase(PhaseIllidan(param));
@@ -1268,7 +1269,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if ((!UpdateVictim())
                 && !Timer[EVENT_MAIEV_STEALTH])
@@ -1345,9 +1346,9 @@ public:
         uint32 MaxTimer;
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-        return new boss_maievAI (creature);
+        return new boss_maievAI(creature);
     }
 };
 
@@ -1364,7 +1365,7 @@ public:
             JustCreated = true;
         }
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             WalkCount = 0;
             if (instance)
@@ -1420,23 +1421,24 @@ public:
         }
 
         // Do not call reset in Akama's evade mode, as this will stop him from summoning minions after he kills the first bit
-        void EnterEvadeMode()
+        void EnterEvadeMode() OVERRIDE
         {
             me->RemoveAllAuras();
             me->DeleteThreatList();
             me->CombatStop(true);
         }
 
-        void EnterCombat(Unit* /*who*/) {}
-        void MoveInLineOfSight(Unit* /*who*/) {}
+        void EnterCombat(Unit* /*who*/) OVERRIDE {}
+        void MoveInLineOfSight(Unit* /*who*/) OVERRIDE {}
 
-        void MovementInform(uint32 MovementType, uint32 /*Data*/)
+
+        void MovementInform(uint32 MovementType, uint32 /*Data*/) OVERRIDE
         {
             if (MovementType == POINT_MOTION_TYPE)
                 Timer = 1;
         }
 
-        void DamageTaken(Unit* done_by, uint32 &damage)
+        void DamageTaken(Unit* done_by, uint32 &damage) OVERRIDE
         {
             if (damage > me->GetHealth() || done_by->GetGUID() != IllidanGUID)
                 damage = 0;
@@ -1684,7 +1686,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!me->IsVisible())
             {
@@ -1767,7 +1769,7 @@ public:
             DoMeleeAttackIfReady();
         }
 
-        void sGossipSelect(Player* player, uint32 /*sender*/, uint32 /*action*/)
+        void sGossipSelect(Player* player, uint32 /*sender*/, uint32 /*action*/) OVERRIDE
         {
             player->CLOSE_GOSSIP_MENU();
             EnterPhase(PHASE_CHANNEL);
@@ -1790,7 +1792,7 @@ public:
         uint32 Check_Timer;
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_akama_illidanAI(creature);
     }
@@ -1988,16 +1990,16 @@ void boss_illidan_stormrage::boss_illidan_stormrageAI::HandleTalkSequence()
     ++TalkCount;
 }
 
-class mob_cage_trap_trigger : public CreatureScript
+class npc_cage_trap_trigger : public CreatureScript
 {
 public:
-    mob_cage_trap_trigger() : CreatureScript("mob_cage_trap_trigger") { }
+    npc_cage_trap_trigger() : CreatureScript("npc_cage_trap_trigger") { }
 
     struct cage_trap_triggerAI : public ScriptedAI
     {
         cage_trap_triggerAI(Creature* creature) : ScriptedAI(creature) {}
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             IllidanGUID = 0;
 
@@ -2009,9 +2011,10 @@ public:
             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
         }
 
-        void EnterCombat(Unit* /*who*/){}
+        void EnterCombat(Unit* /*who*/)OVERRIDE {}
 
-        void MoveInLineOfSight(Unit* who)
+        void MoveInLineOfSight(Unit* who) OVERRIDE
+
         {
             if (!Active)
                 return;
@@ -2035,7 +2038,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (DespawnTimer)
             {
@@ -2061,9 +2064,9 @@ public:
         bool SummonedBeams;
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-        return new cage_trap_triggerAI (creature);
+        return new cage_trap_triggerAI(creature);
     }
 };
 
@@ -2072,46 +2075,46 @@ class gameobject_cage_trap : public GameObjectScript
 public:
     gameobject_cage_trap() : GameObjectScript("gameobject_cage_trap") { }
 
-    bool OnGossipHello(Player* player, GameObject* go)
+    bool OnGossipHello(Player* player, GameObject* go) OVERRIDE
     {
         float x, y, z;
         player->GetPosition(x, y, z);
 
         // Grid search for nearest live Creature of entry 23304 within 10 yards
         if (Creature* pTrigger = go->FindNearestCreature(23304, 10.0f))
-            CAST_AI(mob_cage_trap_trigger::cage_trap_triggerAI, pTrigger->AI())->Active = true;
+            CAST_AI(npc_cage_trap_trigger::cage_trap_triggerAI, pTrigger->AI())->Active = true;
         go->SetGoState(GO_STATE_ACTIVE);
         return true;
     }
 };
 
-class mob_shadow_demon : public CreatureScript
+class npc_shadow_demon : public CreatureScript
 {
 public:
-    mob_shadow_demon() : CreatureScript("mob_shadow_demon") { }
+    npc_shadow_demon() : CreatureScript("npc_shadow_demon") { }
 
     struct shadow_demonAI : public ScriptedAI
     {
         shadow_demonAI(Creature* creature) : ScriptedAI(creature) {}
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             DoZoneInCombat();
         }
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             TargetGUID = 0;
             DoCast(me, SPELL_SHADOW_DEMON_PASSIVE, true);
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             if (Unit* target = Unit::GetUnit(*me, TargetGUID))
                 target->RemoveAurasDueToSpell(SPELL_PARALYZE);
         }
 
-        void UpdateAI(uint32 /*diff*/)
+        void UpdateAI(uint32 /*diff*/) OVERRIDE
         {
             if (!UpdateVictim())
                 return;
@@ -2135,48 +2138,48 @@ public:
         uint64 TargetGUID;
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-        return new shadow_demonAI (creature);
+        return new shadow_demonAI(creature);
     }
 };
 
-class mob_blade_of_azzinoth : public CreatureScript
+class npc_blade_of_azzinoth : public CreatureScript
 {
 public:
-    mob_blade_of_azzinoth() : CreatureScript("mob_blade_of_azzinoth") { }
+    npc_blade_of_azzinoth() : CreatureScript("npc_blade_of_azzinoth") { }
 
     struct blade_of_azzinothAI : public NullCreatureAI
     {
         blade_of_azzinothAI(Creature* creature) : NullCreatureAI(creature) {}
 
-        void SpellHit(Unit* /*caster*/, const SpellInfo* spell)
+        void SpellHit(Unit* /*caster*/, const SpellInfo* spell) OVERRIDE
         {
             if (spell->Id == SPELL_THROW_GLAIVE2 || spell->Id == SPELL_THROW_GLAIVE)
                 me->SetDisplayId(MODEL_BLADE);// appear when hit by Illidan's glaive
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-        return new blade_of_azzinothAI (creature);
+        return new blade_of_azzinothAI(creature);
     }
 };
 
-class mob_parasitic_shadowfiend : public CreatureScript
+class npc_parasitic_shadowfiend : public CreatureScript
 {
 public:
-    mob_parasitic_shadowfiend() : CreatureScript("mob_parasitic_shadowfiend") { }
+    npc_parasitic_shadowfiend() : CreatureScript("npc_parasitic_shadowfiend") { }
 
     // Shadowfiends interact with Illidan, setting more targets in Illidan's hashmap
-    struct mob_parasitic_shadowfiendAI : public ScriptedAI
+    struct npc_parasitic_shadowfiendAI : public ScriptedAI
     {
-        mob_parasitic_shadowfiendAI(Creature* creature) : ScriptedAI(creature)
+        npc_parasitic_shadowfiendAI(Creature* creature) : ScriptedAI(creature)
         {
             instance = creature->GetInstanceScript();
         }
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             if (instance)
                 IllidanGUID = instance->GetData64(DATA_ILLIDANSTORMRAGE);
@@ -2187,7 +2190,7 @@ public:
             DoCast(me, SPELL_SHADOWFIEND_PASSIVE, true);
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             DoZoneInCombat();
         }
@@ -2208,7 +2211,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!me->GetVictim())
             {
@@ -2242,9 +2245,9 @@ public:
         uint32 CheckTimer;
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-        return new mob_parasitic_shadowfiendAI (creature);
+        return new npc_parasitic_shadowfiendAI(creature);
     }
 };
 
@@ -2253,10 +2256,10 @@ void AddSC_boss_illidan()
     new boss_illidan_stormrage();
     new npc_akama_illidan();
     new boss_maiev_shadowsong();
-    new mob_flame_of_azzinoth();
-    new mob_blade_of_azzinoth();
+    new npc_flame_of_azzinoth();
+    new npc_blade_of_azzinoth();
     new gameobject_cage_trap();
-    new mob_cage_trap_trigger();
-    new mob_shadow_demon();
-    new mob_parasitic_shadowfiend();
+    new npc_cage_trap_trigger();
+    new npc_shadow_demon();
+    new npc_parasitic_shadowfiend();
 }
