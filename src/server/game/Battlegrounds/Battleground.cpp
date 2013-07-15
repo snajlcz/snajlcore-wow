@@ -1312,13 +1312,11 @@ void Battleground::AddPlayer(Player* player)
     // setup BG group membership
     PlayerAddedToBGCheckIfBGIsRunning(player);
     AddOrSetPlayerToCorrectBgGroup(player, team);
-<<<<<<< HEAD
+
     // MultiKill System
     sScriptMgr->OnPlayerJoinedBattleground(player, this);
-=======
 
     player->FitPlayerInTeam(true, this);
->>>>>>> 019c382a1984491273370535bf445c28c9067787
 }
 
 // this method adds player to his team's bg group, or sets his correct group if player is already in bg group
