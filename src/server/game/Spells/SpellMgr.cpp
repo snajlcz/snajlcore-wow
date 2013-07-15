@@ -3828,6 +3828,40 @@ void SpellMgr::LoadDbcDataCorrections()
 
         switch (spellInfo->SpellFamilyName)
         {
+            case SPELLFAMILY_DRUID:
+            SpellEffIndex eff;
+               switch (spellInfo->Id)
+               {
+                   case 770: // Faerie Fire talented crit %
+                   case 16857:
+                       eff = EFFECT_1;
+                       spellInfo->Effect[eff] = SPELL_EFFECT_APPLY_AURA;
+                       spellInfo->EffectApplyAuraName[eff] = SPELL_AURA_MOD_ATTACKER_SPELL_AND_WEAPON_CRIT_CHANCE;
+                       spellInfo->EffectBasePoints[eff] = 0;
+                       break;
+                   case 33600: // Improved Faerie Fire crit %
+                   case 33601:
+                   case 33602:
+                       eff = EFFECT_0;
+                       spellInfo->EffectApplyAuraName[eff] = SPELL_AURA_ADD_FLAT_MODIFIER;
+                       spellInfo->EffectMiscValue[eff] = SPELLMOD_EFFECT2;
+                       break;
+                   default:
+                       break;
+               }
+               break;
+           case SPELLFAMILY_ROGUE:
+               switch (spellInfo->Id)
+               {
+                   case 31226: // Master Poisoner crit % 
+                   case 31227:
+                   case 58410:
+                       spellInfo->Effect[EFFECT_1] = SPELL_AURA_ADD_FLAT_MODIFIER;
+                       break;
+                   default:
+                       break;
+               }
+                break;
             case SPELLFAMILY_HUNTER:
                 // Silencing Shot / Scatter Shot
                 if (spellInfo->SpellFamilyFlags[0] & 0x40000)
