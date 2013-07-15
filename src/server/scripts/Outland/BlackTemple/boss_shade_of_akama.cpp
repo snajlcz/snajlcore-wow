@@ -65,7 +65,14 @@ enum Spells
     SPELL_WINDFURY                   = 38229,
     // Ashtongue Rogue
     SPELL_DEBILITATING_POISON        = 41978,
-    SPELL_EVISCERATE                 = 41177
+    SPELL_EVISCERATE                 = 41177,
+    // Ashtongue Elementalist
+    SPELL_RAIN_OF_FIRE               = 42023,
+    SPELL_LIGHTNING_BOLT             = 42024,
+    // Ashtongue Spiritbinder
+    SPELL_SPIRIT_MEND                = 42025,
+    SPELL_CHAIN_HEAL                 = 42027,
+    SPELL_SPIRITBINDER_SPIRIT_HEAL   = 42317
 };
 
 enum Creatures
@@ -127,7 +134,12 @@ enum Events
     EVENT_WINDFURY                   = 20,
     // Ashtongue Rogue
     EVENT_DEBILITATING_POISON        = 21,
-    EVENT_EVISCERATE                 = 22
+    EVENT_EVISCERATE                 = 22,
+    // Ashtongue Elementalist
+    EVENT_RAIN_OF_FIRE               = 23,
+    EVENT_LIGHTNING_BOLT             = 24,
+    // Ashtongue Spiritbinder
+    EVENT_SPIRIT_HEAL                = 25,
 };
 
 struct Location
@@ -154,7 +166,7 @@ public:
 
     struct boss_shade_of_akamaAI : public ScriptedAI
     {
-        boss_shade_of_akamaAI(Creature* creature) : ScriptedAI(creature)
+        boss_shade_of_akamaAI(Creature* creature) : ScriptedAI(creature), HasKilledAkamaAndReseting(false)
         {
             instance = creature->GetInstanceScript();
             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
@@ -775,8 +787,10 @@ public:
                     }
                 }
             }
+
+            summonerGuid     = 0;
             startedBanishing = false;
-            switchToCombat = false;
+            switchToCombat   = false;
         }
 
         void JustDied(Unit* /*killer*/) OVERRIDE
@@ -886,6 +900,8 @@ public:
 
         void Reset() OVERRIDE
         {
+            summonerGuid     = 0;
+
             if (Unit* target = me->GetCreature(*me, akamaGUID))
                 AttackStart(target);
         }
@@ -911,6 +927,9 @@ public:
 
         void UpdateAI(uint32 diff) OVERRIDE
         {
+            if (!UpdateVictim())
+                return;
+
             events.Update(diff);
 
             while (uint32 eventId = events.ExecuteEvent())
@@ -973,6 +992,8 @@ public:
 
         void Reset() OVERRIDE
         {
+            summonerGuid     = 0;
+
             if (Unit* target = me->GetCreature(*me, akamaGUID))
                 AttackStart(target);
         }
@@ -991,11 +1012,14 @@ public:
         void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_DEBILITATING_POISON, urand(500, 2000));
-            events.ScheduleEvent(SPELL_EVISCERATE, urand(2000, 5000));
+            events.ScheduleEvent(EVENT_EVISCERATE, urand(2000, 5000));
         }
 
         void UpdateAI(uint32 diff) OVERRIDE
         {
+            if (!UpdateVictim())
+                return;
+
             events.Update(diff);
 
             while (uint32 eventId = events.ExecuteEvent())
@@ -1030,6 +1054,188 @@ public:
     }
 };
 
+// ########################################################
+// Ashtongue Elementalist
+// ########################################################
+
+class npc_ashtongue_elementalist : public CreatureScript
+{
+public:
+    npc_ashtongue_elementalist() : CreatureScript("npc_ashtongue_elementalist") { }
+
+    struct npc_ashtongue_elementalistAI : public ScriptedAI
+    {
+        npc_ashtongue_elementalistAI(Creature* creature) : ScriptedAI(creature)
+        {
+            instance = creature->GetInstanceScript();
+            if (instance)
+                akamaGUID = instance->GetData64(DATA_AKAMA_SHADE);
+        }
+
+        void Reset() OVERRIDE
+        {
+            summonerGuid     = 0;
+
+            if (Unit* target = me->GetCreature(*me, akamaGUID))
+                AttackStart(target);
+        }
+
+        void JustDied(Unit* /*killer*/) OVERRIDE
+        {
+            me->DespawnOrUnsummon(5000);
+        }
+
+        void IsSummonedBy(Unit* /*summoner*/) OVERRIDE
+        {
+            if (Creature* summoner = (Unit::GetCreature((*me), summonerGuid)))
+                CAST_AI(npc_creature_generator_akama::npc_creature_generator_akamaAI, summoner->AI())->JustSummoned(me);
+        }
+
+        void EnterCombat(Unit* /*who*/) OVERRIDE
+        {
+            events.ScheduleEvent(EVENT_RAIN_OF_FIRE, 18000);
+            events.ScheduleEvent(EVENT_LIGHTNING_BOLT, 6000);
+        }
+
+        void UpdateAI(uint32 diff) OVERRIDE
+        {
+            if (!UpdateVictim())
+                return;
+
+            events.Update(diff);
+
+            while (uint32 eventId = events.ExecuteEvent())
+            {
+                switch (eventId)
+                {
+                    case EVENT_RAIN_OF_FIRE:
+                        DoCastVictim(SPELL_RAIN_OF_FIRE);
+                        events.ScheduleEvent(EVENT_RAIN_OF_FIRE, 20000);
+                        break;
+                    case EVENT_LIGHTNING_BOLT:
+                        DoCastVictim(SPELL_LIGHTNING_BOLT);
+                        events.ScheduleEvent(EVENT_LIGHTNING_BOLT, 15000);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            DoMeleeAttackIfReady();
+        }
+
+        private:
+            InstanceScript* instance;
+            EventMap events;
+            uint64 akamaGUID;
+            uint64 summonerGuid;
+    };
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_ashtongue_elementalistAI(creature);
+    }
+};
+
+// ########################################################
+// Ashtongue Spiritbinder
+// ########################################################
+
+class npc_ashtongue_spiritbinder : public CreatureScript
+{
+public:
+    npc_ashtongue_spiritbinder() : CreatureScript("npc_ashtongue_spiritbinder") { }
+
+    struct npc_ashtongue_spiritbinderAI : public ScriptedAI
+    {
+        npc_ashtongue_spiritbinderAI(Creature* creature) : ScriptedAI(creature)
+        {
+            instance = creature->GetInstanceScript();
+            if (instance)
+                akamaGUID = instance->GetData64(DATA_AKAMA_SHADE);
+        }
+
+        void Reset() OVERRIDE
+        {
+            spiritMend = false;
+            chainHeal  = false;
+            summonerGuid = 0;
+
+            if (Unit* target = me->GetCreature(*me, akamaGUID))
+                AttackStart(target);
+        }
+
+        void JustDied(Unit* /*killer*/) OVERRIDE
+        {
+            me->DespawnOrUnsummon(5000);
+        }
+
+        void IsSummonedBy(Unit* /*summoner*/) OVERRIDE
+        {
+            if (Creature* summoner = (Unit::GetCreature((*me), summonerGuid)))
+                CAST_AI(npc_creature_generator_akama::npc_creature_generator_akamaAI, summoner->AI())->JustSummoned(me);
+        }
+
+        void EnterCombat(Unit* /*who*/) OVERRIDE
+        {
+            events.ScheduleEvent(EVENT_SPIRIT_HEAL, urand (5000, 6000));
+        }
+
+        void UpdateAI(uint32 diff) OVERRIDE
+        {
+            events.Update(diff);
+
+            while (uint32 eventId = events.ExecuteEvent())
+            {
+                switch (eventId)
+                {
+                    case EVENT_SPIRIT_HEAL:
+                        DoCast(me, SPELL_SPIRITBINDER_SPIRIT_HEAL);
+                        events.ScheduleEvent(EVENT_SPIRIT_HEAL, urand (13000, 16000));
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (!UpdateVictim())
+                return;
+
+            if (!spiritMend)
+            {
+                if (HealthBelowPct(25))
+                {
+                    DoCast(me, SPELL_SPIRIT_MEND);
+                    spiritMend = true;
+                }
+            }
+
+            if (!chainHeal)
+            {
+                if (HealthBelowPct(40))
+                {
+                    DoCast(me, SPELL_CHAIN_HEAL);
+                    chainHeal = true;
+                }
+            }
+
+            DoMeleeAttackIfReady();
+        }
+
+        private:
+            InstanceScript* instance;
+            EventMap events;
+            uint64 akamaGUID;
+            uint64 summonerGuid;
+            bool spiritMend;
+            bool chainHeal;
+    };
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_ashtongue_spiritbinderAI(creature);
+    }
+};
+
 void AddSC_boss_shade_of_akama()
 {
     new boss_shade_of_akama();
@@ -1039,4 +1245,6 @@ void AddSC_boss_shade_of_akama()
     new npc_ashtongue_sorcerer();
     new npc_ashtongue_defender();
     new npc_ashtongue_rogue();
+    new npc_ashtongue_elementalist();
+    new npc_ashtongue_spiritbinder();
 }
