@@ -751,6 +751,21 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                 case 46584: // Raise Dead
                     // rest of the spell handled in spell_dk.cpp
                     m_caster->ToPlayer()->RemoveSpellCooldown(46584, true);
+                case 61999:
+                     if (!unitTarget || m_caster->GetTypeId() != TYPEID_PLAYER || unitTarget->IsAlive())
+                      {
+                          SendCastResult(SPELL_FAILED_TARGET_NOT_DEAD);
+                          finish(true);
+                          CancelGlobalCooldown();
+                          m_caster->ToPlayer()->RemoveSpellCooldown(m_spellInfo->Id, true);
+                          return;
+                       }else
+                          {
+                          unitTarget->CastSpell(unitTarget, 46619, true);
+                          CancelGlobalCooldown();
+                          return;
+                          }
+                              break;
                     break;
             }
             break;
