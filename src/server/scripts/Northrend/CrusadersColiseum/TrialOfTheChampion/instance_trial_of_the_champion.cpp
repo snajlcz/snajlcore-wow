@@ -26,7 +26,11 @@ class instance_trial_of_the_champion : public InstanceMapScript
 public:
     instance_trial_of_the_champion() : InstanceMapScript("instance_trial_of_the_champion", 650) { }
 
+<<<<<<< HEAD
     InstanceScript* GetInstanceScript(InstanceMap* pMap) const
+=======
+    InstanceScript* GetInstanceScript(InstanceMap* map) const OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
     {
         return new instance_trial_of_the_champion_InstanceMapScript(pMap);
     }
@@ -236,7 +240,7 @@ public:
             }
         }
 
-        void SetData(uint32 uiType, uint32 uiData)
+        void SetData(uint32 uiType, uint32 uiData) OVERRIDE
         {
             switch(uiType)
             {
@@ -331,7 +335,7 @@ public:
                 SaveToDB();
         }
 
-        uint32 GetData(uint32 uiData) const
+        uint32 GetData(uint32 uiData) const OVERRIDE
         {
             switch(uiData)
             {
@@ -348,7 +352,7 @@ public:
             return 0;
         }
 
-        uint64 GetData64(uint32 uiData) const
+        uint64 GetData64(uint32 uiData) const OVERRIDE
         {
             switch(uiData)
             {
@@ -367,7 +371,7 @@ public:
             return 0;
         }
 
-        void SetData64(uint32 uiType, uint64 uiData)
+        void SetData64(uint32 uiType, uint64 uiData) OVERRIDE
         {
             switch(uiType)
             {
