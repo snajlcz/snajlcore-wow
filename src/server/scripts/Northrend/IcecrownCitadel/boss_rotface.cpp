@@ -96,7 +96,7 @@ class boss_rotface : public CreatureScript
                 infectionCooldown = 14000;
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 _Reset();
                 events.ScheduleEvent(EVENT_SLIME_SPRAY, 20000);
@@ -106,7 +106,7 @@ class boss_rotface : public CreatureScript
                 infectionCooldown = 14000;
             }
 
-            void EnterCombat(Unit* who)
+            void EnterCombat(Unit* who) OVERRIDE
             {
                 if (!instance->CheckRequiredBosses(DATA_ROTFACE, who->ToPlayer()))
                 {
@@ -122,7 +122,7 @@ class boss_rotface : public CreatureScript
                 DoZoneInCombat();
             }
 
-            void JustDied(Unit* /*killer*/)
+            void JustDied(Unit* /*killer*/) OVERRIDE
             {
                 instance->DoRemoveAurasDueToSpellOnPlayers(MUTATED_INFECTION);
                 _JustDied();
@@ -131,38 +131,39 @@ class boss_rotface : public CreatureScript
                     professor->AI()->DoAction(ACTION_ROTFACE_DEATH);
             }
 
-            void JustReachedHome()
+            void JustReachedHome() OVERRIDE
             {
                 _JustReachedHome();
                 instance->SetBossState(DATA_ROTFACE, FAIL);
                 instance->SetData(DATA_OOZE_DANCE_ACHIEVEMENT, uint32(true));   // reset
             }
 
-            void KilledUnit(Unit* victim)
+            void KilledUnit(Unit* victim) OVERRIDE
             {
                 if (victim->GetTypeId() == TYPEID_PLAYER)
                     Talk(SAY_KILL);
             }
 
-            void EnterEvadeMode()
+            void EnterEvadeMode() OVERRIDE
             {
                 ScriptedAI::EnterEvadeMode();
                 if (Creature* professor = Unit::GetCreature(*me, instance->GetData64(DATA_PROFESSOR_PUTRICIDE)))
                     professor->AI()->EnterEvadeMode();
             }
 
-            void SpellHitTarget(Unit* /*target*/, SpellInfo const* spell)
+            void SpellHitTarget(Unit* /*target*/, SpellInfo const* spell) OVERRIDE
             {
                 if (spell->Id == SPELL_SLIME_SPRAY)
                     Talk(SAY_SLIME_SPRAY);
             }
 
-            void MoveInLineOfSight(Unit* /*who*/)
+            void MoveInLineOfSight(Unit* /*who*/) OVERRIDE
+
             {
                 // don't enter combat
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!UpdateVictim() || !CheckInRoom())
                     return;
@@ -209,7 +210,7 @@ class boss_rotface : public CreatureScript
             uint32 infectionStage;
         };
 
-        CreatureAI* GetAI(Creature* creature) const
+        CreatureAI* GetAI(Creature* creature) const OVERRIDE
         {
             return GetIcecrownCitadelAI<boss_rotfaceAI>(creature);
         }
@@ -226,7 +227,7 @@ class npc_little_ooze : public CreatureScript
             {
             }
 
-            void IsSummonedBy(Unit* summoner)
+            void IsSummonedBy(Unit* summoner) OVERRIDE
             {
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
@@ -236,12 +237,12 @@ class npc_little_ooze : public CreatureScript
                 me->AddThreat(summoner, 500000.0f);
             }
 
-            void JustDied(Unit* /*killer*/)
+            void JustDied(Unit* /*killer*/) OVERRIDE
             {
                 me->DespawnOrUnsummon();
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!UpdateVictim())
                     return;
@@ -261,7 +262,7 @@ class npc_little_ooze : public CreatureScript
             EventMap events;
         };
 
-        CreatureAI* GetAI(Creature* creature) const
+        CreatureAI* GetAI(Creature* creature) const OVERRIDE
         {
             return GetIcecrownCitadelAI<npc_little_oozeAI>(creature);
         }
@@ -278,7 +279,7 @@ class npc_big_ooze : public CreatureScript
             {
             }
 
-            void IsSummonedBy(Unit* /*summoner*/)
+            void IsSummonedBy(Unit* /*summoner*/) OVERRIDE
             {
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
@@ -293,20 +294,20 @@ class npc_big_ooze : public CreatureScript
                     rotface->AI()->JustSummoned(me);
             }
 
-            void JustDied(Unit* /*killer*/)
+            void JustDied(Unit* /*killer*/) OVERRIDE
             {
                 if (Creature* rotface = Unit::GetCreature(*me, instance->GetData64(DATA_ROTFACE)))
                     rotface->AI()->SummonedCreatureDespawn(me);
                 me->DespawnOrUnsummon();
             }
 
-            void DoAction(int32 action)
+            void DoAction(int32 action) OVERRIDE
             {
                 if (action == EVENT_STICKY_OOZE)
                     events.CancelEvent(EVENT_STICKY_OOZE);
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!UpdateVictim())
                     return;
@@ -334,7 +335,7 @@ class npc_big_ooze : public CreatureScript
             InstanceScript* instance;
         };
 
-        CreatureAI* GetAI(Creature* creature) const
+        CreatureAI* GetAI(Creature* creature) const OVERRIDE
         {
             return GetIcecrownCitadelAI<npc_big_oozeAI>(creature);
         }
@@ -352,7 +353,7 @@ class npc_precious_icc : public CreatureScript
                 _instance = creature->GetInstanceScript();
             }
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
@@ -363,19 +364,19 @@ class npc_precious_icc : public CreatureScript
                 _summons.DespawnAll();
             }
 
-            void JustSummoned(Creature* summon)
+            void JustSummoned(Creature* summon) OVERRIDE
             {
                 _summons.Summon(summon);
                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0))
                     summon->AI()->AttackStart(target);
             }
 
-            void SummonedCreatureDespawn(Creature* summon)
+            void SummonedCreatureDespawn(Creature* summon) OVERRIDE
             {
                 _summons.Despawn(summon);
             }
 
-            void JustDied(Unit* /*killer*/)
+            void JustDied(Unit* /*killer*/) OVERRIDE
             {
                 _summons.DespawnAll();
                 if (Creature* rotface = Unit::GetCreature(*me, _instance->GetData64(DATA_ROTFACE)))
@@ -383,7 +384,7 @@ class npc_precious_icc : public CreatureScript
                         rotface->AI()->Talk(SAY_PRECIOUS_DIES);
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!UpdateVictim())
                     return;
@@ -425,7 +426,7 @@ class npc_precious_icc : public CreatureScript
             InstanceScript* _instance;
         };
 
-        CreatureAI* GetAI(Creature* creature) const
+        CreatureAI* GetAI(Creature* creature) const OVERRIDE
         {
             return GetIcecrownCitadelAI<npc_precious_iccAI>(creature);
         }
@@ -468,14 +469,14 @@ class spell_rotface_ooze_flood : public SpellScriptLoader
                     targets.pop_front();
             }
 
-            void Register()
+            void Register() OVERRIDE
             {
                 OnEffectHitTarget += SpellEffectFn(spell_rotface_ooze_flood_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
                 OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_rotface_ooze_flood_SpellScript::FilterTargets, EFFECT_0, TARGET_UNIT_SRC_AREA_ENTRY);
             }
         };
 
-        SpellScript* GetSpellScript() const
+        SpellScript* GetSpellScript() const OVERRIDE
         {
             return new spell_rotface_ooze_flood_SpellScript();
         }
@@ -490,7 +491,7 @@ class spell_rotface_mutated_infection : public SpellScriptLoader
         {
             PrepareSpellScript(spell_rotface_mutated_infection_SpellScript);
 
-            bool Load()
+            bool Load() OVERRIDE
             {
                 _target = NULL;
                 return true;
@@ -524,7 +525,7 @@ class spell_rotface_mutated_infection : public SpellScriptLoader
                         caster->AI()->Talk(EMOTE_MUTATED_INFECTION, target->GetGUID());
             }
 
-            void Register()
+            void Register() OVERRIDE
             {
                 OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_rotface_mutated_infection_SpellScript::FilterTargets, EFFECT_0, TARGET_UNIT_SRC_AREA_ENEMY);
                 OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_rotface_mutated_infection_SpellScript::ReplaceTargets, EFFECT_1, TARGET_UNIT_SRC_AREA_ENEMY);
@@ -535,7 +536,7 @@ class spell_rotface_mutated_infection : public SpellScriptLoader
             WorldObject* _target;
         };
 
-        SpellScript* GetSpellScript() const
+        SpellScript* GetSpellScript() const OVERRIDE
         {
             return new spell_rotface_mutated_infection_SpellScript();
         }
@@ -561,13 +562,13 @@ class spell_rotface_little_ooze_combine : public SpellScriptLoader
                 GetHitCreature()->DespawnOrUnsummon();
             }
 
-            void Register()
+            void Register() OVERRIDE
             {
                 OnEffectHitTarget += SpellEffectFn(spell_rotface_little_ooze_combine_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
             }
         };
 
-        SpellScript* GetSpellScript() const
+        SpellScript* GetSpellScript() const OVERRIDE
         {
             return new spell_rotface_little_ooze_combine_SpellScript();
         }
@@ -603,13 +604,13 @@ class spell_rotface_large_ooze_combine : public SpellScriptLoader
                 GetHitCreature()->DespawnOrUnsummon();
             }
 
-            void Register()
+            void Register() OVERRIDE
             {
                 OnEffectHitTarget += SpellEffectFn(spell_rotface_large_ooze_combine_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
             }
         };
 
-        SpellScript* GetSpellScript() const
+        SpellScript* GetSpellScript() const OVERRIDE
         {
             return new spell_rotface_large_ooze_combine_SpellScript();
         }
@@ -658,13 +659,13 @@ class spell_rotface_large_ooze_buff_combine : public SpellScriptLoader
                 GetHitCreature()->DespawnOrUnsummon();
             }
 
-            void Register()
+            void Register() OVERRIDE
             {
                 OnEffectHitTarget += SpellEffectFn(spell_rotface_large_ooze_buff_combine_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
             }
         };
 
-        SpellScript* GetSpellScript() const
+        SpellScript* GetSpellScript() const OVERRIDE
         {
             return new spell_rotface_large_ooze_buff_combine_SpellScript();
         }
@@ -679,7 +680,7 @@ class spell_rotface_unstable_ooze_explosion_init : public SpellScriptLoader
         {
             PrepareSpellScript(spell_rotface_unstable_ooze_explosion_init_SpellScript);
 
-            bool Validate(SpellInfo const* /*spell*/)
+            bool Validate(SpellInfo const* /*spell*/) OVERRIDE
             {
                 if (!sSpellMgr->GetSpellInfo(SPELL_UNSTABLE_OOZE_EXPLOSION_TRIGGER))
                     return false;
@@ -698,13 +699,13 @@ class spell_rotface_unstable_ooze_explosion_init : public SpellScriptLoader
                 GetCaster()->CastSpell(dummy, SPELL_UNSTABLE_OOZE_EXPLOSION_TRIGGER, true);
             }
 
-            void Register()
+            void Register() OVERRIDE
             {
                 OnEffectHitTarget += SpellEffectFn(spell_rotface_unstable_ooze_explosion_init_SpellScript::HandleCast, EFFECT_0, SPELL_EFFECT_FORCE_CAST);
             }
         };
 
-        SpellScript* GetSpellScript() const
+        SpellScript* GetSpellScript() const OVERRIDE
         {
             return new spell_rotface_unstable_ooze_explosion_init_SpellScript();
         }
@@ -735,13 +736,13 @@ class spell_rotface_unstable_ooze_explosion : public SpellScriptLoader
                         rotface->CastSpell(x, y, z, triggered_spell_id, true, NULL, NULL, GetCaster()->GetGUID());
             }
 
-            void Register()
+            void Register() OVERRIDE
             {
                 OnEffectHit += SpellEffectFn(spell_rotface_unstable_ooze_explosion_SpellScript::CheckTarget, EFFECT_0, SPELL_EFFECT_TRIGGER_MISSILE);
             }
         };
 
-        SpellScript* GetSpellScript() const
+        SpellScript* GetSpellScript() const OVERRIDE
         {
             return new spell_rotface_unstable_ooze_explosion_SpellScript();
         }
@@ -768,13 +769,13 @@ class spell_rotface_unstable_ooze_explosion_suicide : public SpellScriptLoader
                 target->ToCreature()->DespawnOrUnsummon(60000);
             }
 
-            void Register()
+            void Register() OVERRIDE
             {
                 OnEffectPeriodic += AuraEffectPeriodicFn(spell_rotface_unstable_ooze_explosion_suicide_AuraScript::DespawnSelf, EFFECT_2, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
             }
         };
 
-        AuraScript* GetAuraScript() const
+        AuraScript* GetAuraScript() const OVERRIDE
         {
             return new spell_rotface_unstable_ooze_explosion_suicide_AuraScript();
         }
