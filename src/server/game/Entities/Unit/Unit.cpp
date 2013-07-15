@@ -7260,6 +7260,8 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                     return false;
 
                 triggered_spell_id = dummySpell->Effects[effIndex].TriggerSpell;
+                if (procFlag & PROC_FLAG_DONE_OFFHAND_ATTACK)
+                   triggered_spell_id = 61895; // Blood-Caked Strike off-hand
                 break;
             }
             // Improved Blood Presence
