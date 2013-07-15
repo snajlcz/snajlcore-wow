@@ -67,27 +67,28 @@ class ulduar_teleporter : public GameObjectScript
 public:
     ulduar_teleporter() : GameObjectScript("ulduar_teleporter") { }
 
-    bool OnGossipSelect(Player *pPlayer, GameObject * /*pGO*/, uint32 sender, uint32 action)
-    {
-        pPlayer->PlayerTalkClass->ClearMenus();
-        if (sender != GOSSIP_SENDER_MAIN)
-            return false;
-        if (!pPlayer->getAttackers().empty())
-            return false;
+        bool OnGossipSelect(Player* player, GameObject* /*gameObject*/, uint32 sender, uint32 action) OVERRIDE
+        {
+            player->PlayerTalkClass->ClearMenus();
+            if (sender != GOSSIP_SENDER_MAIN)
+                return false;
+            if (!player->getAttackers().empty())
+                return false;
 
         int pos = action - GOSSIP_ACTION_INFO_DEF;
         if (pos >= 0 && pos < MAX)
-            pPlayer->TeleportTo(MAP_ULDUAR, TeleportPointsUlduarGOs[pos][0], TeleportPointsUlduarGOs[pos][1], TeleportPointsUlduarGOs[pos][2], 0.0f);
-        pPlayer->CLOSE_GOSSIP_MENU();
+            player->TeleportTo(MAP_ULDUAR, TeleportPointsUlduarGOs[pos][0], TeleportPointsUlduarGOs[pos][1], TeleportPointsUlduarGOs[pos][2], 0.0f);
+        player->CLOSE_GOSSIP_MENU();
 
         return true;
     }
 
-    bool OnGossipHello(Player *player, GameObject *go)
-    {
-        player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Expedition Base Camp", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + BASE_CAMP);
-        if (InstanceScript* instance = go->GetInstanceScript())
+
+        bool OnGossipHello(Player* player, GameObject* gameObject) OVERRIDE
         {
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Expedition Base Camp", GOSSIP_SENDER_MAIN, BASE_CAMP);
+            if (InstanceScript* instance = gameObject->GetInstanceScript())
+            {
             if (instance->GetData(DATA_COLOSSUS) == 2) //count of 2 collossus death
                 player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Formation Grounds", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + GROUNDS);
             if (instance->GetBossState(DATA_LEVIATHAN) == DONE)
@@ -105,8 +106,8 @@ public:
                 player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Spark of Imagination", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + SPARK);
             if (instance->GetBossState(DATA_VEZAX) == DONE)
                 player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to Descent into Madness", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + MADNESS);
-        }
-        player->SEND_GOSSIP_MENU(go->GetGOInfo()->GetGossipMenuId(), go->GetGUID());
+            }
+        player->SEND_GOSSIP_MENU(gameObject->GetGOInfo()->GetGossipMenuId(), gameObject->GetGUID());
         return true;
     }
 
