@@ -136,7 +136,7 @@ enum Events
     EVENT_INTRO_END,
 };
 
-enum eEnum
+enum Misc
 {
     ACTION_START_INTRO,
     ACTION_SKIP_INTRO,
@@ -218,20 +218,28 @@ public:
         return new npc_jaina_and_sylvanas_horAI(creature);
     }
 
+<<<<<<< HEAD
     // AI of Part1: handle the intro till start of gauntlet event.
     struct npc_jaina_and_sylvanas_horAI : public ScriptedAI
     {
         npc_jaina_and_sylvanas_horAI(Creature* creature) : ScriptedAI(creature)
+=======
+        void sGossipSelect(Player* player, uint32 /*sender*/, uint32 action) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             instance = me->GetInstanceScript();
         }
 
+<<<<<<< HEAD
         InstanceScript* instance;
         uint64 _utherGuid;
         uint64 _lichkingGuid;
         EventMap events;
 
         void Reset()
+=======
+        void Reset() OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             events.Reset();
 
@@ -256,7 +264,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             events.Update(diff);
             switch (events.ExecuteEvent())
@@ -617,6 +625,14 @@ public:
             }
         }
     };
+<<<<<<< HEAD
+=======
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_jaina_or_sylvanas_horAI(creature);
+    }
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 };
 
 enum TrashSpells
@@ -691,15 +707,40 @@ enum TrashEvents
 
 class npc_ghostly_priest : public CreatureScript
 {
+<<<<<<< HEAD
 public:
     npc_ghostly_priest() : CreatureScript("npc_ghostly_priest") { }
 
     CreatureAI* GetAI(Creature* creature) const
+=======
+    npc_gauntlet_trash(Creature* creature) : ScriptedAI(creature),
+        instance(creature->GetInstanceScript())
+    {
+    }
+
+    void Reset() OVERRIDE
+    {
+        me->CastSpell(me, SPELL_WELL_OF_SOULS, true);
+        events.Reset();
+    }
+
+    void EnterEvadeMode() OVERRIDE
+    {
+        if (instance->GetData(DATA_WAVE_COUNT) != NOT_STARTED)
+            instance->SetData(DATA_WAVE_COUNT, NOT_STARTED);
+    }
+
+    void SetData(uint32 type, uint32 value) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
     {
         return new npc_ghostly_priestAI(creature);
     }
 
+<<<<<<< HEAD
     struct npc_ghostly_priestAI: public ScriptedAI
+=======
+    uint32 GetData(uint32 type) const OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
     {
         npc_ghostly_priestAI(Creature* creature) : ScriptedAI(creature)
         {
@@ -712,7 +753,7 @@ public:
             events.Reset();
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_SHADOW_WORD_PAIN, 8000); // TODO: adjust timers
             events.ScheduleEvent(EVENT_CIRCLE_OF_DESTRUCTION, 12000);
@@ -720,7 +761,7 @@ public:
             events.ScheduleEvent(EVENT_DARK_MENDING, 20000);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim())
                 return;
@@ -765,6 +806,14 @@ public:
             DoMeleeAttackIfReady();
         }
     };
+<<<<<<< HEAD
+=======
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_ghostly_priestAI(creature);
+    }
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 };
 
 class npc_phantom_mage : public CreatureScript
@@ -790,7 +839,7 @@ public:
             events.Reset();
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_FIREBALL, 3000); // TODO: adjust timers            
             events.ScheduleEvent(EVENT_FROSTBOLT, 9000);
@@ -798,7 +847,7 @@ public:
             events.ScheduleEvent(EVENT_HALLUCINATION, 40000);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim())
                 return;
@@ -835,6 +884,14 @@ public:
             DoSpellAttackIfReady(SPELL_FLAMESTRIKE);
         }
     };
+<<<<<<< HEAD
+=======
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_phantom_mageAI(creature);
+    }
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 };
 
 class npc_phantom_hallucination : public CreatureScript
@@ -853,12 +910,19 @@ public:
         {
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             DoCast(SPELL_HALLUCINATION_2);
         }
     };
 
+<<<<<<< HEAD
+=======
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_phantom_hallucinationAI(creature);
+    }
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 };
 
 class npc_shadowy_mercenary : public CreatureScript
@@ -884,7 +948,7 @@ public:
             events.Reset();
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_SHADOW_STEP, 8000); // TODO: adjust timers
             events.ScheduleEvent(EVENT_DEADLY_POISON, 5000);
@@ -892,7 +956,7 @@ public:
             events.ScheduleEvent(EVENT_KIDNEY_SHOT, 12000);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim())
                 return;
@@ -928,6 +992,14 @@ public:
             DoMeleeAttackIfReady();
         }
     };
+<<<<<<< HEAD
+=======
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_shadowy_mercenaryAI(creature);
+    }
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 };
 
 class npc_spectral_footman : public CreatureScript
@@ -946,6 +1018,7 @@ public:
         {
         }
 
+<<<<<<< HEAD
         EventMap events;
 
         void Reset()
@@ -954,13 +1027,16 @@ public:
         }
 
         void EnterCombat(Unit* /*who*/)
+=======
+        void EnterCombat(Unit* /*who*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             events.ScheduleEvent(EVENT_SPECTRAL_STRIKE, 5000); // TODO: adjust timers
             events.ScheduleEvent(EVENT_SHIELD_BASH, 10000);
             events.ScheduleEvent(EVENT_TORTURED_ENRAGE, 15000);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim())
                 return;
@@ -991,6 +1067,14 @@ public:
             DoMeleeAttackIfReady();
         }
     };
+<<<<<<< HEAD
+=======
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_spectral_footmanAI(creature);
+    }
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 };
 
 class npc_tortured_rifleman : public CreatureScript
@@ -1016,7 +1100,7 @@ public:
             events.Reset();
         }
 
-        void EnterCombat(Unit* /*who*/)
+        void EnterCombat(Unit* /*who*/) OVERRIDE
         {
             events.ScheduleEvent(EVENT_SHOOT, 2000); // TODO: adjust timers
             events.ScheduleEvent(EVENT_CURSED_ARROW, 10000);
@@ -1024,7 +1108,7 @@ public:
             events.ScheduleEvent(EVENT_ICE_SHOT, 15000);
         }
 
-        void UpdateAI(uint32 diff)
+        void UpdateAI(uint32 diff) OVERRIDE
         {
             if (!UpdateVictim())
                 return;
@@ -1062,6 +1146,14 @@ public:
             DoMeleeAttackIfReady();
         }
     };
+<<<<<<< HEAD
+=======
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_tortured_riflemanAI(creature);
+    }
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
 };
 
 
@@ -1084,7 +1176,7 @@ public:
         uint32 _spikeTimer;
         uint32 _cloneTimer;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             if (!instance)
                 return;
@@ -1097,7 +1189,11 @@ public:
             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
         }
 
+<<<<<<< HEAD
         void JustDied(Unit* /*Killer*/)
+=======
+        void JustDied(Unit* /*killer*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (!instance)
                 return;
@@ -1106,7 +1202,11 @@ public:
             instance->SetData(DATA_FROSTSWORN_EVENT, DONE);
         }
 
+<<<<<<< HEAD
         void MoveInLineOfSight(Unit* who)
+=======
+        void EnterCombat(Unit* /*victim*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (!instance)
                 return;
@@ -1126,7 +1226,11 @@ public:
             AttackStart(who);
         }
 
+<<<<<<< HEAD
         void EnterCombat(Unit* /*Victim*/)
+=======
+        void UpdateAI(uint32 diff) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (!instance)
                 return;
@@ -1186,7 +1290,7 @@ public:
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_frostsworn_generalAI(creature);
     }
@@ -1207,17 +1311,30 @@ public:
         InstanceScript* instance;
         uint32 _StrikeTimer;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             _StrikeTimer = urand(1000,3000);
         }
 
+<<<<<<< HEAD
         void JustDied(Unit* Killer)
+=======
+        void EnterCombat(Unit* /*victim*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             DoCast(Killer, SPELL_SPIRIT_BURST);
         }
 
+<<<<<<< HEAD
         void UpdateAI(uint32 uiDiff)
+=======
+        void JustDied(Unit* killer) OVERRIDE
+        {
+            DoCast(killer, SPELL_SPIRIT_BURST);
+        }
+
+        void UpdateAI(uint32 diff) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (!UpdateVictim())
                 return;
@@ -1235,7 +1352,7 @@ public:
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_spiritual_reflectionAI(creature);
     }
@@ -1299,7 +1416,11 @@ class npc_jaina_and_sylvana_hor_part2 : public CreatureScript
 public:
     npc_jaina_and_sylvana_hor_part2() : CreatureScript("npc_jaina_and_sylvana_hor_part2") { }
 
+<<<<<<< HEAD
     bool OnGossipSelect(Player* player, Creature* creature, uint32 uiSender, uint32 uiAction)
+=======
+    bool OnTrigger(Player* player, AreaTriggerEntry const* /*trigger*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
     {
         InstanceScript* instance = (InstanceScript*)creature->GetInstanceScript();
 
@@ -1348,7 +1469,11 @@ public:
         return new npc_jaina_and_sylvana_hor_part2AI(creature);
     }
 
+<<<<<<< HEAD
     struct npc_jaina_and_sylvana_hor_part2AI : public npc_escortAI
+=======
+    bool OnTrigger(Player* player, AreaTriggerEntry const* /*trigger*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
     {
         npc_jaina_and_sylvana_hor_part2AI(Creature *creature) : npc_escortAI(creature)
         {

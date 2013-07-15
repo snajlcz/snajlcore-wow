@@ -26,7 +26,7 @@ EndScriptData */
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 
-enum eSays
+enum Says
 {
     SAY_TAUNT              = 0,
     SAY_HEAL               = 1,
@@ -36,7 +36,7 @@ enum eSays
     SAY_DIE                = 5
 };
 
-enum eSpells
+enum Spells
 {
     SPELL_MORTAL_WOUND     = 30641,
     H_SPELL_MORTAL_WOUND   = 36814,
@@ -66,7 +66,7 @@ class boss_watchkeeper_gargolmar : public CreatureScript
             bool HasTaunted;
             bool YelledForHeal;
 
-            void Reset()
+            void Reset() OVERRIDE
             {
                 Surge_Timer = 5000;
                 MortalWound_Timer = 4000;
@@ -76,12 +76,13 @@ class boss_watchkeeper_gargolmar : public CreatureScript
                 YelledForHeal = false;
             }
 
-            void EnterCombat(Unit* /*who*/)
+            void EnterCombat(Unit* /*who*/) OVERRIDE
             {
                 Talk(SAY_AGGRO);
             }
 
-            void MoveInLineOfSight(Unit* who)
+            void MoveInLineOfSight(Unit* who) OVERRIDE
+
             {
                 if (!me->GetVictim() && me->CanCreatureAttack(who))
                 {
@@ -102,17 +103,17 @@ class boss_watchkeeper_gargolmar : public CreatureScript
                 }
             }
 
-            void KilledUnit(Unit* /*victim*/)
+            void KilledUnit(Unit* /*victim*/) OVERRIDE
             {
                 Talk(SAY_KILL);
             }
 
-            void JustDied(Unit* /*killer*/)
+            void JustDied(Unit* /*killer*/) OVERRIDE
             {
                 Talk(SAY_DIE);
             }
 
-            void UpdateAI(uint32 diff)
+            void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!UpdateVictim())
                     return;
@@ -161,7 +162,7 @@ class boss_watchkeeper_gargolmar : public CreatureScript
             }
         };
 
-        CreatureAI* GetAI(Creature* creature) const
+        CreatureAI* GetAI(Creature* creature) const OVERRIDE
         {
             return new boss_watchkeeper_gargolmarAI(creature);
         }
