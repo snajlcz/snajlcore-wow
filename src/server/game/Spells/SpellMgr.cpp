@@ -3189,6 +3189,12 @@ void SpellMgr::LoadDbcDataCorrections()
                 // add corruption to affected spells
                 spellInfo->EffectSpellClassMask[1][0] |= 2;
                 break;
+                case 47198: // Death's Embrace
+            case 47199:
+            case 47200:
+                // add Drain Soul to affected spells
+                spellInfo->EffectSpellClassMask[1][0] |= 16384;
+                break;
             case 51852: // The Eye of Acherus (no spawn in phase 2 in db)
                 spellInfo->EffectMiscValue[0] |= 1;
                 break;
