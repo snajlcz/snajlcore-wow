@@ -262,6 +262,7 @@ class boss_sindragosa : public CreatureScript
                 instance->SetBossState(DATA_SINDRAGOSA, FAIL);
                 me->SetCanFly(false);
                 me->SetDisableGravity(false);
+                me->DisappearAndDie();
             }
 
             void KilledUnit(Unit* victim) OVERRIDE
@@ -1582,7 +1583,7 @@ class at_sindragosa_lair : public AreaTriggerScript
 
                 if (!instance->GetData(DATA_RIMEFANG))
                     if (Creature* rimefang = ObjectAccessor::GetCreature(*player, instance->GetData64(DATA_RIMEFANG)))
-                        rimefang->AI()->DoAction(ACTION_START_FROSTWYRM);
+                         rimefang->AI()->DoAction(ACTION_START_FROSTWYRM);
 
                 if (!instance->GetData(DATA_SINDRAGOSA_FROSTWYRMS) && !instance->GetData64(DATA_SINDRAGOSA) && instance->GetBossState(DATA_SINDRAGOSA) != DONE)
                 {

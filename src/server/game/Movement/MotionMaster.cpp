@@ -348,7 +348,7 @@ void MotionMaster::MoveKnockbackFrom(float srcX, float srcY, float speedXY, floa
         _owner->GetNearPoint(_owner, x, y, z, _owner->GetObjectSize(), dist, _owner->GetAngle(srcX, srcY) + M_PI);
     
     Movement::MoveSplineInit init(_owner);
-    init.MoveTo(x,y,z);
+    init.MoveTo(x, y, z, false);
     init.SetParabolic(max_height,0);
     init.SetOrientationFixed(true);
     init.SetVelocity(speedXY);
