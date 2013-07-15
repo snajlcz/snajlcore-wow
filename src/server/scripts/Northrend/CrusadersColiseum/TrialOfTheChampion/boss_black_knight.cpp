@@ -156,7 +156,7 @@ public:
         uint32 uiDeathBiteTimer;
         uint32 uiMarkedDeathTimer;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             RemoveSummons();
             me->SetDisplayId(me->GetNativeDisplayId());
@@ -199,6 +199,7 @@ public:
             uiDeathArmyCheckTimer = 7000;
             uiResurrectTimer = 4000;
             uiGhoulExplodeTimer = 8000;
+<<<<<<< HEAD
             uiDeathBiteTimer = urand (2000, 4000);
             uiMarkedDeathTimer = urand (5000, 7000);
             uiIntroTimer = 15000;
@@ -217,6 +218,10 @@ public:
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC);
                 Phase = INTRO;
             }
+=======
+            uiDeathBiteTimer = urand(2000, 4000);
+            uiMarkedDeathTimer = urand(5000, 7000);
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         }
 
         void RemoveSummons()
@@ -243,12 +248,12 @@ public:
             SummonList.clear();
         }
 
-        void JustSummoned(Creature* summon)
+        void JustSummoned(Creature* summon) OVERRIDE
         {
             SummonList.push_back(summon->GetGUID());
         }
 
-        void UpdateAI(uint32 uiDiff)
+        void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             if (Phase == IDLE)
                 return;
@@ -449,9 +454,14 @@ public:
                 {
                     if (uiDeathBiteTimer <= uiDiff)
                     {
+<<<<<<< HEAD
                         SetEquipmentSlots(false, EQUIP_UNEQUIP, EQUIP_NO_CHANGE, EQUIP_NO_CHANGE);
                         DoCast(me, DUNGEON_MODE(SPELL_DEATH_BITE, SPELL_DEATH_BITE_H));
                         uiDeathBiteTimer = urand (2000, 4000);
+=======
+                        DoCastAOE(SPELL_DEATH_BITE);
+                        uiDeathBiteTimer = urand(2000, 4000);
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
                     } else uiDeathBiteTimer -= uiDiff;
                 
                     if (uiMarkedDeathTimer <= uiDiff)
@@ -461,7 +471,11 @@ public:
                             if (target && target->IsAlive())
                                 DoCast(target, SPELL_MARKED_DEATH);
                         }
+<<<<<<< HEAD
                         uiMarkedDeathTimer = urand (10000, 12000);
+=======
+                        uiMarkedDeathTimer = urand(5000, 7000);
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
                     } else uiMarkedDeathTimer -= uiDiff;
                     break;
                 }
@@ -471,7 +485,11 @@ public:
                 DoMeleeAttackIfReady();
         }
 
+<<<<<<< HEAD
         void EnterCombat(Unit* who)
+=======
+        void DamageTaken(Unit* /*pDoneBy*/, uint32& uiDamage) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             bEventInBattle = true;
             Talk(SAY_AGGRO);
@@ -533,7 +551,7 @@ public:
             }
         }
 
-        void JustDied(Unit* /*killer*/)
+        void JustDied(Unit* /*killer*/) OVERRIDE
         {
             //DoCast(me, SPELL_KILL_CREDIT);
             Talk(SAY_DEATH);
@@ -558,9 +576,9 @@ public:
             EventMap _events;
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
-        return new boss_black_knightAI (creature);
+        return new boss_black_knightAI(creature);
     }
 
 };
@@ -576,12 +594,16 @@ public:
 
         uint32 uiAttackTimer;
 
-        void Reset()
+        void Reset() OVERRIDE
         {
             uiAttackTimer = 3500;
         }
 
+<<<<<<< HEAD
         void UpdateAI(uint32 diff)
+=======
+        void UpdateAI(uint32 uiDiff) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             if (!UpdateVictim())
                 return;
@@ -600,7 +622,7 @@ public:
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_risen_ghoulAI(creature);
     }
@@ -674,10 +696,14 @@ public:
             instance = creature->GetInstanceScript();
         }
 
+<<<<<<< HEAD
         Creature* pHighlord;
         InstanceScript* instance;
 
         void Reset()
+=======
+        void WaypointReached(uint32 /*waypointId*/) OVERRIDE
+>>>>>>> 17398a4043bced0f086b23e63644e290690ee7d7
         {
             pHighlord = NULL;
         }
@@ -724,7 +750,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 uiDiff)
+        void UpdateAI(uint32 uiDiff) OVERRIDE
         {
             npc_escortAI::UpdateAI(uiDiff);
 
@@ -733,7 +759,7 @@ public:
         }
     };
 
-    CreatureAI* GetAI(Creature* creature) const
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
         return new npc_black_knight_skeletal_gryphonAI(creature);
     }
