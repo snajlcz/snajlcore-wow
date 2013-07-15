@@ -2901,7 +2901,9 @@ float Unit::GetUnitCriticalChance(WeaponAttackType attackType, const Unit* victi
     else
         crit += victim->GetTotalAuraModifier(SPELL_AURA_MOD_ATTACKER_MELEE_CRIT_CHANCE);
 
-    crit += victim->GetTotalAuraModifier(SPELL_AURA_MOD_ATTACKER_SPELL_AND_WEAPON_CRIT_CHANCE);
+        crit += victim->GetMaxPositiveAuraModifier(SPELL_AURA_MOD_ATTACKER_SPELL_AND_WEAPON_CRIT_CHANCE);
+        crit += victim->GetMaxNegativeAuraModifier(SPELL_AURA_MOD_ATTACKER_SPELL_AND_WEAPON_CRIT_CHANCE);
+
 
     // reduce crit chance from Rating for players
     if (attackType != RANGED_ATTACK)
@@ -6606,11 +6608,12 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                     // On target with 5 stacks of Holy Vengeance direct damage is done
                     if (Aura* aur = victim->GetAura(triggered_spell_id, GetGUID()))
                     {
+                        CastSpell(victim, 42463, true);
                         if (aur->GetStackAmount() == 5)
                         {
                             if (stacker)
                                 aur->RefreshDuration();
-                            CastSpell(victim, 42463, true);
+                            /*CastSpell(victim, 42463, true);*/
                             return true;
                         }
                     }
@@ -6638,11 +6641,12 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                     // On target with 5 stacks of Blood Corruption direct damage is done
                     if (Aura* aur = victim->GetAura(triggered_spell_id, GetGUID()))
                     {
+                        CastSpell(victim, 53739, true);
                         if (aur->GetStackAmount() == 5)
                         {
                             if (stacker)
                                 aur->RefreshDuration();
-                            CastSpell(victim, 53739, true);
+                            /*CastSpell(victim, 53739, true);*/
                             return true;
                         }
                     }
@@ -7256,6 +7260,8 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                     return false;
 
                 triggered_spell_id = dummySpell->Effects[effIndex].TriggerSpell;
+                if (procFlag & PROC_FLAG_DONE_OFFHAND_ATTACK)
+                   triggered_spell_id = 61895; // Blood-Caked Strike off-hand
                 break;
             }
             // Improved Blood Presence
@@ -10063,18 +10069,37 @@ uint32 Unit::SpellDamageBonusDone(Unit* victim, SpellInfo const* spellProto, uin
         AuraEffectList const& mModDamagePercentDone = GetAuraEffectsByType(SPELL_AURA_MOD_DAMAGE_PERCENT_DONE);
         for (AuraEffectList::const_iterator i = mModDamagePercentDone.begin(); i != mModDamagePercentDone.end(); ++i)
         {
+            /* SC0014
             if (spellProto->EquippedItemClass == -1 && (*i)->GetSpellInfo()->EquippedItemClass != -1)    //prevent apply mods from weapon specific case to non weapon specific spells (Example: thunder clap and two-handed weapon specialization)
                 continue;
+           */
+           // SC0014
+           if (((*i)->GetMiscValue() & spellProto->GetSchoolMask()) == 0)
+               continue;
+           // SC0014
+           if ((*i)->GetSpellInfo()->EquippedItemClass == ITEM_CLASS_WEAPON) // Weapon dependent case should affect all spells based on same damage class
+           {
+               if ( spellProto->DmgClass == SPELL_DAMAGE_CLASS_NONE || 
+                    spellProto->DmgClass == SPELL_DAMAGE_CLASS_MAGIC ||
+                   (spellProto->DmgClass == SPELL_DAMAGE_CLASS_RANGED && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) || 
+                   (spellProto->DmgClass == SPELL_DAMAGE_CLASS_MELEE && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ~ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0))
+                   if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id != 20196)	//One-Handed Weapon Specialization (Paladin) increases all damage even if is weapon specific
+                       continue;
 
-            if ((*i)->GetMiscValue() & spellProto->GetSchoolMask())
-            {
-                if ((*i)->GetSpellInfo()->EquippedItemClass == -1)
-                    AddPct(DoneTotalMod, (*i)->GetAmount());
-                else if (!((*i)->GetSpellInfo()->AttributesEx5 & SPELL_ATTR5_SPECIAL_ITEM_CLASS_CHECK) && ((*i)->GetSpellInfo()->EquippedItemSubClassMask == 0))
-                    AddPct(DoneTotalMod, (*i)->GetAmount());
-                else if (ToPlayer() && ToPlayer()->HasItemFitToSpellRequirements((*i)->GetSpellInfo()))
-                    AddPct(DoneTotalMod, (*i)->GetAmount());
-            }
+               if (spellProto->SpellFamilyName == SPELLFAMILY_HUNTER && spellProto->SpellFamilyFlags[0] & 0x00004000) // Serpent Sting should not be affected by
+                   if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id == 19507) // Ranged Weapon Specialization
+                       continue;
+           }
+
+            else if (spellProto->EquippedItemClass == -1 && (*i)->GetSpellInfo()->EquippedItemClass != -1) //prevent apply mods from weapon specific case to non weapon specific spells (Example: thunder clap and two-handed weapon specialization)
+            continue;
+
+            if ((*i)->GetSpellInfo()->EquippedItemClass == -1)
+           AddPct(DoneTotalMod, (*i)->GetAmount());
+            else if (!((*i)->GetSpellInfo()->AttributesEx5 & SPELL_ATTR5_SPECIAL_ITEM_CLASS_CHECK) && ((*i)->GetSpellInfo()->EquippedItemSubClassMask == 0))
+           AddPct(DoneTotalMod, (*i)->GetAmount());
+            else if (ToPlayer() && ToPlayer()->HasItemFitToSpellRequirements((*i)->GetSpellInfo()))
+           AddPct(DoneTotalMod, (*i)->GetAmount());
         }
     }
 
@@ -10647,7 +10672,8 @@ bool Unit::isSpellCrit(Unit* victim, SpellInfo const* spellProto, SpellSchoolMas
                     // Modify critical chance by victim SPELL_AURA_MOD_ATTACKER_SPELL_CRIT_CHANCE
                     crit_chance += victim->GetTotalAuraModifierByMiscMask(SPELL_AURA_MOD_ATTACKER_SPELL_CRIT_CHANCE, schoolMask);
                     // Modify critical chance by victim SPELL_AURA_MOD_ATTACKER_SPELL_AND_WEAPON_CRIT_CHANCE
-                    crit_chance += victim->GetTotalAuraModifier(SPELL_AURA_MOD_ATTACKER_SPELL_AND_WEAPON_CRIT_CHANCE);
+                    crit_chance += victim->GetMaxPositiveAuraModifier(SPELL_AURA_MOD_ATTACKER_SPELL_AND_WEAPON_CRIT_CHANCE);
+                    crit_chance += victim->GetMaxNegativeAuraModifier(SPELL_AURA_MOD_ATTACKER_SPELL_AND_WEAPON_CRIT_CHANCE);
                     ApplyResilience(victim, &crit_chance, NULL, false, CR_CRIT_TAKEN_SPELL);
                 }
                 // scripted (increase crit chance ... against ... target by x%
@@ -10692,9 +10718,9 @@ bool Unit::isSpellCrit(Unit* victim, SpellInfo const* spellProto, SpellSchoolMas
                         break;
                     case SPELLFAMILY_DRUID:
                         // Improved Faerie Fire
-                        if (victim->HasAuraState(AURA_STATE_FAERIE_FIRE))
+                       /* if (victim->HasAuraState(AURA_STATE_FAERIE_FIRE))
                             if (AuraEffect const* aurEff = GetDummyAuraEffect(SPELLFAMILY_DRUID, 109, 0))
-                                crit_chance += aurEff->GetAmount();
+                                crit_chance += aurEff->GetAmount();*/
 
                         // cumulative effect - don't break
 
@@ -11388,8 +11414,20 @@ uint32 Unit::MeleeDamageBonusDone(Unit* victim, uint32 pdamage, WeaponAttackType
             AuraEffectList const& mModDamagePercentDone = GetAuraEffectsByType(SPELL_AURA_MOD_DAMAGE_PERCENT_DONE);
             for (AuraEffectList::const_iterator i = mModDamagePercentDone.begin(); i != mModDamagePercentDone.end(); ++i)
             {
+                /* 
                 if ((*i)->GetMiscValue() & spellProto->GetSchoolMask() && !(spellProto->GetSchoolMask() & SPELL_SCHOOL_MASK_NORMAL))
+               */
+               if ((*i)->GetMiscValue() & spellProto->GetSchoolMask()) // we must add pct mods here because of flat benefits should be modified too
                 {
+                   
+                   if ((*i)->GetSpellInfo()->EquippedItemClass == ITEM_CLASS_WEAPON) // Weapon dependent case should affect all spells based on same damage class
+                   {
+                       if ((attType == RANGED_ATTACK && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) || 
+                           (attType != RANGED_ATTACK && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ~ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0))
+                           if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id != 20196)	//One-Handed Weapon Specialization (Paladin) increases all damage even if is weapon specific
+                               continue;
+                   }
+
                     if ((*i)->GetSpellInfo()->EquippedItemClass == -1)
                         AddPct(DoneTotalMod, (*i)->GetAmount());
                     else if (!((*i)->GetSpellInfo()->AttributesEx5 & SPELL_ATTR5_SPECIAL_ITEM_CLASS_CHECK) && ((*i)->GetSpellInfo()->EquippedItemSubClassMask == 0))
@@ -12587,7 +12625,7 @@ void Unit::SetSpeed(UnitMoveType mtype, float rate, bool forced)
 
 void Unit::setDeathState(DeathState s)
 {
-    if (s != ALIVE && s != JUST_RESPAWNED)
+    if (s != ALIVE && s != JUST_RESPAWNED && s != GHOULED)
     {
         CombatStop();
         DeleteThreatList();
