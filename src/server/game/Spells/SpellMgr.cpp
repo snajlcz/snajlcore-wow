@@ -3343,7 +3343,7 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectImplicitTargetB[0] = TARGET_UNIT_MASTER;
                 break;
             case 46619: // rise ally
-                spellInfo->AttributesEx &= ~SPELL_ATTR0_CANT_CANCEL;
+                spellInfo->Attributes &= ~SPELL_ATTR0_CANT_CANCEL;
                 spellInfo->EffectImplicitTargetA[0] = TARGET_DEST_DEST;
                 spellInfo->EffectImplicitTargetB[0] = TARGET_DEST_DEST;
                 break;
