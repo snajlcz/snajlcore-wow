@@ -3226,6 +3226,9 @@ void SpellMgr::LoadDbcDataCorrections()
             case 47502: // Thunder Clap
                 spellInfo->EquippedItemClass = ITEM_CLASS_WEAPON;
                 break;
+            case 70890: // Scourge Strike (shadow dmg)
+               spellInfo->AttributesEx6 &= ~SPELL_ATTR6_NO_DONE_PCT_DAMAGE_MODS;
+               break;
             case 19465: // Improved Stings (Rank 2)
                 spellInfo->EffectImplicitTargetA[EFFECT_2] = TARGET_UNIT_CASTER;
                 break;
@@ -3320,6 +3323,18 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
                 spellInfo->EffectImplicitTargetB[0] = TARGET_UNIT_PET;
                 break;
+            case 71838: // Item - Bryntroll, the Bone Arbiter proc: Drain Life
+            case 71839: // Item - Bryntroll, the Bone Arbiter proc: Drain Life
+               spellInfo->AttributesEx2 |= SPELL_ATTR2_CANT_CRIT;
+               break;
+            case 1329: // Mutilate (Rank 1)
+            case 34411: // Mutilate (Rank 2)
+            case 34412: // Mutilate (Rank 3)
+            case 34413: // Mutilate (Rank 4)
+            case 48663: // Mutilate (Rank 5)
+            case 48666: // Mutilate (Rank 6)
+               spellInfo->AttributesEx3 &= ~SPELL_ATTR3_CANT_TRIGGER_PROC;
+               break;
             case 53434: // Call of The Wild
             case 70893: // Culling The Herd (needs target selection script)
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
