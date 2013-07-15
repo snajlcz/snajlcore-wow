@@ -3356,7 +3356,6 @@ public:
         {
            if (!me->IsCharmed())
               {          
-                  me->GetOwner()->RemoveAurasDueToSpell(46619);
                   me->DespawnOrUnsummon();
               }
 
