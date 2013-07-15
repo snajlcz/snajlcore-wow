@@ -49,7 +49,7 @@ class instance_shattered_halls : public InstanceMapScript
                 nethekurseDoor2GUID = 0;
             }
 
-            void OnGameObjectCreate(GameObject* go)
+            void OnGameObjectCreate(GameObject* go) OVERRIDE
             {
                 switch (go->GetEntry())
                 {
@@ -62,7 +62,7 @@ class instance_shattered_halls : public InstanceMapScript
                 }
             }
 
-            void OnCreatureCreate(Creature* creature)
+            void OnCreatureCreate(Creature* creature) OVERRIDE
             {
                 switch (creature->GetEntry())
                 {
@@ -72,7 +72,7 @@ class instance_shattered_halls : public InstanceMapScript
                 }
             }
 
-            bool SetBossState(uint32 type, EncounterState state)
+            bool SetBossState(uint32 type, EncounterState state) OVERRIDE
             {
                 if (!InstanceScript::SetBossState(type, state))
                     return false;
@@ -94,6 +94,7 @@ class instance_shattered_halls : public InstanceMapScript
                     case DATA_OMROGG:
                         break;
                 }
+                return true;
             }
 
             uint64 GetData64(uint32 data) const OVERRIDE
@@ -157,8 +158,6 @@ class instance_shattered_halls : public InstanceMapScript
             }
 
             protected:
-                uint32 encounter[EncounterCount];
-                std::string m_strInstData;
                 uint64 nethekurseGUID;
                 uint64 nethekurseDoor1GUID;
                 uint64 nethekurseDoor2GUID;
@@ -169,4 +168,3 @@ void AddSC_instance_shattered_halls()
 {
     new instance_shattered_halls();
 }
-
