@@ -3324,6 +3324,9 @@ void SpellMgr::LoadDbcDataCorrections()
             case 55108:	// Two-Handed Weapon Specialization (DK) Rank 2
                 spellInfo->EffectMiscValue[EFFECT_0] = 127;
                 break;
+            case 49575: // Death Grip
+               spellInfo->EffectMiscValueB[EFFECT_0] /= 3; 
+               break;
             case 70728: // Exploit Weakness (needs target selection script)
             case 70840: // Devious Minds (needs target selection script)
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
