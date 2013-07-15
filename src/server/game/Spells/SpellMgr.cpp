@@ -3019,6 +3019,9 @@ void SpellMgr::LoadDbcDataCorrections()
             case 36350: //They Must Burn Bomb Aura (self)
                 spellInfo->EffectTriggerSpell[0] = 36325; // They Must Burn Bomb Drop (DND)
                 break;
+            case 20577: // Cannibalize
+               spellInfo->AttributesEx6 |= SPELL_ATTR6_CAN_TARGET_INVISIBLE;
+               break;
             case 49838: // Stop Time
             case 5171: // Slice and Dice rank1
             case 6774: // Slice and Dice rank2
@@ -3118,9 +3121,13 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->SpellFamilyName = SPELLFAMILY_PALADIN;
                 break;
             case 38310: // Multi-Shot
-            case 53385: // Divine Storm (Damage)
                 spellInfo->MaxAffectedTargets = 4;
                 break;
+            case 53385: // Divine Storm
+               spellInfo->MaxAffectedTargets = 4;
+               spellInfo->EffectBasePoints[EFFECT_0] = 0;
+               spellInfo->Effect[EFFECT_0] = SPELL_EFFECT_NORMALIZED_WEAPON_DMG;
+               break;
             case 42005: // Bloodboil
             case 38296: // Spitfire Totem
             case 37676: // Insidious Whisper
@@ -3182,6 +3189,12 @@ void SpellMgr::LoadDbcDataCorrections()
                 // add corruption to affected spells
                 spellInfo->EffectSpellClassMask[1][0] |= 2;
                 break;
+                case 47198: // Death's Embrace
+            case 47199:
+            case 47200:
+                // add Drain Soul to affected spells
+                spellInfo->EffectSpellClassMask[1][0] |= 16384;
+                break;
             case 51852: // The Eye of Acherus (no spawn in phase 2 in db)
                 spellInfo->EffectMiscValue[0] |= 1;
                 break;
@@ -3219,6 +3232,9 @@ void SpellMgr::LoadDbcDataCorrections()
             case 47502: // Thunder Clap
                 spellInfo->EquippedItemClass = ITEM_CLASS_WEAPON;
                 break;
+            case 70890: // Scourge Strike (shadow dmg)
+               spellInfo->AttributesEx6 &= ~SPELL_ATTR6_NO_DONE_PCT_DAMAGE_MODS;
+               break;
             case 19465: // Improved Stings (Rank 2)
                 spellInfo->EffectImplicitTargetA[EFFECT_2] = TARGET_UNIT_CASTER;
                 break;
@@ -3295,15 +3311,40 @@ void SpellMgr::LoadDbcDataCorrections()
             case 53246: // Marked for Death (Rank 5)
                 spellInfo->EffectSpellClassMask[0] = flag96(0x00067801, 0x10820001, 0x00000801);
                 break;
+            case 20467: // Judgement of Command (Rank 1)
+				spellInfo->EffectBasePoints[EFFECT_1] = 18;
+				break;
+            case 12163:	// Two-Handed Weapon Specialization (Warrior) Rank 1
+            case 12711:	// Two-Handed Weapon Specialization (Warrior) Rank 2
+            case 12712:	// Two-Handed Weapon Specialization (Warrior) Rank 3
+            case 20111:	// Two-Handed Weapon Specialization (Paladin) Rank 1
+            case 20112:	// Two-Handed Weapon Specialization (Paladin) Rank 2
+            case 20113:	// Two-Handed Weapon Specialization (Paladin) Rank 3
+            case 55107:	// Two-Handed Weapon Specialization (DK) Rank 1
+            case 55108:	// Two-Handed Weapon Specialization (DK) Rank 2
+                spellInfo->EffectMiscValue[EFFECT_0] = 127;
+                break;
             case 70728: // Exploit Weakness (needs target selection script)
             case 70840: // Devious Minds (needs target selection script)
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
                 spellInfo->EffectImplicitTargetB[0] = TARGET_UNIT_PET;
                 break;
+            case 1329: // Mutilate (Rank 1)
+            case 34411: // Mutilate (Rank 2)
+            case 34412: // Mutilate (Rank 3)
+            case 34413: // Mutilate (Rank 4)
+            case 48663: // Mutilate (Rank 5)
+            case 48666: // Mutilate (Rank 6)
+               spellInfo->AttributesEx3 &= ~SPELL_ATTR3_CANT_TRIGGER_PROC;
+               break;
             case 53434: // Call of The Wild
             case 70893: // Culling The Herd (needs target selection script)
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
                 spellInfo->EffectImplicitTargetB[0] = TARGET_UNIT_MASTER;
+                break;
+            case 46619: // rise ally
+                spellInfo->EffectImplicitTargetA[0] = TARGET_DEST_DEST;
+                spellInfo->EffectImplicitTargetB[0] = TARGET_DEST_DEST;
                 break;
             case 54800: // Sigil of the Frozen Conscience - change class mask to custom extended flags of Icy Touch
                         // this is done because another spell also uses the same SpellFamilyFlags as Icy Touch
@@ -3808,6 +3849,40 @@ void SpellMgr::LoadDbcDataCorrections()
 
         switch (spellInfo->SpellFamilyName)
         {
+            case SPELLFAMILY_DRUID:
+            SpellEffIndex eff;
+               switch (spellInfo->Id)
+               {
+                   case 770: // Faerie Fire talented crit %
+                   case 16857:
+                       eff = EFFECT_1;
+                       spellInfo->Effect[eff] = SPELL_EFFECT_APPLY_AURA;
+                       spellInfo->EffectApplyAuraName[eff] = SPELL_AURA_MOD_ATTACKER_SPELL_AND_WEAPON_CRIT_CHANCE;
+                       spellInfo->EffectBasePoints[eff] = 0;
+                       break;
+                   case 33600: // Improved Faerie Fire crit %
+                   case 33601:
+                   case 33602:
+                       eff = EFFECT_0;
+                       spellInfo->EffectApplyAuraName[eff] = SPELL_AURA_ADD_FLAT_MODIFIER;
+                       spellInfo->EffectMiscValue[eff] = SPELLMOD_EFFECT2;
+                       break;
+                   default:
+                       break;
+               }
+               break;
+           case SPELLFAMILY_ROGUE:
+               switch (spellInfo->Id)
+               {
+                   case 31226: // Master Poisoner crit % 
+                   case 31227:
+                   case 58410:
+                       spellInfo->Effect[EFFECT_1] = SPELL_AURA_ADD_FLAT_MODIFIER;
+                       break;
+                   default:
+                       break;
+               }
+                break;
             case SPELLFAMILY_HUNTER:
                 // Silencing Shot / Scatter Shot
                 if (spellInfo->SpellFamilyFlags[0] & 0x40000)
