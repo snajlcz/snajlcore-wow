@@ -3322,7 +3322,7 @@ public:
             me->setPowerType(POWER_ENERGY);
             me->SetMaxPower(POWER_ENERGY, 100);
             me->SetPower(POWER_ENERGY, 100);
-           me->SetSheath(SHEATH_STATE_MELEE);
+            me->SetSheath(SHEATH_STATE_MELEE);
             me->SetByteFlag(UNIT_FIELD_BYTES_2, 2, UNIT_CAN_BE_ABANDONED);
             me->SetUInt32Value(UNIT_FIELD_BYTES_0, 2048);
             me->SetUInt32Value(UNIT_FIELD_FLAGS, UNIT_FLAG_PVP_ATTACKABLE);
@@ -3345,6 +3345,7 @@ public:
 
         void JustDied(Unit* /*killer*/)
         {
+            me->RemoveAurasDueToSpell(46619);
            if (me->GetOwner())
               {
                  me->GetOwner()->RemoveAurasDueToSpell(62218);
