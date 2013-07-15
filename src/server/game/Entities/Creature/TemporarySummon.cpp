@@ -216,18 +216,23 @@ void TempSummon::InitStats(uint32 duration)
 
 void TempSummon::InitSummon()
 {
+
     Unit* owner = GetSummoner();
+    if (!owner)
+        return;
 
     if (owner && GetEntry() == 30230) // Risen ally
        {
           owner->RemoveAurasDueToSpell(62218);
           owner->RemoveAurasDueToSpell(46619);
        }
-
+    if (owner)
+    {
         if (owner->GetTypeId() == TYPEID_UNIT && owner->ToCreature()->IsAIEnabled)
             owner->ToCreature()->AI()->JustSummoned(this);
         if (IsAIEnabled)
             AI()->IsSummonedBy(owner);
+    }
     
 }
 
