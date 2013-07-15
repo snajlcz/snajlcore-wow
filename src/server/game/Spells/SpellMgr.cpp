@@ -3323,10 +3323,6 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
                 spellInfo->EffectImplicitTargetB[0] = TARGET_UNIT_PET;
                 break;
-            case 71838: // Item - Bryntroll, the Bone Arbiter proc: Drain Life
-            case 71839: // Item - Bryntroll, the Bone Arbiter proc: Drain Life
-               spellInfo->AttributesEx2 |= SPELL_ATTR2_CANT_CRIT;
-               break;
             case 1329: // Mutilate (Rank 1)
             case 34411: // Mutilate (Rank 2)
             case 34412: // Mutilate (Rank 3)
