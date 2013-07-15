@@ -3378,10 +3378,11 @@ public:
 
         void UpdateAI(uint32 diff)
         {
-           if (!me->IsCharmed())
-              {          
-                  me->DespawnOrUnsummon();
-              }
+           if (!me->IsCharmed())         
+                me->DespawnOrUnsummon();
+
+           if (!me->GetCharmer()->HasAura(46619))
+                me->DespawnOrUnsummon();
 
            if (me->IsInCombat())
               DoMeleeAttackIfReady();
