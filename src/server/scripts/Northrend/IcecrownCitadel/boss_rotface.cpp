@@ -163,9 +163,14 @@ class boss_rotface : public CreatureScript
                 // don't enter combat
             }
 
+            bool CanAlwaysSee(const Creature * who)
+            {
+                return (who && who->GetEntry() == 37986);
+            }
+
             void UpdateAI(uint32 diff) OVERRIDE
             {
-                if (!UpdateVictim() || !CheckInRoom())
+                if (!me->IsInCombat() || !CheckInRoom())
                     return;
 
                 events.Update(diff);
@@ -173,6 +178,11 @@ class boss_rotface : public CreatureScript
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
+                if (!UpdateVictim())
+                    return;
+                
+                me->SetTarget(me->GetVictim() ? me->GetVictim()->GetGUID() : 0);
+				
                 while (uint32 eventId = events.ExecuteEvent())
                 {
                     switch (eventId)
@@ -180,9 +190,13 @@ class boss_rotface : public CreatureScript
                         case EVENT_SLIME_SPRAY:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
                             {
-                                DoSummon(NPC_OOZE_SPRAY_STALKER, *target, 8000, TEMPSUMMON_TIMED_DESPAWN);
-                                Talk(EMOTE_SLIME_SPRAY);
-                                DoCast(me, SPELL_SLIME_SPRAY);
+                                if (Creature * stalker = DoSummon(NPC_OOZE_SPRAY_STALKER, *target, 8000, TEMPSUMMON_TIMED_DESPAWN))
+                                {
+                                    me->SetTarget(0);
+                                    me->SetInFront(stalker);
+                                    Talk(EMOTE_SLIME_SPRAY);
+                                    DoCast(SPELL_SLIME_SPRAY);
+                                }
                             }
                             events.ScheduleEvent(EVENT_SLIME_SPRAY, 20000);
                             break;
