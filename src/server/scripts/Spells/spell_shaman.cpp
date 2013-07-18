@@ -304,7 +304,6 @@ class spell_sha_earth_shield : public SpellScriptLoader
 
             bool CheckProc(ProcEventInfo& /*eventInfo*/)
             {
-                PreventDefaultAction();
 
                 //! HACK due to currenct proc system implementation
                 if (Player* player = GetTarget()->ToPlayer())
@@ -316,6 +315,7 @@ class spell_sha_earth_shield : public SpellScriptLoader
             void HandleProc(AuraEffect const* aurEff, ProcEventInfo& /*eventInfo*/)
             {
                 PreventDefaultAction();
+
                 GetTarget()->CastCustomSpell(SPELL_SHAMAN_EARTH_SHIELD_HEAL, SPELLVALUE_BASE_POINT0, aurEff->GetAmount(), GetTarget(), true, NULL, aurEff, GetCasterGUID());
 
                 /// @ HACK due to currenct proc system implementation
@@ -323,7 +323,7 @@ class spell_sha_earth_shield : public SpellScriptLoader
                     player->AddSpellCooldown(SPELL_SHAMAN_EARTH_SHIELD_HEAL, 0, time(NULL) + 3);
             }
 
-            void Register() OVERRIDE
+            void Register()
             {
                 DoCheckProc += AuraCheckProcFn(spell_sha_earth_shield_AuraScript::CheckProc);
                 DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_sha_earth_shield_AuraScript::CalculateAmount, EFFECT_0, SPELL_AURA_DUMMY);
