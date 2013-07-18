@@ -6896,6 +6896,10 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
 
                     // Value gained from additional AP
                     basepoints0 = int32(extra_attack_power / 14.0f * GetAttackTime(attType) / 1000);
+                   if (procFlag & PROC_FLAG_DONE_MAINHAND_ATTACK)
+                       triggered_spell_id = 25504;
+                   if (procFlag & PROC_FLAG_DONE_OFFHAND_ATTACK)
+                      triggered_spell_id = 33750;
 
                     if (procFlag & PROC_FLAG_DONE_MAINHAND_ATTACK)
                         triggered_spell_id = 25504;
