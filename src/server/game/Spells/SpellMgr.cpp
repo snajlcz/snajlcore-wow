@@ -3215,6 +3215,12 @@ void SpellMgr::LoadDbcDataCorrections()
             case 48422:
                 spellInfo->Stances = 1 << (FORM_TREE - 1);
                 break;
+            case 58875: // Spirit Walk (shaman encha)
+            case 58876: // Spirit Walk buf (shaman encha)
+            case 32182: // Heroism (shaman)
+            case 2825:  // Bloodlust (shaman encha)
+                spellInfo->AttributesEx2 |= SPELL_ATTR2_CAN_TARGET_NOT_IN_LOS;
+                break;
             case 51466: // Elemental Oath (Rank 1)
             case 51470: // Elemental Oath (Rank 2)
                 spellInfo->Effect[EFFECT_1] = SPELL_EFFECT_APPLY_AURA;
