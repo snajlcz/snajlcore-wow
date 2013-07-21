@@ -3276,6 +3276,11 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectImplicitTargetB[0] = TARGET_UNIT_SRC_AREA_ALLY;
                 spellInfo->EffectImplicitTargetB[1] = TARGET_UNIT_SRC_AREA_ALLY;
                 break;
+            case 49027: // DK bloodwomrs
+            case 49542: // DK bloodwomrs
+            case 49543: // DK bloodwomrs
+                spellInfo->EffectBasePoints[EFFECT_0] = 3;
+                break;
             case 54807: // DK Sigil of the Wild Buck
                 spellInfo->EffectBasePoints[EFFECT_0] = 39;
                 break;
