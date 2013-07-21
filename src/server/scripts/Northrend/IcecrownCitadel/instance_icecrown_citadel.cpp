@@ -51,7 +51,7 @@ enum RequiredAchievementsForHeroic
 {
     ACHIEVEMENT_FROZEN_THRONE_10 = 4530,
     ACHIEVEMENT_FROZEN_THRONE_25 = 4597,
-}; 
+};
 
 DoorData const doorData[] =
 {
@@ -1129,7 +1129,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                 {
                      case DATA_THE_LICH_KING:
                         if (GetBossState(DATA_SINDRAGOSA) != DONE)
-                            return false; 
+                            return false;
                         // no break
                     case DATA_SINDRAGOSA:
                         if (GetBossState(DATA_VALITHRIA_DREAMWALKER) != DONE)
@@ -1211,7 +1211,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                         return true;
                 }
                 return false;
-            } 
+            }
 
             std::string GetSaveData()
             {
@@ -1531,7 +1531,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                             t->AddNPCPassengerInInstance(NPC_GB_SKYBREAKER_MORTAR_SOLDIER, -20.9583f, 14.8875f, 20.4428f, 4.77865f);
                         }
                     }
-                
+
                     if(th = sMapMgr->LoadTransportInMap(instance,GO_ORGRIM_S_HAMMER_HORDE_ICC, 77800))
                     {
                         th->AddNPCPassengerInInstance(NPC_GB_ORGRIMS_HAMMER, 1.845810f, 1.268872f, 34.526218f, 1.5890f);
@@ -1573,7 +1573,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                     sMapMgr->LoadTransportForPlayers(player);
                 }
             }
- 
+
         protected:
             EventMap Events;
             uint64 LadyDeathwisperElevatorGUID;

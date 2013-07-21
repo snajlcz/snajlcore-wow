@@ -16,7 +16,7 @@ public:
         };
         return commandTable;
     }
-    
+
     static bool HandleRatesCommand(ChatHandler* handler, const char* /*args*/)
     {
         Player * player = handler->GetSession()->GetPlayer();

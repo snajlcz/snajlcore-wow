@@ -259,7 +259,7 @@ enum EventTypes
 
     // Invisible Stalker (Float, Uninteractible, LargeAOI)
     EVENT_SOUL_MISSILE                  = 55,
-    
+
     // Sindragosas Ward
     EVENT_SUB_WAVE_1                    = 56,
     EVENT_SUB_WAVE_2                    = 57,
@@ -637,6 +637,7 @@ class npc_rotting_frost_giant : public CreatureScript
             void JustDied(Unit* /*killer*/) OVERRIDE
             {
                 _events.Reset();
+  DoCast(me, 72959, true);
             }
 
             void UpdateAI(uint32 diff) OVERRIDE

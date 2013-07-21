@@ -91,7 +91,7 @@ enum DataTypes
     DATA_SINDRAGOSA                 = 11,
     DATA_THE_LICH_KING              = 12,
     DATA_SINDRAGOSA_GAUNTLET        = 13,
- 
+
     // Additional data
     DATA_SAURFANG_EVENT_NPC         = 14,
     DATA_BONED_ACHIEVEMENT          = 15,
@@ -120,7 +120,7 @@ enum DataTypes
     DATA_HIGHLORD_TIRION_FORDRING   = 38,
     DATA_ARTHAS_PLATFORM            = 39,
     DATA_TERENAS_MENETHIL           = 40,
-    
+
      // Gunship: Data for achievements
     DATA_BEEN_WAITING_ACHIEVEMENT   = 49,
     DATA_NECK_DEEP_ACHIEVEMENT      = 50,
@@ -304,9 +304,9 @@ enum CreaturesIds
     NPC_WORLD_TRIGGER                           = 22515,
     NPC_WORLD_TRIGGER_INFINITE_AOI              = 36171,
     NPC_SPIRIT_BOMB                             = 39189,
-    NPC_FROSTMOURNE_TRIGGER                     = 38584,  
+    NPC_FROSTMOURNE_TRIGGER                     = 38584,
 
-	// Gunship: Ids of NPCs
+ // Gunship: Ids of NPCs
     NPC_GB_SKYBREAKER                           = 37540,
     NPC_GB_ORGRIMS_HAMMER                       = 37215,
     NPC_GB_HIGH_OVERLORD_SAURFANG               = 36939,

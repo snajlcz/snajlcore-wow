@@ -944,7 +944,7 @@ public:
            announce += " was kicked by the character ";
            announce += handler->GetSession()->GetPlayerName();
            announce += ".";
-           sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str()); 
+           sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str());
         }
 
         return true;
@@ -1995,7 +1995,7 @@ public:
             announce += handler->GetSession()->GetPlayerName();
             announce += ". The reason is: ";
             announce += muteReasonStr.c_str();
-            sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str()); 
+            sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str());
         }
 
         return true;

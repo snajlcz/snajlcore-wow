@@ -888,7 +888,7 @@ class ObjectMgr
         QuestRelations* GetCreatureQuestInvolvedRelation()
         {
             return &_creatureQuestInvolvedRelations;
-        } 
+        }
 
         QuestRelationBounds GetCreatureQuestRelationBounds(uint32 creature_entry)
         {
@@ -1132,7 +1132,7 @@ class ObjectMgr
 
         void AddCorpseCellData(uint32 mapid, uint32 cellid, uint32 player_guid, uint32 instance);
         void DeleteCorpseCellData(uint32 mapid, uint32 cellid, uint32 player_guid);
-        
+
         // grid objects
         void AddCreatureToGrid(uint32 guid, CreatureData const* data);
         void RemoveCreatureFromGrid(uint32 guid, CreatureData const* data);

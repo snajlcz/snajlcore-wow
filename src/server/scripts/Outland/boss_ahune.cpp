@@ -144,7 +144,7 @@ class boss_ahune : public CreatureScript
 
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
-				
+
                 me->SetReactState(REACT_AGGRESSIVE);//test
                 me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);//test
                 me->SetUInt32Value(UNIT_NPC_EMOTESTATE, 0);
@@ -203,7 +203,7 @@ class boss_ahune : public CreatureScript
                         case EVENT_SUBMERGE:
                             events.SetPhase(PHASE_TWO);
                             events.ScheduleEvent(EVENT_EMERGE, 30000);
-							
+
                             me->RemoveAurasDueToSpell(SPELL_AHUNES_SHIELD);
                             DoCast(me, SPELL_MAKE_BONFIRE);
 
@@ -230,10 +230,10 @@ class boss_ahune : public CreatureScript
                             events.ScheduleEvent(EVENT_SUMMON_COLDWEAVE, 8000, 0, PHASE_ONE);
                             events.ScheduleEvent(EVENT_ICE_SPIKE, 8000, 0, PHASE_ONE);
                             events.ScheduleEvent(EVENT_COLD_SLAP, 500, 0, PHASE_ONE);
-							
+
                             me->AddAura(SPELL_AHUNES_SHIELD, me);
                             DoCast(me, SPELL_RESURFACE);
-							
+
                             me->SetReactState(REACT_AGGRESSIVE);
                             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_NON_ATTACKABLE);
                             me->SetUInt32Value(UNIT_NPC_EMOTESTATE, 0);
