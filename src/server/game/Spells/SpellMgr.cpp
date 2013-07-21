@@ -1194,16 +1194,62 @@ bool SpellArea::IsFitToRequirements(Player const* player, uint32 newZone, uint32
     return true;
 }
 
-void SpellMgr::LoadSpellRanks()
+void SpellMgr::LoadSpellTalentRanks()
 {
-    uint32 oldMSTime = getMSTime();
-
     // cleanup core data before reload - remove reference to ChainNode from SpellInfo
     for (SpellChainMap::iterator itr = mSpellChains.begin(); itr != mSpellChains.end(); ++itr)
-    {
         mSpellInfoMap[itr->first]->ChainEntry = NULL;
-    }
+
     mSpellChains.clear();
+
+    for (uint32 i = 0; i < sTalentStore.GetNumRows(); ++i)
+    {
+        TalentEntry const* talentInfo = sTalentStore.LookupEntry(i);
+        if (!talentInfo)
+            continue;
+
+        SpellInfo const* lastRank = NULL;
+        for (uint8 rank = MAX_TALENT_RANK - 1; rank > 0; --rank)
+        {
+            if (talentInfo->RankID[rank])
+            {
+                lastRank = GetSpellInfo(talentInfo->RankID[rank]);
+                break;
+            }
+        }
+
+        if (!lastRank)
+            continue;
+
+        /// @todo: add more validate checks
+
+        for (uint8 rank = 0; rank < MAX_TALENT_RANK; ++rank)
+        {
+            uint32 spellId = talentInfo->RankID[rank];
+            if (!spellId)
+                break;
+
+            SpellChainNode node;
+            node.first = GetSpellInfo(talentInfo->RankID[0]);
+            node.last  = lastRank;
+            node.rank  = rank + 1;
+
+            node.prev = rank ? GetSpellInfo(talentInfo->RankID[rank - 1]) : NULL;
+            node.next = node.rank < MAX_TALENT_RANK ? GetSpellInfo(talentInfo->RankID[rank + 1]) : NULL;
+
+            mSpellChains[spellId] = node;
+            mSpellInfoMap[spellId]->ChainEntry = &mSpellChains[spellId];
+        }
+    }
+}
+
+void SpellMgr::LoadSpellRanks()
+{
+    // load spell ranks for talents from dbc
+    LoadSpellTalentRanks();
+
+    uint32 oldMSTime = getMSTime();
+
     //                                                     0             1      2
     QueryResult result = WorldDatabase.Query("SELECT first_spell_id, spell_id, rank from spell_ranks ORDER BY first_spell_id, rank");
 
@@ -1287,6 +1333,10 @@ void SpellMgr::LoadSpellRanks()
         {
             ++count;
             int32 addedSpell = itr->first;
+
+            if (mSpellInfoMap[addedSpell]->ChainEntry)
+                TC_LOG_ERROR(LOG_FILTER_SQL, "Spell %u (rank: %u, first: %u) listed in `spell_ranks` has already ChainEntry from dbc.", addedSpell, itr->second, lastSpell);
+
             mSpellChains[addedSpell].first = GetSpellInfo(lastSpell);
             mSpellChains[addedSpell].last = GetSpellInfo(rankChain.back().first);
             mSpellChains[addedSpell].rank = itr->second;
@@ -1303,7 +1353,8 @@ void SpellMgr::LoadSpellRanks()
                 mSpellChains[addedSpell].next = GetSpellInfo(itr->first);
         }
         while (true);
-    } while (!finished);
+    }
+	while (!finished);
 
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, ">> Loaded %u spell rank records in %u ms", count, GetMSTimeDiffToNow(oldMSTime));
 
