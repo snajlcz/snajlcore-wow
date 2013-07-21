@@ -216,7 +216,7 @@ public:
 
         if (sWorld->getBoolConfig(CONFIG_SHOW_BAN_IN_WORLD))
         {
-	  if (mode == BAN_CHARACTER)
+   if (mode == BAN_CHARACTER)
                announce = "The character '";
           else if (mode == BAN_IP)
                        announce = "The IP '";
