@@ -369,14 +369,14 @@ void Aura::_InitEffects(uint8 effMask, Unit* caster, int32 *baseAmount)
        if(caster && caster->GetTypeId() == TYPEID_PLAYER && m_spellInfo->SpellFamilyName == SPELLFAMILY_POTION && caster->HasAura(53042))
        {
            if(sSpellMgr->IsSpellMemberOfSpellGroup(m_spellInfo->Id,SPELL_GROUP_ELIXIR_BATTLE) ||
-				sSpellMgr->IsSpellMemberOfSpellGroup(m_spellInfo->Id,SPELL_GROUP_ELIXIR_GUARDIAN))
+    sSpellMgr->IsSpellMemberOfSpellGroup(m_spellInfo->Id,SPELL_GROUP_ELIXIR_GUARDIAN))
            {
-				if (caster->HasAura(53042) && caster->HasSpell(m_spellInfo->Effects[0].TriggerSpell))
+    if (caster->HasAura(53042) && caster->HasSpell(m_spellInfo->Effects[0].TriggerSpell))
                {   
-					m_maxDuration *= 2;
-				    m_duration = m_maxDuration;
+     m_maxDuration *= 2;
+        m_duration = m_maxDuration;
 
-				    for (uint8 i=0 ; i<MAX_SPELL_EFFECTS; ++i)
+        for (uint8 i=0 ; i<MAX_SPELL_EFFECTS; ++i)
                {
                if (effMask & (uint8(1) << i))
                    m_effects[i]->SetAmount((int32)(m_effects[i]->GetAmount() * 1.5f));

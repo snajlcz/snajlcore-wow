@@ -92,15 +92,15 @@ void Player::MorphFit(bool value)
         {
             if (getGender() == GENDER_MALE)
             {
-			    uint32 A_M2[5] = {19723, 20317, 21105, 20580, 20318};
-				uint32 A_M = A_M2[urand(0, 4)];
+       uint32 A_M2[5] = {19723, 20317, 21105, 20580, 20318};
+    uint32 A_M = A_M2[urand(0, 4)];
                 SetDisplayId(A_M); 
                 SetNativeDisplayId(A_M);
             }
             else
             {
-			    uint32 A_F2[3] = {19724, 20581, 20323};
-				uint32 A_F = A_F2[urand(0, 2)];
+       uint32 A_F2[3] = {19724, 20581, 20323};
+    uint32 A_F = A_F2[urand(0, 2)];
                 SetDisplayId(A_F); 
                 SetNativeDisplayId(A_F);
             }
@@ -109,15 +109,15 @@ void Player::MorphFit(bool value)
         {
             if (getGender() == GENDER_MALE)
             {
-			    uint32 H_M2[4] = {20585, 20321, 20369, 21267};
-				uint32 H_M = H_M2[urand(0, 3)];
+       uint32 H_M2[4] = {20585, 20321, 20369, 21267};
+    uint32 H_M = H_M2[urand(0, 3)];
                 SetDisplayId(H_M); 
                 SetNativeDisplayId(H_M);
             }
             else
             {
-			    uint32 H_F2[3] = {20316, 20584, 20579};
-				uint32 H_F = H_F2[urand(0, 2)];
+       uint32 H_F2[3] = {20316, 20584, 20579};
+    uint32 H_F = H_F2[urand(0, 2)];
                 SetDisplayId(H_F); 
                 SetNativeDisplayId(H_F);
             }
