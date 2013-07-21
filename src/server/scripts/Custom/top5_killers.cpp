@@ -6,13 +6,13 @@
 *            | \____/( ( | | |   | |_| | || || | |_| \ V ( (/ /| |___| | |_| | |__         *
 *             \_____/ \_||_|_|    \__  |_||_||_|\___/ \_/ \____)\_____/ \____|\___)        *
 *                                (____/                                                    *
-*                               or any other files are protected. You cannot re-release    * 
+*                               or any other files are protected. You cannot re-release    *
 *                               anywhere unless you were given permission.                 *
 *                           (C) GaryMoveOut 2013. All rights reserved.                     *
 ********************************************************************************************/
 
 #include "ScriptPCH.h"
-using namespace std;  
+using namespace std;
 
 /* Basic Menu */
 #define Menu_Whisp     "World Top Class Killers"
@@ -214,7 +214,7 @@ class top5_killers : public CreatureScript
                     }
                     break;
                     // Shaman
-                    case 6: 
+                    case 6:
                     {
                         QueryResult result = CharacterDatabase.Query("SELECT name, totalKills FROM characters WHERE class = '7' ORDER BY totalKills DESC LIMIT 5");
                         if (!result)

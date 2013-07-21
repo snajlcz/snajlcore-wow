@@ -180,9 +180,9 @@ class boss_rotface : public CreatureScript
 
                 if (!UpdateVictim())
                     return;
-                
+
                 me->SetTarget(me->GetVictim() ? me->GetVictim()->GetGUID() : 0);
-    
+
                 while (uint32 eventId = events.ExecuteEvent())
                 {
                     switch (eventId)

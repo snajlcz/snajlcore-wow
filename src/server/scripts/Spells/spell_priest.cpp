@@ -645,7 +645,7 @@ class spell_priest_spirit_of_redemption : public SpellScriptLoader
                 if (Player* caster = GetCaster()->ToPlayer())
                 {
                     caster->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC);
-                    caster->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_NPC); 
+                    caster->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_NPC);
                 }
             }
 
@@ -654,7 +654,7 @@ class spell_priest_spirit_of_redemption : public SpellScriptLoader
                 if (Player* caster = GetCaster()->ToPlayer())
                 {
                     caster->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC);
-                    caster->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_NPC); 
+                    caster->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_NPC);
                 }
             }
 

@@ -3342,7 +3342,7 @@ void Spell::EffectWeaponDmg(SpellEffIndex effIndex)
             // SC0105
            switch (m_spellInfo->Id)
            {
-               case 20467: 
+               case 20467:
                    spell_bonus += int32(0.08f * m_caster->GetTotalAttackPowerValue(BASE_ATTACK));
                    spell_bonus += int32(0.13f * m_caster->SpellBaseDamageBonusDone(m_spellInfo->GetSchoolMask()));
                    break;
@@ -3504,7 +3504,7 @@ void Spell::EffectWeaponDmg(SpellEffIndex effIndex)
     }
 
      int32 weaponDamage = m_caster->CalculateDamage(m_attackType, normalized, false); // Pct mods added later in Unit::MeleeDamageBonus() because of flat mods
-     
+
      if (m_attackType == OFF_ATTACK) // we must add off-hand bonuses now
     {
        float coeffOH = 1.0f; // TODO: find cleaner solution + more info on nuances
@@ -5835,7 +5835,7 @@ void Spell::EffectTitanGrip(SpellEffIndex /*effIndex*/)
 {
     if (effectHandleMode != SPELL_EFFECT_HANDLE_HIT)
         return;
-    
+
     if (Player* player = (Player*)m_caster)
     {
         player->SetCanTitanGrip(true);

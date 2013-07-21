@@ -986,7 +986,7 @@ bool Player::Create(uint32 guidlow, CharacterCreateInfo* createInfo)
     uint32 RaceClassGender = (createInfo->Race) | (createInfo->Class << 8) | (createInfo->Gender << 16);
 
     SetUInt32Value(UNIT_FIELD_BYTES_0, (RaceClassGender | (powertype << 24)));
-    
+
     SetORace();
     m_team = TeamForRace(getORace());
     SetFakeRace(); // m_team must be set before this can be used.
@@ -2103,9 +2103,9 @@ bool Player::TeleportTo(uint32 mapid, float x, float y, float z, float orientati
     }
 
     // Remove unit lost control before teleport
-    if (HasUnitState(UNIT_STATE_LOST_CONTROL)) 
+    if (HasUnitState(UNIT_STATE_LOST_CONTROL))
     {
-        StopMoving(); 
+        StopMoving();
         GetMotionMaster()->Clear();
     }
 
@@ -3019,7 +3019,7 @@ void Player::GiveXP(uint32 xp, Unit* victim, float group_rate)
         bonus_xp = 2 * xp; // xp + bonus_xp must add up to 3 * xp for RaF; calculation for quests done client-side
     else
         bonus_xp = victim ? GetXPRestBonus(xp) : 0; // XP resting bonus
-    
+
     // check if double rates is enabled
     if(HasAtLoginFlag(CUSTOMFLAG_DOUBLE_RATE))
     {
@@ -5602,9 +5602,9 @@ void Player::RepopAtGraveyard()
 
 bool Player::CanJoinConstantChannelInZone(ChatChannelsEntry const* channel, AreaTableEntry const* zone)
 {
-    // Player can join LFG anywhere  
-    if (channel->flags & CHANNEL_DBC_FLAG_LFG && sWorld->getBoolConfig(CONFIG_LFG_LOCATION_ALL)) 
-        return true;  
+    // Player can join LFG anywhere
+    if (channel->flags & CHANNEL_DBC_FLAG_LFG && sWorld->getBoolConfig(CONFIG_LFG_LOCATION_ALL))
+        return true;
 
     if (channel->flags & CHANNEL_DBC_FLAG_ZONE_DEP && zone->flags & AREA_FLAG_ARENA_INSTANCE)
         return false;
@@ -12539,7 +12539,7 @@ Item* Player::EquipItem(uint16 pos, Item* pItem, bool update)
     // Apply Titan's Grip damage penalty if necessary
     if ((slot == EQUIPMENT_SLOT_MAINHAND || slot == EQUIPMENT_SLOT_OFFHAND) && CanTitanGrip() && HasTwoHandWeaponInOneHand() && !HasAura(49152))
         CastSpell(this, 49152, true);
-    
+
     // only for full equip instead adding to stack
     UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_EQUIP_ITEM, pItem->GetEntry());
     UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_EQUIP_EPIC_ITEM, pItem->GetEntry(), slot);
@@ -23527,7 +23527,7 @@ bool Player::HasItemFitToSpellRequirements(SpellInfo const* spellInfo, Item cons
     {
         case ITEM_CLASS_WEAPON:
         {
-            for (uint8 i = EQUIPMENT_SLOT_MAINHAND; i < EQUIPMENT_SLOT_TABARD; ++i) 
+            for (uint8 i = EQUIPMENT_SLOT_MAINHAND; i < EQUIPMENT_SLOT_TABARD; ++i)
             {
                 // Make Thunder clap not require a weapon equiped
                 if (spellInfo->SpellFamilyFlags[0] & 0x00000080)
@@ -26369,9 +26369,9 @@ bool Player::IsInWhisperWhiteList(uint64 guid)
 void Player::HandleRates()
 {
     Player* player = this;
-    
+
     bool hasXPIncreased = player->HasAtLoginFlag(CUSTOMFLAG_DOUBLE_RATE);
-     
+
     if (player->getLevel() < 60 && player->getClass() != CLASS_DEATH_KNIGHT) // check required level and class
     {
         if (hasXPIncreased)

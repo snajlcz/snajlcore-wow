@@ -3417,7 +3417,7 @@ void SpellMgr::LoadDbcDataCorrections()
             case 34471: // The Beast Within
                 spellInfo->AttributesEx5 |= SPELL_ATTR5_USABLE_WHILE_CONFUSED | SPELL_ATTR5_USABLE_WHILE_FEARED | SPELL_ATTR5_USABLE_WHILE_STUNNED;
                 break;
-            // Without reduced range the Earth, Wind & Fire achievement would be undoable. 
+            // Without reduced range the Earth, Wind & Fire achievement would be undoable.
             // The damage would hit you everywherr in the instance, even when not in LoS.
             case 66670: // Burning Breath (Koralon-10)
             case 67329: // Burning Breath (Koralon-25)
@@ -3811,7 +3811,7 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->AttributesEx6 |= SPELL_ATTR6_CAN_TARGET_INVISIBLE;
                 break;
             case 18754: // Improved succubus - problems with apply if target is pet
-                spellInfo->EffectApplyAuraName[0] = SPELL_AURA_ADD_FLAT_MODIFIER; // it's affects duration of seduction, let's minimize affection 
+                spellInfo->EffectApplyAuraName[0] = SPELL_AURA_ADD_FLAT_MODIFIER; // it's affects duration of seduction, let's minimize affection
                 spellInfo->EffectBasePoints[0] = -1.5*IN_MILLISECONDS*0.22; // reduce cast time of seduction by 22%
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
                 break;
@@ -3879,7 +3879,7 @@ void SpellMgr::LoadDbcDataCorrections()
            case SPELLFAMILY_ROGUE:
                switch (spellInfo->Id)
                {
-                   case 31226: // Master Poisoner crit % 
+                   case 31226: // Master Poisoner crit %
                    case 31227:
                    case 58410:
                        spellInfo->Effect[EFFECT_1] = SPELL_AURA_ADD_FLAT_MODIFIER;

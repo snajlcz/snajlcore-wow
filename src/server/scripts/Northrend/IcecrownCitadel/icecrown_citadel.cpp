@@ -259,7 +259,7 @@ enum EventTypes
 
     // Invisible Stalker (Float, Uninteractible, LargeAOI)
     EVENT_SOUL_MISSILE                  = 55,
-    
+
     // Sindragosas Ward
     EVENT_SUB_WAVE_1                    = 56,
     EVENT_SUB_WAVE_2                    = 57,
