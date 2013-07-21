@@ -1,0 +1,1 @@
+UPDATE creature_template SET ScriptName='npc_water_elemental' WHERE entry=25040;
