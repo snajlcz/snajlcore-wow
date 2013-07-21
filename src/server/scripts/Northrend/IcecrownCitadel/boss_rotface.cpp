@@ -182,7 +182,7 @@ class boss_rotface : public CreatureScript
                     return;
                 
                 me->SetTarget(me->GetVictim() ? me->GetVictim()->GetGUID() : 0);
-				
+    
                 while (uint32 eventId = events.ExecuteEvent())
                 {
                     switch (eventId)

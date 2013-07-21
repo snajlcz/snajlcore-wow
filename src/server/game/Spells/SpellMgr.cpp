@@ -3169,8 +3169,8 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->procCharges = 1;
                 break;
             case 61851: // Killing Spree
-				spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
-				break;
+    spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
+    break;
             case 44544: // Fingers of Frost
                 spellInfo->EffectSpellClassMask[0] = flag96(685904631, 1151048, 0);
                 break;
@@ -3318,16 +3318,16 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectSpellClassMask[0] = flag96(0x00067801, 0x10820001, 0x00000801);
                 break;
             case 20467: // Judgement of Command (Rank 1)
-				spellInfo->EffectBasePoints[EFFECT_1] = 18;
-				break;
-            case 12163:	// Two-Handed Weapon Specialization (Warrior) Rank 1
-            case 12711:	// Two-Handed Weapon Specialization (Warrior) Rank 2
-            case 12712:	// Two-Handed Weapon Specialization (Warrior) Rank 3
-            case 20111:	// Two-Handed Weapon Specialization (Paladin) Rank 1
-            case 20112:	// Two-Handed Weapon Specialization (Paladin) Rank 2
-            case 20113:	// Two-Handed Weapon Specialization (Paladin) Rank 3
-            case 55107:	// Two-Handed Weapon Specialization (DK) Rank 1
-            case 55108:	// Two-Handed Weapon Specialization (DK) Rank 2
+    spellInfo->EffectBasePoints[EFFECT_1] = 18;
+    break;
+            case 12163: // Two-Handed Weapon Specialization (Warrior) Rank 1
+            case 12711: // Two-Handed Weapon Specialization (Warrior) Rank 2
+            case 12712: // Two-Handed Weapon Specialization (Warrior) Rank 3
+            case 20111: // Two-Handed Weapon Specialization (Paladin) Rank 1
+            case 20112: // Two-Handed Weapon Specialization (Paladin) Rank 2
+            case 20113: // Two-Handed Weapon Specialization (Paladin) Rank 3
+            case 55107: // Two-Handed Weapon Specialization (DK) Rank 1
+            case 55108: // Two-Handed Weapon Specialization (DK) Rank 2
                 spellInfo->EffectMiscValue[EFFECT_0] = 127;
                 break;
             case 70728: // Exploit Weakness (needs target selection script)

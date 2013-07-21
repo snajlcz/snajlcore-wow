@@ -42,7 +42,7 @@ enum PaladinSpells
     SPELL_PALADIN_HOLY_SHOCK_R1_HEALING          = 25914,
 
     PALADIN_SPELL_SACRED_SHIELD_EFFECT           = 58597,
-		
+  
     SPELL_PALADIN_BLESSING_OF_LOWER_CITY_DRUID   = 37878,
     SPELL_PALADIN_BLESSING_OF_LOWER_CITY_PALADIN = 37879,
     SPELL_PALADIN_BLESSING_OF_LOWER_CITY_PRIEST  = 37880,
@@ -850,7 +850,7 @@ class spell_pal_sacred_shield : public SpellScriptLoader
                         AddPct(amount, dampening->GetAmount());
                 }
             }
-			
+   
             void HandleEffectRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
                 if (Unit* caster = GetCaster())
