@@ -64,7 +64,7 @@ void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T* owner, bool up
             //   doing a "dance" while fighting
             // doing a "dance" while fighting
             if (owner->IsPet() && i_target->GetTypeId() == TYPEID_PLAYER)
-                dist = i_target->GetCombatReach() - (i_target->GetObjectSize() + 2.5f); 
+                dist = i_target->GetCombatReach() - (i_target->GetObjectSize() + 2.5f);
             else
                 dist = owner->GetCombatReach() + i_offset + 1.5f;
 

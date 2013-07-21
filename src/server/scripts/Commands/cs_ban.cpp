@@ -216,7 +216,7 @@ public:
 
         if (sWorld->getBoolConfig(CONFIG_SHOW_BAN_IN_WORLD))
         {
-	  if (mode == BAN_CHARACTER)
+   if (mode == BAN_CHARACTER)
                announce = "The character '";
           else if (mode == BAN_IP)
                        announce = "The IP '";
@@ -229,7 +229,7 @@ public:
                      announce +=  handler->GetSession()->GetPlayerName();
                      announce += ". The reason is: ";
                      announce += reasonStr;
-                     sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str()); 
+                     sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str());
         }
 
         return true;

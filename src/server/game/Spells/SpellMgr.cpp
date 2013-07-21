@@ -3169,8 +3169,8 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->procCharges = 1;
                 break;
             case 61851: // Killing Spree
-				spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
-				break;
+    spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
+    break;
             case 44544: // Fingers of Frost
                 spellInfo->EffectSpellClassMask[0] = flag96(685904631, 1151048, 0);
                 break;
@@ -3323,16 +3323,16 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectSpellClassMask[0] = flag96(0x00067801, 0x10820001, 0x00000801);
                 break;
             case 20467: // Judgement of Command (Rank 1)
-				spellInfo->EffectBasePoints[EFFECT_1] = 18;
-				break;
-            case 12163:	// Two-Handed Weapon Specialization (Warrior) Rank 1
-            case 12711:	// Two-Handed Weapon Specialization (Warrior) Rank 2
-            case 12712:	// Two-Handed Weapon Specialization (Warrior) Rank 3
-            case 20111:	// Two-Handed Weapon Specialization (Paladin) Rank 1
-            case 20112:	// Two-Handed Weapon Specialization (Paladin) Rank 2
-            case 20113:	// Two-Handed Weapon Specialization (Paladin) Rank 3
-            case 55107:	// Two-Handed Weapon Specialization (DK) Rank 1
-            case 55108:	// Two-Handed Weapon Specialization (DK) Rank 2
+    spellInfo->EffectBasePoints[EFFECT_1] = 18;
+    break;
+            case 12163: // Two-Handed Weapon Specialization (Warrior) Rank 1
+            case 12711: // Two-Handed Weapon Specialization (Warrior) Rank 2
+            case 12712: // Two-Handed Weapon Specialization (Warrior) Rank 3
+            case 20111: // Two-Handed Weapon Specialization (Paladin) Rank 1
+            case 20112: // Two-Handed Weapon Specialization (Paladin) Rank 2
+            case 20113: // Two-Handed Weapon Specialization (Paladin) Rank 3
+            case 55107: // Two-Handed Weapon Specialization (DK) Rank 1
+            case 55108: // Two-Handed Weapon Specialization (DK) Rank 2
                 spellInfo->EffectMiscValue[EFFECT_0] = 127;
                 break;
             case 70728: // Exploit Weakness (needs target selection script)
@@ -3422,7 +3422,7 @@ void SpellMgr::LoadDbcDataCorrections()
             case 34471: // The Beast Within
                 spellInfo->AttributesEx5 |= SPELL_ATTR5_USABLE_WHILE_CONFUSED | SPELL_ATTR5_USABLE_WHILE_FEARED | SPELL_ATTR5_USABLE_WHILE_STUNNED;
                 break;
-            // Without reduced range the Earth, Wind & Fire achievement would be undoable. 
+            // Without reduced range the Earth, Wind & Fire achievement would be undoable.
             // The damage would hit you everywherr in the instance, even when not in LoS.
             case 66670: // Burning Breath (Koralon-10)
             case 67329: // Burning Breath (Koralon-25)
@@ -3816,7 +3816,7 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->AttributesEx6 |= SPELL_ATTR6_CAN_TARGET_INVISIBLE;
                 break;
             case 18754: // Improved succubus - problems with apply if target is pet
-                spellInfo->EffectApplyAuraName[0] = SPELL_AURA_ADD_FLAT_MODIFIER; // it's affects duration of seduction, let's minimize affection 
+                spellInfo->EffectApplyAuraName[0] = SPELL_AURA_ADD_FLAT_MODIFIER; // it's affects duration of seduction, let's minimize affection
                 spellInfo->EffectBasePoints[0] = -1.5*IN_MILLISECONDS*0.22; // reduce cast time of seduction by 22%
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
                 break;
@@ -3884,7 +3884,7 @@ void SpellMgr::LoadDbcDataCorrections()
            case SPELLFAMILY_ROGUE:
                switch (spellInfo->Id)
                {
-                   case 31226: // Master Poisoner crit % 
+                   case 31226: // Master Poisoner crit %
                    case 31227:
                    case 58410:
                        spellInfo->Effect[EFFECT_1] = SPELL_AURA_ADD_FLAT_MODIFIER;

@@ -226,7 +226,7 @@ void TempSummon::InitSummon()
         if (IsAIEnabled)
             AI()->IsSummonedBy(owner);
     }
-    
+
 }
 
 void TempSummon::SetTempSummonType(TempSummonType type)

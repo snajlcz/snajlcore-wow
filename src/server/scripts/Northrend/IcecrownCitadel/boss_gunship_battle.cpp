@@ -153,7 +153,7 @@ enum Events
     EVENT_OUTRO_HORDE_1,
     EVENT_OUTRO_HORDE_2,
     EVENT_OUTRO_HORDE_3,
-    
+
    //Fly
     EVENT_START_FLY,
 
@@ -409,7 +409,7 @@ void RelocateTransport(Transport* t)
     }
 
     t->Update(0);
-    t->UpdatePassengerPositions(); 
+    t->UpdatePassengerPositions();
 }
 
 
@@ -561,7 +561,7 @@ void RestartEvent(Transport* t1, Transport* t2, Map* instance, uint64 TeamInInst
                             th->AddNPCPassengerInInstance(NPC_GB_KORKRON_AXETHROWER, 24.70331f, 25.36584f, 35.97845f, 1.66527f);
                             th->AddNPCPassengerInInstance(NPC_GB_KORKRON_ROCKETEER, -11.44849f, -25.71838f, 33.64343f, 1.49248f);
                             th->AddNPCPassengerInInstance(NPC_GB_KORKRON_ROCKETEER, 12.30336f, -25.69653f, 35.32373f, 1.49248f);
-                        }                        
+                        }
                         else
                         {
                             th->AddNPCPassengerInInstance(NPC_GB_KORKRON_AXETHROWER, -3.170555f, 28.30652f, 34.21082f, 1.66527f);
@@ -928,11 +928,11 @@ class npc_muradin_gunship : public CreatureScript
                         if (me->GetEntry() != NPC_GB_SKYBREAKER_SORCERERS)
                         {
                             if (_instance->GetBossState(DATA_GUNSHIP_EVENT) != DONE)
-                                events.ScheduleEvent(EVENT_SPAWN_MAGE, 33000); 
+                                events.ScheduleEvent(EVENT_SPAWN_MAGE, 33000);
                         }
                         break;
                     case ACTION_ROCK_DIE:
-                        ++RocketerDieCount; 
+                        ++RocketerDieCount;
                         if (RocketerDieCount == RocketerCount)
                             if (_instance->GetBossState(DATA_GUNSHIP_EVENT) != DONE)
                                 events.ScheduleEvent(EVENT_RESPAWN_ROCKETEER, 60000);
@@ -952,7 +952,7 @@ class npc_muradin_gunship : public CreatureScript
                 {
                     damage = 0;
                 }
-                
+
                 if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == ALLIANCE && me->GetHealthPct() < 2.0f )
                 {
                     damage = 0;
@@ -973,7 +973,7 @@ class npc_muradin_gunship : public CreatureScript
             {
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
-                
+
                 if (!HealthAbovePct(75))
                 {
                     me->SetHealth(me->GetMaxHealth() / 100 * 76); // find a better way to avoid the hardcore spell spam ....
@@ -1040,7 +1040,7 @@ class npc_muradin_gunship : public CreatureScript
                             Talk(SAY_INTRO_ALLIANCE_7);
                             break;
                         case EVENT_SUMMON_PORTAL:
-                            if (_instance->GetBossState(DATA_GUNSHIP_EVENT) != DONE) 
+                            if (_instance->GetBossState(DATA_GUNSHIP_EVENT) != DONE)
                             {
                                 events.ScheduleEvent(EVENT_BOARDING_TALK, 10000);
                                 events.ScheduleEvent(EVENT_BOARDING_GUNSHIP, 2500); // TODO: Fix the timers
@@ -1078,7 +1078,7 @@ class npc_muradin_gunship : public CreatureScript
                                 events.ScheduleEvent(EVENT_SUMMON_PORTAL, 90000);
                                 events.ScheduleEvent(EVENT_BOARDING_REAVERS_MARINE, 3000);
                                 count = 0;
-                            } 
+                            }
                             break;
                         case EVENT_BOARDING_REAVERS_MARINE:
                             if (_instance->GetBossState(DATA_GUNSHIP_EVENT) != DONE)
@@ -1119,7 +1119,7 @@ class npc_muradin_gunship : public CreatureScript
                             {
                                 _instance->SetBossState(DATA_GUNSHIP_EVENT, FAIL);
                                 RestartEvent(skybreaker, CheckUnfriendlyShip(me,_instance,DATA_GB_HIGH_OVERLORD_SAURFANG), map, ALLIANCE);
-                            } 
+                            }
                             break;
                         case EVENT_SPAWN_MAGE:
                             if (me->GetEntry() != NPC_GB_SKYBREAKER_SORCERERS)
@@ -1229,7 +1229,7 @@ class npc_gunship_skybreaker : public CreatureScript
                     if (Creature* pMuradin = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_GB_MURADIN_BRONZEBEARD)))
                         pMuradin->AI()->DoAction(ACTION_FAIL);
                 }
-                
+
                 else if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE)
                 {
                          if (Creature* pSaurfang = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_GB_HIGH_OVERLORD_SAURFANG)))
@@ -1286,7 +1286,7 @@ class npc_gunship_orgrimmar : public CreatureScript
                     if (Creature* pMuradin = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_GB_MURADIN_BRONZEBEARD)))
                         pMuradin->AI()->DoAction(ACTION_DONE);
                 }
-                
+
                 else if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE)
                 {
                          if (Creature* pSaurfang = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_GB_HIGH_OVERLORD_SAURFANG)))
@@ -1352,7 +1352,7 @@ class npc_korkron_axethrower_rifleman : public CreatureScript
                     if (Creature* pSaurfangBoss = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_GB_HIGH_OVERLORD_SAURFANG)))
                         pSaurfangBoss->AI()->DoAction(ACTION_AXES_RIFL_DIE);
                 }
-                 
+
                 if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE)
                 {
                     if (Creature* pMuradin = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_GB_MURADIN_BRONZEBEARD)))
@@ -1364,7 +1364,7 @@ class npc_korkron_axethrower_rifleman : public CreatureScript
             {
                 if (_instance->GetBossState(DATA_GUNSHIP_EVENT) != IN_PROGRESS)
                     return;
-                
+
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
@@ -1474,7 +1474,7 @@ class npc_sergeant : public CreatureScript
 
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
-                    
+
                 events.Update(diff);
 
                 while (uint32 eventId = events.ExecuteEvent())
@@ -1730,7 +1730,7 @@ class npc_gunship_mage : public CreatureScript
                             pSaurfangBoss->AI()->DoAction(ACTION_MAGE_DIE);
                     }
                  }
-                 
+
                  if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE)
                  {
                      if (me->GetGUID() == _instance->GetData64(DATA_GB_BATTLE_MAGE))
@@ -1750,7 +1750,7 @@ class npc_gunship_mage : public CreatureScript
 
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
-                    
+
                 if (me->GetGUID() == _instance->GetData64(DATA_GB_BATTLE_MAGE))
                 {
 
@@ -1892,7 +1892,7 @@ class npc_mortar_soldier_or_rocketeer : public CreatureScript
 
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
-                    
+
                 events.Update(diff);
 
                 while (uint32 eventId = events.ExecuteEvent())
@@ -2185,7 +2185,7 @@ class npc_saurfang_gunship : public CreatureScript
                 {
                     damage = 0;
                 }
-                
+
                 if (_instance->GetData(DATA_TEAM_IN_INSTANCE) == HORDE && me->GetHealthPct() < 2.0f )
                 {
                     damage = 0;
@@ -2206,14 +2206,14 @@ class npc_saurfang_gunship : public CreatureScript
             {
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
-                    
+
                 if (_instance->GetBossState(DATA_GUNSHIP_EVENT) == IN_PROGRESS)
                 {
                     if (!HealthAbovePct(75))
                     {
                         me->SetHealth(me->GetMaxHealth() / 100 * 76); // find a better way to avoid the hardcore spell spam ....
                         DoCast(me, SPELL_TASTE_OF_BLOOD);
-                    } 
+                    }
 
                     if (UpdateVictim())
                     {
@@ -2277,7 +2277,7 @@ class npc_saurfang_gunship : public CreatureScript
                                 CheckUnfriendlyShip(me, _instance, DATA_MURADIN_BRONZEBEARD_NOT_VISUAL)->AddNPCPassengerInInstance(NPC_GB_PORTAL, 3.51547f, -0.160213f, 20.87252f, 3.05033f);
                                 events.ScheduleEvent(EVENT_BOARDING_TALK, 10000);
                                 events.ScheduleEvent(EVENT_BOARDING_GUNSHIP, 2500); // TODO: Fix the timers
-                            } 
+                            }
                             break;
                         case EVENT_BOARDING_TALK:
                             Talk(SAY_BOARDING_ORGRIMS_HAMMER_1);
@@ -2296,7 +2296,7 @@ class npc_saurfang_gunship : public CreatureScript
                                 }
                                 events.ScheduleEvent(EVENT_BOARDING_REAVERS_MARINE, 3000);
                                 events.ScheduleEvent(EVENT_SUMMON_PORTAL, 90000);
-                            } 
+                            }
                             break;
                         case EVENT_BOARDING_REAVERS_MARINE:
                             if (_instance->GetBossState(DATA_GUNSHIP_EVENT) != DONE)
@@ -2337,7 +2337,7 @@ class npc_saurfang_gunship : public CreatureScript
                             {
                                 _instance->SetBossState(DATA_GUNSHIP_EVENT, FAIL);
                                 RestartEvent(orgrimmar, CheckUnfriendlyShip(me,_instance,DATA_GB_MURADIN_BRONZEBEARD), map, HORDE);
-                            } 
+                            }
                             break;
                         case EVENT_RENDING_THROW:
                             if (UpdateVictim())
@@ -3138,24 +3138,24 @@ class spell_remove_rocket_pack : public SpellScriptLoader
 {
     public:
         spell_remove_rocket_pack() : SpellScriptLoader("spell_remove_rocket_pack") { }
- 
+
         class spell_remove_rocket_pack_SpellScript : public SpellScript
         {
             PrepareSpellScript(spell_remove_rocket_pack_SpellScript);
- 
+
             void HandleEffect(SpellEffIndex /*effIndex*/)
             {
 //                Player* player = GetHitPlayer();
 //                int32 itemId = 49278;
 //                player->DestroyItemCount(itemId, -1, true, false);
             }
- 
+
             void Register()
             {
 //                OnEffectHit += SpellEffectFn(spell_remove_rocket_pack_SpellScript::HandleEffect, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
             }
         };
- 
+
         SpellScript* GetSpellScript() const
         {
             return new spell_remove_rocket_pack_SpellScript();

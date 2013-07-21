@@ -491,7 +491,7 @@ uint32 InstanceScript::GetMajorityTeam()
         const Map::PlayerList& players = instance->GetPlayers();
         if (!players.isEmpty())
         {
-            Player* arbitraryPlayer = players.getFirst()->GetSource();  // Just get the first one - it doesn't matter, we may take anyone. 
+            Player* arbitraryPlayer = players.getFirst()->GetSource();  // Just get the first one - it doesn't matter, we may take anyone.
             if (!arbitraryPlayer)
                 return 0;   // Cannot make a decision if there's no player
 
@@ -531,7 +531,7 @@ uint32 InstanceScript::GetMajorityTeam()
             #Horde == #Alliance: Random(HORDE, ALLIANCE)
             else: ALLIANCE
         */
-        if (hordePlayers > alliancePlayers) 
+        if (hordePlayers > alliancePlayers)
             return HORDE;
         else if (hordePlayers < alliancePlayers)
             return ALLIANCE;

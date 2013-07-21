@@ -589,7 +589,7 @@ void PathGenerator::BuildPointPath(const float *startPoint, const float *endPoin
              _pathPoints[4] = GetEndPosition();
          }
     }
-    // Custom Point for Bugged Zone 
+    // Custom Point for Bugged Zone
 
     TC_LOG_DEBUG(LOG_FILTER_MAPS, "++ PathGenerator::BuildPointPath path type %d size %d poly-size %d\n", _type, pointCount, _polyLength);
 }

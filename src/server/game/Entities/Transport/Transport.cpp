@@ -92,7 +92,7 @@ void MapManager::UnLoadTransportFromMap(Transport* t)
         if (t != itr->GetSource()->GetTransport())
             itr->GetSource()->SendDirectMessage(&out_packet);
 
-    t->m_NPCPassengerSet.clear();         
+    t->m_NPCPassengerSet.clear();
     m_TransportsByInstanceIdMap[t->GetInstanceId()].erase(t);
     m_Transports.erase(t);
     t->m_WayPoints.clear();
@@ -103,7 +103,7 @@ void MapManager::UnLoadTransportFromMap(Transport* t)
 void MapManager::LoadTransportForPlayers(Player* player)
 {
     MapManager::TransportMap& tmap = sMapMgr->m_TransportsByInstanceIdMap;
-    
+
     UpdateData transData;
 
     MapManager::TransportSet& tset = tmap[player->GetInstanceId()];
@@ -121,7 +121,7 @@ void MapManager::LoadTransportForPlayers(Player* player)
 void MapManager::UnLoadTransportForPlayers(Player* player)
 {
     MapManager::TransportMap& tmap = sMapMgr->m_TransportsByInstanceIdMap;
-    
+
     UpdateData transData;
 
     MapManager::TransportSet& tset = tmap[player->GetInstanceId()];
@@ -670,7 +670,7 @@ void Transport::Update(uint32 p_diff)
             Relocate(m_curr->second.x, m_curr->second.y, m_curr->second.z, GetAngle(m_next->second.x, m_next->second.y) + float(M_PI));
             UpdatePassengerPositions(); // COME BACK MARKER
             // This forces the server to update positions in transportation for players -- gunship
-            UpdatePlayerPositions();      	
+            UpdatePlayerPositions();
         }
 
         sScriptMgr->OnRelocate(this, m_curr->first, m_curr->second.mapid, m_curr->second.x, m_curr->second.y, m_curr->second.z);
