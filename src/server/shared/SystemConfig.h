@@ -24,7 +24,7 @@
 #include "Define.h"
 #include "revision.h"
 
-#define _PACKAGENAME "Core: SnajlCore BETA 2 - DEVELOPMENT\nDeveloper: Snajl, Wallker\n"
+#define _PACKAGENAME "Core: SnajlCore - RC1\nDeveloper: Snajl, Wallker, Anonymous\n"
 
 #if TRINITY_ENDIAN == TRINITY_BIGENDIAN
 # define _ENDIAN_STRING "big-endian"
