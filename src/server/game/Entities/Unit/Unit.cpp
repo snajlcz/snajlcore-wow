@@ -10081,7 +10081,7 @@ uint32 Unit::SpellDamageBonusDone(Unit* victim, SpellInfo const* spellProto, uin
                     spellProto->DmgClass == SPELL_DAMAGE_CLASS_MAGIC ||
                    (spellProto->DmgClass == SPELL_DAMAGE_CLASS_RANGED && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) || 
                    (spellProto->DmgClass == SPELL_DAMAGE_CLASS_MELEE && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ~ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0))
-                   if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id != 20196)	//One-Handed Weapon Specialization (Paladin) increases all damage even if is weapon specific
+                   if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id != 20196) //One-Handed Weapon Specialization (Paladin) increases all damage even if is weapon specific
                        continue;
 
                if (spellProto->SpellFamilyName == SPELLFAMILY_HUNTER && spellProto->SpellFamilyFlags[0] & 0x00004000) // Serpent Sting should not be affected by
@@ -11422,7 +11422,7 @@ uint32 Unit::MeleeDamageBonusDone(Unit* victim, uint32 pdamage, WeaponAttackType
                    {
                        if ((attType == RANGED_ATTACK && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) || 
                            (attType != RANGED_ATTACK && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ~ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0))
-                           if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id != 20196)	//One-Handed Weapon Specialization (Paladin) increases all damage even if is weapon specific
+                           if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id != 20196) //One-Handed Weapon Specialization (Paladin) increases all damage even if is weapon specific
                                continue;
                    }
 
