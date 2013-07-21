@@ -58,7 +58,7 @@ enum Yells
     SAY_OVERRIDE_MIN                            = 12,
     // MK II
     EMOTE_PLASMA_BLAST                          = 0,
-    
+
 };
 
 enum MimironDatas
@@ -416,7 +416,7 @@ class boss_mimiron : public CreatureScript
             }
 
             void UpdateAI(uint32 diff)
-            {             
+            {
                 if (!UpdateVictim())
                     return;
 
@@ -779,7 +779,7 @@ class boss_leviathan_mk : public CreatureScript
     public:
         boss_leviathan_mk() : CreatureScript("boss_leviathan_mk") { }
 
-        struct boss_leviathan_mkAI : public BossAI 
+        struct boss_leviathan_mkAI : public BossAI
         {
             boss_leviathan_mkAI(Creature* creature) : BossAI(creature, DATA_LEVIATHAN_MK_II), phase(PHASE_NULL), vehicle(creature->GetVehicleKit())
             {
@@ -971,13 +971,13 @@ class boss_leviathan_mk_turret : public CreatureScript
 
         struct boss_leviathan_mk_turretAI : public ScriptedAI
         {
-            boss_leviathan_mk_turretAI(Creature* creature) : ScriptedAI(creature) 
+            boss_leviathan_mk_turretAI(Creature* creature) : ScriptedAI(creature)
             {
                 me->SetReactState(REACT_PASSIVE);
                 events.ScheduleEvent(EVENT_NAPALM_SHELL, urand(4000, 8000));
                 me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
             }
-            
+
             void Reset()
             {
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_ATTACKABLE_1);
@@ -1818,7 +1818,7 @@ class npc_frost_bomb : public CreatureScript
                 DoCast(me, SPELL_FROST_BOMB, true);
                 events.ScheduleEvent(EVENT_FROST_BOMB_EXPLOSION, 10000);
             }
-            
+
             void UpdateAI(uint32 diff)
             {
                 events.Update(diff);

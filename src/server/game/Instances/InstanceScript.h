@@ -197,7 +197,7 @@ class InstanceScript : public ZoneScript
         // Return wether server allow two side groups or not
         bool ServerAllowsTwoSideGroups() { return sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GROUP); }
 
-        // Returns which team has a majority in the current instance map. Uses ServerAllowsTwoSideGroups() for config-check, thus returns the 
+        // Returns which team has a majority in the current instance map. Uses ServerAllowsTwoSideGroups() for config-check, thus returns the
         // team in the instance if two-side-interaction is not allowed.
         uint32 GetMajorityTeam(void);
 

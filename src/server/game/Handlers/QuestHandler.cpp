@@ -297,7 +297,7 @@ void WorldSession::HandleQuestgiverQueryQuestOpcode(WorldPacket& recvData)
     }
     // Anti-Rollback
     if (_player)
-        _player->SaveToDB(); 
+        _player->SaveToDB();
 }
 
 void WorldSession::HandleQuestQueryOpcode(WorldPacket& recvData)

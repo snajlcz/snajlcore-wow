@@ -6,7 +6,7 @@
 *            | \____/( ( | | |   | |_| | || || | |_| \ V ( (/ /| |___| | |_| | |__         *
 *             \_____/ \_||_|_|    \__  |_||_||_|\___/ \_/ \____)\_____/ \____|\___)        *
 *                                (____/                                                    *
-*                               or any other files are protected. You cannot re-release    * 
+*                               or any other files are protected. You cannot re-release    *
 *                               anywhere unless you were given permission.                 *
 *                           (C) GaryMoveOut 2013. All rights reserved.                     *
 ********************************************************************************************/

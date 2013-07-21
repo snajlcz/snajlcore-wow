@@ -7,7 +7,7 @@ std::string GetNameLink(Player* player)
 {
  std::string name = player->GetName();
  std::string color;
- switch(player->getClass()) 
+ switch(player->getClass())
  {
  case CLASS_DEATH_KNIGHT:
   color = "|cffC41F3B";
@@ -50,7 +50,7 @@ class cs_world_chat : public CommandScript
 
  ChatCommand * GetCommands() const
  {
-  static ChatCommand WorldChatCommandTable[] = 
+  static ChatCommand WorldChatCommandTable[] =
   {
    {"chat", SEC_PLAYER,  true,  &HandleWorldChatCommand, "", NULL},
    {NULL,  0,    false,  NULL,      "", NULL}
@@ -89,7 +89,7 @@ class cs_world_chat : public CommandScript
      msg += " |cfffaeb00";
     }
     break;
-   // Moderator/trial 
+   // Moderator/trial
    case SEC_MODERATOR:
     msg += "|cffff8a00[Mod] ";
     msg += GetNameLink(player);
@@ -109,7 +109,7 @@ class cs_world_chat : public CommandScript
     break;
 
   }
-   
+
   msg += args;
   if (FACTION_SPECIFIC)
   {
@@ -120,7 +120,7 @@ class cs_world_chat : public CommandScript
       sWorld->SendServerMessage(SERVER_MSG_STRING, msg.c_str(), plr);
   }
   else
-   sWorld->SendServerMessage(SERVER_MSG_STRING, msg.c_str(), 0); 
+   sWorld->SendServerMessage(SERVER_MSG_STRING, msg.c_str(), 0);
 
   return true;
  }

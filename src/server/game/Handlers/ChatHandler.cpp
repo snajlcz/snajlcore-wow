@@ -294,7 +294,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
             Player* receiver = sObjectAccessor->FindPlayerByName(to);
             if (!receiver || (!HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) &&
                 receiver->GetSession()->HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) &&
-                !receiver->isAcceptWhispers() && !receiver->IsInWhisperWhiteList(sender->GetGUID()))) 
+                !receiver->isAcceptWhispers() && !receiver->IsInWhisperWhiteList(sender->GetGUID())))
             {
                 SendPlayerNotFoundNotice(to);
                 return;

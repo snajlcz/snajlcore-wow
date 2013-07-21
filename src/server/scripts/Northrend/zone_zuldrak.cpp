@@ -1296,7 +1296,7 @@ public:
 };
 
 /*####
-## npc_vladof 
+## npc_vladof
 ## TODO: mammoth
 ## // by Dessus
 ####*/
@@ -1318,7 +1318,7 @@ public:
     struct npc_vladofAI : public ScriptedAI
     {
         npc_vladofAI(Creature* creature) : ScriptedAI(creature)
-        {            
+        {
             DoCast(me, SPELL_BLOOD_PRESENCE);
             me->SetReactState(REACT_AGGRESSIVE);
         }
@@ -1334,7 +1334,7 @@ public:
             BloodBoil_timer = 20;
             FrostFever_timer = 6;
             SpellDeflection_timer = 50;
-           
+
             DoCast(me, SPELL_BLOOD_PRESENCE);
         }
 

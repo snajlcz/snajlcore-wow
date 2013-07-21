@@ -372,7 +372,7 @@ void Aura::_InitEffects(uint8 effMask, Unit* caster, int32 *baseAmount)
     sSpellMgr->IsSpellMemberOfSpellGroup(m_spellInfo->Id,SPELL_GROUP_ELIXIR_GUARDIAN))
            {
     if (caster->HasAura(53042) && caster->HasSpell(m_spellInfo->Effects[0].TriggerSpell))
-               {   
+               {
      m_maxDuration *= 2;
         m_duration = m_maxDuration;
 
