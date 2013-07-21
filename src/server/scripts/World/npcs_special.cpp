@@ -3294,7 +3294,7 @@ public:
         {
             Reset();
         }
-        
+
         void Reset()
         {
             if (Aura* tired = me->GetOwner()->GetAura(SPELL_CHECK_TIRED))
@@ -3378,7 +3378,7 @@ public:
 
         void UpdateAI(uint32 diff)
         {
-           if (!me->IsCharmed())         
+           if (!me->IsCharmed())
                 me->DespawnOrUnsummon();
 
            if (!me->GetCharmer()->HasAura(46619))

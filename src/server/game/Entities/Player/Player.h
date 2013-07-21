@@ -1422,7 +1422,7 @@ class Player : public Unit, public GridObject<Player>
         uint32 GetGossipTextId(uint32 menuId, WorldObject* source);
         uint32 GetGossipTextId(WorldObject* source);
         static uint32 GetDefaultGossipMenuForSource(WorldObject* source);
-        
+
         /*********************************************************/
         /***                    QUEST SYSTEM                   ***/
         /*********************************************************/

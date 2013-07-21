@@ -10077,9 +10077,9 @@ uint32 Unit::SpellDamageBonusDone(Unit* victim, SpellInfo const* spellProto, uin
            // SC0014
            if ((*i)->GetSpellInfo()->EquippedItemClass == ITEM_CLASS_WEAPON) // Weapon dependent case should affect all spells based on same damage class
            {
-               if ( spellProto->DmgClass == SPELL_DAMAGE_CLASS_NONE || 
+               if ( spellProto->DmgClass == SPELL_DAMAGE_CLASS_NONE ||
                     spellProto->DmgClass == SPELL_DAMAGE_CLASS_MAGIC ||
-                   (spellProto->DmgClass == SPELL_DAMAGE_CLASS_RANGED && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) || 
+                   (spellProto->DmgClass == SPELL_DAMAGE_CLASS_RANGED && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) ||
                    (spellProto->DmgClass == SPELL_DAMAGE_CLASS_MELEE && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ~ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0))
                    if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id != 20196) //One-Handed Weapon Specialization (Paladin) increases all damage even if is weapon specific
                        continue;
@@ -11412,15 +11412,15 @@ uint32 Unit::MeleeDamageBonusDone(Unit* victim, uint32 pdamage, WeaponAttackType
             AuraEffectList const& mModDamagePercentDone = GetAuraEffectsByType(SPELL_AURA_MOD_DAMAGE_PERCENT_DONE);
             for (AuraEffectList::const_iterator i = mModDamagePercentDone.begin(); i != mModDamagePercentDone.end(); ++i)
             {
-                /* 
+                /*
                 if ((*i)->GetMiscValue() & spellProto->GetSchoolMask() && !(spellProto->GetSchoolMask() & SPELL_SCHOOL_MASK_NORMAL))
                */
                if ((*i)->GetMiscValue() & spellProto->GetSchoolMask()) // we must add pct mods here because of flat benefits should be modified too
                 {
-                   
+
                    if ((*i)->GetSpellInfo()->EquippedItemClass == ITEM_CLASS_WEAPON) // Weapon dependent case should affect all spells based on same damage class
                    {
-                       if ((attType == RANGED_ATTACK && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) || 
+                       if ((attType == RANGED_ATTACK && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0) ||
                            (attType != RANGED_ATTACK && ((*i)->GetSpellInfo()->EquippedItemSubClassMask & ~ITEM_SUBCLASS_MASK_WEAPON_RANGED) == 0))
                            if ((*i)->GetSpellInfo()->GetFirstRankSpell()->Id != 20196) //One-Handed Weapon Specialization (Paladin) increases all damage even if is weapon specific
                                continue;

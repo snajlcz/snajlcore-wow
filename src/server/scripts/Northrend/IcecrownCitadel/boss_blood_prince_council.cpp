@@ -261,7 +261,7 @@ class boss_blood_council_controller : public CreatureScript
 
                 if (Creature* valanar = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_PRINCE_VALANAR_GUID)))
                     valanar->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
-       
+
             }
 
             void JustDied(Unit* killer) OVERRIDE

@@ -39,10 +39,10 @@ REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_ent
 #define MSG_GOSSIP_TEXT_A7_ROGUE "Плечи А8 для Разбойника."
 #define MSG_GOSSIP_TEXT_A7_DK "Плечи А8 для Рыцаря Смерти."
 #define MSG_GOSSIP_TEXT_A7_LOOK "Плечи А8 для Чернокнижника."
-#define MSG_GOSSIP_TEXT_A7_SHAMAN_HOLI "Плечи А8 для Шамана-хила {Дух}." 
-#define MSG_GOSSIP_TEXT_A7_SHAMAN_RDD "Плечи А8 для Шамана-рдд" 
+#define MSG_GOSSIP_TEXT_A7_SHAMAN_HOLI "Плечи А8 для Шамана-хила {Дух}."
+#define MSG_GOSSIP_TEXT_A7_SHAMAN_RDD "Плечи А8 для Шамана-рдд"
 #define MSG_GOSSIP_TEXT_A7_SHAMAN_DD "Плечи А8 для Шамана-дд."
- 
+
 #define CONST_ARENA_POINT_1 3000
 #define CONST_ARENA_POINT_2 5000
 
@@ -67,7 +67,7 @@ REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_ent
 
 class npc_other : public CreatureScript
 {
-    public: 
+    public:
     npc_other() : CreatureScript("npc_other") { }
 
  void AddSet(Player* player, int massive[1])
@@ -80,7 +80,7 @@ class npc_other : public CreatureScript
  }
 
  bool OnGossipHello(Player *player, Creature *creature)
-  { 
+  {
         creature->MonsterWhisper(MSG_GOSSIP_TEXT_GETTING_STARTED, player->GetGUID());
   player->ADD_GOSSIP_ITEM(GOSSIP_ICON_VENDOR , MSG_GOSSIP_TEXT_BAGS, GOSSIP_SENDER_MAIN, 2);
   int playerClass = player->getClass();
@@ -130,7 +130,7 @@ class npc_other : public CreatureScript
 //      player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, MSG_GOSSIP_TEXT_RENAME, GOSSIP_SENDER_MAIN, 23);
 //      player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, MSG_GOSSIP_TEXT_CUSTOM, GOSSIP_SENDER_MAIN, 24);
 //      player->ADD_GOSSIP_ITEM(GOSSIP_ICON_INTERACT_1, MSG_GOSSIP_TEXT_CHANGE_FACTION, GOSSIP_SENDER_MAIN, 25);
-            player->SEND_GOSSIP_MENU (DEFAULT_GOSSIP_MESSAGE,creature->GetGUID()); 
+            player->SEND_GOSSIP_MENU (DEFAULT_GOSSIP_MESSAGE,creature->GetGUID());
         return true;
  }
 
@@ -260,7 +260,7 @@ class npc_other : public CreatureScript
                creature->MonsterWhisper(MSG_CHANGE_FACTION_COMPLETE, player->GetGUID());
                player->CLOSE_GOSSIP_MENU();
      }
-     break; 
+     break;
 }
       return true;
 }

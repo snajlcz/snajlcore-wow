@@ -229,7 +229,7 @@ public:
                      announce +=  handler->GetSession()->GetPlayerName();
                      announce += ". The reason is: ";
                      announce += reasonStr;
-                     sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str()); 
+                     sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str());
         }
 
         return true;

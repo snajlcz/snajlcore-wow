@@ -1249,9 +1249,9 @@ void World::LoadConfigSettings(bool reload)
 
     //Allow Two Side Interaction Chat
     m_int_configs[CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHAT_AREA] = sConfigMgr->GetIntDefault("AllowTwoSide.Interaction.Chat.Area", -1);
-    
+
     //LFG Location ALL
-    m_bool_configs[CONFIG_LFG_LOCATION_ALL] = sConfigMgr->GetBoolDefault("LFG.Location.All", true); 
+    m_bool_configs[CONFIG_LFG_LOCATION_ALL] = sConfigMgr->GetBoolDefault("LFG.Location.All", true);
 
     // Gm chat blue
     m_bool_configs[CONFIG_GM_BLUE_CHAT_ENABLE] = sConfigMgr->GetBoolDefault("Gm.Chat.Blue.Enable", false);

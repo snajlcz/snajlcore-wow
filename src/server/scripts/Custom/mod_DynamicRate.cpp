@@ -17,7 +17,7 @@ struct DynamicRateInfo
     time_t update;
 };
 
-typedef std::map<uint32, DynamicRateInfo> DynamicRateMap; 
+typedef std::map<uint32, DynamicRateInfo> DynamicRateMap;
 DynamicRateMap DynamicRate;
 
 class Mod_DynamicRate_WorldScript : public WorldScript
@@ -86,7 +86,7 @@ public:
             handler->PSendSysMessage(LANG_RATE_BETWEEN, DynamicRateMin, DynamicRateMax);
             return true;
         }
-        
+
         if (!DynamicRate[guid].character)
             DynamicRate[guid].rate = rate;
 
