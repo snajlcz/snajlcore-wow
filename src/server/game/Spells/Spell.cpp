@@ -5749,12 +5749,12 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
             // Cyclone
             if (_spell->Id == 33786)
                 return delayForBanishes;
-            // Hibernate 
+            // Hibernate
             if (_spell->Id == 2637)
                 return delayForDisorients;
             // Feral charge
             if (_spell->Id == 45334)
-                return NOdelayForInstantSpells; 
+                return NOdelayForInstantSpells;
             // Maim
             if (_spell->Id == 22570)
                 return delayForStuns;
@@ -5762,7 +5762,7 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
             if (_spell->Id == 9005)
                 return delayForOpenerStuns;
             break;
-        case SPELLFAMILY_HUNTER: // TODO all pet's cc 
+        case SPELLFAMILY_HUNTER: // TODO all pet's cc
             // Traps
             if (_spell->SpellFamilyFlags[0] & 0x8 || // Frozen trap
                 _spell->Id == 57879 || // Snake Trap
@@ -5846,7 +5846,7 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
             // DeathCoil
             if (_spell->Id == 27223)
                 return delayForHorrors;
-            // Demon charge 
+            // Demon charge
             if (_spell->Id == 60995) // might use 54785 - req testing
                 return delayForStuns;
             // Fear
@@ -5881,7 +5881,7 @@ uint32 Spell::GetCCDelay(SpellInfo const* _spell)
             // Shockwave
             if (_spell->Id == 46968)
                 return delayForStuns;
-            break;    
+            break;
         case SPELLFAMILY_GENERIC: // is that ok?!
             // War Stomp - Tauren's racial
             if (_spell->Id == 46026)

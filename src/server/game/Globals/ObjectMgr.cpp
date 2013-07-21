@@ -8848,14 +8848,14 @@ VehicleAccessoryList const* ObjectMgr::GetVehicleAccessoryList(Vehicle* veh) con
 void ObjectMgr::LoadDbcDataCorrections()
  {
      uint32 oldMSTime = getMSTime();
- 
+
      VehicleSeatEntry * veSeatInfo = NULL;
      for (uint32 i = 0; i < sVehicleSeatStore.GetNumRows(); ++i)
      {
          veSeatInfo = (VehicleSeatEntry*)sVehicleSeatStore.LookupEntry(i);
          if (!veSeatInfo)
              continue;
- 
+
          switch (veSeatInfo->m_ID)
          {
              case 3064: // Ignis
@@ -8878,7 +8878,7 @@ void ObjectMgr::LoadDbcDataCorrections()
                  break;
          }
      }
- 
+
      TC_LOG_INFO(LOG_FILTER_SERVER_LOADING,">> Loading vehicle dbc data corrections  in %u ms", GetMSTimeDiffToNow(oldMSTime));
  }
 

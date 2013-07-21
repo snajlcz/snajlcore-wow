@@ -1050,7 +1050,7 @@ void AddOutlandScripts()
     AddSC_boss_grandmaster_vorpil();
     AddSC_boss_murmur();
     AddSC_black_temple();                   //Black Temple
-	AddSC_boss_illidan();
+ AddSC_boss_illidan();
     AddSC_boss_shade_of_akama();
     AddSC_boss_supremus();
     AddSC_boss_gurtogg_bloodboil();
