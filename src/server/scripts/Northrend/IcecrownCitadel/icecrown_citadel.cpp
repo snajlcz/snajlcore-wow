@@ -637,6 +637,7 @@ class npc_rotting_frost_giant : public CreatureScript
             void JustDied(Unit* /*killer*/) OVERRIDE
             {
                 _events.Reset();
+		DoCast(me, 72959, true);
             }
 
             void UpdateAI(uint32 diff) OVERRIDE
