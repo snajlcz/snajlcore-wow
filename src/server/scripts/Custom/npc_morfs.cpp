@@ -7,7 +7,7 @@
 * SDCategory: NPC
 * REPLACE INTO `creature_template` VALUES ('993369', '0', '0', '0', '0', '0', '26789', '0', '0', '0', 'MMOwning Morfs', 'allinone', '', '0', '80', '80', '0', '35', '35', '1', '1', '1.14286', '0.75', '2', '1755', '1755', '0', '1504', '1000', '1500', '0', '1', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '7', '2', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '3', '1', '100', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', 'pryds_allinone', '1');
 * https://github.com/Vitasic/Battle
-* EndScriptData 
+* EndScriptData
 */
 
 #include "ScriptPCH.h"
@@ -25,8 +25,8 @@ class pryds_allinone : public CreatureScript
         {
      //*** HANDLED FUNCTION ***
         //This is the constructor, called only once when the Creature is first created
-            pryds_allinoneAI(Creature *c) : ScriptedAI(c) {}   
-        }; 
+            pryds_allinoneAI(Creature *c) : ScriptedAI(c) {}
+        };
 
 
 

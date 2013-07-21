@@ -111,7 +111,7 @@ class MapManager
 
         void LoadTransports();
         void LoadTransportNPCs();
-      
+
         //Load transport to instance
         Transport* LoadTransportInMap(Map* instance, uint32 goEntry, uint32 period);
         void UnLoadTransportFromMap(Transport* t);

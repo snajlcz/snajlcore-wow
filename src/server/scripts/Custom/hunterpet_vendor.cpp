@@ -1,9 +1,9 @@
-// -- BeastmasterNPC by LORDofDOOM 
+// -- BeastmasterNPC by LORDofDOOM
 // -- Modified from old scripting and tweaked
 // -- Thanks to MCWoW (FreeCry) for 3.3 Script
 
 #include "ScriptPCH.h"
- 
+
 enum Creatures
 {
         //CREATURE_FELSHETZER                                   = 19350,
@@ -31,7 +31,7 @@ enum Creatures
         CREATURE_WOLFRUESTUNG                           = 17280,
         //CREATURE_WOLFGRAU                                     = 24128,
         //CREATURE_WOLFWEI?                                     = 26672,
-       
+
         CREATURE_SCHIMAERE                                      = 20932,
         CREATURE_SILITHIDGELB                           = 15230,
         CREATURE_SILITHIDROT                            = 5460,
@@ -47,7 +47,7 @@ enum Creatures
         CREATURE_GONDRIA                                        = 33776,
         CREATURE_ARCTURIS                                       = 38453,
 };
- 
+
 #define main    100
 #define pets    200
 #define exotic  300
@@ -70,7 +70,7 @@ enum Creatures
 #define katzeloewe 216
 #define katzeluchs 217
 #define raptorgruen 218
-#define raptorrot 219  
+#define raptorrot 219
 #define weitschreiter 220
 #define wesperot 221
 #define wespeblau 222
@@ -91,20 +91,20 @@ enum Creatures
 #define skoll 336
 #define loque 337
 #define gondria 338
-#define arcturis 339 
- 
- 
+#define arcturis 339
+
+
  //Preise
 #define PRICE_PET_TYP_1    250000
 #define PRICE_PET_TYP_2    5000000
 #define MSG_NOT_MONEY "You have not enough gold!"
 #define MSG_PET_SUMMON "The creature will be summoned"
- 
+
 class npc_hunterpetvendor : public CreatureScript
 {
 public:
         npc_hunterpetvendor() : CreatureScript("npc_hunterpetvendor") { }
- 
+
 bool OnGossipHello(Player* player, Creature* creature)
 {
         if ((player->getClass() == CLASS_HUNTER))
@@ -120,7 +120,7 @@ bool OnGossipHello(Player* player, Creature* creature)
                 return true;
         }
 }
- 
+
 bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 action)
 {
 player->PlayerTalkClass->ClearMenus();
@@ -153,10 +153,10 @@ player->PlayerTalkClass->ClearMenus();
                         //player->ADD_GOSSIP_ITEM(2, "Wolf (Wilder Worg)", GOSSIP_SENDER_MAIN, wolfgrau);
                         //player->ADD_GOSSIP_ITEM(2, "Wolf (Blutdurstiger Tundrawolf)", GOSSIP_SENDER_MAIN, wolfwei?);
                         //player->ADD_GOSSIP_ITEM(0, "I would prefer a exotic list...", GOSSIP_SENDER_MAIN, exotic);
- 
+
                         player->SEND_GOSSIP_MENU(40011, creature->GetGUID());
                 break;
-               
+
                 case exotic:
                         player->ADD_GOSSIP_ITEM(2, "Nuramoc", GOSSIP_SENDER_MAIN, schimaere);
                         player->ADD_GOSSIP_ITEM(2, "Vekniss Warrior", GOSSIP_SENDER_MAIN, silithidgelb);
@@ -172,7 +172,7 @@ player->PlayerTalkClass->ClearMenus();
                         player->ADD_GOSSIP_ITEM(2, "Gondria", GOSSIP_SENDER_MAIN, gondria);
                         player->ADD_GOSSIP_ITEM(2, "Arcturis", GOSSIP_SENDER_MAIN, arcturis);
                         //player->ADD_GOSSIP_ITEM(0, "I would prefer a non-exotic list...", GOSSIP_SENDER_MAIN, pets);
-                       
+
                         player->SEND_GOSSIP_MENU(40011, creature->GetGUID());
                 break;
                 /*
@@ -190,7 +190,7 @@ player->PlayerTalkClass->ClearMenus();
       creature->SummonCreature(CREATURE_FLEDERMAUS, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;    
+     break;
 
     case netherrochen:
      if (player->GetMoney() < PRICE_PET_TYP_1)
@@ -202,7 +202,7 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_NETHERROCHEN, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;    
+     break;
 
                 case raubvogelrot:
      if (player->GetMoney() < PRICE_PET_TYP_1)
@@ -214,7 +214,7 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_RAUBVOGELROT, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;    
+     break;
 
                 case raubvogelschwarz:
      if (player->GetMoney() < PRICE_PET_TYP_1)
@@ -226,8 +226,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_RAUBVOGELSCHWARZ, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case raubvogelweiss:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -238,8 +238,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_RAUBVOGELWEISS, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;     
-                /*      
+     break;
+                /*
                 case schlange:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -250,8 +250,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_SCHLANGE, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                */      
+     break;
+                */
                 case spinne:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -262,8 +262,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_SPINNE, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;    
-                       
+     break;
+
                 case gorillaschwarz:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -274,8 +274,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_GORILLASCHWARZ, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;       
-                       
+     break;
+
                 case gorillaweiss:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -286,8 +286,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_GORILLAWEISS, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;     
-                       
+     break;
+
                 case krebs:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -298,8 +298,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_KREBS, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case hyaene:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -310,8 +310,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_HYAENE, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case katzetiger:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -322,8 +322,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_KATZETIGER, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case katzeloewe:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -334,7 +334,7 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_KATZELOEWE, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
+     break;
                         /*
                 case katzeluchs:
      if (player->GetMoney() < PRICE_PET_TYP_1)
@@ -346,7 +346,7 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_KATZELUCHS, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
+     break;
                         */
                 case raptorgruen:
      if (player->GetMoney() < PRICE_PET_TYP_1)
@@ -358,8 +358,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_RAPTORGRUEN, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;       
-                       
+     break;
+
                 case raptorrot:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -370,8 +370,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_RAPTORROT, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;       
-                       
+     break;
+
                 case weitschreiter:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -382,8 +382,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_WEITSCHREITER, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case wesperot:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -394,8 +394,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_WESPEROT, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case wespeblau:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -406,8 +406,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_WESPEBLAU, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case wolfruestung:
      if (player->GetMoney() < PRICE_PET_TYP_1)
      {
@@ -418,10 +418,10 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_WOLFRUESTUNG, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;     
-                       
+     break;
+
                         // -- Exotics -- //
-                       
+
                 case schimaere:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -432,8 +432,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_SCHIMAERE, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case silithidgelb:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -444,8 +444,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_SILITHIDGELB, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;       
-                       
+     break;
+
                 case silithidrot:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -456,8 +456,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_SILITHIDROT, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case rhinozeros:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -468,8 +468,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_RHINOZEROS, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;        
-       
+     break;
+
                 case wurmgelb:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -480,8 +480,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_WURMGELB, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;        
-                       
+     break;
+
                 case kernhundweiss:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -492,8 +492,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_KERNHUNDWEISS, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case kernhundrot:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -504,8 +504,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_KERNHUNDROT, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case teufelssaurierweiss:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -516,8 +516,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_TEUFELSSAURIERWEISS, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;       
-                       
+     break;
+
                 case teufelssaurierschwarz:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -528,8 +528,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_TEUFELSSAURIERSCHWARZ, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;     
-                       
+     break;
+
                 case skoll:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -540,8 +540,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_SKOLL, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
-                       
+     break;
+
                 case loque:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -552,8 +552,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_LOQUE, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;     
-                       
+     break;
+
                 case gondria:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -564,8 +564,8 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_GONDRIA, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;       
-                       
+     break;
+
                 case arcturis:
      if (player->GetMoney() < PRICE_PET_TYP_2)
      {
@@ -576,9 +576,9 @@ player->PlayerTalkClass->ClearMenus();
                         creature->SummonCreature(CREATURE_ARCTURIS, creature->GetPositionX()+4, creature->GetPositionY(), creature->GetPositionZ()+2, 0, TEMPSUMMON_TIMED_DESPAWN, 60000);
      }
      player->CLOSE_GOSSIP_MENU();
-     break;      
+     break;
     }
- 
+
     return true;
 }
 };
