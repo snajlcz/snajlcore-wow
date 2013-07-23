@@ -723,14 +723,8 @@ class ObjectMgr
         * If the player is online, the name is retrieved immediately otherwise
         * a database query is done.
         *
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         * @remark Use sWorld->GetCharacterNameData because it doesn't require a database query when player is offline
         *
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         * @param guid player full guid
         * @param name returned name
         *
@@ -893,20 +887,6 @@ class ObjectMgr
             return &_creatureQuestRelations;
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-        QuestRelations* GetCreatureQuestInvolvedRelation()
-        {
-            return &_creatureQuestInvolvedRelations;
-        }
-
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         QuestRelationBounds GetCreatureQuestRelationBounds(uint32 creature_entry)
         {
             return _creatureQuestRelations.equal_range(creature_entry);
@@ -945,14 +925,6 @@ class ObjectMgr
         void LoadItemLocales();
         void LoadItemSetNames();
         void LoadItemSetNameLocales();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        void LoadTransmogrifications();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        void LoadTransmogrifications();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void LoadQuestLocales();
         void LoadNpcTextLocales();
         void LoadPageTextLocales();
@@ -1152,14 +1124,6 @@ class ObjectMgr
         const char *GetTrinityStringForDBCLocale(int32 entry) const { return GetTrinityString(entry, DBCLocaleIndex); }
         LocaleConstant GetDBCLocaleIndex() const { return DBCLocaleIndex; }
         void SetDBCLocaleIndex(LocaleConstant locale) { DBCLocaleIndex = locale; }
-<<<<<<< HEAD
-<<<<<<< HEAD
-        void LoadDbcDataCorrections();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        void LoadDbcDataCorrections();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         void AddCorpseCellData(uint32 mapid, uint32 cellid, uint32 player_guid, uint32 instance);
         void DeleteCorpseCellData(uint32 mapid, uint32 cellid, uint32 player_guid);
@@ -1269,16 +1233,6 @@ class ObjectMgr
         void LoadFactionChangeSpells();
         void LoadFactionChangeTitles();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        ItemFakeEntryContainer _itemFakeEntryStore; // custom
-
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        ItemFakeEntryContainer _itemFakeEntryStore; // custom
-
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     private:
         // first free id for selected id type
         uint32 _auctionId;

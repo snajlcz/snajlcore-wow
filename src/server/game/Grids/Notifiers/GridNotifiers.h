@@ -130,16 +130,6 @@ namespace Trinity
         Player const* skipped_receiver;
         MessageDistDeliverer(WorldObject* src, WorldPacket* msg, float dist, bool own_team_only = false, Player const* skipped = NULL)
             : i_source(src), i_message(msg), i_phaseMask(src->GetPhaseMask()), i_distSq(dist * dist)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-            , team((own_team_only && src->GetTypeId() == TYPEID_PLAYER) ? ((Player*)src)->GetTeam() : 0)
-            , skipped_receiver(skipped)
-        {
-        }
-<<<<<<< HEAD
-=======
             , team(0)
             , skipped_receiver(skipped)
         {
@@ -148,9 +138,6 @@ namespace Trinity
                     team = player->GetTeam();
         }
 
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void Visit(PlayerMapType &m);
         void Visit(CreatureMapType &m);
         void Visit(DynamicObjectMapType &m);
@@ -862,17 +849,7 @@ namespace Trinity
                     && i_funit->IsWithinDistInMap(u, i_range)
                     && !i_funit->IsFriendlyTo(u)
                     && i_funit->IsValidAttackTarget(u)
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    && !u->IsTotem()
-                    && !u->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC) // do not select passive units (eg. minipets)
-=======
                     && u->GetCreatureType() != CREATURE_TYPE_CRITTER
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                    && !u->IsTotem()
-                    && !u->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC) // do not select passive units (eg. minipets)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     && i_funit->CanSeeOrDetect(u);
             }
         private:
