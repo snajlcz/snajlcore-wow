@@ -385,6 +385,7 @@ class Battleground
 
         void AddPlayerToResurrectQueue(uint64 npc_guid, uint64 player_guid);
         void RemovePlayerFromResurrectQueue(uint64 player_guid);
+	 void RelocateDeadPlayers(uint32 queueIndex);
 
         void StartBattleground();
 
