@@ -24,15 +24,7 @@
 #include "Define.h"
 #include "revision.h"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 #define _PACKAGENAME "Core: SnajlCore - RC1\nDeveloper: Snajl, Wallker, Anonymous\n"
-=======
-#define _PACKAGENAME "TrinityCore"
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-#define _PACKAGENAME "Core: SnajlCore - RC1\nDeveloper: Snajl, Wallker, Anonymous\n"
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 #if TRINITY_ENDIAN == TRINITY_BIGENDIAN
 # define _ENDIAN_STRING "big-endian"
@@ -42,26 +34,13 @@
 
 #if PLATFORM == PLATFORM_WINDOWS
 # ifdef _WIN64
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
+
 #  define _FULLVERSION _PACKAGENAME "Rev. " VER_PRODUCTVERSION_STR " (Win64, " _BUILD_DIRECTIVE ")"
 # else
 #  define _FULLVERSION _PACKAGENAME "Rev. " VER_PRODUCTVERSION_STR " (Win32, " _BUILD_DIRECTIVE ")"
 # endif
 #else
 #  define _FULLVERSION _PACKAGENAME "Rev. " VER_PRODUCTVERSION_STR " (Unix, " _BUILD_DIRECTIVE ")"
-<<<<<<< HEAD
-=======
-#  define _FULLVERSION _PACKAGENAME " rev. " VER_PRODUCTVERSION_STR " (Win64, " _BUILD_DIRECTIVE ")"
-# else
-#  define _FULLVERSION _PACKAGENAME " rev. " VER_PRODUCTVERSION_STR " (Win32, " _BUILD_DIRECTIVE ")"
-# endif
-#else
-#  define _FULLVERSION _PACKAGENAME " rev. " VER_PRODUCTVERSION_STR " (Unix, " _BUILD_DIRECTIVE ")"
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
+
 #endif
 #endif
