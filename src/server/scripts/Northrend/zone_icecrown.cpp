@@ -17,6 +17,9 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 /* ScriptData
 SDName: Icecrown
 SD%Complete: 100
@@ -34,6 +37,7 @@ EndContentData */
 #include "TemporarySummon.h"
 #include "CombatAI.h"
 #define CAST_PLR(a)     (dynamic_cast<Player*>(a))
+<<<<<<< HEAD
 =======
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -43,6 +47,8 @@ EndContentData */
 #include "TemporarySummon.h"
 #include "CombatAI.h"
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 /*######
 ## npc_arete
@@ -131,10 +137,14 @@ public:
 
 /*######
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## npc_argent_squire
 =======
 ## npc_squire_david
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+## npc_argent_squire
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 ######*/
 
 enum SquireDavid
@@ -143,6 +153,9 @@ enum SquireDavid
     QUEST_THE_ASPIRANT_S_CHALLENGE_A                    = 13679,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     QUEST_THE_VALIANT_S_CHALLENGE_SM                    = 13731,
     QUEST_THE_VALIANT_S_CHALLENGE_UC                    = 13729,
     QUEST_THE_VALIANT_S_CHALLENGE_TB                    = 13728,
@@ -163,9 +176,12 @@ enum SquireDavid
     NPC_ARGENT_VALIANT                                  = 33448,
     NPC_ARGENT_CHAMPION                                 = 33707,
     NPC_BLACK_KNIGHT                                    = 33785,
+<<<<<<< HEAD
 =======
     NPC_ARGENT_VALIANT                                  = 33448,
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     GOSSIP_TEXTID_SQUIRE                                = 14407
 };
@@ -173,6 +189,9 @@ enum SquireDavid
 #define GOSSIP_SQUIRE_ITEM_1 "I am ready to fight!"
 #define GOSSIP_SQUIRE_ITEM_2 "How do the Argent Crusader raiders fight?"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #define GOSSIP_SQUIRE_ITEM_3 "Estoy listo para enfrentarme al Caballero Negro!"
 
 class npc_argent_squire : public CreatureScript
@@ -219,6 +238,7 @@ public:
             {
                 player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_SQUIRE_ITEM_3, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+3);
             }
+<<<<<<< HEAD
 =======
 
 class npc_squire_david : public CreatureScript
@@ -234,6 +254,8 @@ public:
             player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_SQUIRE_ITEM_1, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+1);
             player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_SQUIRE_ITEM_2, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
 
         player->SEND_GOSSIP_MENU(GOSSIP_TEXTID_SQUIRE, creature->GetGUID());
@@ -247,15 +269,21 @@ public:
         {
             player->CLOSE_GOSSIP_MENU();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (creature->GetEntry() == NPC_SQUIRE_DAVID)
                 creature->SummonCreature(NPC_ARGENT_VALIANT, 8575.451f, 952.472f, 547.554f, 0.38f);
             else if (creature->GetEntry() == NPC_SQUIRE_DANNY)
                 creature->SummonCreature(NPC_ARGENT_CHAMPION, 8534.675781f, 1069.993042f, 552.022827f, 1.274804f);
             else if (creature->GetEntry() == NPC_SQUIRE_CAVIN)
                 creature->SummonCreature(NPC_BLACK_KNIGHT, 8430.082031f, 912.130127f, 544.674500f, 1.635092f);
+<<<<<<< HEAD
 =======
             creature->SummonCreature(NPC_ARGENT_VALIANT, 8575.451f, 952.472f, 547.554f, 0.38f);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
         return true;
     }
@@ -263,10 +291,14 @@ public:
 
 /*######
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## npc_argent_combatant
 =======
 ## npc_argent_valiant
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+## npc_argent_combatant
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 ######*/
 
 enum ArgentValiant
@@ -274,6 +306,9 @@ enum ArgentValiant
     SPELL_CHARGE                = 63010,
     SPELL_SHIELD_BREAKER        = 65147,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SPELL_DEFEND                = 62719,
     SPELL_THRUST                = 62544,
 
@@ -300,6 +335,7 @@ public:
                 creature->GetMotionMaster()->MovePoint(0, 8557.131836f, 1109.635742f, 556.787476f);
                 creature->SetHomePosition(8557.131836f, 1109.635742f, 556.787476f, 1.27f);
             }
+<<<<<<< HEAD
 =======
     SPELL_KILL_CREDIT           = 63049
 };
@@ -315,12 +351,17 @@ public:
         {
             creature->GetMotionMaster()->MovePoint(0, 8599.258f, 963.951f, 547.553f);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             creature->setFaction(35); //wrong faction in db?
         }
 
         uint32 uiChargeTimer;
         uint32 uiShieldBreakerTimer;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         uint32 uiShieldTimer;
         uint32 uiThrustTimer;
         bool bCharge;
@@ -338,6 +379,7 @@ public:
         {
             for (uint8 i = 0; i < 3; ++i)
                 DoCast(me, SPELL_DEFEND, true);
+<<<<<<< HEAD
 =======
 
         void Reset() OVERRIDE
@@ -345,6 +387,8 @@ public:
             uiChargeTimer = 7000;
             uiShieldBreakerTimer = 10000;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
 
         void MovementInform(uint32 uiType, uint32 /*uiId*/) OVERRIDE
@@ -353,6 +397,9 @@ public:
                 return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             // charge after moving away from the victim
             if (me->IsInCombat() && me->GetVictim() && bCharge)
             {
@@ -366,14 +413,20 @@ public:
             }
             else
                 me->setFaction(14);
+<<<<<<< HEAD
 =======
             me->setFaction(14);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
 
         void DamageTaken(Unit* pDoneBy, uint32& uiDamage) OVERRIDE
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (uiDamage >= me->GetHealth() && pDoneBy->GetTypeId() == TYPEID_PLAYER)
             {
                 uiDamage = 0;
@@ -381,12 +434,15 @@ public:
                     CAST_PLR(pDoneBy)->KilledMonsterCredit(NPC_ARGENT_VALIANT_CREDIT, 0);
                 if (me->GetEntry() == NPC_ARGENT_CHAMPION)
                     CAST_PLR(pDoneBy)->KilledMonsterCredit(NPC_ARGENT_CHAMPION_CREDIT, 0);
+<<<<<<< HEAD
 =======
             if (uiDamage > me->GetHealth() && pDoneBy->GetTypeId() == TYPEID_PLAYER)
             {
                 uiDamage = 0;
                 pDoneBy->CastSpell(pDoneBy, SPELL_KILL_CREDIT, true);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 me->setFaction(35);
                 me->DespawnOrUnsummon(5000);
                 me->SetHomePosition(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), me->GetOrientation());
@@ -400,6 +456,9 @@ public:
                 return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (uiShieldTimer <= uiDiff)
             {
                 me->CastSpell(me, SPELL_DEFEND);
@@ -426,6 +485,7 @@ public:
             if (bCharge)
                 return;
 
+<<<<<<< HEAD
 =======
             if (uiChargeTimer <= uiDiff)
             {
@@ -434,6 +494,8 @@ public:
             } else uiChargeTimer -= uiDiff;
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (uiShieldBreakerTimer <= uiDiff)
             {
                 DoCastVictim(SPELL_SHIELD_BREAKER);
@@ -441,6 +503,9 @@ public:
             } else uiShieldBreakerTimer -= uiDiff;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (me->IsWithinMeleeRange(me->GetVictim()))
             {
                 if (uiThrustTimer <= uiDiff)
@@ -933,19 +998,26 @@ public:
                 }
                 else uiThrustTimer -= uiDiff;
             }
+<<<<<<< HEAD
 =======
             DoMeleeAttackIfReady();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
     };
 
     CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         return new npc_argent_faction_riderAI(creature);
 =======
         return new npc_argent_valiantAI(creature);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        return new npc_argent_faction_riderAI(creature);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     }
 };
 
@@ -1204,6 +1276,9 @@ class npc_tournament_training_dummy : public CreatureScript
             return new npc_tournament_training_dummyAI(creature);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 /*######
@@ -1606,9 +1681,12 @@ public:
         pPlayer->SEND_GOSSIP_MENU(pPlayer->GetGossipTextId(pCreature), pCreature->GetGUID());
         return true;
     }
+<<<<<<< HEAD
 =======
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 // Battle for Crusaders' Pinnacle
@@ -2073,12 +2151,16 @@ class npc_frostbrood_skytalon : public CreatureScript
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_icecrown()
 {
     new npc_arete;
     new npc_argent_squire;
     new npc_argent_combatant;
     new npc_argent_faction_rider;
+<<<<<<< HEAD
 =======
 /*######
 ## The Flesh Giant Champion - Id: 13235
@@ -2278,11 +2360,16 @@ void AddSC_icecrown()
     new npc_squire_david;
     new npc_argent_valiant;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     new npc_guardian_pavilion;
     new npc_vereth_the_cunning;
     new npc_tournament_training_dummy;
     new npc_blessed_banner();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     new quest_givers_argent_tournament;
     new npc_quest_givers_for_crusaders;
     new npc_justicar_mariel_trueheart;
@@ -2290,9 +2377,12 @@ void AddSC_icecrown()
     new npc_eadric_the_pure;
     new npc_crok_scourgebane_argent;
     new npc_frostbrood_skytalon();
+<<<<<<< HEAD
 =======
     new npc_frostbrood_skytalon();
     new npc_margrave_dhakar();
     new npc_morbidus();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

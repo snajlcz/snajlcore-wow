@@ -656,16 +656,22 @@ public:
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (target->GetTypeId() == TYPEID_PLAYER)
         {
             if (handler->HasLowerSecurity((Player*)target, 0, false))
                 return false;
         }
+<<<<<<< HEAD
 =======
         if (Player* player = target->ToPlayer())
             if (handler->HasLowerSecurity(player, 0, false))
                 return false;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         if (target->IsAlive())
         {
@@ -921,9 +927,13 @@ public:
     {
         Player* target = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
         std::string announce;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        std::string announce;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         std::string playerName;
         if (!handler->extractPlayerTarget((char*)args, &target, NULL, &playerName))
             return false;
@@ -947,6 +957,9 @@ public:
         target->GetSession()->KickPlayer();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (sWorld->getBoolConfig(CONFIG_SHOW_KICK_IN_WORLD))
         {
            announce = "The character ";
@@ -957,8 +970,11 @@ public:
            sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str());
         }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         return true;
     }
 
@@ -1929,10 +1945,15 @@ public:
     static bool HandleMuteCommand(ChatHandler* handler, char const* args)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         std::string announce;
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        std::string announce;
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         char* nameStr;
         char* delayStr;
         handler->extractOptFirstArg((char*)args, &nameStr, &delayStr);
@@ -1945,6 +1966,9 @@ public:
             muteReasonStr = muteReason;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if(!muteReason)
         {
             handler->PSendSysMessage("You must enter a reason of mute");
@@ -1952,8 +1976,11 @@ public:
             return false;
         }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         Player* target;
         uint64 targetGuid;
         std::string targetName;
@@ -2004,6 +2031,9 @@ public:
         handler->PSendSysMessage(target ? LANG_YOU_DISABLE_CHAT : LANG_COMMAND_DISABLE_CHAT_DELAYED, nameLink.c_str(), notSpeakTime, muteReasonStr.c_str());
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (sWorld->getBoolConfig(CONFIG_SHOW_MUTE_IN_WORLD))
         {
             announce = "The character ";
@@ -2017,8 +2047,11 @@ public:
             sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str());
         }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         return true;
     }
 
@@ -2282,16 +2315,22 @@ public:
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (target->GetTypeId() == TYPEID_PLAYER)
         {
             if (handler->HasLowerSecurity((Player*)target, 0, false))
                 return false;
         }
+<<<<<<< HEAD
 =======
         if (Player* player = target->ToPlayer())
             if (handler->HasLowerSecurity(player, 0, false))
                 return false;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         if (!target->IsAlive())
             return true;

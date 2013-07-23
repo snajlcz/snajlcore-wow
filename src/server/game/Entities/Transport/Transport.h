@@ -1,5 +1,8 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
  * Copyright (C) 2008-2013 Trinity <http://www.trinitycore.org/>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,6 +20,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Updated by: Toba and Baeumchen (maddin)
+<<<<<<< HEAD
 =======
  * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
@@ -34,6 +38,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
  */
 
 #ifndef TRANSPORTS_H
@@ -67,14 +73,20 @@ class Transport : public GameObject, public TransportBase
         CreatureSet m_NPCPassengerSet;
         uint32 AddNPCPassenger(uint32 tguid, uint32 entry, float x, float y, float z, float o, uint32 anim=0);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         Creature* AddNPCPassengerInInstance(uint32 entry, float x, float y, float z, float o, uint32 anim=0);
         void UpdatePosition(MovementInfo* mi);
         void UpdatePassengerPositions();
         void UpdatePlayerPositions();
+<<<<<<< HEAD
 =======
         void UpdatePosition(MovementInfo* mi);
         void UpdatePassengerPositions();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         /// This method transforms supplied transport offsets into global coordinates
         void CalculatePassengerPosition(float& x, float& y, float& z, float* o = NULL) const;
@@ -129,6 +141,9 @@ class Transport : public GameObject, public TransportBase
 };
 #endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e

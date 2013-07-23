@@ -292,10 +292,15 @@ class npc_stinky_icc : public CreatureScript
             void Reset() OVERRIDE
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
+                me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 _events.Reset();
                 _events.ScheduleEvent(EVENT_DECIMATE, urand(20000, 25000));
                 _events.ScheduleEvent(EVENT_MORTAL_WOUND, urand(3000, 7000));

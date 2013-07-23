@@ -62,15 +62,21 @@ enum AzureSaboteurSpells
 enum CrystalSpells
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SPELL_ARCANE_LIGHTNING                          = 57912
 };
 
 enum Events
 {
     EVENT_ACTIVATE_CRYSTAL                          = 20001
+<<<<<<< HEAD
 =======
     SPELL_ARCANE_LIGHTNING                          = 57930
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 const Position PortalLocation[] =
@@ -84,9 +90,12 @@ const Position PortalLocation[] =
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 const Position ArcaneSphere    = {1887.060059f, 806.151001f, 61.321602f, 0.0f};
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 const Position BossStartMove1  = {1894.684448f, 739.390503f, 47.668003f, 0.0f};
 const Position BossStartMove2  = {1875.173950f, 860.832703f, 43.333565f, 0.0f};
 const Position BossStartMove21 = {1858.854614f, 855.071411f, 43.333565f, 0.0f};
@@ -149,10 +158,14 @@ public:
         uint64 uiSaboteurPortal;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         uint64 uiActivationCrystal[3];
 =======
         uint64 uiActivationCrystal[4];
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        uint64 uiActivationCrystal[3];
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         uint32 uiActivationTimer;
         uint32 uiCyanigosaEventTimer;
@@ -321,10 +334,14 @@ public:
                     break;
                 case GO_ACTIVATION_CRYSTAL:
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (uiCountActivationCrystals < 3)
 =======
                     if (uiCountActivationCrystals < 4)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    if (uiCountActivationCrystals < 3)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         uiActivationCrystal[uiCountActivationCrystals++] = go->GetGUID();
                     break;
             }
@@ -414,10 +431,14 @@ public:
                     if (data == IN_PROGRESS) // Start event
                     {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         if (GameObject* pMainDoor = instance->GetGameObject(uiMainDoor))
                             pMainDoor->SetGoState(GO_STATE_READY);
                         uiWaveCount = 1;
                         bActive = true;
+<<<<<<< HEAD
 =======
                         if (GameObject* mainDoor = instance->GetGameObject(uiMainDoor))
                             mainDoor->SetGoState(GO_STATE_READY);
@@ -427,6 +448,8 @@ public:
                             if (GameObject* crystal = instance->GetGameObject(uiActivationCrystal[i]))
                                 crystal->RemoveFlag(GAMEOBJECT_FLAGS, GO_FLAG_NOT_SELECTABLE);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         uiRemoveNpc = 0; // might not have been reset after a wipe on a boss.
                     }
                     break;
@@ -727,10 +750,14 @@ public:
 
             // if main event is in progress and players have wiped then reset instance
 <<<<<<< HEAD
+<<<<<<< HEAD
             if ( uiMainEventPhase == IN_PROGRESS && CheckWipe())
 =======
             if (uiMainEventPhase == IN_PROGRESS && CheckWipe())
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            if ( uiMainEventPhase == IN_PROGRESS && CheckWipe())
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 SetData(DATA_REMOVE_NPC, 1);
                 StartBossEncounter(uiFirstBoss, false);
@@ -741,12 +768,15 @@ public:
                 uiMainEventPhase = NOT_STARTED;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 for (int i = 0; i < 4; ++i)
                     if (GameObject* crystal = instance->GetGameObject(uiActivationCrystal[i]))
                         crystal->SetFlag(GAMEOBJECT_FLAGS, GO_FLAG_NOT_SELECTABLE);
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 if (Creature* pSinclari = instance->GetCreature(uiSinclari))
                 {
                     pSinclari->SetVisible(true);
@@ -829,6 +859,7 @@ public:
         void ActivateCrystal()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             // Kill all mobs registered with SetData64(ADD_TRASH_MOB)
             /// @todo All visual, spells etc
 =======
@@ -851,15 +882,23 @@ public:
 
             // Kill all mobs registered with SetData64(ADD_TRASH_MOB)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            // Kill all mobs registered with SetData64(ADD_TRASH_MOB)
+            /// @todo All visual, spells etc
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             for (std::set<uint64>::const_iterator itr = trashMobs.begin(); itr != trashMobs.end(); ++itr)
             {
                 Creature* creature = instance->GetCreature(*itr);
                 if (creature && creature->IsAlive())
 <<<<<<< HEAD
+<<<<<<< HEAD
                     creature->CastSpell(creature, SPELL_ARCANE_LIGHTNING, true);  // Who should cast the spell?
 =======
                     trigger->Kill(creature);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    creature->CastSpell(creature, SPELL_ARCANE_LIGHTNING, true);  // Who should cast the spell?
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
         }
 

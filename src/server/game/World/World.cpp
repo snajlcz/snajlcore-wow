@@ -80,9 +80,13 @@
 #include "Warden.h"
 #include "CalendarMgr.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "AnticheatMgr.h"
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+#include "AnticheatMgr.h"
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "BattlefieldMgr.h"
 
 ACE_Atomic_Op<ACE_Thread_Mutex, bool> World::m_stopEvent = false;
@@ -876,10 +880,15 @@ void World::LoadConfigSettings(bool reload)
 
     m_int_configs[CONFIG_MAIL_DELIVERY_DELAY] = sConfigMgr->GetIntDefault("MailDeliveryDelay", HOUR);
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_bool_configs[CONFIG_EXTERNAL_MAIL] = sConfigMgr->GetBoolDefault("ExternalMail", false);
     m_int_configs[CONFIG_EXTERNAL_MAIL_INTERVAL] = sConfigMgr->GetIntDefault("ExternalMailInterval", 1);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    m_bool_configs[CONFIG_EXTERNAL_MAIL] = sConfigMgr->GetBoolDefault("ExternalMail", false);
+    m_int_configs[CONFIG_EXTERNAL_MAIL_INTERVAL] = sConfigMgr->GetIntDefault("ExternalMailInterval", 1);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     m_int_configs[CONFIG_UPTIME_UPDATE] = sConfigMgr->GetIntDefault("UpdateUptimeInterval", 10);
     if (int32(m_int_configs[CONFIG_UPTIME_UPDATE]) <= 0)
@@ -1040,20 +1049,30 @@ void World::LoadConfigSettings(bool reload)
     m_int_configs[CONFIG_ARENA_START_PERSONAL_RATING]                = sConfigMgr->GetIntDefault ("Arena.ArenaStartPersonalRating", 1000);
     m_int_configs[CONFIG_ARENA_START_MATCHMAKER_RATING]              = sConfigMgr->GetIntDefault ("Arena.ArenaStartMatchmakerRating", 1500);
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_int_configs[CONFIG_ARENA_PROGRESSIVE_MMR_TIMER]                = sConfigMgr->GetIntDefault ("Arena.ProgressiveMMRTimer", 30000);
     m_int_configs[CONFIG_ARENA_PROGRESSIVE_MMR_STEPSIZE]             = sConfigMgr->GetIntDefault ("Arena.ProgressiveMMRStepSize", 50);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    m_int_configs[CONFIG_ARENA_PROGRESSIVE_MMR_TIMER]                = sConfigMgr->GetIntDefault ("Arena.ProgressiveMMRTimer", 30000);
+    m_int_configs[CONFIG_ARENA_PROGRESSIVE_MMR_STEPSIZE]             = sConfigMgr->GetIntDefault ("Arena.ProgressiveMMRStepSize", 50);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     m_bool_configs[CONFIG_ARENA_SEASON_IN_PROGRESS]                  = sConfigMgr->GetBoolDefault("Arena.ArenaSeason.InProgress", true);
     m_bool_configs[CONFIG_ARENA_LOG_EXTENDED_INFO]                   = sConfigMgr->GetBoolDefault("ArenaLog.ExtendedInfo", false);
 
     m_bool_configs[CONFIG_OFFHAND_CHECK_AT_SPELL_UNLEARN]            = sConfigMgr->GetBoolDefault("OffhandCheckAtSpellUnlearn", true);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_bool_configs[BATTLEGROUND_CROSSFACTION_ENABLED]                = sConfigMgr->GetBoolDefault("CrossfactionBG.enable", true);
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    m_bool_configs[BATTLEGROUND_CROSSFACTION_ENABLED]                = sConfigMgr->GetBoolDefault("CrossfactionBG.enable", true);
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (int32 clientCacheId = sConfigMgr->GetIntDefault("ClientCacheVersion", 0))
     {
         // overwrite DB/old value
@@ -1181,10 +1200,15 @@ void World::LoadConfigSettings(bool reload)
     m_bool_configs[CONFIG_NO_RESET_TALENT_COST] = sConfigMgr->GetBoolDefault("NoResetTalentsCost", false);
     m_bool_configs[CONFIG_SHOW_KICK_IN_WORLD] = sConfigMgr->GetBoolDefault("ShowKickInWorld", false);
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_bool_configs[CONFIG_SHOW_MUTE_IN_WORLD] =  sConfigMgr->GetBoolDefault("ShowMuteInWorld", false);
     m_bool_configs[CONFIG_SHOW_BAN_IN_WORLD] =  sConfigMgr->GetBoolDefault("ShowBanInWorld", false);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    m_bool_configs[CONFIG_SHOW_MUTE_IN_WORLD] =  sConfigMgr->GetBoolDefault("ShowMuteInWorld", false);
+    m_bool_configs[CONFIG_SHOW_BAN_IN_WORLD] =  sConfigMgr->GetBoolDefault("ShowBanInWorld", false);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     m_int_configs[CONFIG_INTERVAL_LOG_UPDATE] = sConfigMgr->GetIntDefault("RecordUpdateTimeDiffInterval", 60000);
     m_int_configs[CONFIG_MIN_LOG_UPDATE] = sConfigMgr->GetIntDefault("MinRecordUpdateTimeDiff", 100);
     m_int_configs[CONFIG_NUMTHREADS] = sConfigMgr->GetIntDefault("MapUpdate.Threads", 1);
@@ -1238,6 +1262,9 @@ void World::LoadConfigSettings(bool reload)
     m_bool_configs[CONFIG_UI_QUESTLEVELS_IN_DIALOGS] = sConfigMgr->GetBoolDefault("UI.ShowQuestLevelsInDialogs", false);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // PvP Rank
     rate_values[RATE_PVP_RANK_EXTRA_HONOR] = sConfigMgr->GetFloatDefault("PvPRank.Rate.ExtraHonor", 0);
     std::string s_pvp_ranks = sConfigMgr->GetStringDefault("PvPRank.HKPerRank", "10,50,100,200,450,1000,2000,3000,4500,7500,10500,15000,30000,50000");
@@ -1278,8 +1305,11 @@ void World::LoadConfigSettings(bool reload)
     // Add default players group if not created yet
     m_bool_configs[CONFIG_UPDATE_ACCOUNT_ACCESS_ENABLE] = sConfigMgr->GetBoolDefault("Update.Account.Access.Enable", false);
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Wintergrasp battlefield
     m_bool_configs[CONFIG_WINTERGRASP_ENABLE] = sConfigMgr->GetBoolDefault("Wintergrasp.Enable", false);
     m_int_configs[CONFIG_WINTERGRASP_PLR_MAX] = sConfigMgr->GetIntDefault("Wintergrasp.PlayerMax", 100);
@@ -1290,11 +1320,17 @@ void World::LoadConfigSettings(bool reload)
     m_int_configs[CONFIG_WINTERGRASP_RESTART_AFTER_CRASH] = sConfigMgr->GetIntDefault("Wintergrasp.CrashRestartTimer", 10);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // custom arena logs just for webpage purposes
     m_bool_configs[CONFIG_CUSTOM_ARENA_LOGS] = sConfigMgr->GetBoolDefault("CustomArenaLogs", false);
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    // custom arena logs just for webpage purposes
+    m_bool_configs[CONFIG_CUSTOM_ARENA_LOGS] = sConfigMgr->GetBoolDefault("CustomArenaLogs", false);
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Stats limits
     m_bool_configs[CONFIG_STATS_LIMITS_ENABLE] = sConfigMgr->GetBoolDefault("Stats.Limits.Enable", false);
     m_float_configs[CONFIG_STATS_LIMITS_DODGE] = sConfigMgr->GetFloatDefault("Stats.Limits.Dodge", 95.0f);
@@ -1383,11 +1419,17 @@ void World::SetInitialWorldSettings()
     sSpellMgr->LoadSpellInfoStore();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING,"Loading object dbc data corrections...");
     sObjectMgr->LoadDbcDataCorrections();
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    TC_LOG_INFO(LOG_FILTER_SERVER_LOADING,"Loading object dbc data corrections...");
+    sObjectMgr->LoadDbcDataCorrections();
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, "Loading SkillLineAbilityMultiMap Data...");
     sSpellMgr->LoadSkillLineAbilityMap();
 
@@ -1480,11 +1522,17 @@ void World::SetInitialWorldSettings()
     sObjectMgr->LoadItemSetNames();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, "Loading Transmogrifications...");           // custom must be after LoadItemTemplates
     sObjectMgr->LoadTransmogrifications();
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, "Loading Transmogrifications...");           // custom must be after LoadItemTemplates
+    sObjectMgr->LoadTransmogrifications();
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, "Loading Creature Model Based Info Data...");
     sObjectMgr->LoadCreatureModelInfo();
 
@@ -1807,9 +1855,13 @@ void World::SetInitialWorldSettings()
     mail_timer = ((((localtime(&m_gameTime)->tm_hour + 20) % 24)* HOUR * IN_MILLISECONDS) / m_timers[WUPDATE_AUCTIONS].GetInterval());
                                                             //1440
 <<<<<<< HEAD
+<<<<<<< HEAD
     extmail_timer.SetInterval(m_int_configs[CONFIG_EXTERNAL_MAIL_INTERVAL] * MINUTE * IN_MILLISECONDS);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    extmail_timer.SetInterval(m_int_configs[CONFIG_EXTERNAL_MAIL_INTERVAL] * MINUTE * IN_MILLISECONDS);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     mail_timer_expires = ((DAY * IN_MILLISECONDS) / (m_timers[WUPDATE_AUCTIONS].GetInterval()));
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, "Mail timer set to: " UI64FMTD ", mail return is called every " UI64FMTD " minutes", uint64(mail_timer), uint64(mail_timer_expires));
 
@@ -2046,6 +2098,9 @@ void World::Update(uint32 diff)
         ResetGuildCap();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Handle external mail
     if (sWorld->getBoolConfig(CONFIG_EXTERNAL_MAIL))
     {
@@ -2057,8 +2112,11 @@ void World::Update(uint32 diff)
         }
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     /// <ul><li> Handle auctions when the timer has passed
     if (m_timers[WUPDATE_AUCTIONS].Passed())
     {
@@ -2948,10 +3006,15 @@ void World::ResetDailyQuests()
     // change available dailies
     sPoolMgr->ChangeDailyQuests();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     sAnticheatMgr->ResetDailyReportStates();
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+
+    sAnticheatMgr->ResetDailyReportStates();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }
 
 void World::LoadDBAllowedSecurityLevel()

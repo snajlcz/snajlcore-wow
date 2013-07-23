@@ -25,10 +25,15 @@ include(Examples/CMakeLists.txt)
 set(scripts_STAT_SRCS
   ${scripts_STAT_SRCS}
 <<<<<<< HEAD
+<<<<<<< HEAD
   ../game/AI/ScriptedAI/sc_npc_teleport.cpp
   ../game/AI/ScriptedAI/sc_npc_teleport.h
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+  ../game/AI/ScriptedAI/sc_npc_teleport.cpp
+  ../game/AI/ScriptedAI/sc_npc_teleport.h
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   ../game/AI/ScriptedAI/ScriptedEscortAI.cpp
   ../game/AI/ScriptedAI/ScriptedCreature.cpp
   ../game/AI/ScriptedAI/ScriptedFollowerAI.cpp
@@ -74,9 +79,13 @@ include_directories(
   ${CMAKE_SOURCE_DIR}/src/server/shared/Database
   ${CMAKE_SOURCE_DIR}/src/server/game/Accounts
 <<<<<<< HEAD
+<<<<<<< HEAD
   ${CMAKE_SOURCE_DIR}/src/server/game/Anticheat
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+  ${CMAKE_SOURCE_DIR}/src/server/game/Anticheat
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   ${CMAKE_SOURCE_DIR}/src/server/game/Achievements
   ${CMAKE_SOURCE_DIR}/src/server/game/Addons
   ${CMAKE_SOURCE_DIR}/src/server/game/AI

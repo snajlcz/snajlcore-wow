@@ -194,14 +194,20 @@ enum ScoreType
     //SOTA
     SCORE_DESTROYED_DEMOLISHER  = 18,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SCORE_DESTROYED_WALL        = 19,
     /** World of Warcraft Armory **/
     SCORE_DAMAGE_TAKEN          = 20,
     SCORE_HEALING_TAKEN         = 21
     /** World of Warcraft Armory **/
+<<<<<<< HEAD
 =======
     SCORE_DESTROYED_WALL        = 19
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum ArenaType
@@ -259,12 +265,18 @@ struct BattlegroundScore
     uint32 DamageDone;
     uint32 HealingDone;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     /** World of Warcraft Armory **/
     uint32 DamageTaken;
     uint32 HealingTaken;
     /** World of Warcraft Armory **/
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum BGHonorMode
@@ -304,11 +316,17 @@ class Battleground
         virtual void DestroyGate(Player* /*player*/, GameObject* /*go*/) {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         /* MultiKill System */
         bool firstkill;
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        /* MultiKill System */
+        bool firstkill;
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         /* achievement req. */
         virtual bool IsAllNodesConrolledByTeam(uint32 /*team*/) const { return false; }
         void StartTimedAchievement(AchievementCriteriaTimedTypes type, uint32 entry);
@@ -396,12 +414,16 @@ class Battleground
         void AddPlayerToResurrectQueue(uint64 npc_guid, uint64 player_guid);
         void RemovePlayerFromResurrectQueue(uint64 player_guid);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 void RelocateDeadPlayers(uint32 queueIndex);
 =======
 
         /// Relocate all players in ReviveQueue to the closest graveyard
         void RelocateDeadPlayers(uint32 queueIndex);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+	 void RelocateDeadPlayers(uint32 queueIndex);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         void StartBattleground();
 
@@ -446,10 +468,14 @@ class Battleground
         void RemoveAuraOnTeam(uint32 SpellID, uint32 TeamID);
         void RewardHonorToTeam(uint32 Honor, uint32 TeamID);
 <<<<<<< HEAD
+<<<<<<< HEAD
         void RewardReputationToTeam(uint32 a_faction_id, uint32 h_faction_id, uint32 Reputation, uint32 teamId);
 =======
         void RewardReputationToTeam(uint32 faction_id, uint32 Reputation, uint32 TeamID);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        void RewardReputationToTeam(uint32 a_faction_id, uint32 h_faction_id, uint32 Reputation, uint32 teamId);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void UpdateWorldState(uint32 Field, uint32 Value);
         void UpdateWorldStateForPlayer(uint32 Field, uint32 Value, Player* Source);
         void EndBattleground(uint32 winner);
@@ -564,11 +590,17 @@ class Battleground
         virtual uint32 GetPrematureWinner();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         uint8 ClickFastStart(Player *player, GameObject *go);
         void DespawnCrystals();
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        uint8 ClickFastStart(Player *player, GameObject *go);
+        void DespawnCrystals();
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     protected:
         // this method is called, when BG cannot spawn its own spirit guide, or something is wrong, It correctly ends Battleground
         void EndNow();
@@ -633,11 +665,17 @@ class Battleground
         char const* m_Name;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         std::set<uint64> m_playersWantsFastStart;
         std::set<GameObject*> m_crystals;
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        std::set<uint64> m_playersWantsFastStart;
+        std::set<GameObject*> m_crystals;
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         /* Pre- and post-update hooks */
 
         /**

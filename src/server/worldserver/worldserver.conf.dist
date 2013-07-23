@@ -1130,6 +1130,9 @@ RBAC.DefaultGroups = ""
 
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #   Update.Account.Access.Enable
 #        Description: AutoComplete table rbac_account_groups during registration through the web face.
 #                          Not to include in debug mode! (All players will be given all the rights!)
@@ -1139,8 +1142,11 @@ RBAC.DefaultGroups = ""
 Update.Account.Access.Enable = 0
 
 #
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 ###################################################################################################
 
 ###################################################################################################
@@ -1550,6 +1556,9 @@ PreserveCustomChannels = 1
 PreserveCustomChannelDuration = 14
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #  
 # Includes satellite to search for work elsewhere LFG 
 # Default: 1 - Enable  
@@ -1563,8 +1572,11 @@ LFG.Location.All = 1
  
 Chat.DisableWhenPlayerCreate = 0
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #
 ###################################################################################################
 
@@ -2233,6 +2245,9 @@ Arena.RatingDiscardTimer = 600000
 
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 # Arena.ProgressiveMMRTimer
 # Description: Time between increases in MMR search range
 # Default: 30000 (30 seconds)
@@ -2248,8 +2263,11 @@ Arena.ProgressiveMMRTimer = 30000
 Arena.ProgressiveMMRStepSize = 100
 
 #
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #    Arena.RatedUpdateTimer
 #        Description: Time (in milliseconds) between checks for matchups in rated arena
 #        Default:     5000 - (5 seconds)
@@ -2575,6 +2593,9 @@ ShowKickInWorld = 0
 
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #     ShowMuteInWorld
 #        Description: Determines whether a message is broadcasted to the entire server when a
 #                     player gets mute
@@ -2592,8 +2613,11 @@ ShowMuteInWorld = 0
 ShowBanInWorld = 0
 
 #
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #     RecordUpdateTimeDiffInterval
 #        Description: Time (in milliseconds) update time diff is written to the log file.
 #                     Update diff can be used as a performance indicator. Diff < 300: good
@@ -2660,6 +2684,9 @@ PlayerDump.DisallowOverwrite = 1
 
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #    CustomArenaLogs
 #        Description: Use custom arena logs, done by gc only for website arena log purposes, doesnt effect anything ingame
 #        Default:     0 - (Disabled)
@@ -2668,8 +2695,11 @@ PlayerDump.DisallowOverwrite = 1
 
 CustomArenaLogs = 0
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #     UI.ShowQuestLevelsInDialogs
 #        Description: Show quest levels next to quest titles in UI dialogs
 #        Example: [13] Westfall Stew
@@ -2859,9 +2889,12 @@ Logger.Opcodes=41,6,Console Server
 Loggers=Root Chat DBErrors GM RA Warden Character Load WorldServer Opcodes
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #    Log.Async.Enable
 #        Description: Enables asyncronous message logging.
 #        Default:     0 - (Disabled)
@@ -2870,6 +2903,9 @@ Loggers=Root Chat DBErrors GM RA Warden Character Load WorldServer Opcodes
 Log.Async.Enable = 0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 ###################################################################################################################
 # PVP RANK / TITLE SYSTEM
 #
@@ -3128,7 +3164,10 @@ DynamicRate.Cooldown = 120
 # CROSSFACTION BG CONFIG 
 ###################################################################################################################
 CrossfactionBG.enable = 1
+<<<<<<< HEAD
 =======
 #
 ###################################################################################################
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e

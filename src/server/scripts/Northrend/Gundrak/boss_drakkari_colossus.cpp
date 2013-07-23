@@ -284,10 +284,15 @@ class boss_drakkari_elemental : public CreatureScript
                         killer->Kill(colossus);
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 me->RemoveAllAuras();
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+
+                me->RemoveAllAuras();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
 
             void UpdateAI(uint32 diff) OVERRIDE

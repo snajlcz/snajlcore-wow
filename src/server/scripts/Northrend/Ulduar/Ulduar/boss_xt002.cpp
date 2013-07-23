@@ -16,6 +16,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
     @todo
@@ -26,6 +27,8 @@
 */
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "SpellScript.h"
@@ -203,10 +206,14 @@ class boss_xt002 : public CreatureScript
         struct boss_xt002_AI : public BossAI
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             boss_xt002_AI(Creature* creature) : BossAI(creature, DATA_XT002)
 =======
             boss_xt002_AI(Creature* creature) : BossAI(creature, BOSS_XT002)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            boss_xt002_AI(Creature* creature) : BossAI(creature, DATA_XT002)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
             }
 
@@ -471,10 +478,14 @@ class npc_xt002_heart : public CreatureScript
             void JustDied(Unit* /*killer*/) OVERRIDE
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Creature* xt002 = _instance ? me->GetCreature(*me, _instance->GetData64(DATA_XT002)) : NULL;
 =======
                 Creature* xt002 = _instance ? me->GetCreature(*me, _instance->GetData64(BOSS_XT002)) : NULL;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                Creature* xt002 = _instance ? me->GetCreature(*me, _instance->GetData64(DATA_XT002)) : NULL;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 if (!xt002 || !xt002->AI())
                     return;
 
@@ -521,10 +532,14 @@ class npc_scrapbot : public CreatureScript
                 _rangeCheckTimer = 500;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (Creature* pXT002 = me->GetCreature(*me, _instance->GetData64(DATA_XT002)))
 =======
                 if (Creature* pXT002 = me->GetCreature(*me, _instance->GetData64(BOSS_XT002)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (Creature* pXT002 = me->GetCreature(*me, _instance->GetData64(DATA_XT002)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     me->GetMotionMaster()->MoveFollow(pXT002, 0.0f, 0.0f);
             }
 
@@ -533,10 +548,14 @@ class npc_scrapbot : public CreatureScript
                 if (_rangeCheckTimer <= diff)
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (Creature* xt002 = me->GetCreature(*me, _instance->GetData64(DATA_XT002)))
 =======
                     if (Creature* xt002 = me->GetCreature(*me, _instance->GetData64(BOSS_XT002)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    if (Creature* xt002 = me->GetCreature(*me, _instance->GetData64(DATA_XT002)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     {
                         if (me->IsWithinMeleeRange(xt002))
                         {
@@ -586,10 +605,14 @@ class npc_pummeller : public CreatureScript
                 _uppercutTimer = TIMER_UPPERCUT;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (Creature* xt002 = me->GetCreature(*me, _instance->GetData64(DATA_XT002)))
 =======
                 if (Creature* xt002 = me->GetCreature(*me, _instance->GetData64(BOSS_XT002)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (Creature* xt002 = me->GetCreature(*me, _instance->GetData64(DATA_XT002)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 {
                     Position pos;
                     xt002->GetPosition(&pos);
@@ -699,10 +722,14 @@ class npc_boombot : public CreatureScript
 
                 /// @todo proper waypoints?
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (Creature* pXT002 = me->GetCreature(*me, _instance->GetData64(DATA_XT002)))
 =======
                 if (Creature* pXT002 = me->GetCreature(*me, _instance->GetData64(BOSS_XT002)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (Creature* pXT002 = me->GetCreature(*me, _instance->GetData64(DATA_XT002)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     me->GetMotionMaster()->MoveFollow(pXT002, 0.0f, 0.0f);
             }
 
@@ -960,10 +987,14 @@ class spell_xt002_heart_overload_periodic : public SpellScriptLoader
                                 uint8 a = urand(0, 4);
                                 uint32 spellId = spells[a];
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 toyPile->CastSpell(toyPile, spellId, true, NULL, NULL, instance->GetData64(DATA_XT002));
 =======
                                 toyPile->CastSpell(toyPile, spellId, true, NULL, NULL, instance->GetData64(BOSS_XT002));
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                                toyPile->CastSpell(toyPile, spellId, true, NULL, NULL, instance->GetData64(DATA_XT002));
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             }
                         }
                     }

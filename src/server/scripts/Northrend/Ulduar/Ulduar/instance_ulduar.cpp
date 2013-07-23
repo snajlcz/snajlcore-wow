@@ -25,6 +25,9 @@
 static DoorData const doorData[] =
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     {GO_LEVIATHAN_DOOR,                 DATA_LEVIATHAN,  DOOR_TYPE_ROOM,         BOUNDARY_S      },
     {GO_XT_002_DOOR,                    DATA_XT002,      DOOR_TYPE_ROOM,         BOUNDARY_S      },
     {GO_YOGG_SARON_DOOR,                DATA_YOGG_SARON, DOOR_TYPE_ROOM,         BOUNDARY_S      },
@@ -33,6 +36,7 @@ static DoorData const doorData[] =
     {GO_DOODAD_UL_UNIVERSEFLOOR_02,     DATA_ALGALON,    DOOR_TYPE_SPAWN_HOLE,   BOUNDARY_NONE   },
     {GO_DOODAD_UL_UNIVERSEGLOBE01,      DATA_ALGALON,    DOOR_TYPE_SPAWN_HOLE,   BOUNDARY_NONE   },
     {GO_DOODAD_UL_ULDUAR_TRAPDOOR_03,   DATA_ALGALON,    DOOR_TYPE_SPAWN_HOLE,   BOUNDARY_NONE   },
+<<<<<<< HEAD
 =======
     {GO_LEVIATHAN_DOOR,                 BOSS_LEVIATHAN,  DOOR_TYPE_ROOM,         BOUNDARY_S      },
     {GO_XT_002_DOOR,                    BOSS_XT002,      DOOR_TYPE_ROOM,         BOUNDARY_S      },
@@ -43,11 +47,14 @@ static DoorData const doorData[] =
     {GO_DOODAD_UL_UNIVERSEGLOBE01,      BOSS_ALGALON,    DOOR_TYPE_SPAWN_HOLE,   BOUNDARY_NONE   },
     {GO_DOODAD_UL_ULDUAR_TRAPDOOR_03,   BOSS_ALGALON,    DOOR_TYPE_SPAWN_HOLE,   BOUNDARY_NONE   },
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     {0,                                 0,               DOOR_TYPE_ROOM,         BOUNDARY_NONE   },
 };
 
 MinionData const minionData[] =
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
     { NPC_STEELBREAKER,   DATA_ASSEMBLY_OF_IRON },
     { NPC_MOLGEIM,        DATA_ASSEMBLY_OF_IRON },
@@ -57,6 +64,11 @@ MinionData const minionData[] =
     { NPC_MOLGEIM,        BOSS_ASSEMBLY_OF_IRON },
     { NPC_BRUNDIR,        BOSS_ASSEMBLY_OF_IRON },
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    { NPC_STEELBREAKER,   DATA_ASSEMBLY_OF_IRON },
+    { NPC_MOLGEIM,        DATA_ASSEMBLY_OF_IRON },
+    { NPC_BRUNDIR,        DATA_ASSEMBLY_OF_IRON },
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     { 0,                  0,                    }
 };
 
@@ -82,12 +94,18 @@ class instance_ulduar : public InstanceMapScript
             uint64 AuriayaGUID;
             uint64 MimironGUID;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             uint64 LeviathanMKIIGUID;
             uint64 VX001GUID;
             uint64 AerialUnitGUID;
             uint64 MagneticCoreGUID;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             uint64 HodirGUID;
             uint64 ThorimGUID;
             uint64 FreyaGUID;
@@ -121,15 +139,21 @@ class instance_ulduar : public InstanceMapScript
             uint64 AlgalonTrapdoorGUID;
             uint64 GiftOfTheObserverGUID;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             std::list<uint64> uiMimironDoorGUIDList;
 
             // Miscellaneous
             uint64 MimironElevatorGUID;
             uint64 MimironTrainGUID;
+<<<<<<< HEAD
 =======
 
             // Miscellaneous
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             uint32 TeamInInstance;
             uint32 HodirRareCacheData;
             uint32 ColossusData;
@@ -156,12 +180,18 @@ class instance_ulduar : public InstanceMapScript
                 AuriayaGUID                      = 0;
                 MimironGUID                      = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 LeviathanMKIIGUID                = 0;
                 VX001GUID                        = 0;
                 AerialUnitGUID                   = 0;
                 MagneticCoreGUID                 = 0;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 HodirGUID                        = 0;
                 ThorimGUID                       = 0;
                 FreyaGUID                        = 0;
@@ -189,10 +219,15 @@ class instance_ulduar : public InstanceMapScript
                 _maxArmorItemLevel               = 0;
                 _maxWeaponItemLevel              = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 MimironTrainGUID                 = 0;
                 MimironElevatorGUID              = 0;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                MimironTrainGUID                 = 0;
+                MimironElevatorGUID              = 0;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 TeamInInstance                   = 0;
                 HodirRareCacheData               = 0;
                 ColossusData                     = 0;
@@ -239,37 +274,53 @@ class instance_ulduar : public InstanceMapScript
 
                 // Keepers at Observation Ring
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (GetBossState(DATA_FREYA) == DONE && _summonObservationRingKeeper[0] && !KeeperGUIDs[0])
 =======
                 if (GetBossState(BOSS_FREYA) == DONE && _summonObservationRingKeeper[0] && !KeeperGUIDs[0])
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (GetBossState(DATA_FREYA) == DONE && _summonObservationRingKeeper[0] && !KeeperGUIDs[0])
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 {
                     _summonObservationRingKeeper[0] = false;
                     instance->SummonCreature(NPC_FREYA_OBSERVATION_RING, ObservationRingKeepersPos[0]);
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (GetBossState(DATA_HODIR) == DONE && _summonObservationRingKeeper[1] && !KeeperGUIDs[1])
 =======
                 if (GetBossState(BOSS_HODIR) == DONE && _summonObservationRingKeeper[1] && !KeeperGUIDs[1])
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (GetBossState(DATA_HODIR) == DONE && _summonObservationRingKeeper[1] && !KeeperGUIDs[1])
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 {
                     _summonObservationRingKeeper[1] = false;
                     instance->SummonCreature(NPC_HODIR_OBSERVATION_RING, ObservationRingKeepersPos[1]);
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (GetBossState(DATA_THORIM) == DONE && _summonObservationRingKeeper[2] && !KeeperGUIDs[2])
 =======
                 if (GetBossState(BOSS_THORIM) == DONE && _summonObservationRingKeeper[2] && !KeeperGUIDs[2])
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (GetBossState(DATA_THORIM) == DONE && _summonObservationRingKeeper[2] && !KeeperGUIDs[2])
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 {
                     _summonObservationRingKeeper[2] = false;
                     instance->SummonCreature(NPC_THORIM_OBSERVATION_RING, ObservationRingKeepersPos[2]);
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (GetBossState(DATA_MIMIRON) == DONE && _summonObservationRingKeeper[3] && !KeeperGUIDs[3])
 =======
                 if (GetBossState(BOSS_MIMIRON) == DONE && _summonObservationRingKeeper[3] && !KeeperGUIDs[3])
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (GetBossState(DATA_MIMIRON) == DONE && _summonObservationRingKeeper[3] && !KeeperGUIDs[3])
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 {
                     _summonObservationRingKeeper[3] = false;
                     instance->SummonCreature(NPC_MIMIRON_OBSERVATION_RING, ObservationRingKeepersPos[3]);
@@ -350,6 +401,9 @@ class instance_ulduar : public InstanceMapScript
                         AuriayaGUID = creature->GetGUID();
                         break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                     // Mimiron
                     case NPC_MIMIRON:
@@ -363,11 +417,14 @@ class instance_ulduar : public InstanceMapScript
                     case NPC_AERIAL_COMMAND_UNIT:
                         AerialUnitGUID = creature->GetGUID();
                         break;
+<<<<<<< HEAD
 =======
                     case NPC_MIMIRON:
                         MimironGUID = creature->GetGUID();
                         break;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                     // Hodir
                     case NPC_HODIR:
@@ -417,28 +474,40 @@ class instance_ulduar : public InstanceMapScript
                     case NPC_IRONBRANCH:
                         ElderGUIDs[0] = creature->GetGUID();
 <<<<<<< HEAD
+<<<<<<< HEAD
                         if (GetBossState(DATA_FREYA) == DONE)
 =======
                         if (GetBossState(BOSS_FREYA) == DONE)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                        if (GetBossState(DATA_FREYA) == DONE)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             creature->DespawnOrUnsummon();
                         break;
                     case NPC_BRIGHTLEAF:
                         ElderGUIDs[1] = creature->GetGUID();
 <<<<<<< HEAD
-                        if (GetBossState(DATA_FREYA) == DONE)
-=======
-                        if (GetBossState(BOSS_FREYA) == DONE)
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-                            creature->DespawnOrUnsummon();
-                        break;
-                    case NPC_STONEBARK:
-                        ElderGUIDs[2] = creature->GetGUID();
 <<<<<<< HEAD
                         if (GetBossState(DATA_FREYA) == DONE)
 =======
                         if (GetBossState(BOSS_FREYA) == DONE)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                        if (GetBossState(DATA_FREYA) == DONE)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
+                            creature->DespawnOrUnsummon();
+                        break;
+                    case NPC_STONEBARK:
+                        ElderGUIDs[2] = creature->GetGUID();
+<<<<<<< HEAD
+<<<<<<< HEAD
+                        if (GetBossState(DATA_FREYA) == DONE)
+=======
+                        if (GetBossState(BOSS_FREYA) == DONE)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                        if (GetBossState(DATA_FREYA) == DONE)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             creature->DespawnOrUnsummon();
                          break;
 
@@ -544,10 +613,14 @@ class instance_ulduar : public InstanceMapScript
                     case GO_KOLOGARN_BRIDGE:
                         KologarnBridgeGUID = gameObject->GetGUID();
 <<<<<<< HEAD
+<<<<<<< HEAD
                         if (GetBossState(DATA_KOLOGARN) == DONE)
 =======
                         if (GetBossState(BOSS_KOLOGARN) == DONE)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                        if (GetBossState(DATA_KOLOGARN) == DONE)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             HandleGameObject(0, false, gameObject);
                         break;
                     case GO_KOLOGARN_DOOR:
@@ -571,10 +644,14 @@ class instance_ulduar : public InstanceMapScript
                     case GO_LEVIATHAN_GATE:
                         LeviathanGateGUID = gameObject->GetGUID();
 <<<<<<< HEAD
+<<<<<<< HEAD
                         if (GetBossState(DATA_LEVIATHAN) == DONE)
 =======
                         if (GetBossState(BOSS_LEVIATHAN) == DONE)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                        if (GetBossState(DATA_LEVIATHAN) == DONE)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             gameObject->SetGoState(GO_STATE_ACTIVE_ALTERNATIVE);
                         break;
                     case GO_XT_002_DOOR:
@@ -598,10 +675,14 @@ class instance_ulduar : public InstanceMapScript
                         break;
                     case GO_MOLE_MACHINE:
 <<<<<<< HEAD
+<<<<<<< HEAD
                         if (GetBossState(DATA_RAZORSCALE) == IN_PROGRESS)
 =======
                         if (GetBossState(BOSS_RAZORSCALE) == IN_PROGRESS)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                        if (GetBossState(DATA_RAZORSCALE) == IN_PROGRESS)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             gameObject->SetGoState(GO_STATE_ACTIVE);
                     case GO_HODIR_DOOR:
                         HodirDoorGUID = gameObject->GetGUID();
@@ -610,6 +691,9 @@ class instance_ulduar : public InstanceMapScript
                         HodirIceDoorGUID = gameObject->GetGUID();
                         break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     case GO_MIMIRON_DOOR_1:
                     case GO_MIMIRON_DOOR_2:
                     case GO_MIMIRON_DOOR_3:
@@ -627,11 +711,14 @@ class instance_ulduar : public InstanceMapScript
                     case GO_ARCHIVUM_DOOR:
                         ArchivumDoorGUID = gameObject->GetGUID();
                         if (GetBossState(DATA_ASSEMBLY_OF_IRON) != DONE)
+<<<<<<< HEAD
 =======
                     case GO_ARCHIVUM_DOOR:
                         ArchivumDoorGUID = gameObject->GetGUID();
                         if (GetBossState(BOSS_ASSEMBLY_OF_IRON) != DONE)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             HandleGameObject(ArchivumDoorGUID, false);
                         break;
                     case GO_YOGG_SARON_DOOR:
@@ -775,6 +862,9 @@ class instance_ulduar : public InstanceMapScript
                 switch (type)
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     case DATA_LEVIATHAN:
                     case DATA_IGNIS:
                     case DATA_RAZORSCALE:
@@ -805,6 +895,7 @@ class instance_ulduar : public InstanceMapScript
                     case DATA_YOGG_SARON:
                         break;
                     case DATA_KOLOGARN:
+<<<<<<< HEAD
 =======
                     case BOSS_LEVIATHAN:
                     case BOSS_IGNIS:
@@ -832,6 +923,8 @@ class instance_ulduar : public InstanceMapScript
                         break;
                     case BOSS_KOLOGARN:
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         if (state == DONE)
                         {
                             if (GameObject* gameObject = instance->GetGameObject(KologarnChestGUID))
@@ -843,10 +936,14 @@ class instance_ulduar : public InstanceMapScript
                         }
                         break;
 <<<<<<< HEAD
+<<<<<<< HEAD
                     case DATA_HODIR:
 =======
                     case BOSS_HODIR:
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    case DATA_HODIR:
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         if (state == DONE)
                         {
                             if (GameObject* HodirRareCache = instance->GetGameObject(HodirRareCacheGUID))
@@ -861,10 +958,14 @@ class instance_ulduar : public InstanceMapScript
                         }
                         break;
 <<<<<<< HEAD
+<<<<<<< HEAD
                     case DATA_THORIM:
 =======
                     case BOSS_THORIM:
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    case DATA_THORIM:
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         if (state == DONE)
                         {
                             if (GameObject* gameObject = instance->GetGameObject(ThorimChestGUID))
@@ -874,10 +975,14 @@ class instance_ulduar : public InstanceMapScript
                         }
                         break;
 <<<<<<< HEAD
+<<<<<<< HEAD
                     case DATA_ALGALON:
 =======
                     case BOSS_ALGALON:
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    case DATA_ALGALON:
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         if (state == DONE)
                         {
                             _events.CancelEvent(EVENT_UPDATE_ALGALON_TIMER);
@@ -953,6 +1058,9 @@ class instance_ulduar : public InstanceMapScript
                         }
                         break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     case DATA_CALL_TRAM:
                         if (GameObject* go = instance->GetGameObject(MimironTrainGUID))
                             go->UseDoorOrButton();
@@ -961,8 +1069,11 @@ class instance_ulduar : public InstanceMapScript
                         if (GameObject* go = instance->GetGameObject(MimironElevatorGUID))
                             go->SetGoState(GOState(data));
                         break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     case DATA_UNBROKEN:
                         Unbroken = bool(data);
                         break;
@@ -996,6 +1107,9 @@ class instance_ulduar : public InstanceMapScript
                 switch (data)
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     case DATA_LEVIATHAN:
                         return LeviathanGUID;
                     case DATA_IGNIS:
@@ -1003,6 +1117,7 @@ class instance_ulduar : public InstanceMapScript
 
                     // Razorscale
                     case DATA_RAZORSCALE:
+<<<<<<< HEAD
 =======
                     case BOSS_LEVIATHAN:
                         return LeviathanGUID;
@@ -1012,6 +1127,8 @@ class instance_ulduar : public InstanceMapScript
                     // Razorscale
                     case BOSS_RAZORSCALE:
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         return RazorscaleGUID;
                     case DATA_RAZORSCALE_CONTROL:
                         return RazorscaleController;
@@ -1028,10 +1145,14 @@ class instance_ulduar : public InstanceMapScript
 
                     // XT-002 Deconstructor
 <<<<<<< HEAD
+<<<<<<< HEAD
                     case DATA_XT002:
 =======
                     case BOSS_XT002:
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    case DATA_XT002:
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         return XT002GUID;
                     case DATA_TOY_PILE_0:
                     case DATA_TOY_PILE_1:
@@ -1048,6 +1169,9 @@ class instance_ulduar : public InstanceMapScript
                         return AssemblyGUIDs[2];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     case DATA_KOLOGARN:
                         return KologarnGUID;
                     case DATA_AURIAYA:
@@ -1084,6 +1208,7 @@ class instance_ulduar : public InstanceMapScript
 
                     // Yogg-Saron
                     case DATA_YOGG_SARON:
+<<<<<<< HEAD
 =======
                     case BOSS_KOLOGARN:
                         return KologarnGUID;
@@ -1112,6 +1237,8 @@ class instance_ulduar : public InstanceMapScript
                     // Yogg-Saron
                     case BOSS_YOGG_SARON:
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         return YoggSaronGUID;
                     case DATA_VOICE_OF_YOGG_SARON:
                         return VoiceOfYoggSaronGUID;
@@ -1136,10 +1263,14 @@ class instance_ulduar : public InstanceMapScript
 
                     // Algalon
 <<<<<<< HEAD
+<<<<<<< HEAD
                     case DATA_ALGALON:
 =======
                     case BOSS_ALGALON:
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    case DATA_ALGALON:
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         return AlgalonGUID;
                     case DATA_SIGILDOOR_01:
                         return AlgalonSigilDoorGUID[0];
@@ -1269,10 +1400,14 @@ class instance_ulduar : public InstanceMapScript
                     loadStream >> tempState;
                     _algalonSummoned = tempState != 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (_algalonSummoned && GetBossState(DATA_ALGALON) != DONE)
 =======
                     if (_algalonSummoned && GetBossState(BOSS_ALGALON) != DONE)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    if (_algalonSummoned && GetBossState(DATA_ALGALON) != DONE)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     {
                         _summonAlgalon = true;
                         if (_algalonTimer && _algalonTimer <= 60)
@@ -1290,6 +1425,9 @@ class instance_ulduar : public InstanceMapScript
                     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     if (GetBossState(DATA_FREYA) == DONE && !_summonYSKeeper[0])
                         _summonObservationRingKeeper[0] = true;
                     if (GetBossState(DATA_HODIR) == DONE && !_summonYSKeeper[1])
@@ -1297,6 +1435,7 @@ class instance_ulduar : public InstanceMapScript
                     if (GetBossState(DATA_THORIM) == DONE && !_summonYSKeeper[2])
                         _summonObservationRingKeeper[2] = true;
                     if (GetBossState(DATA_MIMIRON) == DONE && !_summonYSKeeper[3])
+<<<<<<< HEAD
 =======
                     if (GetBossState(BOSS_FREYA) == DONE && !_summonYSKeeper[0])
                         _summonObservationRingKeeper[0] = true;
@@ -1306,6 +1445,8 @@ class instance_ulduar : public InstanceMapScript
                         _summonObservationRingKeeper[2] = true;
                     if (GetBossState(BOSS_MIMIRON) == DONE && !_summonYSKeeper[3])
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         _summonObservationRingKeeper[3] = true;
                 }
 
@@ -1358,6 +1499,9 @@ class instance_ulduar : public InstanceMapScript
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 class go_call_tram : public GameObjectScript
 {
 public:
@@ -1389,9 +1533,12 @@ void AddSC_instance_ulduar()
 {
     new instance_ulduar();
     new go_call_tram();
+<<<<<<< HEAD
 =======
 void AddSC_instance_ulduar()
 {
     new instance_ulduar();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

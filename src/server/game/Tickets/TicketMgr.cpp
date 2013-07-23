@@ -35,10 +35,14 @@ inline float GetAge(uint64 t) { return float(time(NULL) - t) / DAY; }
 GmTicket::GmTicket() { }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 GmTicket::GmTicket(Player* player, WorldPacket& recvData) : _createTime(time(NULL)), _lastModifiedTime(time(NULL)), _closedBy(0), _assignedTo(0), _completed(false), _escalatedStatus(TICKET_UNASSIGNED), _viewed(false), _haveTicket(false)
 =======
 GmTicket::GmTicket(Player* player, WorldPacket& recvData) : _createTime(time(NULL)), _lastModifiedTime(time(NULL)), _closedBy(0), _assignedTo(0), _completed(false), _escalatedStatus(TICKET_UNASSIGNED), _haveTicket(false)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+GmTicket::GmTicket(Player* player, WorldPacket& recvData) : _createTime(time(NULL)), _lastModifiedTime(time(NULL)), _closedBy(0), _assignedTo(0), _completed(false), _escalatedStatus(TICKET_UNASSIGNED), _viewed(false), _haveTicket(false)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 {
     _id = sTicketMgr->GenerateTicketId();
     _playerName = player->GetName();
@@ -89,12 +93,17 @@ bool GmTicket::LoadFromDB(Field* fields)
 void GmTicket::SaveToDB(SQLTransaction& trans) const
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     //     0       1     2      3          4        5      6     7     8           9            10         11         12        13        14        15        16        17
     // ticketId, guid, name, message, createTime, mapId, posX, posY, posZ, lastModifiedTime, closedBy, assignedTo, comment, response, completed, escalated, viewed, haveticket
 =======
     //     0       1     2      3          4        5      6     7     8           9            10         11         12        13        14        15
     // ticketId, guid, name, message, createTime, mapId, posX, posY, posZ, lastModifiedTime, closedBy, assignedTo, comment, completed, escalated, viewed
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    //     0       1     2      3          4        5      6     7     8           9            10         11         12        13        14        15        16        17
+    // ticketId, guid, name, message, createTime, mapId, posX, posY, posZ, lastModifiedTime, closedBy, assignedTo, comment, response, completed, escalated, viewed, haveticket
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     uint8 index = 0;
     PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_REP_GM_TICKET);
     stmt->setUInt32(  index, _id);

@@ -606,10 +606,14 @@ void Channel::Say(uint64 guid, std::string const& what, uint32 lang)
 
     // TODO: Add proper RBAC check
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHANNEL) || sAccountMgr->IsGMAccount || sAccountMgr->IsAdminAccount || sAccountMgr->IsModeratorAccount)
 =======
     if (sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHANNEL))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    if (sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHANNEL) || sAccountMgr->IsGMAccount || sAccountMgr->IsAdminAccount || sAccountMgr->IsModeratorAccount)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         lang = LANG_UNIVERSAL;
 
     if (!IsOn(guid))

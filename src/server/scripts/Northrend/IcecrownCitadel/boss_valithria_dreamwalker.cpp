@@ -297,9 +297,13 @@ class boss_valithria_dreamwalker : public CreatureScript
             void Reset() OVERRIDE
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 _events.Reset();
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                _events.Reset();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 me->SetHealth(_spawnHealth);
                 me->SetReactState(REACT_PASSIVE);
                 me->LoadCreaturesAddon(true);
@@ -400,10 +404,14 @@ class boss_valithria_dreamwalker : public CreatureScript
                     me->DespawnOrUnsummon(4000);
                     if (Creature* lichKing = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_VALITHRIA_LICH_KING)))
 <<<<<<< HEAD
+<<<<<<< HEAD
                         me->CastSpell(me, SPELL_SPAWN_CHEST, false);
 =======
                         lichKing->CastSpell(lichKing, SPELL_SPAWN_CHEST, false);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                        me->CastSpell(me, SPELL_SPAWN_CHEST, false);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                     if (Creature* trigger = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_VALITHRIA_TRIGGER)))
                         me->Kill(trigger);

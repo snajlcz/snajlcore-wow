@@ -108,11 +108,17 @@ extern int main(int argc, char **argv)
     TC_LOG_INFO(LOG_FILTER_AUTHSERVER, "Using configuration file %s.", cfg_file);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  SnajlCore														              ");
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  Based on TrinityCore http://www.TrinityCore.org\n                              ");
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  SnajlCore														              ");
+    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  Based on TrinityCore http://www.TrinityCore.org\n                              ");
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     TC_LOG_WARN(LOG_FILTER_AUTHSERVER, "%s (Library: %s)", OPENSSL_VERSION_TEXT, SSLeay_version(SSLEAY_VERSION));
 
 #if defined (ACE_HAS_EVENT_POLL) || defined (ACE_HAS_DEV_POLL)

@@ -51,12 +51,18 @@ public:
             { "channel",        SEC_ADMINISTRATOR,  true,   NULL,                               "", channelCommandTable  },
             { "nameannounce",   SEC_MODERATOR,      true,   &HandleNameAnnounceCommand,         "", NULL },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             { "msgguard",       SEC_MODERATOR,      true,   &HandleGuardAnnounceCommand,        "", NULL },
             { "msggm",          SEC_GAMEMASTER,     true,   &HandleGameMasterAnnounceCommand,   "", NULL },
             { "msgdev",         SEC_GAMEMASTER,     true,   &HandleDevAnnounceCommand,          "", NULL },
             { "msgadm",         SEC_ADMINISTRATOR,  true,   &HandleAdminAnnounceCommand,        "", NULL },
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             { "gmnameannounce", SEC_MODERATOR,      true,   &HandleGMNameAnnounceCommand,       "", NULL },
             { "announce",       SEC_MODERATOR,      true,   &HandleAnnounceCommand,             "", NULL },
             { "gmannounce",     SEC_MODERATOR,      true,   &HandleGMAnnounceCommand,           "", NULL },
@@ -124,6 +130,9 @@ public:
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     static bool HandleAdminAnnounceCommand(ChatHandler* handler, char const* args)
     {
         if (!*args)
@@ -176,8 +185,11 @@ public:
         return true;
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     static bool HandleGMNameAnnounceCommand(ChatHandler* handler, char const* args)
     {
         if (!*args)

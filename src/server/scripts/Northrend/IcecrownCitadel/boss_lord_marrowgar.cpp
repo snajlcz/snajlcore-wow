@@ -507,10 +507,14 @@ class spell_marrowgar_coldflame : public SpellScriptLoader
                 targets.clear();
                 // select any unit but not the tank (by owners threatlist)
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Unit* target = GetCaster()->GetAI()->SelectTarget(SELECT_TARGET_RANDOM, 2, -GetCaster()->GetObjectSize(), true, -SPELL_IMPALED);
 =======
                 Unit* target = GetCaster()->GetAI()->SelectTarget(SELECT_TARGET_RANDOM, 1, -GetCaster()->GetObjectSize(), true, -SPELL_IMPALED);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                Unit* target = GetCaster()->GetAI()->SelectTarget(SELECT_TARGET_RANDOM, 2, -GetCaster()->GetObjectSize(), true, -SPELL_IMPALED);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 if (!target)
                     target = GetCaster()->GetAI()->SelectTarget(SELECT_TARGET_RANDOM, 0, 0.0f, true); // or the tank if its solo
                 if (!target)

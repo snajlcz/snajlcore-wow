@@ -1,5 +1,8 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
  * Copyright (C) 2008-2013 Trinity <http://www.trinitycore.org/>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,6 +20,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Updated by: Toba and Baeumchen (maddin)
+<<<<<<< HEAD
 =======
  * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
@@ -34,6 +38,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
  */
 
 #ifndef TRINITY_INSTANCE_DATA_H
@@ -197,11 +203,17 @@ class InstanceScript : public ZoneScript
         void DoSendNotifyToInstance(char const* format, ...);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Complete Achievement for all players in instance
         void DoCompleteAchievement(uint32 achievement);
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        // Complete Achievement for all players in instance
+        void DoCompleteAchievement(uint32 achievement);
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // Update Achievement Criteria for all players in instance
         void DoUpdateAchievementCriteria(AchievementCriteriaTypes type, uint32 miscValue1 = 0, uint32 miscValue2 = 0, Unit* unit = NULL);
 
@@ -219,12 +231,18 @@ class InstanceScript : public ZoneScript
         bool ServerAllowsTwoSideGroups() { return sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GROUP); }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // Returns which team has a majority in the current instance map. Uses ServerAllowsTwoSideGroups() for config-check, thus returns the
         // team in the instance if two-side-interaction is not allowed.
         uint32 GetMajorityTeam(void);
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         virtual bool SetBossState(uint32 id, EncounterState state);
         EncounterState GetBossState(uint32 id) const { return id < bosses.size() ? bosses[id].state : TO_BE_DECIDED; }
         BossBoundaryMap const* GetBossBoundary(uint32 id) const { return id < bosses.size() ? &bosses[id].boundary : NULL; }

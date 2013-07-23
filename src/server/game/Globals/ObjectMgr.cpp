@@ -1562,10 +1562,14 @@ void ObjectMgr::LoadCreatures()
         data.movementType   = fields[14].GetUInt8();
         data.spawnMask      = fields[15].GetUInt8();
 <<<<<<< HEAD
+<<<<<<< HEAD
         data.phaseMask      = fields[16].GetUInt16();
 =======
         data.phaseMask      = fields[16].GetUInt32();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        data.phaseMask      = fields[16].GetUInt16();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         int16 gameEvent     = fields[17].GetInt8();
         uint32 PoolId       = fields[18].GetUInt32();
         data.npcflag        = fields[19].GetUInt32();
@@ -1918,10 +1922,14 @@ void ObjectMgr::LoadGameobjects()
             TC_LOG_ERROR(LOG_FILTER_SQL, "Table `gameobject` has gameobject (GUID: %u Entry: %u) that has wrong spawn mask %u including not supported difficulty modes for map (Id: %u), skip", guid, data.id, data.spawnMask, data.mapid);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         data.phaseMask      = fields[15].GetUInt16();
 =======
         data.phaseMask      = fields[15].GetUInt32();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        data.phaseMask      = fields[15].GetUInt16();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         int16 gameEvent     = fields[16].GetInt8();
         uint32 PoolId        = fields[17].GetUInt32();
 
@@ -2096,6 +2104,9 @@ uint32 ObjectMgr::GetPlayerAccountIdByPlayerName(const std::string& name) const
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void ObjectMgr::LoadTransmogrifications() // custom
 {
     sLog->outInfo(LOG_FILTER_SERVER_LOADING, "Deleting non-existing transmogrification entries...");
@@ -2122,8 +2133,11 @@ void ObjectMgr::LoadTransmogrifications() // custom
     sLog->outInfo(LOG_FILTER_SERVER_LOADING, ">> Loaded %lu Item fake entries in %u ms", (unsigned long)_itemFakeEntryStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void ObjectMgr::LoadItemLocales()
 {
     uint32 oldMSTime = getMSTime();
@@ -2217,10 +2231,14 @@ void ObjectMgr::LoadItemTemplates()
         itemTemplate.DisplayInfoID             = fields[5].GetUInt32();
         itemTemplate.Quality                   = uint32(fields[6].GetUInt8());
 <<<<<<< HEAD
+<<<<<<< HEAD
         itemTemplate.Flags                     = uint32(fields[7].GetUInt32());
 =======
         itemTemplate.Flags                     = fields[7].GetUInt32();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        itemTemplate.Flags                     = uint32(fields[7].GetUInt32());
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         itemTemplate.Flags2                    = fields[8].GetUInt32();
         itemTemplate.BuyCount                  = uint32(fields[9].GetUInt8());
         itemTemplate.BuyPrice                  = int32(fields[10].GetInt64());
@@ -4930,10 +4948,14 @@ void ObjectMgr::LoadSpellScriptNames()
             {
                 _spellScriptsStore.insert(SpellScriptsContainer::value_type(spellInfo->Id, GetScriptId(scriptName)));
 <<<<<<< HEAD
+<<<<<<< HEAD
                 spellInfo = sSpellMgr->GetSpellInfo(spellInfo->Id)->GetNextRankSpell();
 =======
                 spellInfo = spellInfo->GetNextRankSpell();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                spellInfo = sSpellMgr->GetSpellInfo(spellInfo->Id)->GetNextRankSpell();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
         }
         else
@@ -8408,6 +8430,9 @@ bool ObjectMgr::IsVendorItemValid(uint32 vendor_entry, uint32 item_id, int32 max
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (vItems->GetItemCount() >= MAX_VENDOR_ITEMS)
     {
         if (player)
@@ -8417,8 +8442,11 @@ bool ObjectMgr::IsVendorItemValid(uint32 vendor_entry, uint32 item_id, int32 max
         return false;
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     return true;
 }
 
@@ -8868,6 +8896,9 @@ VehicleAccessoryList const* ObjectMgr::GetVehicleAccessoryList(Vehicle* veh) con
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void ObjectMgr::LoadDbcDataCorrections()
  {
      uint32 oldMSTime = getMSTime();
@@ -8905,8 +8936,11 @@ void ObjectMgr::LoadDbcDataCorrections()
      TC_LOG_INFO(LOG_FILTER_SERVER_LOADING,">> Loading vehicle dbc data corrections  in %u ms", GetMSTimeDiffToNow(oldMSTime));
  }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 PlayerInfo const* ObjectMgr::GetPlayerInfo(uint32 race, uint32 class_) const
 {
     if (race >= MAX_RACES)

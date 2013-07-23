@@ -49,6 +49,9 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
     recvData >> lang;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (sWorld->getBoolConfig(BATTLEGROUND_CROSSFACTION_ENABLED) && lang != LANG_ADDON)
     {
         switch (type)
@@ -61,8 +64,11 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
         }
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (type >= MAX_CHAT_MSG_TYPE)
     {
         TC_LOG_ERROR(LOG_FILTER_NETWORKIO, "CHAT: Wrong message type received: %u", type);
@@ -141,11 +147,16 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
     {
         // send in universal language if player in .gmon mode (ignore spell effects)
 <<<<<<< HEAD
+<<<<<<< HEAD
         // and allow players interact in chat on specific area
         if (sender->IsGameMaster() || sender->GetAreaId() == sWorld->getIntConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHAT_AREA))
 =======
         if (sender->IsGameMaster())
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        // and allow players interact in chat on specific area
+        if (sender->IsGameMaster() || sender->GetAreaId() == sWorld->getIntConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHAT_AREA))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             lang = LANG_UNIVERSAL;
         else
         {
@@ -186,6 +197,9 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if ((sender->GetTotalPlayedTime() <= sWorld->getIntConfig(CONFIG_INT_CHAT_DISABLE_TIME)) && sender->GetSession()->GetSecurity() == SEC_PLAYER)
         {
             std::string adStr = secsToTimeString(sWorld->getIntConfig(CONFIG_INT_CHAT_DISABLE_TIME) - sender->GetTotalPlayedTime());
@@ -194,8 +208,11 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
             return;
         }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (type != CHAT_MSG_AFK && type != CHAT_MSG_DND)
             sender->UpdateSpeakTime();
     }
@@ -268,11 +285,17 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (sender->isGMChat() && sWorld->getBoolConfig(CONFIG_GM_BLUE_CHAT_ENABLE) && !msg.empty())
         msg = "|cff2998ff" + msg + "|r";
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    if (sender->isGMChat() && sWorld->getBoolConfig(CONFIG_GM_BLUE_CHAT_ENABLE) && !msg.empty())
+        msg = "|cff2998ff" + msg + "|r";
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     switch (type)
     {
         case CHAT_MSG_SAY:
@@ -286,12 +309,18 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (!GetPlayer()->IsGameMaster())
                 if (GetPlayer()->SendBattleGroundChat(type, msg))
                     return;
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (type == CHAT_MSG_SAY)
                 sender->Say(msg, lang);
             else if (type == CHAT_MSG_EMOTE)
@@ -309,12 +338,18 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
 
             Player* receiver = sObjectAccessor->FindPlayerByName(to);
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (!receiver || (!HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) &&
                 receiver->GetSession()->HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) &&
                 !receiver->isAcceptWhispers() && !receiver->IsInWhisperWhiteList(sender->GetGUID())))
 =======
             if (!receiver || (!receiver->isAcceptWhispers() && receiver->GetSession()->HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) && !receiver->IsInWhisperWhiteList(sender->GetGUID())))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            if (!receiver || (!HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) &&
+                receiver->GetSession()->HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) &&
+                !receiver->isAcceptWhispers() && !receiver->IsInWhisperWhiteList(sender->GetGUID())))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 SendPlayerNotFoundNotice(to);
                 return;
@@ -326,10 +361,14 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (GetPlayer()->GetTeam() != receiver->GetTeam() && !HasPermission(RBAC_PERM_TWO_SIDE_INTERACTION_CHAT) && !receiver->GetSession()->HasPermission(RBAC_PERM_TWO_SIDE_INTERACTION_CHAT))
 =======
             if (GetPlayer()->GetTeam() != receiver->GetTeam() && !HasPermission(RBAC_PERM_TWO_SIDE_INTERACTION_CHAT) && !receiver->IsInWhisperWhiteList(sender->GetGUID()))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            if (GetPlayer()->GetTeam() != receiver->GetTeam() && !HasPermission(RBAC_PERM_TWO_SIDE_INTERACTION_CHAT) && !receiver->GetSession()->HasPermission(RBAC_PERM_TWO_SIDE_INTERACTION_CHAT))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 SendWrongFactionNotice();
                 return;

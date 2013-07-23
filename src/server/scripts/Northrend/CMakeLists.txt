@@ -109,24 +109,33 @@ set(scripts_STAT_SRCS
   Northrend/Naxxramas/boss_gluth.cpp
   Northrend/Naxxramas/boss_four_horsemen.cpp
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   Northrend/Naxxramas/naxxramas.h
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   Northrend/Naxxramas/boss_kelthuzad.cpp
   Northrend/Naxxramas/boss_heigan.cpp
   Northrend/Naxxramas/boss_thaddius.cpp
   Northrend/Naxxramas/boss_razuvious.cpp
   Northrend/Naxxramas/boss_sapphiron.cpp
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   Northrend/Naxxramas/boss_grobbulus.cpp
   Northrend/Naxxramas/boss_noth.cpp
   Northrend/Naxxramas/instance_naxxramas.cpp
   Northrend/Naxxramas/naxxramas.h
+<<<<<<< HEAD
 =======
   Northrend/Naxxramas/instance_naxxramas.cpp
   Northrend/Naxxramas/boss_grobbulus.cpp
   Northrend/Naxxramas/boss_noth.cpp
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   Northrend/zone_crystalsong_forest.cpp
   Northrend/VaultOfArchavon/boss_archavon.cpp
   Northrend/VaultOfArchavon/boss_koralon.cpp
@@ -187,9 +196,13 @@ set(scripts_STAT_SRCS
   Northrend/IcecrownCitadel/boss_sindragosa.cpp
   Northrend/IcecrownCitadel/boss_the_lich_king.cpp
 <<<<<<< HEAD
+<<<<<<< HEAD
   Northrend/IcecrownCitadel/boss_gunship_battle.cpp
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+  Northrend/IcecrownCitadel/boss_gunship_battle.cpp
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   Northrend/zone_zuldrak.cpp
   Northrend/zone_icecrown.cpp
   Northrend/Gundrak/boss_slad_ran.cpp

@@ -17,9 +17,13 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "AnticheatMgr.h"
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+#include "AnticheatMgr.h"
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "Common.h"
 #include "WorldPacket.h"
 #include "WorldSession.h"
@@ -364,11 +368,17 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recvData)
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (plrMover)
         sAnticheatMgr->StartHackDetection(plrMover, movementInfo, opcode);
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    if (plrMover)
+        sAnticheatMgr->StartHackDetection(plrMover, movementInfo, opcode);
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     /*----------------------*/
 
     /* process position-change */
@@ -394,6 +404,9 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recvData)
         plrMover->UpdateFallInformationIfNeed(movementInfo, opcode);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         float underMapValueZ;
         switch (plrMover->GetMapId())
         {
@@ -441,11 +454,14 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recvData)
                     plrMover->TeleportTo(617, 1292.34868f, 790.40f, 8.5f, 1.6f);
             }
             else if (!(plrMover->GetBattleground() && plrMover->GetBattleground()->HandlePlayerUnderMap(_player)))
+<<<<<<< HEAD
 =======
         if (movementInfo.pos.GetPositionZ() < -500.0f)
         {
             if (!(plrMover->GetBattleground() && plrMover->GetBattleground()->HandlePlayerUnderMap(_player)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 // NOTE: this is actually called many times while falling
                 // even after the player has been teleported away

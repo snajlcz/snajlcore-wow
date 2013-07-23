@@ -426,10 +426,14 @@ class boss_voice_of_yogg_saron : public CreatureScript
         struct boss_voice_of_yogg_saronAI : public BossAI
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             boss_voice_of_yogg_saronAI(Creature* creature) : BossAI(creature, DATA_YOGG_SARON)
 =======
             boss_voice_of_yogg_saronAI(Creature* creature) : BossAI(creature, BOSS_YOGG_SARON)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            boss_voice_of_yogg_saronAI(Creature* creature) : BossAI(creature, DATA_YOGG_SARON)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 SetCombatMovement(false);
             }
@@ -509,10 +513,14 @@ class boss_voice_of_yogg_saron : public CreatureScript
             {
                 // don't despawn Yogg-Saron's corpse, remove him from SummonList!
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (Creature* yogg = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_YOGG_SARON)))
 =======
                 if (Creature* yogg = ObjectAccessor::GetCreature(*me, instance->GetData64(BOSS_YOGG_SARON)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (Creature* yogg = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_YOGG_SARON)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     summons.Despawn(yogg);
 
                 BossAI::JustDied(killer);
@@ -535,16 +543,22 @@ class boss_voice_of_yogg_saron : public CreatureScript
                         case EVENT_LOCK_DOOR:
                             DoCast(me, SPELL_INSANE_PERIODIC);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             instance->SetBossState(DATA_YOGG_SARON, IN_PROGRESS);
                             break;
                         case EVENT_EXTINGUISH_ALL_LIFE:
                             if (Creature* yogg = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_YOGG_SARON)))
+<<<<<<< HEAD
 =======
                             instance->SetBossState(BOSS_YOGG_SARON, IN_PROGRESS);
                             break;
                         case EVENT_EXTINGUISH_ALL_LIFE:
                             if (Creature* yogg = ObjectAccessor::GetCreature(*me, instance->GetData64(BOSS_YOGG_SARON)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             {
                                 yogg->AI()->Talk(EMOTE_YOGG_SARON_EXTINGUISH_ALL_LIFE, me->GetGUID());
                                 yogg->CastSpell((Unit*)NULL, SPELL_EXTINGUISH_ALL_LIFE, true);
@@ -573,10 +587,14 @@ class boss_voice_of_yogg_saron : public CreatureScript
                         case EVENT_ILLUSION:
                         {
 <<<<<<< HEAD
+<<<<<<< HEAD
                             if (Creature* yogg = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_YOGG_SARON)))
 =======
                             if (Creature* yogg = ObjectAccessor::GetCreature(*me, instance->GetData64(BOSS_YOGG_SARON)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                            if (Creature* yogg = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_YOGG_SARON)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             {
                                 yogg->AI()->Talk(EMOTE_YOGG_SARON_MADNESS);
                                 yogg->AI()->Talk(SAY_YOGG_SARON_MADNESS);
@@ -815,10 +833,14 @@ class boss_sara : public CreatureScript
                         case EVENT_TRANSFORM_4:
                             DoCast(me, SPELL_PHASE_2_TRANSFORM);
 <<<<<<< HEAD
+<<<<<<< HEAD
                             if (Creature* yogg = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_YOGG_SARON)))
 =======
                             if (Creature* yogg = ObjectAccessor::GetCreature(*me, _instance->GetData64(BOSS_YOGG_SARON)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                            if (Creature* yogg = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_YOGG_SARON)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                                 DoCast(yogg, SPELL_RIDE_YOGG_SARON_VEHICLE);
                             DoCast(me, SPELL_SHADOWY_BARRIER_SARA);
                             _events.SetPhase(PHASE_TWO);
@@ -1061,10 +1083,14 @@ class boss_brain_of_yogg_saron : public CreatureScript
                     if (Creature* sara = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_SARA)))
                         sara->AI()->DoAction(ACTION_PHASE_THREE);
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (Creature* yogg = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_YOGG_SARON)))
 =======
                     if (Creature* yogg = ObjectAccessor::GetCreature(*me, _instance->GetData64(BOSS_YOGG_SARON)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    if (Creature* yogg = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_YOGG_SARON)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         yogg->AI()->DoAction(ACTION_PHASE_THREE);
 
                     for (uint8 i = DATA_THORIM_YS; i <= DATA_MIMIRON_YS; ++i)
@@ -2871,10 +2897,14 @@ class spell_yogg_saron_sanity : public SpellScriptLoader     // 63050
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             void DummyTick(AuraEffect const* aurEff)
 =======
             void DummyTick(AuraEffect const* /*aurEff*/)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            void DummyTick(AuraEffect const* aurEff)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 if (GetTarget()->HasAura(SPELL_SANITY_WELL))
                     ModStackAmount(20);
@@ -3103,6 +3133,7 @@ class spell_yogg_saron_in_the_maws_of_the_old_god : public SpellScriptLoader    
             {
                 if (InstanceScript* instance = GetCaster()->GetInstanceScript())
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (Creature* yogg = ObjectAccessor::GetCreature(*GetCaster(), instance->GetData64(DATA_YOGG_SARON)))
                         if (yogg->FindCurrentSpellBySpellId(SPELL_DEAFENING_ROAR))
 =======
@@ -3110,14 +3141,21 @@ class spell_yogg_saron_in_the_maws_of_the_old_god : public SpellScriptLoader    
                         if (yogg->FindCurrentSpellBySpellId(SPELL_DEAFENING_ROAR))
                         {
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    if (Creature* yogg = ObjectAccessor::GetCreature(*GetCaster(), instance->GetData64(DATA_YOGG_SARON)))
+                        if (yogg->FindCurrentSpellBySpellId(SPELL_DEAFENING_ROAR))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             if (GetCaster()->GetDistance(yogg) > 20.0f)
                                 return SPELL_FAILED_OUT_OF_RANGE;
                             else
                                 return SPELL_CAST_OK;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                         }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                 return SPELL_FAILED_CANT_DO_THAT_RIGHT_NOW;
             }

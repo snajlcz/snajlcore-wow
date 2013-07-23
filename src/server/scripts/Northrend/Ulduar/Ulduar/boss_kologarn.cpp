@@ -24,6 +24,7 @@
 #include "Player.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* ScriptData
 SDName: boss_kologarn
@@ -33,6 +34,8 @@ SDCategory: Ulduar
 EndScriptData */
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 enum Spells
 {
     SPELL_ARM_DEAD_DAMAGE               = 63629,
@@ -104,10 +107,14 @@ class boss_kologarn : public CreatureScript
         struct boss_kologarnAI : public BossAI
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             boss_kologarnAI(Creature* creature) : BossAI(creature, DATA_KOLOGARN), vehicle(creature->GetVehicleKit()),
 =======
             boss_kologarnAI(Creature* creature) : BossAI(creature, BOSS_KOLOGARN), vehicle(creature->GetVehicleKit()),
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            boss_kologarnAI(Creature* creature) : BossAI(creature, DATA_KOLOGARN), vehicle(creature->GetVehicleKit()),
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 left(false), right(false)
             {
                 ASSERT(vehicle);
@@ -168,10 +175,14 @@ class boss_kologarn : public CreatureScript
             void PassengerBoarded(Unit* who, int8 /*seatId*/, bool apply) OVERRIDE
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 bool isEncounterInProgress = instance->GetBossState(DATA_KOLOGARN) == IN_PROGRESS;
 =======
                 bool isEncounterInProgress = instance->GetBossState(BOSS_KOLOGARN) == IN_PROGRESS;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                bool isEncounterInProgress = instance->GetBossState(DATA_KOLOGARN) == IN_PROGRESS;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 if (who->GetEntry() == NPC_LEFT_ARM)
                 {
                     left = apply;
@@ -351,10 +362,14 @@ class spell_ulduar_rubble_summon : public SpellScriptLoader
                     return;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 uint64 originalCaster = caster->GetInstanceScript() ? caster->GetInstanceScript()->GetData64(DATA_KOLOGARN) : 0;
 =======
                 uint64 originalCaster = caster->GetInstanceScript() ? caster->GetInstanceScript()->GetData64(BOSS_KOLOGARN) : 0;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                uint64 originalCaster = caster->GetInstanceScript() ? caster->GetInstanceScript()->GetData64(DATA_KOLOGARN) : 0;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 uint32 spellId = GetEffectValue();
                 for (uint8 i = 0; i < 5; ++i)
                     caster->CastSpell(caster, spellId, true, NULL, NULL, originalCaster);

@@ -204,6 +204,9 @@ DiminishingGroup GetDiminishingReturnsGroupForSpell(SpellInfo const* spellproto,
             break;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         case SPELLFAMILY_SHAMAN:
         {
             // Storm, Earth and Fire - Earthgrab
@@ -211,8 +214,11 @@ DiminishingGroup GetDiminishingReturnsGroupForSpell(SpellInfo const* spellproto,
                 return DIMINISHING_LIMITONLY;
             break;
         }
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         default:
             break;
     }
@@ -1198,6 +1204,9 @@ bool SpellArea::IsFitToRequirements(Player const* player, uint32 newZone, uint32
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void SpellMgr::LoadSpellTalentRanks()
 {
     // cleanup core data before reload - remove reference to ChainNode from SpellInfo
@@ -1254,6 +1263,7 @@ void SpellMgr::LoadSpellRanks()
 
     uint32 oldMSTime = getMSTime();
 
+<<<<<<< HEAD
 =======
 void SpellMgr::LoadSpellRanks()
 {
@@ -1266,6 +1276,8 @@ void SpellMgr::LoadSpellRanks()
     }
     mSpellChains.clear();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     //                                                     0             1      2
     QueryResult result = WorldDatabase.Query("SELECT first_spell_id, spell_id, rank from spell_ranks ORDER BY first_spell_id, rank");
 
@@ -1350,12 +1362,18 @@ void SpellMgr::LoadSpellRanks()
             ++count;
             int32 addedSpell = itr->first;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             if (mSpellInfoMap[addedSpell]->ChainEntry)
                 TC_LOG_ERROR(LOG_FILTER_SQL, "Spell %u (rank: %u, first: %u) listed in `spell_ranks` has already ChainEntry from dbc.", addedSpell, itr->second, lastSpell);
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             mSpellChains[addedSpell].first = GetSpellInfo(lastSpell);
             mSpellChains[addedSpell].last = GetSpellInfo(rankChain.back().first);
             mSpellChains[addedSpell].rank = itr->second;
@@ -1373,11 +1391,16 @@ void SpellMgr::LoadSpellRanks()
         }
         while (true);
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
 	while (!finished);
 =======
     } while (!finished);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    }
+	while (!finished);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, ">> Loaded %u spell rank records in %u ms", count, GetMSTimeDiffToNow(oldMSTime));
 
@@ -2726,9 +2749,13 @@ void SpellMgr::LoadSpellCustomAttr()
                 case SPELL_AURA_MOD_FEAR:
                 case SPELL_AURA_MOD_STUN:
 <<<<<<< HEAD
+<<<<<<< HEAD
                 case SPELL_AURA_MOD_ROOT:
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                case SPELL_AURA_MOD_ROOT:
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     spellInfo->AttributesCu |= SPELL_ATTR0_CU_AURA_CC;
                     break;
                 case SPELL_AURA_PERIODIC_HEAL:
@@ -2907,9 +2934,13 @@ void SpellMgr::LoadSpellCustomAttr()
             case 73789: // Pain and Suffering
             case 73790: // Pain and Suffering
 <<<<<<< HEAD
+<<<<<<< HEAD
             case 63293: // Mimiron - P3Wx2 Laser Barrage
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            case 63293: // Mimiron - P3Wx2 Laser Barrage
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 spellInfo->AttributesCu |= SPELL_ATTR0_CU_CONE_LINE;
                 break;
             case 24340: // Meteor
@@ -3064,6 +3095,9 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectTriggerSpell[0] = 30571;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 1543: // Flare
                 spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_10_YARDS;
                 spellInfo->EffectRadiusIndex[1] = EFFECT_RADIUS_10_YARDS;
@@ -3077,8 +3111,11 @@ void SpellMgr::LoadDbcDataCorrections()
             case 49611:
                 spellInfo->procCharges = 0;
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 30541: // Blaze (needs conditions entry)
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_TARGET_ENEMY;
                 spellInfo->EffectImplicitTargetB[0] = 0;
@@ -3103,6 +3140,9 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectTriggerSpell[0] = 36325; // They Must Burn Bomb Drop (DND)
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 20577: // Cannibalize
                spellInfo->AttributesEx6 |= SPELL_ATTR6_CAN_TARGET_INVISIBLE;
                break;
@@ -3122,11 +3162,14 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_INITIAL_AGGRO;
                 spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_DONE_BONUS;
                 break;
+<<<<<<< HEAD
 =======
             case 49838: // Stop Time
                 spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_INITIAL_AGGRO;
                 break;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 61407: // Energize Cores
             case 62136: // Energize Cores
             case 54069: // Energize Cores
@@ -3196,6 +3239,9 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->MaxAffectedTargets = 3;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 71464: // Divine Surge
                 spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_100_YARDS;
                 spellInfo->DurationIndex = 28;          // 5 seconds
@@ -3218,12 +3264,15 @@ void SpellMgr::LoadDbcDataCorrections()
                spellInfo->EffectBasePoints[EFFECT_0] = 0;
                spellInfo->Effect[EFFECT_0] = SPELL_EFFECT_NORMALIZED_WEAPON_DMG;
                break;
+<<<<<<< HEAD
 =======
             case 38310: // Multi-Shot
             case 53385: // Divine Storm (Damage)
                 spellInfo->MaxAffectedTargets = 4;
                 break;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 42005: // Bloodboil
             case 38296: // Spitfire Totem
             case 37676: // Insidious Whisper
@@ -3265,11 +3314,17 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->procCharges = 1;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
             case 61851: // Killing Spree
     spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
     break;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            case 61851: // Killing Spree
+    spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
+    break;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 44544: // Fingers of Frost
                 spellInfo->EffectSpellClassMask[0] = flag96(685904631, 1151048, 0);
                 break;
@@ -3289,14 +3344,20 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectSpellClassMask[1][0] |= 2;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 case 47198: // Death's Embrace
             case 47199:
             case 47200:
                 // add Drain Soul to affected spells
                 spellInfo->EffectSpellClassMask[1][0] |= 16384;
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 51852: // The Eye of Acherus (no spawn in phase 2 in db)
                 spellInfo->EffectMiscValue[0] |= 1;
                 break;
@@ -3318,14 +3379,20 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->Stances = 1 << (FORM_TREE - 1);
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 58875: // Spirit Walk (shaman encha)
             case 58876: // Spirit Walk buf (shaman encha)
             case 32182: // Heroism (shaman)
             case 2825:  // Bloodlust (shaman encha)
                 spellInfo->AttributesEx2 |= SPELL_ATTR2_CAN_TARGET_NOT_IN_LOS;
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 51466: // Elemental Oath (Rank 1)
             case 51470: // Elemental Oath (Rank 2)
                 spellInfo->Effect[EFFECT_1] = SPELL_EFFECT_APPLY_AURA;
@@ -3341,14 +3408,20 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectApplyAuraName[EFFECT_1] = SPELL_AURA_MOD_INCREASE_ENERGY_PERCENT;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 47502: // Thunder Clap
                 spellInfo->EquippedItemClass = ITEM_CLASS_WEAPON;
                 break;
             case 70890: // Scourge Strike (shadow dmg)
                spellInfo->AttributesEx6 &= ~SPELL_ATTR6_NO_DONE_PCT_DAMAGE_MODS;
                break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 19465: // Improved Stings (Rank 2)
                 spellInfo->EffectImplicitTargetA[EFFECT_2] = TARGET_UNIT_CASTER;
                 break;
@@ -3385,6 +3458,9 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectImplicitTargetB[1] = TARGET_UNIT_SRC_AREA_ALLY;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 49027: // DK bloodwomrs
             case 49542: // DK bloodwomrs
             case 49543: // DK bloodwomrs
@@ -3393,8 +3469,11 @@ void SpellMgr::LoadDbcDataCorrections()
             case 54807: // DK Sigil of the Wild Buck
                 spellInfo->EffectBasePoints[EFFECT_0] = 39;
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 57994: // Wind Shear - improper data for EFFECT_1 in 3.3.5 DBC, but is correct in 4.x
                 spellInfo->Effect[EFFECT_1] = SPELL_EFFECT_MODIFY_THREAT_PERCENT;
                 spellInfo->EffectBasePoints[EFFECT_1] = -6; // -5%
@@ -3407,6 +3486,9 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->AttributesEx5 |= SPELL_ATTR5_START_PERIODIC_AT_APPLY;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 23881: // Bloodthirst
                 spellInfo->EffectImplicitTargetA[1] = TARGET_UNIT_CASTER;
                 break;
@@ -3414,8 +3496,11 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_TARGET_ANY;
                 spellInfo->EffectImplicitTargetB[0] = 0;
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 52109: // Flametongue Totem rank 1 (Aura)
             case 52110: // Flametongue Totem rank 2 (Aura)
             case 52111: // Flametongue Totem rank 3 (Aura)
@@ -3437,6 +3522,9 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectSpellClassMask[0] = flag96(0x00067801, 0x10820001, 0x00000801);
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 20467: // Judgement of Command (Rank 1)
     spellInfo->EffectBasePoints[EFFECT_1] = 18;
     break;
@@ -3450,27 +3538,40 @@ void SpellMgr::LoadDbcDataCorrections()
             case 55108: // Two-Handed Weapon Specialization (DK) Rank 2
                 spellInfo->EffectMiscValue[EFFECT_0] = 127;
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 70728: // Exploit Weakness (needs target selection script)
             case 70840: // Devious Minds (needs target selection script)
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
                 spellInfo->EffectImplicitTargetB[0] = TARGET_UNIT_PET;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
             case 53434: // Call of The Wild
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            case 53434: // Call of The Wild
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 70893: // Culling The Herd (needs target selection script)
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_CASTER;
                 spellInfo->EffectImplicitTargetB[0] = TARGET_UNIT_MASTER;
                 break;
+<<<<<<< HEAD
 <<<<<<< HEAD
             case 46619: // rise ally
                 spellInfo->Attributes &= ~SPELL_ATTR0_CANT_CANCEL;
                 break;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            case 46619: // rise ally
+                spellInfo->Attributes &= ~SPELL_ATTR0_CANT_CANCEL;
+                break;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 54800: // Sigil of the Frozen Conscience - change class mask to custom extended flags of Icy Touch
                         // this is done because another spell also uses the same SpellFamilyFlags as Icy Touch
                         // SpellFamilyFlags[0] & 0x00000040 in SPELLFAMILY_DEATHKNIGHT is currently unused (3.3.5a)
@@ -3494,12 +3595,18 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectApplyAuraName[EFFECT_0] = SPELL_AURA_ADD_FLAT_MODIFIER;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 63163: // Apply Enchanted Bridle (Argent Tournament)
                 spellInfo->EffectDieSides[0] = 0; // was 1, that should probably mean seat 0, but instead it's treated as spell 1
                 spellInfo->EffectBasePoints[0] = 52391; // Ride Vehicle (forces seat 0)
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 45602: // Ride Carpet
                 spellInfo->EffectBasePoints[EFFECT_0] = 0; // force seat 0, vehicle doesn't have the required seat flags for "no seat specified (-1)"
                 break;
@@ -3525,14 +3632,20 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->AuraInterruptFlags = AURA_INTERRUPT_FLAG_HITBYSPELL | AURA_INTERRUPT_FLAG_TAKE_DAMAGE;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 61874: // Noblegarden Chocolate
                 spellInfo->Effect[EFFECT_1] = SPELL_EFFECT_APPLY_AURA;
                 spellInfo->EffectApplyAuraName[EFFECT_1] = SPELL_AURA_PERIODIC_TRIGGER_SPELL;
                 spellInfo->EffectAmplitude[EFFECT_1] = 10000;
                 spellInfo->EffectTriggerSpell[EFFECT_1] = 24870;
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 70650: // Death Knight T10 Tank 2P Bonus
                 spellInfo->EffectApplyAuraName[0] = SPELL_AURA_ADD_PCT_MODIFIER;
                 break;
@@ -3544,6 +3657,9 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->AttributesEx5 |= SPELL_ATTR5_USABLE_WHILE_CONFUSED | SPELL_ATTR5_USABLE_WHILE_FEARED | SPELL_ATTR5_USABLE_WHILE_STUNNED;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             // Without reduced range the Earth, Wind & Fire achievement would be undoable.
             // The damage would hit you everywherr in the instance, even when not in LoS.
             case 66670: // Burning Breath (Koralon-10)
@@ -3551,8 +3667,11 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectRadiusIndex[0] = EFFECT_RADIUS_100_YARDS; // reduce range from 50.000 yards to 100 yards
                 break;
             //
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             // ULDUAR SPELLS
             //
             case 62374: // Pursued (Flame Leviathan)
@@ -3613,6 +3732,9 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->rangeIndex = 6;  // 100yd
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 63387: // Rapid Burst Left 10 man (Mimiron)
             case 64019: // Rapid Burst Right 10 man (Mimiron)
             case 64531: // Rapid Burst Left 25 man (Mimiron)
@@ -3630,8 +3752,11 @@ void SpellMgr::LoadDbcDataCorrections()
             case 63036: // Mimiron - Rochet Strike
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_TARGET_ANY;
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 64014: // Expedition Base Camp Teleport
             case 64024: // Conservatory Teleport
             case 64025: // Halls of Invention Teleport
@@ -3712,11 +3837,17 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->DurationIndex = 21;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
             case 69508: // Slime Spray
                 spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_TARGET_ANY;
                 break;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            case 69508: // Slime Spray
+                spellInfo->EffectImplicitTargetA[0] = TARGET_UNIT_TARGET_ANY;
+                break;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 70530: // Volatile Ooze Beam Protection (Professor Putricide)
                 spellInfo->Effect[0] = SPELL_EFFECT_APPLY_AURA; // for an unknown reason this was SPELL_EFFECT_APPLY_AREA_AURA_RAID
                 break;
@@ -3786,11 +3917,17 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->Mechanic = MECHANIC_STUN;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
             case 24259: // Spell Lock silence
                 spellInfo->speed = 80.0f;
                 break;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            case 24259: // Spell Lock silence
+                spellInfo->speed = 80.0f;
+                break;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 72762: // Defile
                 spellInfo->DurationIndex = 559; // 53 seconds
                 break;
@@ -3878,13 +4015,19 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->EffectRadiusIndex[1] = EFFECT_RADIUS_200_YARDS; // 200yd
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 68645: // Rocket Pack! Hack untill movejump will be implemented properly.
                 spellInfo->Effect[0] = SPELL_EFFECT_KNOCK_BACK_DEST;
                 spellInfo->EffectMiscValue[0] = -250;
                 spellInfo->EffectBasePoints[0] = 150;
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             // ENDOF ICECROWN CITADEL SPELLS
             //
             // RUBY SANCTUM SPELLS
@@ -3943,15 +4086,22 @@ void SpellMgr::LoadDbcDataCorrections()
             case 45524: // Chains of Ice
                 spellInfo->EffectImplicitTargetA[EFFECT_2] = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 spellInfo->EffectImplicitTargetA[2] = TARGET_UNIT_TARGET_ENEMY;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                spellInfo->EffectImplicitTargetA[2] = TARGET_UNIT_TARGET_ENEMY;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 break;
             case 2378: // Minor Fortitude
                 spellInfo->manaCost = 0;
                 spellInfo->manaPerSecond = 0;
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case 52212: // Death Knight: Death and Decay trigger spell
                 spellInfo->AttributesEx6 |= SPELL_ATTR6_CAN_TARGET_INVISIBLE;
                 break;
@@ -3993,10 +4143,13 @@ void SpellMgr::LoadDbcDataCorrections()
             case 52410: //Seaforium Charge
                 spellInfo->EffectImplicitTargetA[0] = TARGET_DEST_DEST;
                 break;
+<<<<<<< HEAD
 =======
             case 24314: // Threatening Gaze
                 spellInfo->AuraInterruptFlags |= AURA_INTERRUPT_FLAG_CAST | AURA_INTERRUPT_FLAG_MOVE | AURA_INTERRUPT_FLAG_JUMP;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             default:
                 break;
         }
@@ -4004,6 +4157,9 @@ void SpellMgr::LoadDbcDataCorrections()
         switch (spellInfo->SpellFamilyName)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case SPELLFAMILY_DRUID:
             SpellEffIndex eff;
                switch (spellInfo->Id)
@@ -4043,17 +4199,25 @@ void SpellMgr::LoadDbcDataCorrections()
                 if (spellInfo->SpellFamilyFlags[0] & 0x40000)
                     spellInfo->speed = 0; // instant
                 break;
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             case SPELLFAMILY_PALADIN:
                 // Seals of the Pure should affect Seal of Righteousness
                 if (spellInfo->SpellIconID == 25 && spellInfo->Attributes & SPELL_ATTR0_PASSIVE)
                     spellInfo->EffectSpellClassMask[0][1] |= 0x20000000;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (spellInfo->SpellFamilyFlags[1] & 0x00040000 /* Hammer of the Righteous */)
                     spellInfo->AttributesEx6 |= SPELL_ATTR6_NO_DONE_PCT_DAMAGE_MODS;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (spellInfo->SpellFamilyFlags[1] & 0x00040000 /* Hammer of the Righteous */)
+                    spellInfo->AttributesEx6 |= SPELL_ATTR6_NO_DONE_PCT_DAMAGE_MODS;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 break;
             case SPELLFAMILY_DEATHKNIGHT:
                 // Icy Touch - extend FamilyFlags (unused value) for Sigil of the Frozen Conscience to use

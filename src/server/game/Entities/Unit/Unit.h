@@ -482,11 +482,16 @@ enum DeathState
     CORPSE         = 2,
     DEAD           = 3,
 <<<<<<< HEAD
+<<<<<<< HEAD
     JUST_RESPAWNED = 4,
     GHOULED        = 5 //Raise ally, Deathknight's spell
 =======
     JUST_RESPAWNED = 4
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    JUST_RESPAWNED = 4,
+    GHOULED        = 5 //Raise ally, Deathknight's spell
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum UnitState
@@ -689,11 +694,16 @@ enum NPCFlags
     UNIT_NPC_FLAG_GUILD_BANKER          = 0x00800000,       // cause client to send 997 opcode
     UNIT_NPC_FLAG_SPELLCLICK            = 0x01000000,       // cause client to send 1015 opcode (spell click)
 <<<<<<< HEAD
+<<<<<<< HEAD
     UNIT_NPC_FLAG_PLAYER_VEHICLE        = 0x02000000,       // players with mounts that have vehicle data should have it set
     UNIT_NPC_FLAG_MAILBOX               = 0x04000000        // Taken from wiki
 =======
     UNIT_NPC_FLAG_PLAYER_VEHICLE        = 0x02000000        // players with mounts that have vehicle data should have it set
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    UNIT_NPC_FLAG_PLAYER_VEHICLE        = 0x02000000,       // players with mounts that have vehicle data should have it set
+    UNIT_NPC_FLAG_MAILBOX               = 0x04000000        // Taken from wiki
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum MovementFlags
@@ -1321,14 +1331,19 @@ class Unit : public WorldObject
         void CastStop(uint32 except_spellid = 0);
         bool AttackStop();
 <<<<<<< HEAD
+<<<<<<< HEAD
         void RemoveAllAttackers(bool stopAttacks = false);
 =======
         void RemoveAllAttackers();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        void RemoveAllAttackers(bool stopAttacks = false);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         AttackerSet const& getAttackers() const { return m_attackers; }
         bool isAttackingPlayer() const;
         Unit* GetVictim() const { return m_attacking; }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         void CombatStop(bool includingCast = false, bool includingAttacks = false);
         void CombatStopWithPets(bool includingCast = false, bool includingAttacks = false);
@@ -1336,6 +1351,10 @@ class Unit : public WorldObject
         void CombatStop(bool includingCast = false);
         void CombatStopWithPets(bool includingCast = false);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        void CombatStop(bool includingCast = false, bool includingAttacks = false);
+        void CombatStopWithPets(bool includingCast = false, bool includingAttacks = false);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void StopAttackFaction(uint32 faction_id);
         Unit* SelectNearbyTarget(Unit* exclude = NULL, float dist = NOMINAL_MELEE_RANGE) const;
         void SendMeleeAttackStop(Unit* victim = NULL);
@@ -1359,6 +1378,7 @@ class Unit : public WorldObject
         uint8 getLevelForTarget(WorldObject const* /*target*/) const { return getLevel(); }
         void SetLevel(uint8 lvl);
 <<<<<<< HEAD
+<<<<<<< HEAD
         uint8 getRace(bool forceoriginal = false) const;
         uint32 getRaceMask() const { return 1 << (getRace()-1); }
         uint32 getORaceMask() const { return 1 << (getRace(true) - 1); }
@@ -1366,6 +1386,11 @@ class Unit : public WorldObject
         uint8 getRace() const { return GetByteValue(UNIT_FIELD_BYTES_0, 0); }
         uint32 getRaceMask() const { return 1 << (getRace()-1); }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        uint8 getRace(bool forceoriginal = false) const;
+        uint32 getRaceMask() const { return 1 << (getRace()-1); }
+        uint32 getORaceMask() const { return 1 << (getRace(true) - 1); }
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         uint8 getClass() const { return GetByteValue(UNIT_FIELD_BYTES_0, 1); }
         uint32 getClassMask() const { return 1 << (getClass()-1); }
         uint8 getGender() const { return GetByteValue(UNIT_FIELD_BYTES_0, 2); }
@@ -1483,6 +1508,9 @@ class Unit : public WorldObject
 
         // player or player's pet resilience (-1%)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         uint32 GetMeleeCritDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_MELEE, 2.4f, 37.6f, damage); }
         uint32 GetRangedCritDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_RANGED, 2.3f, 34.3f, damage); }
         uint32 GetSpellCritDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_SPELL, 2.3f, 34.3f, damage); }
@@ -1491,6 +1519,7 @@ class Unit : public WorldObject
         uint32 GetMeleeDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_MELEE, 2.1f, 100.0f, damage); }
         uint32 GetRangedDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_RANGED, 2.1f, 100.0f, damage); }
         uint32 GetSpellDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_SPELL, 2.1f, 100.0f, damage); }
+<<<<<<< HEAD
 =======
         uint32 GetMeleeCritDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_MELEE, 2.2f, 33.0f, damage); }
         uint32 GetRangedCritDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_RANGED, 2.2f, 33.0f, damage); }
@@ -1501,6 +1530,8 @@ class Unit : public WorldObject
         uint32 GetRangedDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_RANGED, 2.0f, 100.0f, damage); }
         uint32 GetSpellDamageReduction(uint32 damage) const { return GetCombatRatingDamageReduction(CR_CRIT_TAKEN_SPELL, 2.0f, 100.0f, damage); }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         void ApplyResilience(Unit const* victim, float* crit, int32* damage, bool isCrit, CombatRating type) const;
 
@@ -2179,13 +2210,19 @@ class Unit : public WorldObject
         void SetLastDamagedTime(time_t val) { _lastDamagedTime = val; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         CalcDamageInfo GetDelayedDamageInfo() const;
         bool HasDelayedSwing() const;
         void SuspendDelayedSwing();
         void ExecuteDelayedSwingHit();
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     protected:
         explicit Unit (bool isWorldObject);
 
@@ -2300,12 +2337,18 @@ class Unit : public WorldObject
         RedirectThreatInfo _redirectThreadInfo;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         CalcDamageInfo _damageInfo;
         uint64 _delayedDamageTargetGuid;
         uint32 _swingDelayTimer;
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         bool m_cleanupDone; // lock made to not add stuff after cleanup before delete
         bool m_duringRemoveFromWorld; // lock made to not add stuff after begining removing from world
 

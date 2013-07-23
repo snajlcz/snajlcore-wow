@@ -110,20 +110,28 @@ namespace utf8
                     throw not_enough_room();
                 case internal::INVALID_LEAD:
 <<<<<<< HEAD
+<<<<<<< HEAD
                     utf8::append (replacement, out);
 =======
                     out = utf8::append (replacement, out);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    utf8::append (replacement, out);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     ++start;
                     break;
                 case internal::INCOMPLETE_SEQUENCE:
                 case internal::OVERLONG_SEQUENCE:
                 case internal::INVALID_CODE_POINT:
 <<<<<<< HEAD
+<<<<<<< HEAD
                     utf8::append (replacement, out);
 =======
                     out = utf8::append (replacement, out);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    utf8::append (replacement, out);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     ++start;
                     // just one replacement mark for the sequence
                     while (start != end && utf8::internal::is_trail(*start))
@@ -279,10 +287,14 @@ namespace utf8
       octet_iterator range_end;
       public:
 <<<<<<< HEAD
+<<<<<<< HEAD
       iterator () {};
 =======
       iterator () {}
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+      iterator () {};
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
       explicit iterator (const octet_iterator& octet_it,
                          const octet_iterator& range_start,
                          const octet_iterator& range_end) :

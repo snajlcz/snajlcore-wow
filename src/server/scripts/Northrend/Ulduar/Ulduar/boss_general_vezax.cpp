@@ -104,10 +104,14 @@ class boss_general_vezax : public CreatureScript
         struct boss_general_vezaxAI : public BossAI
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             boss_general_vezaxAI(Creature* creature) : BossAI(creature, DATA_VEZAX)
 =======
             boss_general_vezaxAI(Creature* creature) : BossAI(creature, BOSS_VEZAX)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            boss_general_vezaxAI(Creature* creature) : BossAI(creature, DATA_VEZAX)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
             }
 
@@ -337,10 +341,14 @@ class boss_saronite_animus : public CreatureScript
             void JustDied(Unit* /*killer*/) OVERRIDE
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(DATA_VEZAX)))
 =======
                 if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(BOSS_VEZAX)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(DATA_VEZAX)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     Vezax->AI()->DoAction(ACTION_ANIMUS_DIE);
             }
 
@@ -436,10 +444,14 @@ class npc_saronite_vapors : public CreatureScript
                     me->DespawnOrUnsummon(30000);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(DATA_VEZAX)))
 =======
                     if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(BOSS_VEZAX)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(DATA_VEZAX)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         Vezax->AI()->DoAction(ACTION_VAPORS_DIE);
                 }
             }

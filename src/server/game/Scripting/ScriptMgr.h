@@ -753,14 +753,20 @@ class PlayerScript : public UnitScript
         virtual void OnUpdateZone(Player* /*player*/, uint32 /*newZone*/, uint32 /*newArea*/) { }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // Called when a player joined the battle
         virtual void OnPlayerJoinedBattleground(Player* /*player*/, Battleground* /*bg*/) { }
 
         // Called when player ...
         virtual void OnPlayerFirstKillBattleground(Player* /*player*/, Battleground* /*bg*/) { }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // Called when a player changes to a new map (after moving to new map)
         virtual void OnMapChanged(Player* /*player*/) { }
 };
@@ -1037,10 +1043,15 @@ class ScriptMgr
         void OnPlayerSave(Player* player);
         void OnPlayerBindToInstance(Player* player, Difficulty difficulty, uint32 mapid, bool permanent);
 <<<<<<< HEAD
+<<<<<<< HEAD
         void OnPlayerJoinedBattleground(Player* player, Battleground* bg);
         void OnPlayerFirstKillBattleground(Player* player, Battleground* bg);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        void OnPlayerJoinedBattleground(Player* player, Battleground* bg);
+        void OnPlayerFirstKillBattleground(Player* player, Battleground* bg);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void OnPlayerUpdateZone(Player* player, uint32 newZone, uint32 newArea);
 
     public: /* GuildScript */

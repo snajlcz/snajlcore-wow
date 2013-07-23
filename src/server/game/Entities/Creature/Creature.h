@@ -250,10 +250,14 @@ struct CreatureData
     uint32 id;                                              // entry in creature_template
     uint16 mapid;
 <<<<<<< HEAD
+<<<<<<< HEAD
     uint16 phaseMask;
 =======
     uint32 phaseMask;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    uint16 phaseMask;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     uint32 displayid;
     int8 equipmentId;
     float posX;
@@ -490,9 +494,13 @@ class Creature : public Unit, public GridObject<Creature>, public MapCreature
 
         /// @todo Rename these properly
 <<<<<<< HEAD
+<<<<<<< HEAD
         bool IsCanTrainingOf(Player* player, bool msg) const;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        bool IsCanTrainingOf(Player* player, bool msg) const;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         bool isCanInteractWithBattleMaster(Player* player, bool msg) const;
         bool isCanTrainingAndResetTalentsOf(Player* player) const;
         bool CanCreatureAttack(Unit const* victim, bool force = true) const;

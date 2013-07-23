@@ -265,10 +265,14 @@ class spell_warr_deep_wounds : public SpellScriptLoader
                     damage = caster->SpellDamageBonusDone(target, GetSpellInfo(), damage, SPELL_DIRECT_DAMAGE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     ApplyPct(damage, 16 * sSpellMgr->GetSpellRank(GetSpellInfo()->Id));
 =======
                     ApplyPct(damage, 16 * GetSpellInfo()->GetRank());
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    ApplyPct(damage, 16 * sSpellMgr->GetSpellRank(GetSpellInfo()->Id));
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                     damage = target->SpellDamageBonusTaken(caster, GetSpellInfo(), damage, SPELL_DIRECT_DAMAGE);
 

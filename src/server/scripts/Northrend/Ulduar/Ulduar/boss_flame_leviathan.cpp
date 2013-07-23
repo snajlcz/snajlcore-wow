@@ -16,6 +16,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*
  * Comment: there is missing code on triggers,
@@ -25,6 +26,8 @@
  */
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "ScriptedGossip.h"
@@ -228,10 +231,14 @@ class boss_flame_leviathan : public CreatureScript
         struct boss_flame_leviathanAI : public BossAI
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             boss_flame_leviathanAI(Creature* creature) : BossAI(creature, DATA_LEVIATHAN), vehicle(creature->GetVehicleKit())
 =======
             boss_flame_leviathanAI(Creature* creature) : BossAI(creature, BOSS_LEVIATHAN), vehicle(creature->GetVehicleKit())
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            boss_flame_leviathanAI(Creature* creature) : BossAI(creature, DATA_LEVIATHAN), vehicle(creature->GetVehicleKit())
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
             }
 
@@ -1183,10 +1190,14 @@ class npc_lorekeeper : public CreatureScript
                         player->CLOSE_GOSSIP_MENU();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (Creature* leviathan = instance->instance->GetCreature(instance->GetData64(DATA_LEVIATHAN)))
 =======
                     if (Creature* leviathan = instance->instance->GetCreature(instance->GetData64(BOSS_LEVIATHAN)))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    if (Creature* leviathan = instance->instance->GetCreature(instance->GetData64(DATA_LEVIATHAN)))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     {
                         leviathan->AI()->DoAction(ACTION_START_HARD_MODE);
                         creature->SetVisible(false);
@@ -1210,10 +1221,14 @@ class npc_lorekeeper : public CreatureScript
         {
             InstanceScript* instance = creature->GetInstanceScript();
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (instance && instance->GetData(DATA_LEVIATHAN) !=DONE && player)
 =======
             if (instance && instance->GetData(BOSS_LEVIATHAN) !=DONE && player)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            if (instance && instance->GetData(DATA_LEVIATHAN) !=DONE && player)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 player->PrepareGossipMenu(creature);
 

@@ -64,10 +64,15 @@ class AccountMgr
         static bool normalizeString(std::string& utf8String);
         static bool IsPlayerAccount(uint32 gmlevel);
 <<<<<<< HEAD
+<<<<<<< HEAD
         static bool IsModeratorAccount(uint32 gmlevel);
         static bool IsGMAccount(uint32 gmlevel);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        static bool IsModeratorAccount(uint32 gmlevel);
+        static bool IsGMAccount(uint32 gmlevel);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         static bool IsAdminAccount(uint32 gmlevel);
         static bool IsConsoleAccount(uint32 gmlevel);
         static bool HasPermission(uint32 accountId, uint32 permission, uint32 realmId);

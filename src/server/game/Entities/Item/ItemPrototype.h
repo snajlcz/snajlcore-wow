@@ -747,10 +747,15 @@ struct ItemTemplate
 typedef UNORDERED_MAP<uint32, ItemTemplate> ItemTemplateContainer;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 typedef UNORDERED_MAP<uint32, uint32> ItemFakeEntryContainer; // custom
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+typedef UNORDERED_MAP<uint32, uint32> ItemFakeEntryContainer; // custom
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 struct ItemLocale
 {
     StringVector Name;

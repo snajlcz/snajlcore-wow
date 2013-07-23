@@ -405,13 +405,19 @@ void RBACData::LoadFromDB()
         while (result->NextRow());
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // add default players group if not created yet
     else
     {
         if (sWorld->getBoolConfig(CONFIG_UPDATE_ACCOUNT_ACCESS_ENABLE)) sAccountMgr->UpdateAccountAccess(this, GetId(), 0, -1);
     }
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     TC_LOG_DEBUG(LOG_FILTER_RBAC, "RBACData::LoadFromDB [Id: %u Name: %s]: Loading roles", GetId(), GetName().c_str());
     // Load account roles (granted and denied) that affect current realm

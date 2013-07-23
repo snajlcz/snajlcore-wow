@@ -30,6 +30,9 @@ enum UlduarBosses
     MAX_ENCOUNTER            = 17,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     DATA_LEVIATHAN           = 0,
     DATA_IGNIS               = 1,
     DATA_RAZORSCALE          = 2,
@@ -47,6 +50,7 @@ enum UlduarBosses
     DATA_VEZAX               = 14,
     DATA_YOGG_SARON          = 15,
     DATA_ALGALON             = 16,
+<<<<<<< HEAD
 =======
     BOSS_LEVIATHAN           = 0,
     BOSS_IGNIS               = 1,
@@ -66,6 +70,8 @@ enum UlduarBosses
     BOSS_YOGG_SARON          = 15,
     BOSS_ALGALON             = 16,
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum UlduarNPCs
@@ -210,15 +216,21 @@ enum UlduarGameObjects
     GO_HODIR_ICE_DOOR                       = 194441,
     GO_ARCHIVUM_DOOR                        = 194556,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     GO_MIMIRON_TRAIN                        = 194675,
     GO_MIMIRON_ELEVATOR                     = 194749,
     GO_MIMIRON_DOOR_1                       = 194776,
     GO_MIMIRON_DOOR_2                       = 194774,
     GO_MIMIRON_DOOR_3                       = 194775,
     GO_BIG_RED_BUTTON                       = 194739,
+<<<<<<< HEAD
 =======
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Yogg-Saron
     GO_YOGG_SARON_DOOR                      = 194773,
     GO_BRAIN_ROOM_DOOR_1                    = 194635,
@@ -327,6 +339,9 @@ enum UlduarData
     DATA_ALGALON_TRAPDOOR,
     DATA_BRANN_BRONZEBEARD_ALG,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     // Mimiron
     DATA_MIMIRON_ELEVATOR,
@@ -335,8 +350,11 @@ enum UlduarData
     DATA_CALL_TRAM,
     DATA_VX_001,
     DATA_MAGNETIC_CORE,
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum UlduarWorldStates

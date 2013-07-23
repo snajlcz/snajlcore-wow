@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-SNAJLCORE BASED ON TRINITY CORE
-=======
 = TrinityCore -- General information =
 
 Copyright (C) TrinityCore (http://www.trinitycore.org)
@@ -81,4 +78,3 @@ and http://www.trinitycore.org/f/topic/37- before posting a bug report or ask fo
 help on forum. 
 Search for existing bug reports before posting your own bug reports; don't post multiple
 bugs on a single ticket.
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67

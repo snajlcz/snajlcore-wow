@@ -45,6 +45,9 @@ void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T* owner, bool up
         if (!i_offset)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             float dist_min; // Min Contact Dist
             dist_min = i_target->GetCombatReach() - (i_target->GetObjectSize() + 2.5f); // Get min Dist
 
@@ -52,15 +55,21 @@ void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T* owner, bool up
                dist_min = 0.2f;
             // to nearest contact position
             i_target->GetContactPoint(owner, x, y, z, dist_min);
+<<<<<<< HEAD
 =======
             // to nearest contact position
             i_target->GetContactPoint(owner, x, y, z);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
         else
         {
             float dist;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             // Pets need special handling.
             // We need to subtract GetObjectSize() because it gets added back further down the chain
@@ -84,6 +93,7 @@ void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T* owner, bool up
             i_target->GetClosePoint(x, y, z, dist, i_offset, i_angle);
         }
 
+<<<<<<< HEAD
 =======
             float size;
 
@@ -111,6 +121,8 @@ void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T* owner, bool up
             i_target->GetClosePoint(x, y, z, size, i_offset, i_angle);
         }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     }
     else
     {

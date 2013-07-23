@@ -93,10 +93,14 @@ struct npc_escortAI : public ScriptedAI
 
     protected:
 <<<<<<< HEAD
+<<<<<<< HEAD
         Player* GetPlayerForEscort() { return (Player*)Unit::GetUnit(*me, m_uiPlayerGUID); }
 =======
         Player* GetPlayerForEscort() { return ObjectAccessor::GetPlayer(*me, m_uiPlayerGUID); }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        Player* GetPlayerForEscort() { return (Player*)Unit::GetUnit(*me, m_uiPlayerGUID); }
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     private:
         bool AssistPlayerInCombat(Unit* who);

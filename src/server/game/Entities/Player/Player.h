@@ -86,6 +86,9 @@ enum BuyBankSlotResult
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 enum TransmogrificationResult // custom
 {
     ERR_FAKE_NEW_BAD_QUALITY,
@@ -100,8 +103,11 @@ enum TransmogrificationResult // custom
     ERR_FAKE_OK
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 enum PlayerSpellState
 {
     PLAYERSPELL_UNCHANGED = 0,
@@ -426,6 +432,9 @@ enum PlayerFlags
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #define PLAYER_TITLE_MASK_ALLIANCE_PVP \
 (PLAYER_TITLE_PRIVATE | PLAYER_TITLE_CORPORAL | \
 PLAYER_TITLE_SERGEANT_A | PLAYER_TITLE_MASTER_SERGEANT | \
@@ -447,8 +456,11 @@ PLAYER_TITLE_WARLORD | PLAYER_TITLE_HIGH_WARLORD)
 #define PLAYER_TITLE_MASK_ALL_PVP \
 (PLAYER_TITLE_MASK_ALLIANCE_PVP | PLAYER_TITLE_MASK_HORDE_PVP)
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 // used for PLAYER__FIELD_KNOWN_TITLES field (uint64), (1<<bit_index) without (-1)
 // can't use enum for uint64 values
 #define PLAYER_TITLE_DISABLED              UI64LIT(0x0000000000000000)
@@ -549,11 +561,16 @@ enum AtLoginFlags
     AT_LOGIN_FIRST             = 0x20,
     AT_LOGIN_CHANGE_FACTION    = 0x40,
 <<<<<<< HEAD
+<<<<<<< HEAD
     AT_LOGIN_CHANGE_RACE       = 0x80,
     CUSTOMFLAG_DOUBLE_RATE     = 0x200
 =======
     AT_LOGIN_CHANGE_RACE       = 0x80
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    AT_LOGIN_CHANGE_RACE       = 0x80,
+    CUSTOMFLAG_DOUBLE_RATE     = 0x200
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 typedef std::map<uint32, QuestStatusData> QuestStatusMap;
@@ -1104,6 +1121,9 @@ private:
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 /* World of Warcraft Armory */
 struct WowarmoryFeedEntry {
     uint32 guid;         // Player GUID
@@ -1119,8 +1139,11 @@ struct WowarmoryFeedEntry {
 typedef std::vector<WowarmoryFeedEntry> WowarmoryFeeds;
 /* World of Warcraft Armory */
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 class Player : public Unit, public GridObject<Player>
 {
     friend class WorldSession;
@@ -1131,6 +1154,9 @@ class Player : public Unit, public GridObject<Player>
         ~Player();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     private:
         bool m_ForgetBGPlayers;
         bool m_ForgetInListPlayers;
@@ -1158,8 +1184,11 @@ class Player : public Unit, public GridObject<Player>
         bool SendRealNameQuery();
         FakePlayers m_FakePlayers;
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void CleanupsBeforeDelete(bool finalCleanup = true);
 
         void AddToWorld();
@@ -1213,10 +1242,14 @@ class Player : public Unit, public GridObject<Player>
 
         PlayerTaxi m_taxi;
 <<<<<<< HEAD
+<<<<<<< HEAD
         void InitTaxiNodesForLevel() { m_taxi.InitTaxiNodesForLevel(getORace(), getClass(), getLevel()); }
 =======
         void InitTaxiNodesForLevel() { m_taxi.InitTaxiNodesForLevel(getRace(), getClass(), getLevel()); }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        void InitTaxiNodesForLevel() { m_taxi.InitTaxiNodesForLevel(getORace(), getClass(), getLevel()); }
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         bool ActivateTaxiPathTo(std::vector<uint32> const& nodes, Creature* npc = NULL, uint32 spellid = 0);
         bool ActivateTaxiPathTo(uint32 taxi_path_id, uint32 spellid = 0);
         void CleanupAfterTaxiFlight();
@@ -1390,14 +1423,20 @@ class Player : public Unit, public GridObject<Player>
         uint32 GetWeaponProficiency() const { return m_WeaponProficiency; }
         uint32 GetArmorProficiency() const { return m_ArmorProficiency; }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         bool HasTwoHandWeaponInOneHand() const
         {
             Item* offItem = GetItemByPos(INVENTORY_SLOT_BAG_0, EQUIPMENT_SLOT_OFFHAND);
             Item* mainItem = GetItemByPos(INVENTORY_SLOT_BAG_0, EQUIPMENT_SLOT_MAINHAND);
             return offItem && ((mainItem && mainItem->GetTemplate()->InventoryType == INVTYPE_2HWEAPON) || offItem->GetTemplate()->InventoryType == INVTYPE_2HWEAPON);
         }
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         bool IsUseEquipedWeapon(bool mainhand) const;
         bool IsTwoHandUsed() const;
         void SendNewItem(Item* item, uint32 count, bool received, bool created, bool broadcast = false);
@@ -1521,10 +1560,14 @@ class Player : public Unit, public GridObject<Player>
         void ItemRemovedQuestCheck(uint32 entry, uint32 count);
         void KilledMonster(CreatureTemplate const* cInfo, uint64 guid);
 <<<<<<< HEAD
+<<<<<<< HEAD
         void KilledMonsterCredit(uint32 entry, uint64 guid = 0);
 =======
         void KilledMonsterCredit(uint32 entry, uint64 guid);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        void KilledMonsterCredit(uint32 entry, uint64 guid = 0);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void KilledPlayerCredit();
         void CastedCreatureOrGO(uint32 entry, uint64 guid, uint32 spell_id);
         void TalkedToCreature(uint32 entry, uint64 guid);
@@ -1995,11 +2038,15 @@ class Player : public Unit, public GridObject<Player>
 
         static uint32 TeamForRace(uint8 race);
 <<<<<<< HEAD
+<<<<<<< HEAD
         TeamId GetTeamId() const { return GetTeam() == ALLIANCE ? TEAM_ALLIANCE : TEAM_HORDE; }
 =======
         uint32 GetTeam() const { return m_team; }
         TeamId GetTeamId() const { return m_team == ALLIANCE ? TEAM_ALLIANCE : TEAM_HORDE; }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        TeamId GetTeamId() const { return GetTeam() == ALLIANCE ? TEAM_ALLIANCE : TEAM_HORDE; }
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void setFactionForRace(uint8 race);
 
         void InitDisplayIds();
@@ -2037,9 +2084,13 @@ class Player : public Unit, public GridObject<Player>
         void ModifyArenaPoints(int32 value, SQLTransaction* trans = NULL);      //! If trans is specified, arena point save query will be added to trans
         uint32 GetMaxPersonalArenaRatingRequirement(uint32 minarenaslot) const;
 <<<<<<< HEAD
+<<<<<<< HEAD
         void UpdateKnownTitles();
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        void UpdateKnownTitles();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void SetHonorPoints(uint32 value);
         void SetArenaPoints(uint32 value);
 
@@ -2147,9 +2198,12 @@ class Player : public Unit, public GridObject<Player>
 
         void SetBGTeam(uint32 team);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         uint32 GetBGTeam() const;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         void LeaveBattleground(bool teleportToEntryPoint = true);
         bool CanJoinToBattleground(Battleground const* bg) const;
@@ -2283,13 +2337,19 @@ class Player : public Unit, public GridObject<Player>
         void SendMovieStart(uint32 MovieId);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         /* World of Warcraft Armory */
         void CreateWowarmoryFeed(uint32 type, uint32 data, uint32 item_guid, uint32 item_quality);
         void InitWowarmoryFeeds();
         /* World of Warcraft Armory */
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         /*********************************************************/
         /***                 INSTANCE SYSTEM                   ***/
         /*********************************************************/
@@ -2411,6 +2471,9 @@ class Player : public Unit, public GridObject<Player>
         void RemoveFromWhisperWhiteList(uint64 guid) { WhisperList.remove(guid); }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         /*! These methods send different packets to the client in apply and unapply case.
             These methods are only sent to the current unit.
         */
@@ -2424,8 +2487,11 @@ class Player : public Unit, public GridObject<Player>
         void SendMovementSetWaterWalking(bool apply);
         void SendMovementSetFeatherFall(bool apply);
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         bool SetDisableGravity(bool disable, bool packetOnly /* = false */);
         bool SetCanFly(bool apply);
         bool SetWaterWalking(bool apply, bool packetOnly = false);
@@ -2438,10 +2504,15 @@ class Player : public Unit, public GridObject<Player>
         float GetCollisionHeight(bool mounted) const;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         uint32 SuitableForTransmogrification(Item* oldItem, Item* newItem); // custom
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        uint32 SuitableForTransmogrification(Item* oldItem, Item* newItem); // custom
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     protected:
         // Gamemaster whisper whitelist
         WhisperListContainer WhisperList;
@@ -2764,10 +2835,15 @@ class Player : public Unit, public GridObject<Player>
         uint32 m_timeSyncClient;
         uint32 m_timeSyncServer;
 <<<<<<< HEAD
+<<<<<<< HEAD
         // World of Warcraft Armory Feeds
         WowarmoryFeeds m_wowarmory_feeds;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        // World of Warcraft Armory Feeds
+        WowarmoryFeeds m_wowarmory_feeds;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         InstanceTimeMap _instanceResetTimes;
         uint32 _pendingBindId;

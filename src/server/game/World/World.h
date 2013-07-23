@@ -86,9 +86,13 @@ enum WorldBoolConfigs
 {
     CONFIG_DURABILITY_LOSS_IN_PVP = 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
     BATTLEGROUND_CROSSFACTION_ENABLED,
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    BATTLEGROUND_CROSSFACTION_ENABLED,
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     CONFIG_ADDON_CHANNEL,
     CONFIG_ALLOW_PLAYER_COMMANDS,
     CONFIG_CLEAN_CHARACTER_DB,
@@ -142,10 +146,15 @@ enum WorldBoolConfigs
     CONFIG_NO_RESET_TALENT_COST,
     CONFIG_SHOW_KICK_IN_WORLD,
 <<<<<<< HEAD
+<<<<<<< HEAD
     CONFIG_SHOW_BAN_IN_WORLD,
     CONFIG_SHOW_MUTE_IN_WORLD,
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    CONFIG_SHOW_BAN_IN_WORLD,
+    CONFIG_SHOW_MUTE_IN_WORLD,
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     CONFIG_CHATLOG_CHANNEL,
     CONFIG_CHATLOG_WHISPER,
     CONFIG_CHATLOG_SYSCHAN,
@@ -165,6 +174,9 @@ enum WorldBoolConfigs
     CONFIG_QUEST_IGNORE_AUTO_COMPLETE,
     CONFIG_WARDEN_ENABLED,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     CONFIG_ANTICHEAT_ENABLE,
     CONFIG_BAN_PLAYER,
     CONFIG_EXTERNAL_MAIL,
@@ -178,12 +190,15 @@ enum WorldBoolConfigs
     CONFIG_UI_QUESTLEVELS_IN_DIALOGS,     // Should we add quest levels to the title in the NPC dialogs?
     CONFIG_EVENT_ANNOUNCE,
     CONFIG_LFG_LOOKING_FOR_GROUP,
+<<<<<<< HEAD
 =======
     CONFIG_ENABLE_MMAPS,
     CONFIG_WINTERGRASP_ENABLE,
     CONFIG_UI_QUESTLEVELS_IN_DIALOGS,     // Should we add quest levels to the title in the NPC dialogs?
     CONFIG_EVENT_ANNOUNCE,
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     CONFIG_STATS_LIMITS_ENABLE,
     BOOL_CONFIG_VALUE_COUNT
 };
@@ -305,10 +320,15 @@ enum WorldIntConfigs
     CONFIG_ARENA_RATING_DISCARD_TIMER,
     CONFIG_ARENA_RATED_UPDATE_TIMER,
 <<<<<<< HEAD
+<<<<<<< HEAD
     CONFIG_ARENA_PROGRESSIVE_MMR_TIMER,
     CONFIG_ARENA_PROGRESSIVE_MMR_STEPSIZE,
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    CONFIG_ARENA_PROGRESSIVE_MMR_TIMER,
+    CONFIG_ARENA_PROGRESSIVE_MMR_STEPSIZE,
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     CONFIG_ARENA_AUTO_DISTRIBUTE_INTERVAL_DAYS,
     CONFIG_ARENA_SEASON_ID,
     CONFIG_ARENA_START_RATING,
@@ -351,12 +371,18 @@ enum WorldIntConfigs
     CONFIG_WARDEN_NUM_MEM_CHECKS,
     CONFIG_WARDEN_NUM_OTHER_CHECKS,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     CONFIG_ANTICHEAT_REPORTS_INGAME_NOTIFICATION,
     CONFIG_ANTICHEAT_MAX_REPORTS_FOR_DAILY_REPORT,
     CONFIG_ANTICHEAT_DETECTIONS_ENABLED,
     CONFIG_EXTERNAL_MAIL_INTERVAL,
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     CONFIG_WINTERGRASP_PLR_MAX,
     CONFIG_WINTERGRASP_PLR_MIN,
     CONFIG_WINTERGRASP_PLR_MIN_LVL,
@@ -364,10 +390,15 @@ enum WorldIntConfigs
     CONFIG_WINTERGRASP_NOBATTLETIME,
     CONFIG_WINTERGRASP_RESTART_AFTER_CRASH,
 <<<<<<< HEAD
+<<<<<<< HEAD
     CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHAT_AREA,
     CONFIG_INT_CHAT_DISABLE_TIME,
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHAT_AREA,
+    CONFIG_INT_CHAT_DISABLE_TIME,
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     INT_CONFIG_VALUE_COUNT
 };
 
@@ -435,14 +466,21 @@ enum Rates
     RATE_DURABILITY_LOSS_ABSORB,
     RATE_DURABILITY_LOSS_BLOCK,
 <<<<<<< HEAD
+<<<<<<< HEAD
     RATE_PVP_RANK_EXTRA_HONOR,
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    RATE_PVP_RANK_EXTRA_HONOR,
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     RATE_MOVESPEED,
     MAX_RATES
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 enum HonorKillPvPRank
 {
     HKRANK00,
@@ -463,8 +501,11 @@ enum HonorKillPvPRank
     HKRANKMAX
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 /// Can be used in SMSG_AUTH_RESPONSE packet
 enum BillingPlanFlags
 {
@@ -689,10 +730,15 @@ class World
         void SendServerMessage(ServerMessageType type, const char *text = "", Player* player = NULL);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         uint32 pvp_ranks[HKRANKMAX];
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        uint32 pvp_ranks[HKRANKMAX];
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         /// Are we in the middle of a shutdown?
         bool IsShuttingDown() const { return m_ShutdownTimer > 0; }
         uint32 GetShutDownTimeLeft() const { return m_ShutdownTimer; }
@@ -841,9 +887,13 @@ class World
         time_t m_gameTime;
         IntervalTimer m_timers[WUPDATE_COUNT];
 <<<<<<< HEAD
+<<<<<<< HEAD
         IntervalTimer extmail_timer;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        IntervalTimer extmail_timer;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         time_t mail_timer;
         time_t mail_timer_expires;
         uint32 m_updateTime, m_updateTimeSum;

@@ -259,10 +259,14 @@ public:
             player = handler->GetSession()->GetPlayer();
         else
 <<<<<<< HEAD
+<<<<<<< HEAD
             player = (Player*)unit;
 =======
             player = unit->ToPlayer();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            player = (Player*)unit;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         if (!unit)
             unit = player;

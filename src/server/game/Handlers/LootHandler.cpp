@@ -368,11 +368,17 @@ void WorldSession::DoLootRelease(uint64 lguid)
             if (!creature->IsAlive())
                 creature->AllLootRemovedFromCorpse();
 <<<<<<< HEAD
+<<<<<<< HEAD
             // Anti-Rollback
             if (player)
                 player->SaveToDB();
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            // Anti-Rollback
+            if (player)
+                player->SaveToDB();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             creature->RemoveFlag(UNIT_DYNAMIC_FLAGS, UNIT_DYNFLAG_LOOTABLE);
             loot->clear();

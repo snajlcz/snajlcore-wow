@@ -86,9 +86,13 @@ public:
         {
             instance = creature->GetInstanceScript();
 <<<<<<< HEAD
+<<<<<<< HEAD
             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NON_ATTACKABLE);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NON_ATTACKABLE);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             me->SetDisableGravity(true);
         }
 
@@ -125,9 +129,13 @@ public:
             if (instance)
                 instance->SetData(DATA_PRINCE_TALDARAM_EVENT, IN_PROGRESS);
 <<<<<<< HEAD
+<<<<<<< HEAD
             me->RemoveAurasDueToSpell(SPELL_BEAM_VISUAL);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            me->RemoveAurasDueToSpell(SPELL_BEAM_VISUAL);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             Talk(SAY_AGGRO);
         }
 
@@ -327,10 +335,14 @@ public:
             if (!instance)
                 return;
 <<<<<<< HEAD
+<<<<<<< HEAD
             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
 =======
             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             me->RemoveAurasDueToSpell(SPELL_BEAM_VISUAL);
             me->SetHomePosition(me->GetPositionX(), me->GetPositionY(), DATA_GROUND_POSITION_Z, me->GetOrientation());
             DoCast(SPELL_HOVER_FALL);

@@ -48,11 +48,17 @@ enum DeathKnightSpells
     SPELL_DK_UNHOLY_PRESENCE                    = 48265,
     SPELL_DK_IMPROVED_UNHOLY_PRESENCE_TRIGGERED = 63622,
 <<<<<<< HEAD
+<<<<<<< HEAD
     SPELL_DK_RAISE_DEAD_NORMAL                  = 46585,
     SPELL_DK_RAISE_DEAD_IMPROVED                = 52150,    // improved with Master of Ghouls talent
     SPELL_DK_GLYPH_OF_RAISE_DEAD                = 60200,
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    SPELL_DK_RAISE_DEAD_NORMAL                  = 46585,
+    SPELL_DK_RAISE_DEAD_IMPROVED                = 52150,    // improved with Master of Ghouls talent
+    SPELL_DK_GLYPH_OF_RAISE_DEAD                = 60200,
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SPELL_DK_ITEM_SIGIL_VENGEFUL_HEART          = 64962,
     SPELL_DK_ITEM_T8_MELEE_4P_BONUS             = 64736,
 };
@@ -336,19 +342,27 @@ class spell_dk_corpse_explosion : public SpellScriptLoader
                 {
                     int32 bp = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (unitTarget->IsAlive()) // Living ghoul as a target
 =======
                     if (unitTarget->IsAlive())  // Living ghoul as a target
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    if (unitTarget->IsAlive()) // Living ghoul as a target
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     {
                         bp = int32(unitTarget->CountPctFromMaxHealth(25));
                         unitTarget->CastCustomSpell(unitTarget, SPELL_DK_GHOUL_EXPLODE, &bp, NULL, NULL, false);
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
                     else // Some corpse
 =======
                     else                        // Some corpse
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    else // Some corpse
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     {
                         bp = GetEffectValue();
                         GetCaster()->CastCustomSpell(unitTarget, GetSpellInfo()->Effects[EFFECT_1].CalcValue(), &bp, NULL, NULL, true);
@@ -498,13 +512,19 @@ class spell_dk_death_grip : public SpellScriptLoader
                 {
                     if (!target->HasAuraType(SPELL_AURA_DEFLECT_SPELLS)) // Deterrence
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     {
                         target->CastSpell(pos->GetPositionX(), pos->GetPositionY(), pos->GetPositionZ(), damage, true);
                         target->CastStop();
                     }
+<<<<<<< HEAD
 =======
                         target->CastSpell(pos->GetPositionX(), pos->GetPositionY(), pos->GetPositionZ(), damage, true);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 }
             }
 
@@ -975,11 +995,15 @@ class spell_dk_will_of_the_necropolis : public SpellScriptLoader
             bool Validate(SpellInfo const* spellInfo) OVERRIDE
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 // can't use other spell than will of the necropolis due to spell_ranks dependency
                 if (sSpellMgr->GetFirstSpellInChain(SPELL_DK_WILL_OF_THE_NECROPOLIS_AURA_R1) != sSpellMgr->GetFirstSpellInChain(spellInfo->Id))
                     return false;
 
                 uint8 rank = sSpellMgr->GetSpellRank(spellInfo->Id);
+<<<<<<< HEAD
 =======
                 SpellInfo const* firstRankSpellInfo = sSpellMgr->GetSpellInfo(SPELL_DK_WILL_OF_THE_NECROPOLIS_AURA_R1);
                 if (!firstRankSpellInfo)
@@ -991,6 +1015,8 @@ class spell_dk_will_of_the_necropolis : public SpellScriptLoader
 
                 uint8 rank = spellInfo->GetRank();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 if (!sSpellMgr->GetSpellWithRank(SPELL_DK_WILL_OF_THE_NECROPOLIS_TALENT_R1, rank, true))
                     return false;
 
@@ -1015,10 +1041,14 @@ class spell_dk_will_of_the_necropolis : public SpellScriptLoader
             {
                 // min pct of hp is stored in effect 0 of talent spell
 <<<<<<< HEAD
+<<<<<<< HEAD
                 uint32 rank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
 =======
                 uint8 rank = GetSpellInfo()->GetRank();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                uint32 rank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 SpellInfo const* talentProto = sSpellMgr->GetSpellInfo(sSpellMgr->GetSpellWithRank(SPELL_DK_WILL_OF_THE_NECROPOLIS_TALENT_R1, rank));
 
                 int32 remainingHp = int32(GetTarget()->GetHealth() - dmgInfo.GetDamage());
@@ -1043,6 +1073,9 @@ class spell_dk_will_of_the_necropolis : public SpellScriptLoader
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 class spell_dk_raise_dead : public SpellScriptLoader
 {
     public:
@@ -1127,8 +1160,11 @@ class spell_dk_raise_dead : public SpellScriptLoader
         }
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_deathknight_spell_scripts()
 {
     new spell_dk_anti_magic_shell_raid();
@@ -1152,7 +1188,11 @@ void AddSC_deathknight_spell_scripts()
     new spell_dk_vampiric_blood();
     new spell_dk_will_of_the_necropolis();
 <<<<<<< HEAD
+<<<<<<< HEAD
     new spell_dk_raise_dead();
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    new spell_dk_raise_dead();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

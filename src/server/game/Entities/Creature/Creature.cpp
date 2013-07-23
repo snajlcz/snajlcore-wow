@@ -824,6 +824,9 @@ void Creature::InitializeReactState()
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 bool Creature::IsCanTrainingOf(Player* player, bool msg) const
 {
     if (!IsTrainer())
@@ -910,8 +913,11 @@ bool Creature::IsCanTrainingOf(Player* player, bool msg) const
     return true;
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 bool Creature::isCanInteractWithBattleMaster(Player* player, bool msg) const
 {
     if (!IsBattleMaster())
@@ -1089,10 +1095,14 @@ void Creature::SaveToDB(uint32 mapid, uint8 spawnMask, uint32 phaseMask)
     stmt->setUInt16(index++, uint16(mapid));
     stmt->setUInt8(index++, spawnMask);
 <<<<<<< HEAD
+<<<<<<< HEAD
     stmt->setUInt16(index++, uint16(GetPhaseMask()));
 =======
     stmt->setUInt32(index++, GetPhaseMask());
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    stmt->setUInt16(index++, uint16(GetPhaseMask()));
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     stmt->setUInt32(index++, displayId);
     stmt->setInt32(index++, int32(GetCurrentEquipmentId()));
     stmt->setFloat(index++, GetPositionX());
@@ -1116,13 +1126,19 @@ void Creature::SaveToDB(uint32 mapid, uint8 spawnMask, uint32 phaseMask)
 void Creature::SelectLevel(const CreatureTemplate* cinfo)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     uint32 rank = IsPet() ? 0 : cinfo->rank;
 
     if (IsGuardian() && (ToTempSummon()->GetSummoner() && ToTempSummon()->GetSummoner()->GetTypeId() != TYPEID_PLAYER))
         return;
+<<<<<<< HEAD
 =======
     uint32 rank = IsPet()? 0 : cinfo->rank;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     // level
     uint8 minlevel = std::min(cinfo->maxlevel, cinfo->minlevel);
@@ -1137,10 +1153,14 @@ void Creature::SelectLevel(const CreatureTemplate* cinfo)
 
     uint32 basehp = stats->GenerateHealth(cinfo);
 <<<<<<< HEAD
+<<<<<<< HEAD
     uint32 health = IsPet() ? basehp : uint32(basehp * healthmod);
 =======
     uint32 health = uint32(basehp * healthmod);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    uint32 health = IsPet() ? basehp : uint32(basehp * healthmod);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     SetCreateHealth(health);
     SetMaxHealth(health);
@@ -2049,12 +2069,18 @@ bool Creature::CanCreatureAttack(Unit const* victim, bool /*force*/) const
         return true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (sMapStore.LookupEntry(GetMapId())->IsBattleground()) //For Isle of Conquest Bosses
         if(GetMapId()==628)                                  //628 Isle of Conquest
             return true;
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     //Use AttackDistance in distance check if threat radius is lower. This prevents creature bounce in and out of combat every update tick.
     float dist = std::max(GetAttackDistance(victim), sWorld->getFloatConfig(CONFIG_THREAT_RADIUS)) + m_CombatDistance;
 

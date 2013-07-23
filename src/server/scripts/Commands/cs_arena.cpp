@@ -71,6 +71,7 @@ public:
         if (!name)
             return false;
 <<<<<<< HEAD
+<<<<<<< HEAD
         char* typeStr = strtok(NULL, "");
         if (!typeStr)
             return false;
@@ -81,6 +82,11 @@ public:
             return false;
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        char* typeStr = strtok(NULL, "");
+        if (!typeStr)
+            return false;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         int8 type = atoi(typeStr);
         if (sArenaTeamMgr->GetArenaTeamByName(name))
         {
@@ -99,11 +105,15 @@ public:
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             ArenaTeam* Arena = new ArenaTeam();
 
             if (!Arena->Create(target->GetGUID(), type, name, 4293102085, 101, 4293253939, 4, 4284049911))
             {
                 delete Arena;
+<<<<<<< HEAD
 =======
             ArenaTeam* arena = new ArenaTeam();
 
@@ -111,11 +121,14 @@ public:
             {
                 delete arena;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 handler->SendSysMessage(LANG_BAD_VALUE);
                 handler->SetSentErrorMessage(true);
                 return false;
             }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             sArenaTeamMgr->AddArenaTeam(Arena);
             handler->PSendSysMessage(LANG_ARENA_CREATE, Arena->GetName().c_str(), Arena->GetId(), Arena->GetType(), Arena->GetCaptain());
@@ -123,6 +136,10 @@ public:
             sArenaTeamMgr->AddArenaTeam(arena);
             handler->PSendSysMessage(LANG_ARENA_CREATE, arena->GetName().c_str(), arena->GetId(), arena->GetType(), arena->GetCaptain());
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            sArenaTeamMgr->AddArenaTeam(Arena);
+            handler->PSendSysMessage(LANG_ARENA_CREATE, Arena->GetName().c_str(), Arena->GetId(), Arena->GetType(), Arena->GetCaptain());
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
         else
         {
@@ -131,9 +148,12 @@ public:
             return false;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         return true;
     }
 
@@ -147,6 +167,7 @@ public:
             return false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         ArenaTeam* Arena = sArenaTeamMgr->GetArenaTeamById(teamId);
 
         if (!Arena)
@@ -155,6 +176,11 @@ public:
 
         if (!arena)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        ArenaTeam* Arena = sArenaTeamMgr->GetArenaTeamById(teamId);
+
+        if (!Arena)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         {
             handler->PSendSysMessage(LANG_ARENA_ERROR_NOT_FOUND, teamId);
             handler->SetSentErrorMessage(true);
@@ -162,16 +188,23 @@ public:
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (Arena->IsFighting())
 =======
         if (arena->IsFighting())
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        if (Arena->IsFighting())
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         {
             handler->SendSysMessage(LANG_ARENA_ERROR_COMBAT);
             handler->SetSentErrorMessage(true);
             return false;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         std::string name = Arena->GetName();
         Arena->Disband();
         if (handler->GetSession())
@@ -180,6 +213,7 @@ public:
         else
             TC_LOG_DEBUG(LOG_FILTER_ARENAS, "Console: disbanded arena team type: %u [Id: %u].", Arena->GetType(), teamId);
         delete(Arena);
+<<<<<<< HEAD
 =======
 
         std::string name = arena->GetName();
@@ -193,6 +227,8 @@ public:
         delete(arena);
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         handler->PSendSysMessage(LANG_ARENA_DISBAND, name.c_str(), teamId);
         return true;
     }
@@ -221,12 +257,17 @@ public:
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         ArenaTeam* Arena = sArenaTeamMgr->GetArenaTeamByName(oldArenaStr);
         if (!Arena)
 =======
         ArenaTeam* arena = sArenaTeamMgr->GetArenaTeamByName(oldArenaStr);
         if (!arena)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        ArenaTeam* Arena = sArenaTeamMgr->GetArenaTeamByName(oldArenaStr);
+        if (!Arena)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         {
             handler->PSendSysMessage(LANG_AREAN_ERROR_NAME_NOT_FOUND, oldArenaStr);
             handler->SetSentErrorMessage(true);
@@ -241,10 +282,14 @@ public:
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (Arena->IsFighting())
 =======
         if (arena->IsFighting())
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        if (Arena->IsFighting())
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         {
             handler->SendSysMessage(LANG_ARENA_ERROR_COMBAT);
             handler->SetSentErrorMessage(true);
@@ -252,22 +297,30 @@ public:
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (!Arena->SetName(newArenaStr))
 =======
         if (!arena->SetName(newArenaStr))
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        if (!Arena->SetName(newArenaStr))
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         {
             handler->SendSysMessage(LANG_BAD_VALUE);
             handler->SetSentErrorMessage(true);
             return false;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         handler->PSendSysMessage(LANG_ARENA_RENAME, Arena->GetId(), oldArenaStr, newArenaStr);
         if (handler->GetSession())
             TC_LOG_DEBUG(LOG_FILTER_ARENAS, "GameMaster: %s [GUID: %u] rename arena team \"%s\"[Id: %u] to \"%s\"",
                 handler->GetSession()->GetPlayer()->GetName().c_str(), handler->GetSession()->GetPlayer()->GetGUIDLow(), oldArenaStr, Arena->GetId(), newArenaStr);
         else
             TC_LOG_DEBUG(LOG_FILTER_ARENAS, "Console: rename arena team \"%s\"[Id: %u] to \"%s\"", oldArenaStr, Arena->GetId(), newArenaStr);
+<<<<<<< HEAD
 =======
 
         handler->PSendSysMessage(LANG_ARENA_RENAME, arena->GetId(), oldArenaStr, newArenaStr);
@@ -278,6 +331,8 @@ public:
             TC_LOG_DEBUG(LOG_FILTER_ARENAS, "Console: rename arena team \"%s\"[Id: %u] to \"%s\"", oldArenaStr, arena->GetId(), newArenaStr);
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         return true;
     }
 
@@ -339,11 +394,15 @@ public:
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         std::string oldCaptainName;
         sObjectMgr->GetPlayerNameByGUID(arena->GetCaptain(), oldCaptainName);
         arena->SetCaptain(targetGuid);
 
         handler->PSendSysMessage(LANG_ARENA_CAPTAIN, arena->GetName().c_str(), arena->GetId(), oldCaptainName.c_str(), target->GetName().c_str());
+<<<<<<< HEAD
 =======
         arena->SetCaptain(targetGuid);
 
@@ -356,6 +415,8 @@ public:
 
         handler->PSendSysMessage(LANG_ARENA_CAPTAIN, arena->GetName().c_str(), arena->GetId(), oldCaptainNameData->m_name.c_str(), target->GetName().c_str());
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (handler->GetSession())
             TC_LOG_DEBUG(LOG_FILTER_ARENAS, "GameMaster: %s [GUID: %u] promoted player: %s [GUID: %u] to leader of arena team \"%s\"[Id: %u]",
                 handler->GetSession()->GetPlayer()->GetName().c_str(), handler->GetSession()->GetPlayer()->GetGUIDLow(), target->GetName().c_str(), target->GetGUIDLow(), arena->GetName().c_str(), arena->GetId());
@@ -363,9 +424,12 @@ public:
             TC_LOG_DEBUG(LOG_FILTER_ARENAS, "Console: promoted player: %s [GUID: %u] to leader of arena team \"%s\"[Id: %u]",
                 target->GetName().c_str(), target->GetGUIDLow(), arena->GetName().c_str(), arena->GetId());
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         return true;
     }
 
@@ -379,6 +443,7 @@ public:
             return false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         ArenaTeam* Arena = sArenaTeamMgr->GetArenaTeamById(teamId);
 
         if (!Arena)
@@ -387,6 +452,11 @@ public:
 
         if (!arena)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        ArenaTeam* Arena = sArenaTeamMgr->GetArenaTeamById(teamId);
+
+        if (!Arena)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         {
             handler->PSendSysMessage(LANG_ARENA_ERROR_NOT_FOUND, teamId);
             handler->SetSentErrorMessage(true);
@@ -394,17 +464,23 @@ public:
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         handler->PSendSysMessage(LANG_ARENA_INFO_HEADER, Arena->GetName().c_str(), Arena->GetId(), Arena->GetRating(), Arena->GetType(), Arena->GetType());
         for (ArenaTeam::MemberList::iterator itr = Arena->m_membersBegin(); itr != Arena->m_membersEnd(); ++itr)
         {
             handler->PSendSysMessage(LANG_ARENA_INFO_MEMBERS, itr->Name.c_str(), GUID_LOPART(itr->Guid), itr->PersonalRating, (Arena->GetCaptain() == itr->Guid ? "- Captain" : ""));
         }
+<<<<<<< HEAD
 =======
         handler->PSendSysMessage(LANG_ARENA_INFO_HEADER, arena->GetName().c_str(), arena->GetId(), arena->GetRating(), arena->GetType(), arena->GetType());
         for (ArenaTeam::MemberList::iterator itr = arena->m_membersBegin(); itr != arena->m_membersEnd(); ++itr)
             handler->PSendSysMessage(LANG_ARENA_INFO_MEMBERS, itr->Name.c_str(), GUID_LOPART(itr->Guid), itr->PersonalRating, (arena->GetCaptain() == itr->Guid ? "- Captain" : ""));
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         return true;
     }
 
@@ -426,6 +502,9 @@ public:
         for (; i != sArenaTeamMgr->GetArenaTeamMapEnd(); ++i)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             ArenaTeam* Arena = i->second;
 
             if (Utf8FitTo(Arena->GetName(), wnamepart))
@@ -437,6 +516,7 @@ public:
                         found = true;
 
                         continue;
+<<<<<<< HEAD
 =======
             ArenaTeam* arena = i->second;
 
@@ -449,6 +529,8 @@ public:
                     continue;
                 }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
              }
         }
 

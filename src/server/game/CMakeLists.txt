@@ -10,9 +10,13 @@
 
 file(GLOB_RECURSE sources_Accounts Accounts/*.cpp Accounts/*.h)
 <<<<<<< HEAD
+<<<<<<< HEAD
 file(GLOB_RECURSE sources_Anticheat Anticheat/*.cpp Anticheat/*.h)
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+file(GLOB_RECURSE sources_Anticheat Anticheat/*.cpp Anticheat/*.h)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 file(GLOB_RECURSE sources_Achievements Achievements/*.cpp Achievements/*.h)
 file(GLOB_RECURSE sources_Addons Addons/*.cpp Addons/*.h)
 file(GLOB_RECURSE sources_AI AI/*.cpp AI/*.h)
@@ -53,9 +57,13 @@ file(GLOB_RECURSE sources_Warden Warden/*.cpp Warden/*.h)
 file(GLOB_RECURSE sources_Weather Weather/*.cpp Weather/*.h)
 file(GLOB_RECURSE sources_World World/*.cpp World/*.h)
 <<<<<<< HEAD
+<<<<<<< HEAD
 file(GLOB_RECURSE sources_Cfbg Cfbg/*.cpp Cfbg/*.h)
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+file(GLOB_RECURSE sources_Cfbg Cfbg/*.cpp Cfbg/*.h)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 # Create game-libary
 
@@ -68,9 +76,13 @@ set(game_STAT_SRCS
   ${game_STAT_SRCS}
   ${sources_Accounts}
 <<<<<<< HEAD
+<<<<<<< HEAD
   ${sources_Anticheat}
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+  ${sources_Anticheat}
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   ${sources_Achievements}
   ${sources_Addons}
   ${sources_AI}
@@ -111,9 +123,13 @@ set(game_STAT_SRCS
   ${sources_Weather}
   ${sources_World}
 <<<<<<< HEAD
+<<<<<<< HEAD
   ${sources_Cfbg}
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+  ${sources_Cfbg}
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 )
 
 include_directories(
@@ -143,9 +159,13 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/Accounts
 <<<<<<< HEAD
+<<<<<<< HEAD
   ${CMAKE_CURRENT_SOURCE_DIR}/Anticheat
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+  ${CMAKE_CURRENT_SOURCE_DIR}/Anticheat
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   ${CMAKE_CURRENT_SOURCE_DIR}/Achievements
   ${CMAKE_CURRENT_SOURCE_DIR}/Addons
   ${CMAKE_CURRENT_SOURCE_DIR}/AI

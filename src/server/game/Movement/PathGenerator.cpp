@@ -189,6 +189,9 @@ void PathGenerator::BuildPolyPath(G3D::Vector3 const& startPos, G3D::Vector3 con
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // Check for swimming or flying shortcut
         if (_sourceUnit->GetTypeId() == TYPEID_UNIT)
         {
@@ -200,9 +203,12 @@ void PathGenerator::BuildPolyPath(G3D::Vector3 const& startPos, G3D::Vector3 con
         else
             _type = PATHFIND_NOPATH;
 
+<<<<<<< HEAD
 =======
         _type = (path || waterPath) ? PathType(PATHFIND_NORMAL | PATHFIND_NOT_USING_PATH) : PATHFIND_NOPATH;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         return;
     }
 
@@ -491,6 +497,9 @@ void PathGenerator::BuildPointPath(const float *startPoint, const float *endPoin
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Custom Point for Bugged Zone (By Quentis)
     float startEndDist = Dist3DSqr(GetStartPosition(), GetEndPosition());
 
@@ -596,8 +605,11 @@ void PathGenerator::BuildPointPath(const float *startPoint, const float *endPoin
     }
     // Custom Point for Bugged Zone
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     TC_LOG_DEBUG(LOG_FILTER_MAPS, "++ PathGenerator::BuildPointPath path type %d size %d poly-size %d\n", _type, pointCount, _polyLength);
 }
 

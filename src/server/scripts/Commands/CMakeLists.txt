@@ -11,9 +11,13 @@
 set(scripts_STAT_SRCS
   ${scripts_STAT_SRCS}
 <<<<<<< HEAD
+<<<<<<< HEAD
   Commands/cs_anticheat.cpp
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+  Commands/cs_anticheat.cpp
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   Commands/cs_account.cpp
   Commands/cs_achievement.cpp
   Commands/cs_arena.cpp
@@ -42,9 +46,13 @@ set(scripts_STAT_SRCS
   Commands/cs_npc.cpp
   Commands/cs_quest.cpp
 <<<<<<< HEAD
+<<<<<<< HEAD
   Commands/cs_rates.cpp
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+  Commands/cs_rates.cpp
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
   Commands/cs_rbac.cpp
   Commands/cs_reload.cpp
   Commands/cs_reset.cpp

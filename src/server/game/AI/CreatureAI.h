@@ -80,9 +80,13 @@ class CreatureAI : public UnitAI
     public:
         void Talk(uint8 id, uint64 WhisperGuid = 0);
 <<<<<<< HEAD
+<<<<<<< HEAD
         void TalkToMap(uint8 id, uint64 WhisperGuid = 0);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        void TalkToMap(uint8 id, uint64 WhisperGuid = 0);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         explicit CreatureAI(Creature* creature) : UnitAI(creature), me(creature), m_MoveInLineOfSight_locked(false) {}
 
         virtual ~CreatureAI() {}

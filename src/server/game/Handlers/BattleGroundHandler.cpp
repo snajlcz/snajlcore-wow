@@ -36,10 +36,15 @@
 #include "Group.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "Cfbg/Cfbg.h"
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+#include "Cfbg/Cfbg.h"
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void WorldSession::HandleBattlemasterHelloOpcode(WorldPacket& recvData)
 {
     uint64 guid;
@@ -287,14 +292,20 @@ void WorldSession::HandleBattlegroundPlayerPositionsOpcode(WorldPacket& /*recvDa
     if (allianceFlagCarrier)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (allianceFlagCarrier->SendRealNameQuery())
             data << uint64(allianceFlagCarrier->GetGUID() + LIMIT_UINT32);
         else
             data << uint64(allianceFlagCarrier->GetGUID());
 
+<<<<<<< HEAD
 =======
         data << uint64(allianceFlagCarrier->GetGUID());
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         data << float(allianceFlagCarrier->GetPositionX());
         data << float(allianceFlagCarrier->GetPositionY());
     }
@@ -302,14 +313,20 @@ void WorldSession::HandleBattlegroundPlayerPositionsOpcode(WorldPacket& /*recvDa
     if (hordeFlagCarrier)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (hordeFlagCarrier->SendRealNameQuery())
             data << uint64(hordeFlagCarrier->GetGUID() + LIMIT_UINT32);
         else
             data << uint64(hordeFlagCarrier->GetGUID());
 
+<<<<<<< HEAD
 =======
         data << uint64(hordeFlagCarrier->GetGUID());
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         data << float(hordeFlagCarrier->GetPositionX());
         data << float(hordeFlagCarrier->GetPositionY());
     }
@@ -565,10 +582,14 @@ void WorldSession::HandleBattlefieldStatusOpcode(WorldPacket & /*recvData*/)
                 // this line is checked, i only don't know if GetStartTime is changing itself after bg end!
                 // send status in Battleground
 <<<<<<< HEAD
+<<<<<<< HEAD
                 sBattlegroundMgr->BuildBattlegroundStatusPacket(&data, bg, i, STATUS_IN_PROGRESS, bg->GetEndTime(), bg->GetStartTime(), arenaType, _player->GetTeam());
 =======
                 sBattlegroundMgr->BuildBattlegroundStatusPacket(&data, bg, i, STATUS_IN_PROGRESS, bg->GetEndTime(), bg->GetStartTime(), arenaType, _player->GetBGTeam());
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                sBattlegroundMgr->BuildBattlegroundStatusPacket(&data, bg, i, STATUS_IN_PROGRESS, bg->GetEndTime(), bg->GetStartTime(), arenaType, _player->GetTeam());
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 SendPacket(&data);
                 continue;
             }

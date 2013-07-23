@@ -123,10 +123,14 @@ void Corpse::SaveToDB()
     stmt->setUInt8 (index++, GetType());                                              // corpseType
     stmt->setUInt32(index++, GetInstanceId());                                        // instanceId
 <<<<<<< HEAD
+<<<<<<< HEAD
     stmt->setUInt16(index++, GetPhaseMask());                                         // phaseMask
 =======
     stmt->setUInt32(index++, GetPhaseMask());                                         // phaseMask
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    stmt->setUInt16(index++, GetPhaseMask());                                         // phaseMask
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     trans->Append(stmt);
 
     CharacterDatabase.CommitTransaction(trans);
@@ -191,10 +195,14 @@ bool Corpse::LoadCorpseFromDB(uint32 guid, Field* fields)
 
     uint32 instanceId  = fields[14].GetUInt32();
 <<<<<<< HEAD
+<<<<<<< HEAD
     uint32 phaseMask   = fields[15].GetUInt16();
 =======
     uint32 phaseMask   = fields[15].GetUInt32();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    uint32 phaseMask   = fields[15].GetUInt16();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     // place
     SetLocationInstanceId(instanceId);

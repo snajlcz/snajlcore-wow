@@ -34,21 +34,32 @@ enum PaladinSpells
     SPELL_PALADIN_BLESSING_OF_SANCTUARY_ENERGIZE = 57319,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SPELL_BLESSING_OF_KINGS                      = 20217,
     SPELL_GREATER_BLESSING_OF_KINGS              = 25898,
     SPELL_BLESSING_OF_FORGOTTEN_KINGS            = 72586,
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SPELL_PALADIN_HOLY_SHOCK_R1                  = 20473,
     SPELL_PALADIN_HOLY_SHOCK_R1_DAMAGE           = 25912,
     SPELL_PALADIN_HOLY_SHOCK_R1_HEALING          = 25914,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     PALADIN_SPELL_SACRED_SHIELD_EFFECT           = 58597,
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    PALADIN_SPELL_SACRED_SHIELD_EFFECT           = 58597,
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SPELL_PALADIN_BLESSING_OF_LOWER_CITY_DRUID   = 37878,
     SPELL_PALADIN_BLESSING_OF_LOWER_CITY_PALADIN = 37879,
     SPELL_PALADIN_BLESSING_OF_LOWER_CITY_PRIEST  = 37880,
@@ -610,6 +621,9 @@ class spell_pal_holy_shock : public SpellScriptLoader
             PrepareSpellScript(spell_pal_holy_shock_SpellScript);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             bool Validate(SpellInfo const* spell) OVERRIDE
             {
                 if (!sSpellMgr->GetSpellInfo(SPELL_PALADIN_HOLY_SHOCK_R1))
@@ -620,6 +634,7 @@ class spell_pal_holy_shock : public SpellScriptLoader
                     return false;
 
                 uint8 rank = sSpellMgr->GetSpellRank(spell->Id);
+<<<<<<< HEAD
 =======
             bool Validate(SpellInfo const* spellInfo) OVERRIDE
             {
@@ -633,6 +648,8 @@ class spell_pal_holy_shock : public SpellScriptLoader
 
                 uint8 rank = spellInfo->GetRank();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 if (!sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_DAMAGE, rank, true) || !sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_HEALING, rank, true))
                     return false;
 
@@ -645,11 +662,15 @@ class spell_pal_holy_shock : public SpellScriptLoader
                 if (Unit* unitTarget = GetHitUnit())
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     uint8 rank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
                     if (caster->IsFriendlyTo(unitTarget))
                         caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_HEALING, rank), true, 0);
                     else
                         caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_DAMAGE, rank), true, 0);
+<<<<<<< HEAD
 =======
                     uint8 rank = GetSpellInfo()->GetRank();
                     if (caster->IsFriendlyTo(unitTarget))
@@ -657,6 +678,8 @@ class spell_pal_holy_shock : public SpellScriptLoader
                     else
                         caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_DAMAGE, rank), true);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 }
             }
 
@@ -851,14 +874,20 @@ class spell_pal_sacred_shield : public SpellScriptLoader
         {
             PrepareAuraScript(spell_pal_sacred_shield_AuraScript);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             bool Validate(SpellInfo const* /*entry*/)
             {
                 if (!sSpellMgr->GetSpellInfo(PALADIN_SPELL_SACRED_SHIELD_EFFECT))
                     return false;
                 return true;
             }
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             void CalculateAmount(AuraEffect const* aurEff, int32& amount, bool& /*canBeRecalculated*/)
             {
@@ -883,6 +912,9 @@ class spell_pal_sacred_shield : public SpellScriptLoader
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             void HandleEffectRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
                 if (Unit* caster = GetCaster())
@@ -894,11 +926,14 @@ class spell_pal_sacred_shield : public SpellScriptLoader
             {
                 DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_pal_sacred_shield_AuraScript::CalculateAmount, EFFECT_0, SPELL_AURA_SCHOOL_ABSORB);
                 AfterEffectRemove += AuraEffectRemoveFn(spell_pal_sacred_shield_AuraScript::HandleEffectRemove, EFFECT_1, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK);
+<<<<<<< HEAD
 =======
             void Register() OVERRIDE
             {
                 DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_pal_sacred_shield_AuraScript::CalculateAmount, EFFECT_0, SPELL_AURA_SCHOOL_ABSORB);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
         };
 
@@ -955,6 +990,9 @@ class spell_pal_seal_of_righteousness : public SpellScriptLoader
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 class spell_pal_blessing_stack : public SpellScriptLoader
 {
 public:
@@ -1045,8 +1083,11 @@ public:
    }
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_paladin_spell_scripts()
 {
     new spell_pal_ardent_defender();
@@ -1067,7 +1108,11 @@ void AddSC_paladin_spell_scripts()
     new spell_pal_sacred_shield();
     new spell_pal_seal_of_righteousness();
 <<<<<<< HEAD
+<<<<<<< HEAD
     new spell_pal_blessing_stack();
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    new spell_pal_blessing_stack();
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

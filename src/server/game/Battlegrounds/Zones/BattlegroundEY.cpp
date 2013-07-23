@@ -953,7 +953,11 @@ uint32 BattlegroundEY::GetPrematureWinner()
 
     return Battleground::GetPrematureWinner();
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+}
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e

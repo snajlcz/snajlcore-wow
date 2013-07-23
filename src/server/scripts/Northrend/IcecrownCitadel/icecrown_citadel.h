@@ -1,5 +1,8 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
  * Copyright (C) 2008-2013 Trinity <http://www.trinitycore.org/>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,6 +20,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Updated by: Toba and Baeumchen (maddin)
+<<<<<<< HEAD
 =======
  * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
  *
@@ -33,6 +37,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
  */
 
 #ifndef ICECROWN_CITADEL_H_
@@ -46,10 +52,14 @@
 #define ICCScriptName "instance_icecrown_citadel"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 uint32 const EncounterCount = 14;
 =======
 uint32 const EncounterCount = 13;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+uint32 const EncounterCount = 14;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 uint32 const WeeklyNPCs = 9;
 uint32 const MaxHeroicAttempts = 50;
 
@@ -112,6 +122,9 @@ enum DataTypes
     DATA_SINDRAGOSA                 = 11,
     DATA_THE_LICH_KING              = 12,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     DATA_SINDRAGOSA_GAUNTLET        = 13,
 
     // Additional data
@@ -162,6 +175,7 @@ enum DataTypes
     DATA_MURADIN_BRONZEBEARD                = 110,
     DATA_GUNSHIP_BATTLE                     = 111,
     GUID_PLAYER_LOCATION                    = 112,
+<<<<<<< HEAD
 =======
 
     // Additional data
@@ -193,6 +207,8 @@ enum DataTypes
     DATA_ARTHAS_PLATFORM            = 38,
     DATA_TERENAS_MENETHIL           = 39,
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum CreaturesIds
@@ -360,6 +376,9 @@ enum CreaturesIds
     NPC_FROSTMOURNE_TRIGGER                     = 38584,
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
  // Gunship: Ids of NPCs
     NPC_GB_SKYBREAKER                           = 37540,
     NPC_GB_ORGRIMS_HAMMER                       = 37215,
@@ -401,8 +420,11 @@ enum CreaturesIds
     NPC_FROSTWARDEN_WARRIOR                     = 37228,
     NPC_FROSTWARDEN_SORCERESS                   = 37229,
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Generic
     NPC_INVISIBLE_STALKER                       = 30298,
 };
@@ -489,6 +511,9 @@ enum GameObjectsIds
     GO_LAVAMAN_PILLARS_CHAINED              = 202437,
     GO_LAVAMAN_PILLARS_UNCHAINED            = 202438,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
    //Gunship: Ids of GameObjects
     GO_ORGRIM_S_HAMMER_HORDE_ICC            = 201812,
@@ -504,8 +529,11 @@ enum GameObjectsIds
     GO_CAPITAN_CHEST_H_10H                  = 202179,
     GO_CAPITAN_CHEST_H_25H                  = 202180,
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum AchievementCriteriaIds

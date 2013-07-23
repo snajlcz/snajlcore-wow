@@ -482,6 +482,9 @@ void BattlegroundIC::EndBattleground(uint32 winner)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void BattlegroundIC::RealocatePlayers(ICNodePointType nodeType)
 {
     // Those who are waiting to resurrect at this node are taken to the closest own node's graveyard
@@ -504,8 +507,11 @@ void BattlegroundIC::RealocatePlayers(ICNodePointType nodeType)
     }
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void BattlegroundIC::EventPlayerClickedOnFlag(Player* player, GameObject* target_obj)
 {
     if (GetStatus() != STATUS_IN_PROGRESS)
@@ -535,10 +541,14 @@ void BattlegroundIC::EventPlayerClickedOnFlag(Player* player, GameObject* target
                 nodePoint[i].needChange = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 RealocatePlayers(nodePoint[i].nodeType);
 =======
                 RelocateDeadPlayers(BgCreatures[BG_IC_NPC_SPIRIT_GUIDE_1 + nodePoint[i].nodeType - 2]);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                RealocatePlayers(nodePoint[i].nodeType);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                 // if we are here means that the point has been lost, or it is the first capture
 

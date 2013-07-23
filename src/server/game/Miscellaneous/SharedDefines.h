@@ -3157,9 +3157,13 @@ enum SummonType
 enum EventId
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     EVENT_SPELLCLICK        = 1001,
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    EVENT_SPELLCLICK        = 1001,
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     EVENT_CHARGE            = 1003,
     EVENT_JUMP              = 1004,
 

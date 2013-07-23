@@ -65,12 +65,18 @@ void WorldSession::HandleTabardVendorActivateOpcode(WorldPacket& recvData)
         GetPlayer()->RemoveAurasByType(SPELL_AURA_FEIGN_DEATH);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // trainer list loaded at check;
     if (!unit->IsCanTrainingOf(_player, true))
         return;
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SendTabardVendorActivate(guid);
 }
 
@@ -101,11 +107,17 @@ void WorldSession::HandleBankerActivateOpcode(WorldPacket& recvData)
         GetPlayer()->RemoveAurasByType(SPELL_AURA_FEIGN_DEATH);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (!unit->IsCanTrainingOf(_player, true))
         return;
 
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    if (!unit->IsCanTrainingOf(_player, true))
+        return;
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SendShowBank(guid);
 }
 

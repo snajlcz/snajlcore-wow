@@ -109,9 +109,13 @@ set(scripts_STAT_SRCS
   Outland/zone_netherstorm.cpp
   Outland/zone_zangarmarsh.cpp
 <<<<<<< HEAD
+<<<<<<< HEAD
   Outland/boss_ahune.cpp
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+  Outland/boss_ahune.cpp
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 )
 
 message("  -> Prepared: Outland")

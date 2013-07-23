@@ -546,18 +546,25 @@ public:
     bool OnGossipHello(Player* player, GameObject* go) OVERRIDE
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         uint8 SpectralPlayers = 0;
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        uint8 SpectralPlayers = 0;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         Map* map = go->GetMap();
         if (!map->IsDungeon())
             return true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #if MAX_PLAYERS_IN_SPECTRAL_REALM > 0
         uint8 SpectralPlayers = 0;
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         Map::PlayerList const &PlayerList = map->GetPlayers();
         for (Map::PlayerList::const_iterator i = PlayerList.begin(); i != PlayerList.end(); ++i)
         {
@@ -566,6 +573,7 @@ public:
         }
 
         if (player->HasAura(AURA_SPECTRAL_EXHAUSTION) || SpectralPlayers >= MAX_PLAYERS_IN_SPECTRAL_REALM)
+<<<<<<< HEAD
 <<<<<<< HEAD
             player->GetSession()->SendNotification(GO_FAILED);
         else
@@ -579,6 +587,11 @@ public:
 
         player->CastSpell(player, SPELL_TELEPORT_SPECTRAL, true);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            player->GetSession()->SendNotification(GO_FAILED);
+        else
+            player->CastSpell(player, SPELL_TELEPORT_SPECTRAL, true);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         return true;
     }
 };

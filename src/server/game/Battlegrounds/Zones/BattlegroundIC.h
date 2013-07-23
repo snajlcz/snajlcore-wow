@@ -951,9 +951,13 @@ class BattlegroundIC : public Battleground
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         void RealocatePlayers(ICNodePointType nodeType);
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        void RealocatePlayers(ICNodePointType nodeType);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void UpdateNodeWorldState(ICNodePoint* nodePoint);
         void HandleCapturedNodes(ICNodePoint* nodePoint, bool recapture);
         void HandleContestedNodes(ICNodePoint* nodePoint);

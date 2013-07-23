@@ -17,6 +17,9 @@
 
 #include "ScriptMgr.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "ScriptedCreature.h"
 #include "SpellScript.h"
 #include "ulduar.h"
@@ -25,10 +28,13 @@
 #include "VehicleDefines.h"
 
 
+<<<<<<< HEAD
 =======
 #include "SpellScript.h"
 #include "ulduar.h"
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 enum Yells
 {
@@ -47,6 +53,9 @@ enum Yells
     SAY_V07TRON_SLAY                            = 12,
     SAY_V07TRON_DEATH                           = 13,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SAY_BERSERK                                 = 14,
     //Computer
     SAY_HARDMODE                                = 0,
@@ -71,14 +80,20 @@ enum MimironDatas
 {
     DATA_GET_HARD_MODE,
     DATA_SET_UP_US_THE_BOMB           = 29893237,
+<<<<<<< HEAD
 =======
     SAY_BERSERK                                 = 14
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum Spells
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Leviathan MK II
     SPELL_MINES_SPAWN                           = 65347,
     SPELL_PROXIMITY_MINES                       = 63027,
@@ -1958,6 +1973,7 @@ class npc_mimiron_flame_spread : public CreatureScript
         {
             return GetUlduarAI<npc_mimiron_flame_spreadAI>(creature);
         }
+<<<<<<< HEAD
 =======
     SPELL_JETPACK                               = 63341,
     SPELL_EMERGENCY_MODE                        = 64582,
@@ -1999,6 +2015,8 @@ enum Npc
     NPC_EMERGENCE_FIRE_BOT                      = 34147,
     NPC_FROST_BOMB                              = 34149,
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 class spell_ulduar_proximity_mines : public SpellScriptLoader
@@ -2030,6 +2048,9 @@ class spell_ulduar_proximity_mines : public SpellScriptLoader
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 class spell_rapid_burst : public SpellScriptLoader
 {
     public:
@@ -2142,9 +2163,12 @@ void AddSC_boss_mimiron()
     new spell_rapid_burst();
     new go_not_push_button();
     new achievement_mimiron_firefighter();
+<<<<<<< HEAD
 =======
 void AddSC_boss_mimiron()
 {
     new spell_ulduar_proximity_mines();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

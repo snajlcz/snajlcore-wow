@@ -50,6 +50,9 @@ void WorldSession::HandleDuelAcceptedOpcode(WorldPacket& recvPacket)
     plTarget->duel->startTimer = now;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Reset Duel Cooldowns, Hp, Mana, Rage and Runic Power.
     //                         Elwynn Forest                Durotar                      Circle of Wills                Astranaar
     if (player->GetAreaId() == 12 || player->GetAreaId() == 14 || player->GetAreaId() == 4570 || player->GetAreaId() == 415)
@@ -90,8 +93,11 @@ void WorldSession::HandleDuelAcceptedOpcode(WorldPacket& recvPacket)
     if (plTarget->getPowerType() == POWER_RUNIC_POWER)
         plTarget->SetPower(POWER_RUNIC_POWER, 0);
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     player->SendDuelCountdown(3000);
     plTarget->SendDuelCountdown(3000);
 }

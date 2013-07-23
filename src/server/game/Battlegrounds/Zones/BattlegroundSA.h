@@ -47,11 +47,16 @@ enum BG_SA_GateState
     BG_SA_GATE_OK           = 1,
     BG_SA_GATE_DAMAGED      = 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
     BG_SA_GATE_DESTROYED    = 3,
     BG_SA_GATE_DAMAGE       = 4
 =======
     BG_SA_GATE_DESTROYED    = 3
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    BG_SA_GATE_DESTROYED    = 3,
+    BG_SA_GATE_DAMAGE       = 4
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum BG_SA_EventIdGate
@@ -191,6 +196,9 @@ uint32 const BG_SA_NpcEntries[BG_SA_MAXNPC] =
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 enum GameOjects
 {
     BG_SA_GO_GREEN_GATE             = 190722,
@@ -201,8 +209,11 @@ enum GameOjects
     BG_SA_GO_ANCIENT_GATE           = 192549
 };
 
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 float const BG_SA_NpcSpawnlocs[BG_SA_MAXNPC + BG_SA_DEMOLISHER_AMOUNT][4] =
 {
     // Cannons
@@ -491,10 +502,14 @@ class BattlegroundSA : public Battleground
         void EventPlayerUsedGO(Player* Source, GameObject* object);
         /// Return gate id, relative to bg data, according to gameobject id
 <<<<<<< HEAD
+<<<<<<< HEAD
         uint32 getGateIdFromEventId(uint32 id)
 =======
         uint32 getGateIdFromDamagedOrDestroyEventId(uint32 id)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        uint32 getGateIdFromEventId(uint32 id)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         {
             switch (id)
             {
@@ -528,6 +543,9 @@ class BattlegroundSA : public Battleground
             return 0;
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         uint32 getGateIdFromEntry(uint32 entry)
         {
             switch (entry)
@@ -555,8 +573,11 @@ class BattlegroundSA : public Battleground
             }
             return 0;
         }
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         /// Return worldstate id, according to door id
         uint32 getWorldStateFromGateId(uint32 id)
         {

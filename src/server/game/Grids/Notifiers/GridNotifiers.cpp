@@ -107,16 +107,22 @@ void VisibleChangesNotifier::Visit(DynamicObjectMapType &m)
 {
     for (DynamicObjectMapType::iterator iter = m.begin(); iter != m.end(); ++iter)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (IS_PLAYER_GUID(iter->GetSource()->GetCasterGUID()))
             if (Player* caster = (Player*)iter->GetSource()->GetCaster())
                 if (caster->m_seer == iter->GetSource())
                     caster->UpdateVisibilityOf(&i_object);
+<<<<<<< HEAD
 =======
         if (Unit* caster = iter->GetSource()->GetCaster())
             if (Player* player = caster->ToPlayer())
                 if (player->m_seer == iter->GetSource())
                     player->UpdateVisibilityOf(&i_object);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }
 
 inline void CreatureUnitRelocationWorker(Creature* c, Unit* u)
@@ -307,12 +313,16 @@ void MessageDistDeliverer::Visit(DynamicObjectMapType &m)
             continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (IS_PLAYER_GUID(target->GetCasterGUID()))
         {
             // Send packet back to the caster if the caster has vision of dynamic object
             Player* caster = (Player*)target->GetCaster();
             if (caster && caster->m_seer == target)
                 SendPacket(caster);
+<<<<<<< HEAD
 =======
         if (Unit* caster = target->GetCaster())
         {
@@ -321,6 +331,8 @@ void MessageDistDeliverer::Visit(DynamicObjectMapType &m)
             if (player && player->m_seer == target)
                 SendPacket(player);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
     }
 }

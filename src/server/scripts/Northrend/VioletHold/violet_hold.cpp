@@ -22,11 +22,14 @@
 #include "violet_hold.h"
 #include "Player.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include "SpellAuras.h"
 #include "SpellAuraEffects.h"
 #include "SpellScript.h"
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 #define GOSSIP_START_EVENT  "Get your people to safety, we'll keep the Blue Dragonflight's forces at bay."
 #define GOSSIP_ITEM_1       "Activate the crystals when we get in trouble, right"
@@ -115,12 +118,17 @@ enum AzureStalkerSpells
 enum AzureSaboteurSpells
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     SABOTEUR_SHIELD_DISRUPTION        = 58291,
     SABOTEUR_SHIELD_EFFECT            = 45775
 =======
     SABOTEUR_SHIELD_DISRUPTION  = 58291,
     SABOTEUR_SHIELD_EFFECT      = 45775
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    SABOTEUR_SHIELD_DISRUPTION        = 58291,
+    SABOTEUR_SHIELD_EFFECT            = 45775
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum TrashDoorSpell
@@ -131,6 +139,7 @@ enum TrashDoorSpell
 enum Spells
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     SPELL_PORTAL_CHANNEL              = 58012,
     SPELL_CRYSTALL_ACTIVATION         = 57804
 =======
@@ -138,15 +147,23 @@ enum Spells
     SPELL_CRYSTAL_ACTIVATION    = 57804,
     SPELL_ARCANE_SPHERE_PASSIVE = 44263
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    SPELL_PORTAL_CHANNEL              = 58012,
+    SPELL_CRYSTALL_ACTIVATION         = 57804
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum Sinclari
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     SAY_SINCLARI_1                    = 0
 =======
     SAY_SINCLARI_1              = 0
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    SAY_SINCLARI_1                    = 0
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 float FirstPortalWPs [6][3] =
@@ -1342,6 +1359,7 @@ public:
         }
     };
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 };
@@ -1394,6 +1412,9 @@ public:
         return false;
     }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 void AddSC_violet_hold()
@@ -1410,8 +1431,11 @@ void AddSC_violet_hold()
     new npc_azure_stalker();
     new npc_azure_saboteur();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     new npc_violet_hold_arcane_sphere();
     new go_activation_crystal();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

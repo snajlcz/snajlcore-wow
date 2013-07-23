@@ -1308,6 +1308,9 @@ public:
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 /*######
 ## go_org_portal //193052
 ######*/
@@ -1618,6 +1621,7 @@ void AddSC_go_scripts()
     new go_org_portal;
     new go_sw_portal;
     new go_soothsaying_for_dummies();
+<<<<<<< HEAD
 =======
 void AddSC_go_scripts()
 {
@@ -1659,4 +1663,6 @@ void AddSC_go_scripts()
     new go_frostblade_shrine();
     new go_midsummer_bonfire();
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

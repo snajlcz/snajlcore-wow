@@ -16,6 +16,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* ScriptData
 SDName: Assembly of Iron encounter
@@ -25,6 +26,8 @@ SDCategory: Ulduar - Ulduar
 EndScriptData */
 
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "SpellScript.h"
@@ -143,10 +146,14 @@ class boss_steelbreaker : public CreatureScript
         struct boss_steelbreakerAI : public BossAI
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             boss_steelbreakerAI(Creature* creature) : BossAI(creature, DATA_ASSEMBLY_OF_IRON) { }
 =======
             boss_steelbreakerAI(Creature* creature) : BossAI(creature, BOSS_ASSEMBLY_OF_IRON) { }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            boss_steelbreakerAI(Creature* creature) : BossAI(creature, DATA_ASSEMBLY_OF_IRON) { }
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             uint32 phase;
 
@@ -200,10 +207,14 @@ class boss_steelbreaker : public CreatureScript
                 _JustDied();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (instance->GetBossState(DATA_ASSEMBLY_OF_IRON) == DONE)
 =======
                 if (instance->GetBossState(BOSS_ASSEMBLY_OF_IRON) == DONE)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (instance->GetBossState(DATA_ASSEMBLY_OF_IRON) == DONE)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 {
                     DoCastAOE(SPELL_KILL_CREDIT, true);
                     Talk(SAY_STEELBREAKER_ENCOUNTER_DEFEATED);
@@ -288,10 +299,14 @@ class boss_runemaster_molgeim : public CreatureScript
         struct boss_runemaster_molgeimAI : public BossAI
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             boss_runemaster_molgeimAI(Creature* creature) : BossAI(creature, DATA_ASSEMBLY_OF_IRON) { }
 =======
             boss_runemaster_molgeimAI(Creature* creature) : BossAI(creature, BOSS_ASSEMBLY_OF_IRON) { }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            boss_runemaster_molgeimAI(Creature* creature) : BossAI(creature, DATA_ASSEMBLY_OF_IRON) { }
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             uint32 phase;
 
@@ -345,10 +360,14 @@ class boss_runemaster_molgeim : public CreatureScript
                 _JustDied();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (instance->GetBossState(DATA_ASSEMBLY_OF_IRON) == DONE)
 =======
                 if (instance->GetBossState(BOSS_ASSEMBLY_OF_IRON) == DONE)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (instance->GetBossState(DATA_ASSEMBLY_OF_IRON) == DONE)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 {
                     DoCastAOE(SPELL_KILL_CREDIT, true);
                     Talk(SAY_MOLGEIM_ENCOUNTER_DEFEATED);
@@ -453,10 +472,14 @@ class boss_stormcaller_brundir : public CreatureScript
         struct boss_stormcaller_brundirAI : public BossAI
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             boss_stormcaller_brundirAI(Creature* creature) : BossAI(creature, DATA_ASSEMBLY_OF_IRON) { }
 =======
             boss_stormcaller_brundirAI(Creature* creature) : BossAI(creature, BOSS_ASSEMBLY_OF_IRON) { }
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+            boss_stormcaller_brundirAI(Creature* creature) : BossAI(creature, DATA_ASSEMBLY_OF_IRON) { }
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             uint32 phase;
 
@@ -518,10 +541,14 @@ class boss_stormcaller_brundir : public CreatureScript
                 _JustDied();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (instance->GetBossState(DATA_ASSEMBLY_OF_IRON) == DONE)
 =======
                 if (instance->GetBossState(BOSS_ASSEMBLY_OF_IRON) == DONE)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                if (instance->GetBossState(DATA_ASSEMBLY_OF_IRON) == DONE)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 {
                     DoCastAOE(SPELL_KILL_CREDIT, true);
                     Talk(SAY_BRUNDIR_ENCOUNTER_DEFEATED);

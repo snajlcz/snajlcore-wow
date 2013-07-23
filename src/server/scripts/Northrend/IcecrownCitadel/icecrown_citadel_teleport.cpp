@@ -38,16 +38,22 @@ class icecrown_citadel_teleport : public GameObjectScript
                     player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Oratory of the Damned.", GOSSIP_SENDER_ICC_PORT, ORATORY_OF_THE_DAMNED_TELEPORT);
                 if (instance->GetBossState(DATA_LADY_DEATHWHISPER) == DONE)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     {
                     player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Rampart of Skulls.", GOSSIP_SENDER_ICC_PORT, RAMPART_OF_SKULLS_TELEPORT);
                 //if (instance->GetBossState(DATA_GUNSHIP_EVENT) == DONE)
                     player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Deathbringer's Rise.", GOSSIP_SENDER_ICC_PORT, DEATHBRINGER_S_RISE_TELEPORT);
                     }
+<<<<<<< HEAD
 =======
                     player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Rampart of Skulls.", GOSSIP_SENDER_ICC_PORT, RAMPART_OF_SKULLS_TELEPORT);
                 if (instance->GetBossState(DATA_GUNSHIP_EVENT) == DONE)
                     player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Deathbringer's Rise.", GOSSIP_SENDER_ICC_PORT, DEATHBRINGER_S_RISE_TELEPORT);
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 if (instance->GetData(DATA_COLDFLAME_JETS) == DONE)
                     player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Upper Spire.", GOSSIP_SENDER_ICC_PORT, UPPER_SPIRE_TELEPORT);
                 /// @todo Gauntlet event before Sindragosa
@@ -99,10 +105,14 @@ class at_frozen_throne_teleport : public AreaTriggerScript
                     instance->GetBossState(DATA_BLOOD_QUEEN_LANA_THEL) == DONE &&
                     instance->GetBossState(DATA_SINDRAGOSA) == DONE &&
 <<<<<<< HEAD
+<<<<<<< HEAD
                     instance->GetBossState(DATA_THE_LICH_KING) != IN_PROGRESS)  // != zmeneno na == (kvuli uzavreni)
 =======
                     instance->GetBossState(DATA_THE_LICH_KING) != IN_PROGRESS)
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+                    instance->GetBossState(DATA_THE_LICH_KING) != IN_PROGRESS)  // != zmeneno na == (kvuli uzavreni)
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     player->CastSpell(player, FROZEN_THRONE_TELEPORT, true);
 
             return true;

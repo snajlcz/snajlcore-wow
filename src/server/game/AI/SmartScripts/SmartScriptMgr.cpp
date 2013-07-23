@@ -762,13 +762,19 @@ bool SmartAIMgr::IsEventValid(SmartScriptHolder& e)
             if (!IsCreatureValid(e, e.action.killedMonster.creature))
                 return false;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (e.GetTargetType() == SMART_TARGET_POSITION)
             {
                 TC_LOG_ERROR(LOG_FILTER_SQL, "SmartAIMgr: Entry %d SourceType %u Event %u Action %u uses incorrect TargetType %u, skipped.", e.entryOrGuid, e.GetScriptType(), e.event_id, e.GetActionType(), e.GetTargetType());
                 return false;
             }
+<<<<<<< HEAD
 =======
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             break;
         case SMART_ACTION_UPDATE_TEMPLATE:
             if (e.action.updateTemplate.creature && !IsCreatureValid(e, e.action.updateTemplate.creature))

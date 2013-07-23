@@ -128,6 +128,7 @@ int Master::Run()
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "<Ctrl-C> to stop.\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  SnajlCore														              ");
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  Based on TrinityCore http://www.TrinityCore.org\n                              ");
 =======
@@ -141,6 +142,10 @@ int Master::Run()
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "                                 C O R E  /\\___/");
     TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "http://TrinityCore.org                    \\/__/\n");
 >>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  SnajlCore														              ");
+    TC_LOG_INFO(LOG_FILTER_WORLDSERVER, "  Based on TrinityCore http://www.TrinityCore.org\n                              ");
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     /// worldserver PID file creation
     std::string pidfile = sConfigMgr->GetStringDefault("PidFile", "");
