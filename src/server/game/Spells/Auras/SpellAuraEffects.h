@@ -278,7 +278,10 @@ class AuraEffect
         void HandleAuraOpenStable(AuraApplication const* aurApp, uint8 mode, bool apply) const;
         void HandleAuraModFakeInebriation(AuraApplication const* aurApp, uint8 mode, bool apply) const;
         void HandleAuraOverrideSpells(AuraApplication const* aurApp, uint8 mode, bool apply) const;
+<<<<<<< HEAD
         void HandleAuraPreventRegeneratePower(AuraApplication const* aurApp, uint8 mode, bool apply) const;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         void HandleAuraSetVehicle(AuraApplication const* aurApp, uint8 mode, bool apply) const;
         void HandlePreventResurrection(AuraApplication const* aurApp, uint8 mode, bool apply) const;
 

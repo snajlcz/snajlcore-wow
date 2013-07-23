@@ -752,12 +752,15 @@ class PlayerScript : public UnitScript
         // Called when a player switches to a new zone
         virtual void OnUpdateZone(Player* /*player*/, uint32 /*newZone*/, uint32 /*newArea*/) { }
 
+<<<<<<< HEAD
         // Called when a player joined the battle
         virtual void OnPlayerJoinedBattleground(Player* /*player*/, Battleground* /*bg*/) { }
 
         // Called when player ...
         virtual void OnPlayerFirstKillBattleground(Player* /*player*/, Battleground* /*bg*/) { }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         // Called when a player changes to a new map (after moving to new map)
         virtual void OnMapChanged(Player* /*player*/) { }
 };
@@ -1033,8 +1036,11 @@ class ScriptMgr
         void OnPlayerDelete(uint64 guid);
         void OnPlayerSave(Player* player);
         void OnPlayerBindToInstance(Player* player, Difficulty difficulty, uint32 mapid, bool permanent);
+<<<<<<< HEAD
         void OnPlayerJoinedBattleground(Player* player, Battleground* bg);
         void OnPlayerFirstKillBattleground(Player* player, Battleground* bg);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         void OnPlayerUpdateZone(Player* player, uint32 newZone, uint32 newArea);
 
     public: /* GuildScript */

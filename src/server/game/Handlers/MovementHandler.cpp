@@ -16,7 +16,10 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+<<<<<<< HEAD
 #include "AnticheatMgr.h"
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 #include "Common.h"
 #include "WorldPacket.h"
 #include "WorldSession.h"
@@ -360,9 +363,12 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recvData)
         plrMover->SetInWater(!plrMover->IsInWater() || plrMover->GetBaseMap()->IsUnderWater(movementInfo.pos.GetPositionX(), movementInfo.pos.GetPositionY(), movementInfo.pos.GetPositionZ()));
     }
 
+<<<<<<< HEAD
     if (plrMover)
         sAnticheatMgr->StartHackDetection(plrMover, movementInfo, opcode);
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     /*----------------------*/
 
     /* process position-change */
@@ -387,6 +393,7 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recvData)
     {
         plrMover->UpdateFallInformationIfNeed(movementInfo, opcode);
 
+<<<<<<< HEAD
         float underMapValueZ;
         switch (plrMover->GetMapId())
         {
@@ -434,6 +441,11 @@ void WorldSession::HandleMovementOpcodes(WorldPacket& recvData)
                     plrMover->TeleportTo(617, 1292.34868f, 790.40f, 8.5f, 1.6f);
             }
             else if (!(plrMover->GetBattleground() && plrMover->GetBattleground()->HandlePlayerUnderMap(_player)))
+=======
+        if (movementInfo.pos.GetPositionZ() < -500.0f)
+        {
+            if (!(plrMover->GetBattleground() && plrMover->GetBattleground()->HandlePlayerUnderMap(_player)))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
                 // NOTE: this is actually called many times while falling
                 // even after the player has been teleported away

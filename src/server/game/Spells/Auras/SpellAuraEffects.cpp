@@ -351,7 +351,11 @@ pAuraEffectHandler AuraEffectHandler[TOTAL_AURAS]=
     &AuraEffect::HandleNoImmediateEffect,                         //291 SPELL_AURA_MOD_XP_QUEST_PCT  implemented in Player::RewardQuest
     &AuraEffect::HandleAuraOpenStable,                            //292 SPELL_AURA_OPEN_STABLE
     &AuraEffect::HandleAuraOverrideSpells,                        //293 auras which probably add set of abilities to their target based on it's miscvalue
+<<<<<<< HEAD
     &AuraEffect::HandleAuraPreventRegeneratePower,                //294 SPELL_AURA_PREVENT_REGENERATE_POWER implemented in Player::Regenerate(Powers power)
+=======
+    &AuraEffect::HandleNoImmediateEffect,                         //294 SPELL_AURA_PREVENT_REGENERATE_POWER implemented in Player::Regenerate(Powers power)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     &AuraEffect::HandleUnused,                                    //295 0 spells in 3.3.5
     &AuraEffect::HandleAuraSetVehicle,                            //296 SPELL_AURA_SET_VEHICLE_ID sets vehicle on target
     &AuraEffect::HandleNULL,                                      //297 Spirit Burst spells
@@ -1729,6 +1733,7 @@ void AuraEffect::HandleAuraModShapeshift(AuraApplication const* aurApp, uint8 mo
     }
     else
     {
+<<<<<<< HEAD
         // adding back armor decreased by Enrage talent of druids
         if (target->HasAura(5229))
         {
@@ -1738,6 +1743,8 @@ void AuraEffect::HandleAuraModShapeshift(AuraApplication const* aurApp, uint8 mo
                 target->HandleStatModifier(UNIT_MOD_ARMOR, BASE_PCT, 16, true);
         }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         // reset model id if no other auras present
         // may happen when aura is applied on linked event on aura removal
         if (!target->HasAuraType(SPELL_AURA_MOD_SHAPESHIFT))
@@ -1921,10 +1928,13 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode, 
                     case 42365:
                         target->SetDisplayId(21723);
                         break;
+<<<<<<< HEAD
                     // Frostmourne
                     case 43827:
                         target->SetDisplayId(30721);
                         break;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     // Dread Corsair
                     case 50517:
                     // Corsair Costume
@@ -2807,6 +2817,13 @@ void AuraEffect::HandleModPossessPet(AuraApplication const* aurApp, uint8 mode, 
     if (!caster || caster->GetTypeId() != TYPEID_PLAYER)
         return;
 
+<<<<<<< HEAD
+=======
+    //seems it may happen that when removing it is no longer owner's pet
+    //if (caster->ToPlayer()->GetPet() != target)
+    //    return;
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     Unit* target = aurApp->GetTarget();
     if (target->GetTypeId() != TYPEID_UNIT || !target->ToCreature()->IsPet())
         return;
@@ -4378,7 +4395,11 @@ void AuraEffect::HandleModDamagePercentDone(AuraApplication const* aurApp, uint8
                 target->ToPlayer()->_ApplyWeaponDependentAuraDamageMod(item, WeaponAttackType(i), this, apply);
     }
 
+<<<<<<< HEAD
     if (((GetMiscValue() & SPELL_SCHOOL_MASK_NORMAL) && (GetSpellInfo()->EquippedItemClass == -1 || target->GetTypeId() != TYPEID_PLAYER)) || GetId() == 31869) // Sanctified Retribution
+=======
+    if ((GetMiscValue() & SPELL_SCHOOL_MASK_NORMAL) && (GetSpellInfo()->EquippedItemClass == -1 || target->GetTypeId() != TYPEID_PLAYER))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     {
         target->HandleStatModifier(UNIT_MOD_DAMAGE_MAINHAND,         TOTAL_PCT, float (GetAmount()), apply);
         target->HandleStatModifier(UNIT_MOD_DAMAGE_OFFHAND,          TOTAL_PCT, float (GetAmount()), apply);
@@ -4654,6 +4675,7 @@ void AuraEffect::HandleAuraDummy(AuraApplication const* aurApp, uint8 mode, bool
                 case 52916: // Honor Among Thieves
                     if (target->GetTypeId() == TYPEID_PLAYER)
                         if (Unit* spellTarget = ObjectAccessor::GetUnit(*target, target->ToPlayer()->GetComboTarget()))
+<<<<<<< HEAD
                             if (caster)
                                 caster->CastSpell(spellTarget, 51699, true);
                    break;
@@ -4694,6 +4716,10 @@ void AuraEffect::HandleAuraDummy(AuraApplication const* aurApp, uint8 mode, bool
                     }
                     break;
                 }
+=======
+                            target->CastSpell(spellTarget, 51699, true);
+                   break;
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 case 71563:
                     if (Aura* newAura = target->AddAura(71564, target))
                         newAura->SetStackAmount(newAura->GetSpellInfo()->StackAmount);
@@ -4953,6 +4979,7 @@ void AuraEffect::HandleAuraDummy(AuraApplication const* aurApp, uint8 mode, bool
             break;
         case SPELLFAMILY_DEATHKNIGHT:
         {
+<<<<<<< HEAD
             if (!(mode & AURA_EFFECT_HANDLE_REAL))
                    break;
                    if (GetId() == 46619) // Raise Ally
@@ -4995,6 +5022,10 @@ void AuraEffect::HandleAuraDummy(AuraApplication const* aurApp, uint8 mode, bool
                         pet->UpdateAttackPowerAndDamage();
                     break;
             }
+=======
+            //if (!(mode & AURA_EFFECT_HANDLE_REAL))
+            //    break;
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             break;
         }
     }
@@ -5086,6 +5117,7 @@ void AuraEffect::HandleForceReaction(AuraApplication const* aurApp, uint8 mode, 
 
     Unit* target = aurApp->GetTarget();
 
+<<<<<<< HEAD
     if (target->GetTypeId() != TYPEID_PLAYER)
         return;
 
@@ -5100,6 +5132,21 @@ void AuraEffect::HandleForceReaction(AuraApplication const* aurApp, uint8 mode, 
     // stop fighting if at apply forced rank friendly or at remove real rank friendly
     if ((apply && faction_rank >= REP_FRIENDLY) || (!apply && player->GetReputationRank(faction_id) >= REP_FRIENDLY))
         player->StopAttackFaction(faction_id);
+=======
+    Player* player = target->ToPlayer();
+    if (!player)
+        return;
+
+    uint32 factionId = GetMiscValue();
+    ReputationRank factionRank = ReputationRank(m_amount);
+
+    player->GetReputationMgr().ApplyForceReaction(factionId, factionRank, apply);
+    player->GetReputationMgr().SendForceReactions();
+
+    // stop fighting if at apply forced rank friendly or at remove real rank friendly
+    if ((apply && factionRank >= REP_FRIENDLY) || (!apply && player->GetReputationRank(factionId) >= REP_FRIENDLY))
+        player->StopAttackFaction(factionId);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void AuraEffect::HandleAuraEmpathy(AuraApplication const* aurApp, uint8 mode, bool apply) const
@@ -5165,11 +5212,18 @@ void AuraEffect::HandleAuraConvertRune(AuraApplication const* aurApp, uint8 mode
 
     Unit* target = aurApp->GetTarget();
 
+<<<<<<< HEAD
     if (target->GetTypeId() != TYPEID_PLAYER)
         return;
 
     Player* player = (Player*)target;
 
+=======
+    Player* player = target->ToPlayer();
+    if (!player)
+        return;
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     if (player->getClass() != CLASS_DEATH_KNIGHT)
         return;
 
@@ -5317,6 +5371,7 @@ void AuraEffect::HandleAuraOverrideSpells(AuraApplication const* aurApp, uint8 m
     }
 }
 
+<<<<<<< HEAD
 void AuraEffect::HandleAuraPreventRegeneratePower(AuraApplication const* aurApp, uint8 mode, bool apply) const
 {
     if (!(mode & AURA_EFFECT_HANDLE_REAL))
@@ -5331,6 +5386,8 @@ void AuraEffect::HandleAuraPreventRegeneratePower(AuraApplication const* aurApp,
         target->ApplyModFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_REGENERATE_POWER, !apply && !target->IsUnderLastManaUseEffect());
 }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 void AuraEffect::HandleAuraSetVehicle(AuraApplication const* aurApp, uint8 mode, bool apply) const
 {
     if (!(mode & AURA_EFFECT_HANDLE_REAL))
@@ -5410,6 +5467,7 @@ void AuraEffect::HandlePeriodicDummyAuraTick(Unit* target, Unit* caster) const
                         target->RemoveAura(64821);
                     }
                     break;
+<<<<<<< HEAD
                 case 67039: // argent squire mount
                     if (caster && caster->GetOwner())
                     {
@@ -5419,6 +5477,8 @@ void AuraEffect::HandlePeriodicDummyAuraTick(Unit* target, Unit* caster) const
                                  caster->Dismount();
                     }
                     break;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
             break;
         case SPELLFAMILY_MAGE:
@@ -5466,10 +5526,13 @@ void AuraEffect::HandlePeriodicDummyAuraTick(Unit* target, Unit* caster) const
                 // Killing Spree
                 case 51690:
                 {
+<<<<<<< HEAD
                     // break target at every jump
                     WorldPacket data(SMSG_CLEAR_TARGET, 8);
                     data << uint64(target->GetGUID());
                     target->SendMessageToSet(&data, true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     /// @todo this should use effect[1] of 51690
                     UnitList targets;
                     {
@@ -5481,6 +5544,10 @@ void AuraEffect::HandlePeriodicDummyAuraTick(Unit* target, Unit* caster) const
 
                         Trinity::AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck u_check(target, radius);
                         Trinity::UnitListSearcher<Trinity::AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck> checker(target, targets, u_check);
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         TypeContainerVisitor<Trinity::UnitListSearcher<Trinity::AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck>, GridTypeMapContainer > grid_object_checker(checker);
                         TypeContainerVisitor<Trinity::UnitListSearcher<Trinity::AnyUnfriendlyAttackableVisibleUnitInObjectRangeCheck>, WorldTypeMapContainer > world_object_checker(checker);
 
@@ -5491,6 +5558,7 @@ void AuraEffect::HandlePeriodicDummyAuraTick(Unit* target, Unit* caster) const
                     if (targets.empty())
                         return;
 
+<<<<<<< HEAD
                     if (target)
                    {
                        if (target->GetUnitMovementFlags() & MOVEMENTFLAG_ONTRANSPORT)
@@ -5499,6 +5567,8 @@ void AuraEffect::HandlePeriodicDummyAuraTick(Unit* target, Unit* caster) const
                    else
                            return;
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     Unit* spellTarget = Trinity::Containers::SelectRandomContainerElement(targets);
 
                     target->CastSpell(spellTarget, 57840, true);
@@ -5560,7 +5630,11 @@ void AuraEffect::HandlePeriodicDummyAuraTick(Unit* target, Unit* caster) const
             if (GetSpellInfo()->SpellFamilyFlags[0] & 0x20)
             {
                 if (caster)
+<<<<<<< HEAD
                     target->CastCustomSpell(target, 52212, &m_amount, NULL, NULL, true, 0, this, caster->GetGUID());
+=======
+                    caster->CastCustomSpell(target, 52212, &m_amount, NULL, NULL, true, 0, this);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 break;
             }
             // Blood of the North
@@ -6023,6 +6097,7 @@ void AuraEffect::HandlePeriodicDamageAurasTick(Unit* target, Unit* caster) const
     if (damage)
         procVictim |= PROC_FLAG_TAKEN_DAMAGE;
 
+<<<<<<< HEAD
     if (damage > 0)
     {
         if (target->HasAura(65220) || target->HasAura(32233) || target->HasAura(63623) || target->HasAura(62137))
@@ -6033,6 +6108,8 @@ void AuraEffect::HandlePeriodicDamageAurasTick(Unit* target, Unit* caster) const
         }
     }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     int32 overkill = damage - target->GetHealth();
     if (overkill < 0)
         overkill = 0;

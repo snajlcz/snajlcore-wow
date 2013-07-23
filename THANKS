@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 == TrinityCore -- Thanks/credits file ==
+=======
+= TrinityCore -- Thanks/credits file =
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
 TrinityCore is a derivation/rewrite of MaNGOS, which was originally written
 by Team Python and the WoW Daemon Team. Many people further helped Trinity Core
@@ -99,4 +103,8 @@ Per Wilhelmsen, telsamat, Various, erimioa, Sawiner, zergtmn, SimonDMII, pek2011
 laly, mrquickfx, Koord, amnell, GWRde, EdwinDW, gildor, darkstalker, Feanordev, _manuel_,
 thymuswisewood, sohrab, Lazzalf, Taser, Ottowayne, Exordian, nucleartux, John Holiver, j4r0d,
 Trazom62, Brian, enjoi, teacher, Alex Bolotsin, Troy, silver1ce, nihal, arcanzic, Chaz Brown,
+<<<<<<< HEAD
 pendragon, aven_coda, cca220v, ArcticDevil, derex_tri
+=======
+pendragon, aven_coda, cca220v, ArcticDevil, derex_tri
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67

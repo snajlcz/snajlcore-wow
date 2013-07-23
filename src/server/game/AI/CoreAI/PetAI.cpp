@@ -260,6 +260,7 @@ void PetAI::UpdateAI(uint32 diff)
 
 void PetAI::UpdateAllies()
 {
+<<<<<<< HEAD
     Unit* owner = me->GetCharmerOrOwner();
     Group* group = NULL;
 
@@ -269,6 +270,17 @@ void PetAI::UpdateAllies()
         return;
     else if (owner->GetTypeId() == TYPEID_PLAYER)
         group = owner->ToPlayer()->GetGroup();
+=======
+    m_updateAlliesTimer = 10 * IN_MILLISECONDS;                 // update friendly targets every 10 seconds, lesser checks increase performance
+
+    Unit* owner = me->GetCharmerOrOwner();
+    if (!owner)
+        return;
+
+    Group* group = NULL;
+    if (Player* player = owner->ToPlayer())
+        group = player->GetGroup();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
     //only pet and owner/not in group->ok
     if (m_AllySet.size() == 2 && !group)
@@ -285,7 +297,11 @@ void PetAI::UpdateAllies()
         for (GroupReference* itr = group->GetFirstMember(); itr != NULL; itr = itr->next())
         {
             Player* Target = itr->GetSource();
+<<<<<<< HEAD
             if (!Target || !group->SameSubGroup((Player*)owner, Target))
+=======
+            if (!Target || !group->SameSubGroup(owner->ToPlayer(), Target))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 continue;
 
             if (Target->GetGUID() == owner->GetGUID())
@@ -445,7 +461,10 @@ void PetAI::HandleReturnMovement()
         if (!me->GetCharmInfo()->IsFollowing() && !me->GetCharmInfo()->IsReturning())
         {
             ClearCharmInfoFlags();
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             me->GetCharmInfo()->SetIsReturning(true);
             me->GetMotionMaster()->Clear();
             me->GetMotionMaster()->MoveFollow(me->GetCharmerOrOwner(), PET_FOLLOW_DIST, me->GetFollowAngle());

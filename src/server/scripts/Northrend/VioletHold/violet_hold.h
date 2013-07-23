@@ -92,7 +92,12 @@ enum CreaturesIds
     CREATURE_CYANIGOSA                              = 31134,
     CREATURE_SINCLARI                               = 30658,
     CREATURE_SABOTEOUR                              = 31079,
+<<<<<<< HEAD
     NPC_VIOLET_HOLD_GUARD                           = 30659
+=======
+    NPC_VIOLET_HOLD_GUARD                           = 30659,
+    NPC_DEFENSE_SYSTEM                              = 30837
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 enum WorldStateIds
@@ -102,4 +107,12 @@ enum WorldStateIds
     WORLD_STATE_VH_WAVE_COUNT   = 3810,
 };
 
+<<<<<<< HEAD
+=======
+enum Events
+{
+    EVENT_ACTIVATE_CRYSTAL = 20001
+};
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 #endif

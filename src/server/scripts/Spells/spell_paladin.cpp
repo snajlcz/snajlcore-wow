@@ -33,16 +33,22 @@ enum PaladinSpells
     SPELL_PALADIN_BLESSING_OF_SANCTUARY_BUFF     = 67480,
     SPELL_PALADIN_BLESSING_OF_SANCTUARY_ENERGIZE = 57319,
 
+<<<<<<< HEAD
     SPELL_BLESSING_OF_KINGS                      = 20217,
     SPELL_GREATER_BLESSING_OF_KINGS              = 25898,
     SPELL_BLESSING_OF_FORGOTTEN_KINGS            = 72586,
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     SPELL_PALADIN_HOLY_SHOCK_R1                  = 20473,
     SPELL_PALADIN_HOLY_SHOCK_R1_DAMAGE           = 25912,
     SPELL_PALADIN_HOLY_SHOCK_R1_HEALING          = 25914,
 
+<<<<<<< HEAD
     PALADIN_SPELL_SACRED_SHIELD_EFFECT           = 58597,
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     SPELL_PALADIN_BLESSING_OF_LOWER_CITY_DRUID   = 37878,
     SPELL_PALADIN_BLESSING_OF_LOWER_CITY_PALADIN = 37879,
     SPELL_PALADIN_BLESSING_OF_LOWER_CITY_PRIEST  = 37880,
@@ -603,6 +609,7 @@ class spell_pal_holy_shock : public SpellScriptLoader
         {
             PrepareSpellScript(spell_pal_holy_shock_SpellScript);
 
+<<<<<<< HEAD
             bool Validate(SpellInfo const* spell) OVERRIDE
             {
                 if (!sSpellMgr->GetSpellInfo(SPELL_PALADIN_HOLY_SHOCK_R1))
@@ -613,6 +620,19 @@ class spell_pal_holy_shock : public SpellScriptLoader
                     return false;
 
                 uint8 rank = sSpellMgr->GetSpellRank(spell->Id);
+=======
+            bool Validate(SpellInfo const* spellInfo) OVERRIDE
+            {
+                SpellInfo const* firstRankSpellInfo = sSpellMgr->GetSpellInfo(SPELL_PALADIN_HOLY_SHOCK_R1);
+                if (!firstRankSpellInfo)
+                    return false;
+
+                // can't use other spell than holy shock due to spell_ranks dependency
+                if (!spellInfo->IsRankOf(firstRankSpellInfo))
+                    return false;
+
+                uint8 rank = spellInfo->GetRank();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 if (!sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_DAMAGE, rank, true) || !sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_HEALING, rank, true))
                     return false;
 
@@ -624,11 +644,19 @@ class spell_pal_holy_shock : public SpellScriptLoader
                 Unit* caster = GetCaster();
                 if (Unit* unitTarget = GetHitUnit())
                 {
+<<<<<<< HEAD
                     uint8 rank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
                     if (caster->IsFriendlyTo(unitTarget))
                         caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_HEALING, rank), true, 0);
                     else
                         caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_DAMAGE, rank), true, 0);
+=======
+                    uint8 rank = GetSpellInfo()->GetRank();
+                    if (caster->IsFriendlyTo(unitTarget))
+                        caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_HEALING, rank), true);
+                    else
+                        caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PALADIN_HOLY_SHOCK_R1_DAMAGE, rank), true);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 }
             }
 
@@ -822,12 +850,15 @@ class spell_pal_sacred_shield : public SpellScriptLoader
         class spell_pal_sacred_shield_AuraScript : public AuraScript
         {
             PrepareAuraScript(spell_pal_sacred_shield_AuraScript);
+<<<<<<< HEAD
             bool Validate(SpellInfo const* /*entry*/)
             {
                 if (!sSpellMgr->GetSpellInfo(PALADIN_SPELL_SACRED_SHIELD_EFFECT))
                     return false;
                 return true;
             }
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
             void CalculateAmount(AuraEffect const* aurEff, int32& amount, bool& /*canBeRecalculated*/)
             {
@@ -851,6 +882,7 @@ class spell_pal_sacred_shield : public SpellScriptLoader
                 }
             }
 
+<<<<<<< HEAD
             void HandleEffectRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
                 if (Unit* caster = GetCaster())
@@ -862,6 +894,11 @@ class spell_pal_sacred_shield : public SpellScriptLoader
             {
                 DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_pal_sacred_shield_AuraScript::CalculateAmount, EFFECT_0, SPELL_AURA_SCHOOL_ABSORB);
                 AfterEffectRemove += AuraEffectRemoveFn(spell_pal_sacred_shield_AuraScript::HandleEffectRemove, EFFECT_1, SPELL_AURA_DUMMY, AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK);
+=======
+            void Register() OVERRIDE
+            {
+                DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_pal_sacred_shield_AuraScript::CalculateAmount, EFFECT_0, SPELL_AURA_SCHOOL_ABSORB);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
         };
 
@@ -917,6 +954,7 @@ class spell_pal_seal_of_righteousness : public SpellScriptLoader
         }
 };
 
+<<<<<<< HEAD
 class spell_pal_blessing_stack : public SpellScriptLoader
 {
 public:
@@ -1007,6 +1045,8 @@ public:
    }
 };
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 void AddSC_paladin_spell_scripts()
 {
     new spell_pal_ardent_defender();
@@ -1026,5 +1066,8 @@ void AddSC_paladin_spell_scripts()
     new spell_pal_righteous_defense();
     new spell_pal_sacred_shield();
     new spell_pal_seal_of_righteousness();
+<<<<<<< HEAD
     new spell_pal_blessing_stack();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }

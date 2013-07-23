@@ -523,21 +523,31 @@ class spell_item_necrotic_touch : public SpellScriptLoader
                 return true;
             }
 
+<<<<<<< HEAD
             bool CheckProc(ProcEventInfo& eventInfo)
             {
                 return eventInfo.GetProcTarget();
             }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             void HandleProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
             {
                 PreventDefaultAction();
                 int32 bp = CalculatePct(int32(eventInfo.GetDamageInfo()->GetDamage()), aurEff->GetAmount());
+<<<<<<< HEAD
                 GetTarget()->CastCustomSpell(SPELL_ITEM_NECROTIC_TOUCH_PROC, SPELLVALUE_BASE_POINT0, bp, eventInfo.GetProcTarget(), true, NULL, aurEff);
+=======
+                GetTarget()->CastCustomSpell(SPELL_ITEM_NECROTIC_TOUCH_PROC, SPELLVALUE_BASE_POINT0, bp, GetTarget(), true, NULL, aurEff);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
 
             void Register() OVERRIDE
             {
+<<<<<<< HEAD
                 DoCheckProc += AuraCheckProcFn(spell_item_necrotic_touch_AuraScript::CheckProc);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 OnEffectProc += AuraEffectProcFn(spell_item_necrotic_touch_AuraScript::HandleProc, EFFECT_0, SPELL_AURA_DUMMY);
             }
         };
@@ -2002,7 +2012,11 @@ class spell_item_impale_leviroth : public SpellScriptLoader
             void HandleDummy(SpellEffIndex /* effIndex */)
             {
                 if (Unit* target = GetHitCreature())
+<<<<<<< HEAD
                     if (target->GetEntry() == NPC_LEVIROTH && target->HealthBelowPct(95)) // quest=11626
+=======
+                    if (target->GetEntry() == NPC_LEVIROTH && !target->HealthBelowPct(95))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         target->CastSpell(target, SPELL_LEVIROTH_SELF_IMPALE, true);
             }
 

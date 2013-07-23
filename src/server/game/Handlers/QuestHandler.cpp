@@ -250,6 +250,7 @@ void WorldSession::HandleQuestgiverAcceptQuestOpcode(WorldPacket& recvData)
     }
 
     _player->PlayerTalkClass->SendCloseGossip();
+<<<<<<< HEAD
 /* SNAJL STOPED FOR NOW !
     // Anti-Rollback
     _player->SaveToDB();
@@ -257,6 +258,10 @@ void WorldSession::HandleQuestgiverAcceptQuestOpcode(WorldPacket& recvData)
 
 #undef CLOSE_GOSSIP_CLEAR_DIVIDER
 
+=======
+
+#undef CLOSE_GOSSIP_CLEAR_DIVIDER
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void WorldSession::HandleQuestgiverQueryQuestOpcode(WorldPacket& recvData)
@@ -295,9 +300,12 @@ void WorldSession::HandleQuestgiverQueryQuestOpcode(WorldPacket& recvData)
         else
             _player->PlayerTalkClass->SendQuestGiverQuestDetails(quest, object->GetGUID(), true);
     }
+<<<<<<< HEAD
     // Anti-Rollback
     if (_player)
         _player->SaveToDB();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void WorldSession::HandleQuestQueryOpcode(WorldPacket& recvData)
@@ -395,9 +403,12 @@ void WorldSession::HandleQuestgiverChooseRewardOpcode(WorldPacket& recvData)
         else
             _player->PlayerTalkClass->SendQuestGiverOfferReward(quest, guid, true);
     }
+<<<<<<< HEAD
     // Anti-Rollback
     if (_player)
         _player->SaveToDB();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void WorldSession::HandleQuestgiverRequestRewardOpcode(WorldPacket& recvData)
@@ -424,10 +435,13 @@ void WorldSession::HandleQuestgiverRequestRewardOpcode(WorldPacket& recvData)
 
     if (Quest const* quest = sObjectMgr->GetQuestTemplate(questId))
         _player->PlayerTalkClass->SendQuestGiverOfferReward(quest, guid, true);
+<<<<<<< HEAD
 
     // Anti-Rollback
     if (_player)
         _player->SaveToDB();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void WorldSession::HandleQuestgiverCancel(WorldPacket& /*recvData*/)
@@ -487,9 +501,12 @@ void WorldSession::HandleQuestLogRemoveQuest(WorldPacket& recvData)
 
         _player->UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_QUEST_ABANDONED, 1);
     }
+<<<<<<< HEAD
     // Anti-Rollback
     if (_player)
         _player->SaveToDB();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void WorldSession::HandleQuestConfirmAccept(WorldPacket& recvData)
@@ -517,9 +534,12 @@ void WorldSession::HandleQuestConfirmAccept(WorldPacket& recvData)
 
         _player->SetDivider(0);
     }
+<<<<<<< HEAD
     // Anti-Rollback
     if (_player)
         _player->SaveToDB();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void WorldSession::HandleQuestgiverCompleteQuest(WorldPacket& recvData)
@@ -571,9 +591,12 @@ void WorldSession::HandleQuestgiverCompleteQuest(WorldPacket& recvData)
         if (Creature* creature = object->ToCreature())
             sScriptMgr->OnQuestComplete(_player, creature, quest);
     }
+<<<<<<< HEAD
     // Anti-Rollback
     if (_player)
         _player->SaveToDB();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void WorldSession::HandleQuestgiverQuestAutoLaunch(WorldPacket& /*recvPacket*/)

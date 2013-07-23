@@ -1222,7 +1222,11 @@ void Guardian::UpdateArmor()
     UnitMods unitMod = UNIT_MOD_ARMOR;
 
     // hunter and warlock pets gain 35% of owner's armor value
+<<<<<<< HEAD
     if (IsPet() && GetEntry() != ENTRY_GHOUL)
+=======
+    if (IsPet())
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         bonus_armor = float(CalculatePct(m_owner->GetArmor(), 35));
 
     value  = GetModifierValue(unitMod, BASE_VALUE);
@@ -1320,6 +1324,14 @@ void Guardian::UpdateAttackPowerAndDamage(bool ranged)
             bonusAP = owner->GetTotalAttackPowerValue(RANGED_ATTACK) * 0.22f * mod;
             SetBonusDamage(int32(owner->GetTotalAttackPowerValue(RANGED_ATTACK) * 0.1287f * mod));
         }
+<<<<<<< HEAD
+=======
+        else if (IsPetGhoul()) //ghouls benefit from deathknight's attack power (may be summon pet or not)
+        {
+            bonusAP = owner->GetTotalAttackPowerValue(BASE_ATTACK) * 0.22f;
+            SetBonusDamage(int32(owner->GetTotalAttackPowerValue(BASE_ATTACK) * 0.1287f));
+        }
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         else if (IsSpiritWolf()) //wolf benefit from shaman's attack power
         {
             float dmg_multiplier = 0.31f;
@@ -1329,7 +1341,11 @@ void Guardian::UpdateAttackPowerAndDamage(bool ranged)
             SetBonusDamage(int32(owner->GetTotalAttackPowerValue(BASE_ATTACK) * dmg_multiplier));
         }
         //demons benefit from warlocks shadow or fire damage
+<<<<<<< HEAD
         else if (IsPet() && !IsPetGhoul())
+=======
+        else if (IsPet())
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         {
             int32 fire  = int32(owner->GetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_POS + SPELL_SCHOOL_FIRE)) - owner->GetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_NEG + SPELL_SCHOOL_FIRE);
             int32 shadow = int32(owner->GetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_POS + SPELL_SCHOOL_SHADOW)) - owner->GetUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_NEG + SPELL_SCHOOL_SHADOW);
@@ -1356,6 +1372,7 @@ void Guardian::UpdateAttackPowerAndDamage(bool ranged)
     float attPowerMod = GetModifierValue(unitMod, TOTAL_VALUE);
     float attPowerMultiplier = GetModifierValue(unitMod, TOTAL_PCT) - 1.0f;
 
+<<<<<<< HEAD
     // Animal Handler rank 1, 2
     if (owner->HasAura(34453) || owner->HasAura(34454))
     {
@@ -1363,6 +1380,8 @@ void Guardian::UpdateAttackPowerAndDamage(bool ranged)
         attPowerMultiplier += ((float)sProto->Effects[EFFECT_1].CalcValue() / 100);
     }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     //UNIT_FIELD_(RANGED)_ATTACK_POWER field
     SetInt32Value(UNIT_FIELD_ATTACK_POWER, (int32)base_attPower);
     //UNIT_FIELD_(RANGED)_ATTACK_POWER_MODS field

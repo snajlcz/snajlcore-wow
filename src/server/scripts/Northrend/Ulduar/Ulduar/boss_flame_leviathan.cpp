@@ -15,6 +15,16 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+<<<<<<< HEAD
+=======
+/*
+ * Comment: there is missing code on triggers,
+ *          brann bronzebeard needs correct gossip info.
+ *          requires more work involving area triggers.
+ *          if reached brann speaks through his radio..
+ */
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "ScriptedGossip.h"
@@ -217,7 +227,11 @@ class boss_flame_leviathan : public CreatureScript
 
         struct boss_flame_leviathanAI : public BossAI
         {
+<<<<<<< HEAD
             boss_flame_leviathanAI(Creature* creature) : BossAI(creature, DATA_LEVIATHAN), vehicle(creature->GetVehicleKit())
+=======
+            boss_flame_leviathanAI(Creature* creature) : BossAI(creature, BOSS_LEVIATHAN), vehicle(creature->GetVehicleKit())
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
             }
 
@@ -1168,7 +1182,11 @@ class npc_lorekeeper : public CreatureScript
                     if (player)
                         player->CLOSE_GOSSIP_MENU();
 
+<<<<<<< HEAD
                     if (Creature* leviathan = instance->instance->GetCreature(instance->GetData64(DATA_LEVIATHAN)))
+=======
+                    if (Creature* leviathan = instance->instance->GetCreature(instance->GetData64(BOSS_LEVIATHAN)))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     {
                         leviathan->AI()->DoAction(ACTION_START_HARD_MODE);
                         creature->SetVisible(false);
@@ -1191,7 +1209,11 @@ class npc_lorekeeper : public CreatureScript
         bool OnGossipHello(Player* player, Creature* creature) OVERRIDE
         {
             InstanceScript* instance = creature->GetInstanceScript();
+<<<<<<< HEAD
             if (instance && instance->GetData(DATA_LEVIATHAN) !=DONE && player)
+=======
+            if (instance && instance->GetData(BOSS_LEVIATHAN) !=DONE && player)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
                 player->PrepareGossipMenu(creature);
 

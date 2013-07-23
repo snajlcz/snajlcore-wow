@@ -1339,7 +1339,11 @@ CREATE TABLE `corpse` (
   `posZ` float NOT NULL DEFAULT '0',
   `orientation` float NOT NULL DEFAULT '0',
   `mapId` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Map Identifier',
+<<<<<<< HEAD
   `phaseMask` smallint(5) unsigned NOT NULL DEFAULT '1',
+=======
+  `phaseMask` int(10) unsigned NOT NULL DEFAULT '1',
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
   `displayId` int(10) unsigned NOT NULL DEFAULT '0',
   `itemCache` text NOT NULL,
   `bytes1` int(10) unsigned NOT NULL DEFAULT '0',

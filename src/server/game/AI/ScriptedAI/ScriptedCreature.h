@@ -24,7 +24,10 @@
 #include "CreatureAIImpl.h"
 #include "InstanceScript.h"
 
+<<<<<<< HEAD
 #define CAST_CRE(a)     (dynamic_cast<Creature*>(a))
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 #define CAST_AI(a, b)   (dynamic_cast<a*>(b))
 
 class InstanceScript;

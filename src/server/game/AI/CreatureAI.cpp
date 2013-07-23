@@ -43,11 +43,14 @@ void CreatureAI::Talk(uint8 id, uint64 WhisperGuid)
     sCreatureTextMgr->SendChat(me, id, WhisperGuid);
 }
 
+<<<<<<< HEAD
 void CreatureAI::TalkToMap(uint8 id, uint64 WhisperGuid)
 {
     sCreatureTextMgr->SendChat(me, id, WhisperGuid, CHAT_MSG_ADDON, LANG_ADDON, TEXT_RANGE_MAP);
 }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 void CreatureAI::DoZoneInCombat(Creature* creature /*= NULL*/, float maxRangeToNearestTarget /* = 50.0f*/)
 {
     if (!creature)

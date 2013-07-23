@@ -116,7 +116,11 @@ class boss_ignis : public CreatureScript
 
         struct boss_ignis_AI : public BossAI
         {
+<<<<<<< HEAD
             boss_ignis_AI(Creature* creature) : BossAI(creature,DATA_IGNIS), _vehicle(me->GetVehicleKit())
+=======
+            boss_ignis_AI(Creature* creature) : BossAI(creature, BOSS_IGNIS), _vehicle(me->GetVehicleKit())
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
                 ASSERT(_vehicle);
             }
@@ -311,7 +315,11 @@ class npc_iron_construct : public CreatureScript
                 if (me->HasAura(SPELL_BRITTLE) && damage >= 5000)
                 {
                     DoCast(SPELL_SHATTER);
+<<<<<<< HEAD
                     if (Creature* ignis = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_IGNIS)))
+=======
+                    if (Creature* ignis = ObjectAccessor::GetCreature(*me, _instance->GetData64(BOSS_IGNIS)))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         if (ignis->AI())
                             ignis->AI()->DoAction(ACTION_REMOVE_BUFF);
 

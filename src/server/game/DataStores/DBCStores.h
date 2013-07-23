@@ -184,7 +184,10 @@ extern DBCStorage <WorldSafeLocsEntry>           sWorldSafeLocsStore;
 
 void LoadDBCStores(const std::string& dataPath);
 
+<<<<<<< HEAD
 // script support functions
 DBCStorage <AchievementEntry>           const* GetAchievementStore();
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 #endif

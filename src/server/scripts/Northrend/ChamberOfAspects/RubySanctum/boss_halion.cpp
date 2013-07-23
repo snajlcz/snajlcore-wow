@@ -315,7 +315,10 @@ class boss_halion : public CreatureScript
                 me->SetReactState(REACT_DEFENSIVE);
                 me->RemoveAurasDueToSpell(SPELL_TWILIGHT_PHASING);
                 me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
+<<<<<<< HEAD
                 me->SetHealth(me->GetMaxHealth());
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
 
             void EnterEvadeMode() OVERRIDE
@@ -365,12 +368,15 @@ class boss_halion : public CreatureScript
 
             void DamageTaken(Unit* attacker, uint32& damage) OVERRIDE
             {
+<<<<<<< HEAD
                 if (!me->IsInDist2d(3156.67f, 533.8108f, 38.0f))
                 {
                     BossAI::DoTeleportAll(3156.037f, 533.2656f, 72.97205f, 0.0f);
                     return;
                 }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 if (me->HealthBelowPctDamaged(75, damage) && events.IsInPhase(PHASE_ONE))
                 {
                     events.SetPhase(PHASE_TWO);

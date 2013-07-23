@@ -35,8 +35,11 @@
 #include "DisableMgr.h"
 #include "Group.h"
 
+<<<<<<< HEAD
 #include "Cfbg/Cfbg.h"
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 void WorldSession::HandleBattlemasterHelloOpcode(WorldPacket& recvData)
 {
     uint64 guid;
@@ -283,22 +286,30 @@ void WorldSession::HandleBattlegroundPlayerPositionsOpcode(WorldPacket& /*recvDa
     data << flagCarrierCount;
     if (allianceFlagCarrier)
     {
+<<<<<<< HEAD
         if (allianceFlagCarrier->SendRealNameQuery())
             data << uint64(allianceFlagCarrier->GetGUID() + LIMIT_UINT32);
         else
             data << uint64(allianceFlagCarrier->GetGUID());
 
+=======
+        data << uint64(allianceFlagCarrier->GetGUID());
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         data << float(allianceFlagCarrier->GetPositionX());
         data << float(allianceFlagCarrier->GetPositionY());
     }
 
     if (hordeFlagCarrier)
     {
+<<<<<<< HEAD
         if (hordeFlagCarrier->SendRealNameQuery())
             data << uint64(hordeFlagCarrier->GetGUID() + LIMIT_UINT32);
         else
             data << uint64(hordeFlagCarrier->GetGUID());
 
+=======
+        data << uint64(hordeFlagCarrier->GetGUID());
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         data << float(hordeFlagCarrier->GetPositionX());
         data << float(hordeFlagCarrier->GetPositionY());
     }
@@ -553,7 +564,11 @@ void WorldSession::HandleBattlefieldStatusOpcode(WorldPacket & /*recvData*/)
             {
                 // this line is checked, i only don't know if GetStartTime is changing itself after bg end!
                 // send status in Battleground
+<<<<<<< HEAD
                 sBattlegroundMgr->BuildBattlegroundStatusPacket(&data, bg, i, STATUS_IN_PROGRESS, bg->GetEndTime(), bg->GetStartTime(), arenaType, _player->GetTeam());
+=======
+                sBattlegroundMgr->BuildBattlegroundStatusPacket(&data, bg, i, STATUS_IN_PROGRESS, bg->GetEndTime(), bg->GetStartTime(), arenaType, _player->GetBGTeam());
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 SendPacket(&data);
                 continue;
             }

@@ -41,8 +41,11 @@ enum PriestSpells
     SPELL_PRIEST_REFLECTIVE_SHIELD_TRIGGERED        = 33619,
     SPELL_PRIEST_REFLECTIVE_SHIELD_R1               = 33201,
     SPELL_PRIEST_SHADOW_WORD_DEATH                  = 32409,
+<<<<<<< HEAD
     // -27827 Spirit of Redemption
     SPELL_PRIEST_SPIRIT_OF_REDEMPTION               = 27827,
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     SPELL_PRIEST_T9_HEALING_2P                      = 67201,
     SPELL_PRIEST_VAMPIRIC_TOUCH_DISPEL              = 64085,
 };
@@ -384,6 +387,7 @@ class spell_pri_penance : public SpellScriptLoader
 
             bool Validate(SpellInfo const* spellInfo) OVERRIDE
             {
+<<<<<<< HEAD
                 if (!sSpellMgr->GetSpellInfo(SPELL_PRIEST_PENANCE_R1))
                     return false;
                 // can't use other spell than this penance due to spell_ranks dependency
@@ -391,6 +395,17 @@ class spell_pri_penance : public SpellScriptLoader
                     return false;
 
                 uint8 rank = sSpellMgr->GetSpellRank(spellInfo->Id);
+=======
+                SpellInfo const* firstRankSpellInfo = sSpellMgr->GetSpellInfo(SPELL_PRIEST_PENANCE_R1);
+                if (!firstRankSpellInfo)
+                    return false;
+
+                // can't use other spell than this penance due to spell_ranks dependency
+                if (!spellInfo->IsRankOf(firstRankSpellInfo))
+                    return false;
+
+                uint8 rank = spellInfo->GetRank();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 if (!sSpellMgr->GetSpellWithRank(SPELL_PRIEST_PENANCE_R1_DAMAGE, rank, true))
                     return false;
                 if (!sSpellMgr->GetSpellWithRank(SPELL_PRIEST_PENANCE_R1_HEAL, rank, true))
@@ -407,12 +422,21 @@ class spell_pri_penance : public SpellScriptLoader
                     if (!unitTarget->IsAlive())
                         return;
 
+<<<<<<< HEAD
                     uint8 rank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
 
                     if (caster->IsFriendlyTo(unitTarget))
                         caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PRIEST_PENANCE_R1_HEAL, rank), false, 0);
                     else
                         caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PRIEST_PENANCE_R1_DAMAGE, rank), false, 0);
+=======
+                    uint8 rank = GetSpellInfo()->GetRank();
+
+                    if (caster->IsFriendlyTo(unitTarget))
+                        caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PRIEST_PENANCE_R1_HEAL, rank), false);
+                    else
+                        caster->CastSpell(unitTarget, sSpellMgr->GetSpellWithRank(SPELL_PRIEST_PENANCE_R1_DAMAGE, rank), false);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 }
             }
 
@@ -625,6 +649,7 @@ class spell_pri_shadow_word_death : public SpellScriptLoader
         }
 };
 
+<<<<<<< HEAD
 // -27827 Spirit of Redemption
 class spell_priest_spirit_of_redemption : public SpellScriptLoader
 {
@@ -671,6 +696,8 @@ class spell_priest_spirit_of_redemption : public SpellScriptLoader
         }
 };
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 // -34914 - Vampiric Touch
 class spell_pri_vampiric_touch : public SpellScriptLoader
 {
@@ -727,6 +754,9 @@ void AddSC_priest_spell_scripts()
     new spell_pri_prayer_of_mending_heal();
     new spell_pri_renew();
     new spell_pri_shadow_word_death();
+<<<<<<< HEAD
     new spell_priest_spirit_of_redemption();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     new spell_pri_vampiric_touch();
 }

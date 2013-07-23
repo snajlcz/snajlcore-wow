@@ -236,8 +236,11 @@ void Object::BuildCreateUpdateBlockForPlayer(UpdateData* data, Player* target) c
                     flags |= UPDATEFLAG_TRANSPORT;
                     break;
                 default:
+<<<<<<< HEAD
                     if (((GameObject*)this)->GetOwner())
                         updateType = UPDATETYPE_CREATE_OBJECT2;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     break;
             }
         }
@@ -1246,6 +1249,7 @@ bool WorldObject::IsWithinLOSInMap(const WorldObject* obj) const
     if (!IsInMap(obj))
         return false;
 
+<<<<<<< HEAD
     // Hack for ice tomb's gameobject
     if (obj->GetTypeId() == TYPEID_UNIT)
         if (obj->GetEntry() == 36980 /* Ice Tomb */)
@@ -1255,6 +1259,8 @@ bool WorldObject::IsWithinLOSInMap(const WorldObject* obj) const
         if (GetEntry() == 36980 /* Ice Tomb */)
             return true;
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     float ox, oy, oz;
     obj->GetPosition(ox, oy, oz);
     return IsWithinLOS(ox, oy, oz);

@@ -493,7 +493,11 @@ class GridObject
     public:
         bool IsInGrid() const { return _gridRef.isValid(); }
         void AddToGrid(GridRefManager<T>& m) { ASSERT(!IsInGrid()); _gridRef.link(&m, (T*)this); }
+<<<<<<< HEAD
         void RemoveFromGrid() { /*ASSERT(IsInGrid()); */_gridRef.unlink(); }
+=======
+        void RemoveFromGrid() { ASSERT(IsInGrid()); _gridRef.unlink(); }
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     private:
         GridReference<T> _gridRef;
 };

@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2008-2013 Trinity <http://www.trinitycore.org/>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,6 +17,22 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Updated by: Toba and Baeumchen (maddin)
+=======
+ * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
  */
 
 #include "ObjectMgr.h"
@@ -29,8 +46,11 @@
 #include "Player.h"
 #include "WorldPacket.h"
 #include "WorldSession.h"
+<<<<<<< HEAD
 #include "MapManager.h"
 #include "Transport.h"
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
 enum EventIds
 {
@@ -44,6 +64,7 @@ enum TimedEvents
     EVENT_UPDATE_EXECUTION_TIME = 1,
     EVENT_QUAKE_SHATTER         = 2,
     EVENT_REBUILD_PLATFORM      = 3,
+<<<<<<< HEAD
     EVENT_CHECK_HERO_ACHIEVEMENT = 4,
 };
 
@@ -51,6 +72,8 @@ enum RequiredAchievementsForHeroic
 {
     ACHIEVEMENT_FROZEN_THRONE_10 = 4530,
     ACHIEVEMENT_FROZEN_THRONE_25 = 4597,
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 DoorData const doorData[] =
@@ -75,7 +98,10 @@ DoorData const doorData[] =
     {GO_DOODAD_ICECROWN_ROOSTPORTCULLIS_02,  DATA_VALITHRIA_DREAMWALKER, DOOR_TYPE_SPAWN_HOLE, BOUNDARY_S   },
     {GO_DOODAD_ICECROWN_ROOSTPORTCULLIS_03,  DATA_VALITHRIA_DREAMWALKER, DOOR_TYPE_SPAWN_HOLE, BOUNDARY_N   },
     {GO_DOODAD_ICECROWN_ROOSTPORTCULLIS_04,  DATA_VALITHRIA_DREAMWALKER, DOOR_TYPE_SPAWN_HOLE, BOUNDARY_S   },
+<<<<<<< HEAD
     {GO_SINDRAGOSA_ENTRANCE_DOOR,            DATA_SINDRAGOSA_GAUNTLET,   DOOR_TYPE_PASSAGE,    BOUNDARY_N   },
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     {GO_SINDRAGOSA_ENTRANCE_DOOR,            DATA_SINDRAGOSA,            DOOR_TYPE_ROOM,       BOUNDARY_S   },
     {GO_SINDRAGOSA_SHORTCUT_ENTRANCE_DOOR,   DATA_SINDRAGOSA,            DOOR_TYPE_PASSAGE,    BOUNDARY_E   },
     {GO_SINDRAGOSA_SHORTCUT_EXIT_DOOR,       DATA_SINDRAGOSA,            DOOR_TYPE_PASSAGE,    BOUNDARY_NONE},
@@ -162,6 +188,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                 ColdflameJetsState = NOT_STARTED;
                 BloodQuickeningState = NOT_STARTED;
                 BloodQuickeningMinutes = 0;
+<<<<<<< HEAD
                 // Gunship event
                 FirstSquadState = 0;
                 SecondSquadState = 0;
@@ -175,6 +202,8 @@ class instance_icecrown_citadel : public InstanceMapScript
                 GbBattleMageGUID = 0;
                 isPrepared = false;
                 SindragosasWardGUID = 0;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
 
             void FillInitialWorldStates(WorldPacket& data)
@@ -190,10 +219,13 @@ class instance_icecrown_citadel : public InstanceMapScript
             {
                 if (!TeamInInstance)
                     TeamInInstance = player->GetTeam();
+<<<<<<< HEAD
                     PrepareGunshipEvent(player); // Spawn Gunship Event
 
                 if (instance->IsHeroic())
                     Events.ScheduleEvent(EVENT_CHECK_HERO_ACHIEVEMENT, 10000);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
 
             void OnCreatureCreate(Creature* creature)
@@ -334,6 +366,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                         creature->SetCorpseDelay(0);
                         creature->SetReactState(REACT_PASSIVE);
                         break;
+<<<<<<< HEAD
                     case NPC_SINDRAGOSAS_WARD:
                         SindragosasWardGUID = creature->GetGUID();
                         break;
@@ -359,6 +392,8 @@ class instance_icecrown_citadel : public InstanceMapScript
                     case NPC_GB_KORKRON_BATTLE_MAGE:
                         GbBattleMageGUID = creature->GetGUID();
                         break;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     default:
                         break;
                 }
@@ -571,7 +606,11 @@ class instance_icecrown_citadel : public InstanceMapScript
                         break;
                     case GO_SCOURGE_TRANSPORTER_LK:
                         TheLichKingTeleportGUID = go->GetGUID();
+<<<<<<< HEAD
                         if (GetBossState(DATA_PROFESSOR_PUTRICIDE) == DONE && GetBossState(DATA_BLOOD_QUEEN_LANA_THEL) == DONE/* && GetBossState(DATA_SINDRAGOSA) == DONE*/)
+=======
+                        if (GetBossState(DATA_PROFESSOR_PUTRICIDE) == DONE && GetBossState(DATA_BLOOD_QUEEN_LANA_THEL) == DONE && GetBossState(DATA_SINDRAGOSA) == DONE)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             go->SetGoState(GO_STATE_ACTIVE);
                         break;
                     case GO_ARTHAS_PLATFORM:
@@ -608,6 +647,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                         if (GetBossState(DATA_THE_LICH_KING) == DONE)
                             go->SetRespawnTime(7 * DAY);
                         break;
+<<<<<<< HEAD
                     //Gunship: Assignments
                     case NPC_GB_SKYBREAKER:
                         SkybreakerBossGUID = go->GetGUID();
@@ -631,6 +671,8 @@ class instance_icecrown_citadel : public InstanceMapScript
                     case NPC_GB_KORKRON_BATTLE_MAGE:
                         GbBattleMageGUID = go->GetGUID();
                         break;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     default:
                         break;
                 }
@@ -754,6 +796,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                         return ArthasPlatformGUID;
                     case DATA_TERENAS_MENETHIL:
                         return TerenasMenethilGUID;
+<<<<<<< HEAD
                     // Gunship: To merge all
                     case DATA_SKYBREAKER_BOSS:
                         return SkybreakerBossGUID;
@@ -771,6 +814,8 @@ class instance_icecrown_citadel : public InstanceMapScript
                         return GbBattleMageGUID;
                     case DATA_SINDRAGOSA_GAUNTLET:
                         return SindragosasWardGUID;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     default:
                         break;
                 }
@@ -786,7 +831,11 @@ class instance_icecrown_citadel : public InstanceMapScript
                 switch (type)
                 {
                     case DATA_LADY_DEATHWHISPER:
+<<<<<<< HEAD
                         // SetBossState(DATA_GUNSHIP_EVENT, state);    // TEMP HACK UNTIL GUNSHIP SCRIPTED
+=======
+                        SetBossState(DATA_GUNSHIP_EVENT, state);    // TEMP HACK UNTIL GUNSHIP SCRIPTED
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         if (state == DONE)
                         {
                             if (GameObject* elevator = instance->GetGameObject(LadyDeathwisperElevatorGUID))
@@ -1049,6 +1098,12 @@ class instance_icecrown_citadel : public InstanceMapScript
 
             bool CheckRequiredBosses(uint32 bossId, Player const* player = NULL) const
             {
+<<<<<<< HEAD
+=======
+                if (player && player->GetSession()->HasPermission(RBAC_PERM_SKIP_CHECK_INSTANCE_REQUIRED_BOSSES))
+                    return true;
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 switch (bossId)
                 {
                     case DATA_THE_LICH_KING:
@@ -1127,7 +1182,11 @@ class instance_icecrown_citadel : public InstanceMapScript
             {
                 switch (bossId)
                 {
+<<<<<<< HEAD
                      case DATA_THE_LICH_KING:
+=======
+                    case DATA_THE_LICH_KING:
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         if (GetBossState(DATA_SINDRAGOSA) != DONE)
                             return false;
                         // no break
@@ -1158,8 +1217,13 @@ class instance_icecrown_citadel : public InstanceMapScript
                             return false;
                         // no break
                     case DATA_DEATHBRINGER_SAURFANG:
+<<<<<<< HEAD
                         /* if (GetBossState(DATA_GUNSHIP_EVENT) != DONE)
                             return false; */
+=======
+                        if (GetBossState(DATA_GUNSHIP_EVENT) != DONE)
+                            return false;
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         // no break
                     case DATA_GUNSHIP_EVENT:
                         if (GetBossState(DATA_LADY_DEATHWHISPER) != DONE)
@@ -1179,7 +1243,11 @@ class instance_icecrown_citadel : public InstanceMapScript
 
             void CheckLichKingAvailability()
             {
+<<<<<<< HEAD
                 if (GetBossState(DATA_PROFESSOR_PUTRICIDE) == DONE && GetBossState(DATA_BLOOD_QUEEN_LANA_THEL) == DONE/* && GetBossState(DATA_SINDRAGOSA) == DONE*/)
+=======
+                if (GetBossState(DATA_PROFESSOR_PUTRICIDE) == DONE && GetBossState(DATA_BLOOD_QUEEN_LANA_THEL) == DONE && GetBossState(DATA_SINDRAGOSA) == DONE)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 {
                     if (GameObject* teleporter = instance->GetGameObject(TheLichKingTeleportGUID))
                     {
@@ -1199,6 +1267,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                 }
             }
 
+<<<<<<< HEAD
             bool CheckHeroicAchievement(uint32 mode)
             {
                 Map::PlayerList const &players = instance->GetPlayers();
@@ -1213,6 +1282,8 @@ class instance_icecrown_citadel : public InstanceMapScript
                 return false;
             }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             std::string GetSaveData()
             {
                 OUT_SAVE_INST_DATA;
@@ -1278,6 +1349,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                 {
                     switch (eventId)
                     {
+<<<<<<< HEAD
                         case EVENT_CHECK_HERO_ACHIEVEMENT:
                             if (!CheckHeroicAchievement(instance->ToInstanceMap()->GetMaxPlayers()))
                             {
@@ -1288,6 +1360,8 @@ class instance_icecrown_citadel : public InstanceMapScript
                             }
                             Events.ScheduleEvent(EVENT_CHECK_HERO_ACHIEVEMENT, 10000);
                             break;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         case EVENT_UPDATE_EXECUTION_TIME:
                         {
                             --BloodQuickeningMinutes;
@@ -1373,6 +1447,7 @@ class instance_icecrown_citadel : public InstanceMapScript
                         break;
                 }
             }
+<<<<<<< HEAD
             // Gunship: this sucks, do it differently
             void PrepareGunshipEvent(Player* player)
             {
@@ -1573,6 +1648,8 @@ class instance_icecrown_citadel : public InstanceMapScript
                     sMapMgr->LoadTransportForPlayers(player);
                 }
             }
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
         protected:
             EventMap Events;
@@ -1628,6 +1705,7 @@ class instance_icecrown_citadel : public InstanceMapScript
             bool IsOozeDanceEligible;
             bool IsNauseaEligible;
             bool IsOrbWhispererEligible;
+<<<<<<< HEAD
             bool isPrepared;
             // Gunship: Variables
             // Here we must add states and these things first squad with real events ls
@@ -1647,6 +1725,8 @@ class instance_icecrown_citadel : public InstanceMapScript
             uint64 GBSkybreakerGUID;
             uint64 GBOgrimsHammerGUID;
             uint64 SindragosasWardGUID;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         };
 
         InstanceScript* GetInstanceScript(InstanceMap* map) const OVERRIDE

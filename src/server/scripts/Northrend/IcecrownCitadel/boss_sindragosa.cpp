@@ -210,7 +210,11 @@ class boss_sindragosa : public CreatureScript
             void Reset() OVERRIDE
             {
                 BossAI::Reset();
+<<<<<<< HEAD
                 me->SetReactState(REACT_AGGRESSIVE);
+=======
+                me->SetReactState(REACT_DEFENSIVE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 DoCast(me, SPELL_TANK_MARKER, true);
                 events.ScheduleEvent(EVENT_BERSERK, 600000);
                 events.ScheduleEvent(EVENT_CLEAVE, 10000, EVENT_GROUP_LAND_PHASE);
@@ -219,7 +223,10 @@ class boss_sindragosa : public CreatureScript
                 events.ScheduleEvent(EVENT_UNCHAINED_MAGIC, urand(9000, 14000), EVENT_GROUP_LAND_PHASE);
                 events.ScheduleEvent(EVENT_ICY_GRIP, 33500, EVENT_GROUP_LAND_PHASE);
                 events.ScheduleEvent(EVENT_AIR_PHASE, 50000);
+<<<<<<< HEAD
                 _iceTombCounter = 0;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 _mysticBuffetStack = 0;
                 _isInAirPhase = false;
                 _isThirdPhase = false;
@@ -250,7 +257,11 @@ class boss_sindragosa : public CreatureScript
                     return;
                 }
 
+<<<<<<< HEAD
                 //BossAI::EnterCombat(victim);
+=======
+                BossAI::EnterCombat(victim);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 DoCast(me, SPELL_FROST_AURA);
                 DoCast(me, SPELL_PERMAEATING_CHILL);
                 Talk(SAY_AGGRO);
@@ -262,7 +273,10 @@ class boss_sindragosa : public CreatureScript
                 instance->SetBossState(DATA_SINDRAGOSA, FAIL);
                 me->SetCanFly(false);
                 me->SetDisableGravity(false);
+<<<<<<< HEAD
                 me->DisappearAndDie();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
 
             void KilledUnit(Unit* victim) OVERRIDE
@@ -345,7 +359,11 @@ class boss_sindragosa : public CreatureScript
                         me->SetCanFly(false);
                         me->SetDisableGravity(false);
                         me->RemoveByteFlag(UNIT_FIELD_BYTES_1, 3, UNIT_BYTE1_FLAG_ALWAYS_STAND | UNIT_BYTE1_FLAG_HOVER);
+<<<<<<< HEAD
                         me->SetReactState(REACT_AGGRESSIVE);
+=======
+                        me->SetReactState(REACT_DEFENSIVE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         if (me->GetMotionMaster()->GetCurrentMovementGeneratorType() == POINT_MOTION_TYPE)
                             me->GetMotionMaster()->MovementExpired();
                         _isInAirPhase = false;
@@ -393,6 +411,10 @@ class boss_sindragosa : public CreatureScript
                     if (spellId == spell->Id)
                         if (Aura const* mysticBuffet = target->GetAura(spell->Id))
                             _mysticBuffetStack = std::max<uint8>(_mysticBuffetStack, mysticBuffet->GetStackAmount());
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
 
             void UpdateAI(uint32 diff) OVERRIDE
@@ -434,6 +456,7 @@ class boss_sindragosa : public CreatureScript
                         case EVENT_ICY_GRIP:
                             DoCast(me, SPELL_ICY_GRIP);
                             events.ScheduleEvent(EVENT_BLISTERING_COLD, 1000, EVENT_GROUP_LAND_PHASE);
+<<<<<<< HEAD
 
                             // Reset Ice Tomb counter, and schedule Ice Tombs again in phase 3
                             if (_isThirdPhase)
@@ -441,6 +464,8 @@ class boss_sindragosa : public CreatureScript
                                 _iceTombCounter = 0;
                                 events.ScheduleEvent(EVENT_ICE_TOMB, urand(7000, 10000));
                             }
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             break;
                         case EVENT_BLISTERING_COLD:
                             Talk(EMOTE_WARN_BLISTERING_COLD);
@@ -474,6 +499,7 @@ class boss_sindragosa : public CreatureScript
                             me->GetMotionMaster()->MovePoint(POINT_AIR_PHASE_FAR, SindragosaAirPosFar);
                             break;
                         case EVENT_ICE_TOMB:
+<<<<<<< HEAD
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true, -SPELL_ICE_TOMB_DAMAGE))
                             {
                                 Talk(EMOTE_WARN_FROZEN_ORB, target->GetGUID());
@@ -486,6 +512,14 @@ class boss_sindragosa : public CreatureScript
                                 events.ScheduleEvent(EVENT_ICE_TOMB, urand(16000, 23000));
                             else // We are done with all ice tombs, start icy grip timer
                                 events.ScheduleEvent(EVENT_ICY_GRIP, 20000);
+=======
+                            if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true, -SPELL_ICE_TOMB_UNTARGETABLE))
+                            {
+                                Talk(EMOTE_WARN_FROZEN_ORB, target->GetGUID());
+                                DoCast(target, SPELL_ICE_TOMB_DUMMY, true);
+                            }
+                            events.ScheduleEvent(EVENT_ICE_TOMB, urand(16000, 23000));
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             break;
                         case EVENT_FROST_BOMB:
                         {
@@ -516,11 +550,17 @@ class boss_sindragosa : public CreatureScript
                         {
                             if (!_isInAirPhase)
                             {
+<<<<<<< HEAD
                                 events.CancelEvent(EVENT_ICY_GRIP);
                                 _isThirdPhase = true;
                                 Talk(SAY_PHASE_2);
                                 _iceTombCounter = 2; // Set to 2 here, so we get 2 casts until first icy grip
                                 events.ScheduleEvent(EVENT_ICE_TOMB, urand(7000, 10000));
+=======
+                                Talk(SAY_PHASE_2);
+                                events.ScheduleEvent(EVENT_ICE_TOMB, urand(7000, 10000));
+                                events.RescheduleEvent(EVENT_ICY_GRIP, urand(35000, 40000));
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                                 DoCast(me, SPELL_MYSTIC_BUFFET, true);
                             }
                             else
@@ -536,7 +576,10 @@ class boss_sindragosa : public CreatureScript
             }
 
         private:
+<<<<<<< HEAD
             uint8 _iceTombCounter;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             uint8 _mysticBuffetStack;
             bool _isInAirPhase;
             bool _isThirdPhase;
@@ -565,8 +608,11 @@ class npc_ice_tomb : public CreatureScript
             void Reset() OVERRIDE
             {
                 me->SetReactState(REACT_PASSIVE);
+<<<<<<< HEAD
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
 
             void SetGUID(uint64 guid, int32 type/* = 0 */) OVERRIDE
@@ -656,9 +702,13 @@ class npc_spinestalker : public CreatureScript
                 _events.ScheduleEvent(EVENT_BELLOWING_ROAR, urand(20000, 25000));
                 _events.ScheduleEvent(EVENT_CLEAVE_SPINESTALKER, urand(10000, 15000));
                 _events.ScheduleEvent(EVENT_TAIL_SWEEP, urand(8000, 12000));
+<<<<<<< HEAD
                 me->SetReactState(REACT_AGGRESSIVE);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
+=======
+                me->SetReactState(REACT_DEFENSIVE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
                 if (!_summoned)
                 {
@@ -787,9 +837,13 @@ class npc_rimefang : public CreatureScript
                 _events.Reset();
                 _events.ScheduleEvent(EVENT_FROST_BREATH_RIMEFANG, urand(12000, 15000));
                 _events.ScheduleEvent(EVENT_ICY_BLAST, urand(30000, 35000));
+<<<<<<< HEAD
                 me->SetReactState(REACT_AGGRESSIVE);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
+=======
+                me->SetReactState(REACT_DEFENSIVE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 _icyBlastCounter = 0;
 
                 if (!_summoned)
@@ -1154,7 +1208,12 @@ class spell_sindragosa_frost_breath : public SpellScriptLoader
                 if (!target)
                     return;
 
+<<<<<<< HEAD
                 if (target->GetQuestStatus(QUEST_FROST_INFUSION) != QUEST_STATUS_INCOMPLETE)
+=======
+                // Check difficulty and quest status
+                if (!(target->GetRaidDifficulty() & RAID_DIFFICULTY_MASK_25MAN) || target->GetQuestStatus(QUEST_FROST_INFUSION) != QUEST_STATUS_INCOMPLETE)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     return;
 
                 // Check if player has Shadow's Edge equipped and not ready for infusion
@@ -1336,6 +1395,7 @@ class spell_sindragosa_icy_grip : public SpellScriptLoader
             void HandleScript(SpellEffIndex effIndex)
             {
                 PreventHitDefaultEffect(effIndex);
+<<<<<<< HEAD
 
                 Unit* unit = GetHitUnit();
                 Unit* caster = GetCaster();
@@ -1354,6 +1414,9 @@ class spell_sindragosa_icy_grip : public SpellScriptLoader
                         }
                     }
                 }
+=======
+                GetHitUnit()->CastSpell(GetCaster(), SPELL_ICY_GRIP_JUMP, true);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
 
             void Register() OVERRIDE
@@ -1583,7 +1646,11 @@ class at_sindragosa_lair : public AreaTriggerScript
 
                 if (!instance->GetData(DATA_RIMEFANG))
                     if (Creature* rimefang = ObjectAccessor::GetCreature(*player, instance->GetData64(DATA_RIMEFANG)))
+<<<<<<< HEAD
                          rimefang->AI()->DoAction(ACTION_START_FROSTWYRM);
+=======
+                        rimefang->AI()->DoAction(ACTION_START_FROSTWYRM);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
                 if (!instance->GetData(DATA_SINDRAGOSA_FROSTWYRMS) && !instance->GetData64(DATA_SINDRAGOSA) && instance->GetBossState(DATA_SINDRAGOSA) != DONE)
                 {

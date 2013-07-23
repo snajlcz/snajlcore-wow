@@ -77,7 +77,11 @@ void BattlegroundAV::HandleKillUnit(Creature* unit, Player* killer)
     if (entry == BG_AV_CreatureInfo[AV_NPC_A_BOSS][0])
     {
         CastSpellOnTeam(23658, HORDE); //this is a spell which finishes a quest where a player has to kill the boss
+<<<<<<< HEAD
         RewardReputationToTeam(729, 730, BG_AV_REP_BOSS, killer->GetTeam() == ALLIANCE ? ALLIANCE : HORDE);
+=======
+        RewardReputationToTeam(729, BG_AV_REP_BOSS, HORDE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         RewardHonorToTeam(GetBonusHonor(BG_AV_KILL_BOSS), HORDE);
         EndBattleground(HORDE);
         DelCreature(AV_CPLACE_TRIGGER17);
@@ -85,7 +89,11 @@ void BattlegroundAV::HandleKillUnit(Creature* unit, Player* killer)
     else if (entry == BG_AV_CreatureInfo[AV_NPC_H_BOSS][0])
     {
         CastSpellOnTeam(23658, ALLIANCE); //this is a spell which finishes a quest where a player has to kill the boss
+<<<<<<< HEAD
         RewardReputationToTeam(729, 730, BG_AV_REP_BOSS, killer->GetTeam() == ALLIANCE ? ALLIANCE : HORDE);
+=======
+        RewardReputationToTeam(730, BG_AV_REP_BOSS, ALLIANCE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         RewardHonorToTeam(GetBonusHonor(BG_AV_KILL_BOSS), ALLIANCE);
         EndBattleground(ALLIANCE);
         DelCreature(AV_CPLACE_TRIGGER19);
@@ -98,7 +106,11 @@ void BattlegroundAV::HandleKillUnit(Creature* unit, Player* killer)
             return;
         }
         m_CaptainAlive[0]=false;
+<<<<<<< HEAD
         RewardReputationToTeam(729, 730, BG_AV_REP_CAPTAIN, killer->GetTeam() == ALLIANCE ? ALLIANCE : HORDE);
+=======
+        RewardReputationToTeam(729, BG_AV_REP_CAPTAIN, HORDE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         RewardHonorToTeam(GetBonusHonor(BG_AV_KILL_CAPTAIN), HORDE);
         UpdateScore(ALLIANCE, (-1)*BG_AV_RES_CAPTAIN);
         //spawn destroyed aura
@@ -117,7 +129,11 @@ void BattlegroundAV::HandleKillUnit(Creature* unit, Player* killer)
             return;
         }
         m_CaptainAlive[1]=false;
+<<<<<<< HEAD
         RewardReputationToTeam(729, 730, BG_AV_REP_CAPTAIN, killer->GetTeam() == ALLIANCE ? ALLIANCE : HORDE);
+=======
+        RewardReputationToTeam(730, BG_AV_REP_CAPTAIN, ALLIANCE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         RewardHonorToTeam(GetBonusHonor(BG_AV_KILL_CAPTAIN), ALLIANCE);
         UpdateScore(HORDE, (-1)*BG_AV_RES_CAPTAIN);
         //spawn destroyed aura
@@ -139,7 +155,10 @@ void BattlegroundAV::HandleQuestComplete(uint32 questid, Player* player)
     if (GetStatus() != STATUS_IN_PROGRESS)
         return;//maybe we should log this, cause this must be a cheater or a big bug
     uint8 team = GetTeamIndexByTeamId(player->GetTeam());
+<<<<<<< HEAD
     uint8 oteam = GetTeamIndexByTeamId(GetOtherTeam(player->GetTeam()));
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     /// @todo add reputation, events (including quest not available anymore, next quest availabe, go/npc de/spawning)and maybe honor
     TC_LOG_DEBUG(LOG_FILTER_BATTLEGROUND, "BG_AV Quest %i completed", questid);
     switch (questid)
@@ -164,21 +183,33 @@ void BattlegroundAV::HandleQuestComplete(uint32 questid, Player* player)
         case AV_QUEST_A_COMMANDER1:
         case AV_QUEST_H_COMMANDER1:
             m_Team_QuestStatus[team][1]++;
+<<<<<<< HEAD
             RewardReputationToTeam(team, oteam, 1, player->GetTeam());
+=======
+            RewardReputationToTeam(team, 1, player->GetTeam());
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             if (m_Team_QuestStatus[team][1] == 30)
                 TC_LOG_DEBUG(LOG_FILTER_BATTLEGROUND, "BG_AV Quest %i completed (need to implement some events here", questid);
             break;
         case AV_QUEST_A_COMMANDER2:
         case AV_QUEST_H_COMMANDER2:
             m_Team_QuestStatus[team][2]++;
+<<<<<<< HEAD
             RewardReputationToTeam(team, oteam, 1, player->GetTeam());
+=======
+            RewardReputationToTeam(team, 1, player->GetTeam());
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             if (m_Team_QuestStatus[team][2] == 60)
                 TC_LOG_DEBUG(LOG_FILTER_BATTLEGROUND, "BG_AV Quest %i completed (need to implement some events here", questid);
             break;
         case AV_QUEST_A_COMMANDER3:
         case AV_QUEST_H_COMMANDER3:
             m_Team_QuestStatus[team][3]++;
+<<<<<<< HEAD
             RewardReputationToTeam(team, oteam, 1, player->GetTeam());
+=======
+            RewardReputationToTeam(team, 1, player->GetTeam());
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             if (m_Team_QuestStatus[team][3] == 120)
                 TC_LOG_DEBUG(LOG_FILTER_BATTLEGROUND, "BG_AV Quest %i completed (need to implement some events here", questid);
             break;
@@ -490,7 +521,11 @@ void BattlegroundAV::EndBattleground(uint32 winner)
             rep[i]   += BG_AV_REP_SURVIVING_CAPTAIN;
         }
         if (rep[i] != 0)
+<<<<<<< HEAD
             RewardReputationToTeam(729, 730, 10, i == ALLIANCE ? ALLIANCE : HORDE);
+=======
+            RewardReputationToTeam(i == 0 ? 730 : 729, rep[i], i == 0 ? ALLIANCE : HORDE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         if (kills[i] != 0)
             RewardHonorToTeam(GetBonusHonor(kills[i]), i == 0 ? ALLIANCE : HORDE);
     }
@@ -609,7 +644,11 @@ void BattlegroundAV::EventPlayerDestroyedPoint(BG_AV_Nodes node)
             SpawnBGObject(BG_AV_OBJECT_BURN_DUNBALDAR_SOUTH + i + (tmp * 10), RESPAWN_IMMEDIATELY);
 
         UpdateScore((owner == ALLIANCE) ? HORDE : ALLIANCE, -1 * BG_AV_RES_TOWER);
+<<<<<<< HEAD
         RewardReputationToTeam(729, 730, BG_AV_REP_TOWER, owner);
+=======
+        RewardReputationToTeam(owner == ALLIANCE ? 730 : 729, BG_AV_REP_TOWER, owner);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         RewardHonorToTeam(GetBonusHonor(BG_AV_KILL_TOWER), owner);
 
         SpawnBGObject(BG_AV_OBJECT_TAURA_A_DUNBALDAR_SOUTH+GetTeamIndexByTeamId(owner)+(2*tmp), RESPAWN_ONE_DAY);
@@ -1050,6 +1089,7 @@ void BattlegroundAV::EventPlayerAssaultsPoint(Player* player, uint32 object)
             //spawning/despawning of aura
             SpawnBGObject(BG_AV_OBJECT_AURA_N_FIRSTAID_STATION+3*node, RESPAWN_IMMEDIATELY); //neutral aura spawn
             SpawnBGObject(BG_AV_OBJECT_AURA_A_FIRSTAID_STATION+GetTeamIndexByTeamId(owner)+3*node, RESPAWN_ONE_DAY); //teeamaura despawn
+<<<<<<< HEAD
             // Those who are waiting to resurrect at this object are taken to the closest own object's graveyard
             std::vector<uint64> ghost_list = m_ReviveQueue[BgCreatures[node]];
             if (!ghost_list.empty())
@@ -1069,6 +1109,10 @@ void BattlegroundAV::EventPlayerAssaultsPoint(Player* player, uint32 object)
                 }
                 m_ReviveQueue[BgCreatures[node]].clear();
             }
+=======
+
+            RelocateDeadPlayers(BgCreatures[node]);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         }
         DePopulateNode(node);
     }

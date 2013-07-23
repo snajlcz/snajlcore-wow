@@ -279,8 +279,13 @@ public:
 
         bool found = false;
         float x, y, z, o;
+<<<<<<< HEAD
         uint32 guidLow, id;
         uint16 mapId, phase;
+=======
+        uint32 guidLow, id, phase;
+        uint16 mapId;
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         uint32 poolId;
 
         do
@@ -293,7 +298,11 @@ public:
             z =       fields[4].GetFloat();
             o =       fields[5].GetFloat();
             mapId =   fields[6].GetUInt16();
+<<<<<<< HEAD
             phase =   fields[7].GetUInt16();
+=======
+            phase =   fields[7].GetUInt32();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             poolId =  sPoolMgr->IsPartOfAPool<GameObject>(guidLow);
             if (!poolId || sPoolMgr->IsSpawnedObject<GameObject>(guidLow))
                 found = true;

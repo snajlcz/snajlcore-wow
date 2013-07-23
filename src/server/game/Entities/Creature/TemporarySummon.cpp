@@ -216,9 +216,13 @@ void TempSummon::InitStats(uint32 duration)
 
 void TempSummon::InitSummon()
 {
+<<<<<<< HEAD
 
     Unit* owner = GetSummoner();
 
+=======
+    Unit* owner = GetSummoner();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     if (owner)
     {
         if (owner->GetTypeId() == TYPEID_UNIT && owner->ToCreature()->IsAIEnabled)
@@ -226,7 +230,10 @@ void TempSummon::InitSummon()
         if (IsAIEnabled)
             AI()->IsSummonedBy(owner);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void TempSummon::SetTempSummonType(TempSummonType type)

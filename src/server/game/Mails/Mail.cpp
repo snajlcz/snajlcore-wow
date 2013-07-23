@@ -283,6 +283,7 @@ void MailDraft::SendMailTo(SQLTransaction& trans, MailReceiver const& receiver, 
         deleteIncludedItems(temp);
     }
 }
+<<<<<<< HEAD
 
 void WorldSession::SendExternalMails()
 {
@@ -343,3 +344,5 @@ void WorldSession::SendExternalMails()
     CharacterDatabase.CommitTransaction(trans);
     sLog->outInfo(LOG_FILTER_NETWORKIO, "EXTERNAL MAIL> All Mails Sent...");
 }
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67

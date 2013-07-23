@@ -85,7 +85,10 @@ public:
         boss_taldaramAI(Creature* creature) : ScriptedAI(creature)
         {
             instance = creature->GetInstanceScript();
+<<<<<<< HEAD
             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NON_ATTACKABLE);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             me->SetDisableGravity(true);
         }
 
@@ -121,7 +124,10 @@ public:
         {
             if (instance)
                 instance->SetData(DATA_PRINCE_TALDARAM_EVENT, IN_PROGRESS);
+<<<<<<< HEAD
             me->RemoveAurasDueToSpell(SPELL_BEAM_VISUAL);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             Talk(SAY_AGGRO);
         }
 
@@ -320,7 +326,11 @@ public:
         {
             if (!instance)
                 return;
+<<<<<<< HEAD
             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
+=======
+            me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             me->RemoveAurasDueToSpell(SPELL_BEAM_VISUAL);
             me->SetHomePosition(me->GetPositionX(), me->GetPositionY(), DATA_GROUND_POSITION_Z, me->GetOrientation());
             DoCast(SPELL_HOVER_FALL);

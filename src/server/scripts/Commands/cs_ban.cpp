@@ -147,8 +147,11 @@ public:
         if (!*args)
             return false;
 
+<<<<<<< HEAD
        std::string announce;
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         char* cnameOrIP = strtok((char*)args, " ");
         if (!cnameOrIP)
             return false;
@@ -214,6 +217,7 @@ public:
                 return false;
         }
 
+<<<<<<< HEAD
         if (sWorld->getBoolConfig(CONFIG_SHOW_BAN_IN_WORLD))
         {
    if (mode == BAN_CHARACTER)
@@ -232,6 +236,8 @@ public:
                      sWorld->SendServerMessage(SERVER_MSG_STRING, announce.c_str());
         }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         return true;
     }
 

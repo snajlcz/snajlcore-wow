@@ -1417,6 +1417,7 @@ void WorldSession::HandleSetTitleOpcode(WorldPacket& recvData)
 
 void WorldSession::HandleTimeSyncResp(WorldPacket& recvData)
 {
+<<<<<<< HEAD
     Battleground* bg = _player->GetBattleground();
     if (bg)
     {
@@ -1432,6 +1433,8 @@ void WorldSession::HandleTimeSyncResp(WorldPacket& recvData)
         _player->SetForgetInListPlayers(false);
     }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     TC_LOG_DEBUG(LOG_FILTER_NETWORKIO, "CMSG_TIME_SYNC_RESP");
 
     uint32 counter, clientTicks;

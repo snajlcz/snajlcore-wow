@@ -177,7 +177,10 @@ enum Gurgthock
     QUEST_AMPHITHEATER_ANGUISH_YGGDRAS_1          = 12932,
     QUEST_AMPHITHEATER_ANGUISH_MAGNATAUR          = 12933,
     QUEST_AMPHITHEATER_ANGUISH_FROM_BEYOND        = 12934,
+<<<<<<< HEAD
     QUEST_AMPHITHEATER_ANGUISH_CHAMPION           = 12948,
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
     NPC_ORINOKO_TUSKBREAKER                       = 30020,
     NPC_KORRAK_BLOODRAGER                         = 30023,
@@ -191,7 +194,10 @@ enum Gurgthock
     NPC_FIEND_AIR                                 = 30045,
     NPC_FIEND_FIRE                                = 30042,
     NPC_FIEND_EARTH                               = 30043,
+<<<<<<< HEAD
     NPC_VLADOF                                    = 30022,
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
     SAY_QUEST_ACCEPT_TUSKARRMAGEDON               = 0,
     SAY_QUEST_ACCEPT_KORRAK_1                     = 1,
@@ -321,10 +327,13 @@ public:
                             uiTimer = 2000;
                             uiPhase = 12;
                             break;
+<<<<<<< HEAD
                         case QUEST_AMPHITHEATER_ANGUISH_CHAMPION:
                             uiTimer = 2000;
                             uiPhase = 23;
                             break;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                    }
                         break;
                 }
@@ -447,6 +456,7 @@ public:
                                 creature->AI()->SetData(1, _bossRandom);
                             uiPhase = 0;
                             break;
+<<<<<<< HEAD
                         case 23:
                         {
                             me->SummonCreature(NPC_VLADOF, SpawnPosition[1], TEMPSUMMON_CORPSE_DESPAWN, 1000);
@@ -455,6 +465,8 @@ public:
                             uiPhase = 0;
                         }
                         break;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     }
                 }
                 else uiTimer -= diff;
@@ -494,9 +506,12 @@ public:
             case QUEST_AMPHITHEATER_ANGUISH_FROM_BEYOND:
                 creature->AI()->SetData(1, quest->GetQuestId());
                 break;
+<<<<<<< HEAD
             case QUEST_AMPHITHEATER_ANGUISH_CHAMPION:
                 creature->AI()->SetData(1, quest->GetQuestId());
                 break;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         }
 
         creature->AI()->SetGUID(player->GetGUID());
@@ -1295,6 +1310,7 @@ public:
     }
 };
 
+<<<<<<< HEAD
 /*####
 ## npc_vladof
 ## TODO: mammoth
@@ -1404,6 +1420,8 @@ public:
     }
 };
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 /*######
 ## Quest 12916: Our Only Hope!
 ## go_scourge_enclosure
@@ -1965,6 +1983,7 @@ class spell_fetch_ingredient_aura : public SpellScriptLoader
 
 void AddSC_zuldrak()
 {
+<<<<<<< HEAD
     new npc_drakuru_shackles;
     new npc_captured_rageclaw;
     new npc_gurgthock;
@@ -1984,4 +2003,24 @@ void AddSC_zuldrak()
     new spell_random_ingredient;
     new spell_pot_check;
     new spell_fetch_ingredient_aura;
+=======
+    new npc_drakuru_shackles();
+    new npc_captured_rageclaw();
+    new npc_gurgthock();
+    new npc_orinoko_tuskbreaker();
+    new npc_korrak_bloodrager();
+    new npc_yggdras();
+    new npc_stinkbeard();
+    new npc_released_offspring_harkoa();
+    new npc_crusade_recruit();
+    new npc_elemental_lord();
+    new npc_fiend_elemental();
+    new go_scourge_enclosure();
+    new npc_alchemist_finklestein();
+    new go_finklesteins_cauldron();
+    new spell_random_ingredient_aura();
+    new spell_random_ingredient();
+    new spell_pot_check();
+    new spell_fetch_ingredient_aura();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }

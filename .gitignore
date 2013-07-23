@@ -16,5 +16,8 @@ CMakeLists.txt.user
 *.BACKUP.*
 *.BASE.*
 *.LOCAL.*
+<<<<<<< HEAD
 *.zip
 CFBG_GUIDE.txt
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67

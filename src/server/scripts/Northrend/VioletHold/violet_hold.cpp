@@ -21,6 +21,12 @@
 #include "ScriptedEscortAI.h"
 #include "violet_hold.h"
 #include "Player.h"
+<<<<<<< HEAD
+=======
+#include "SpellAuras.h"
+#include "SpellAuraEffects.h"
+#include "SpellScript.h"
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
 #define GOSSIP_START_EVENT  "Get your people to safety, we'll keep the Blue Dragonflight's forces at bay."
 #define GOSSIP_ITEM_1       "Activate the crystals when we get in trouble, right"
@@ -108,8 +114,13 @@ enum AzureStalkerSpells
 
 enum AzureSaboteurSpells
 {
+<<<<<<< HEAD
     SABOTEUR_SHIELD_DISRUPTION        = 58291,
     SABOTEUR_SHIELD_EFFECT            = 45775
+=======
+    SABOTEUR_SHIELD_DISRUPTION  = 58291,
+    SABOTEUR_SHIELD_EFFECT      = 45775
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 enum TrashDoorSpell
@@ -119,13 +130,23 @@ enum TrashDoorSpell
 
 enum Spells
 {
+<<<<<<< HEAD
     SPELL_PORTAL_CHANNEL              = 58012,
     SPELL_CRYSTALL_ACTIVATION         = 57804
+=======
+    SPELL_PORTAL_CHANNEL        = 58012,
+    SPELL_CRYSTAL_ACTIVATION    = 57804,
+    SPELL_ARCANE_SPHERE_PASSIVE = 44263
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 enum Sinclari
 {
+<<<<<<< HEAD
     SAY_SINCLARI_1                    = 0
+=======
+    SAY_SINCLARI_1              = 0
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 float FirstPortalWPs [6][3] =
@@ -1320,7 +1341,59 @@ public:
             DoMeleeAttackIfReady();
         }
     };
+<<<<<<< HEAD
 
+=======
+};
+
+
+class npc_violet_hold_arcane_sphere : public CreatureScript
+{
+public:
+    npc_violet_hold_arcane_sphere() : CreatureScript("npc_violet_hold_arcane_sphere") { }
+
+    struct npc_violet_hold_arcane_sphereAI : public ScriptedAI
+    {
+        npc_violet_hold_arcane_sphereAI(Creature* creature) : ScriptedAI(creature) { }
+
+        uint32 DespawnTimer;
+
+        void Reset() OVERRIDE
+        {
+            DespawnTimer = 3000;
+
+            me->SetDisableGravity(true);
+            DoCast(me, SPELL_ARCANE_SPHERE_PASSIVE, true);
+        }
+
+        void EnterCombat(Unit * /*who*/) OVERRIDE {}
+
+        void UpdateAI(uint32 diff) OVERRIDE
+        {
+            if (DespawnTimer <= diff)
+                me->Kill(me);
+            else
+                DespawnTimer -= diff;
+        }
+    };
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_violet_hold_arcane_sphereAI(creature);
+    }
+};
+
+class go_activation_crystal : public GameObjectScript
+{
+public:
+    go_activation_crystal() : GameObjectScript("go_activation_crystal") { }
+
+    bool OnGossipHello(Player * /*player*/, GameObject* go) OVERRIDE
+    {
+        go->EventInform(EVENT_ACTIVATE_CRYSTAL);
+        return false;
+    }
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 void AddSC_violet_hold()
@@ -1336,4 +1409,9 @@ void AddSC_violet_hold()
     new npc_azure_raider();
     new npc_azure_stalker();
     new npc_azure_saboteur();
+<<<<<<< HEAD
+=======
+    new npc_violet_hold_arcane_sphere();
+    new go_activation_crystal();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }

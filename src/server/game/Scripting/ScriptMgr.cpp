@@ -23,7 +23,10 @@
 #include "ObjectMgr.h"
 #include "OutdoorPvPMgr.h"
 #include "ScriptLoader.h"
+<<<<<<< HEAD
 #include "sc_npc_teleport.h"
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 #include "ScriptSystem.h"
 #include "Transport.h"
 #include "Vehicle.h"
@@ -177,8 +180,11 @@ void ScriptMgr::Initialize()
     uint32 oldMSTime = getMSTime();
 
     LoadDatabase();
+<<<<<<< HEAD
        // Load TeleNPC2 - maybe not the best place to load it ...
        LoadNpcTele();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
     TC_LOG_INFO(LOG_FILTER_SERVER_LOADING, "Loading C++ scripts");
 
@@ -1256,6 +1262,7 @@ void ScriptMgr::OnPlayerBindToInstance(Player* player, Difficulty difficulty, ui
     FOREACH_SCRIPT(PlayerScript)->OnBindToInstance(player, difficulty, mapid, permanent);
 }
 
+<<<<<<< HEAD
 void ScriptMgr::OnPlayerJoinedBattleground(Player* player, Battleground* bg)
 {
     FOREACH_SCRIPT(PlayerScript)->OnPlayerJoinedBattleground(player, bg);
@@ -1266,6 +1273,8 @@ void ScriptMgr::OnPlayerFirstKillBattleground(Player* player, Battleground* bg)
     FOREACH_SCRIPT(PlayerScript)->OnPlayerFirstKillBattleground(player, bg);
 }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 void ScriptMgr::OnPlayerUpdateZone(Player* player, uint32 newZone, uint32 newArea)
 {
     FOREACH_SCRIPT(PlayerScript)->OnUpdateZone(player, newZone, newArea);

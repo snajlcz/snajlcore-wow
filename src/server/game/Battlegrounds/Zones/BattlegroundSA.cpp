@@ -542,7 +542,11 @@ void BattlegroundSA::EventPlayerDamagedGO(Player* /*player*/, GameObject* go, ui
 
     if (eventType == go->GetGOInfo()->building.damagedEvent)
     {
+<<<<<<< HEAD
         uint32 i = getGateIdFromEventId(eventType);
+=======
+        uint32 i = getGateIdFromDamagedOrDestroyEventId(eventType);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         GateStatus[i] = BG_SA_GATE_DAMAGED;
         uint32 uws = getWorldStateFromGateId(i);
         if (uws)
@@ -558,6 +562,7 @@ void BattlegroundSA::EventPlayerDamagedGO(Player* /*player*/, GameObject* go, ui
     }
 
     if (eventType == go->GetGOInfo()->building.damageEvent)
+<<<<<<< HEAD
     {
         uint32 i = getGateIdFromEntry(go->GetEntry());
         if (GateStatus[i] == BG_SA_GATE_OK)
@@ -566,6 +571,9 @@ void BattlegroundSA::EventPlayerDamagedGO(Player* /*player*/, GameObject* go, ui
             GateStatus[i] = BG_SA_GATE_DAMAGE;
         }
     }
+=======
+        SendWarningToAll(LANG_BG_SA_IS_UNDER_ATTACK, go->GetGOInfo()->name.c_str());
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void BattlegroundSA::HandleKillUnit(Creature* creature, Player* killer)
@@ -619,7 +627,11 @@ void BattlegroundSA::DemolisherStartState(bool start)
 
 void BattlegroundSA::DestroyGate(Player* player, GameObject* go)
 {
+<<<<<<< HEAD
     uint32 i = getGateIdFromEventId(go->GetGOInfo()->building.destroyedEvent);
+=======
+    uint32 i = getGateIdFromDamagedOrDestroyEventId(go->GetGOInfo()->building.destroyedEvent);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     if (!GateStatus[i])
         return;
 
@@ -934,7 +946,10 @@ void BattlegroundSA::UpdateDemolisherSpawns()
                                 BG_SA_NpcSpawnlocs[i][2], BG_SA_NpcSpawnlocs[i][3]);
 
                             Demolisher->Respawn();
+<<<<<<< HEAD
                             Demolisher->setFaction(BG_SA_Factions[Attackers]);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             DemoliserRespawnList.erase(i);
                         }
                     }

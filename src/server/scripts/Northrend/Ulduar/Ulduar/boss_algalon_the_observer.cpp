@@ -244,7 +244,11 @@ class ActivateLivingConstellation : public BasicEvent
 
         bool Execute(uint64 execTime, uint32 /*diff*/)
         {
+<<<<<<< HEAD
             if (!_instance || _instance->GetBossState(DATA_ALGALON) != IN_PROGRESS)
+=======
+            if (!_instance || _instance->GetBossState(BOSS_ALGALON) != IN_PROGRESS)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 return true;    // delete event
 
             _owner->CastSpell((Unit*)NULL, SPELL_TRIGGER_3_ADDS, TRIGGERED_FULL_MASK);
@@ -299,7 +303,11 @@ class boss_algalon_the_observer : public CreatureScript
 
         struct boss_algalon_the_observerAI : public BossAI
         {
+<<<<<<< HEAD
             boss_algalon_the_observerAI(Creature* creature) : BossAI(creature, DATA_ALGALON)
+=======
+            boss_algalon_the_observerAI(Creature* creature) : BossAI(creature, BOSS_ALGALON)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
                 _firstPull = true;
                 _fedOnTears = false;
@@ -488,7 +496,11 @@ class boss_algalon_the_observer : public CreatureScript
 
             void EnterEvadeMode() OVERRIDE
             {
+<<<<<<< HEAD
                 instance->SetBossState(DATA_ALGALON, FAIL);
+=======
+                instance->SetBossState(BOSS_ALGALON, FAIL);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 BossAI::EnterEvadeMode();
                 me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC);
                 me->SetSheath(SHEATH_STATE_UNARMED);
@@ -568,7 +580,11 @@ class boss_algalon_the_observer : public CreatureScript
                             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC);
                             break;
                         case EVENT_START_COMBAT:
+<<<<<<< HEAD
                             instance->SetBossState(DATA_ALGALON, IN_PROGRESS);
+=======
+                            instance->SetBossState(BOSS_ALGALON, IN_PROGRESS);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             break;
                         case EVENT_INTRO_TIMER_DONE:
                         {
@@ -644,7 +660,11 @@ class boss_algalon_the_observer : public CreatureScript
                             _hasYelled = false;
                             break;
                         case EVENT_OUTRO_START:
+<<<<<<< HEAD
                             instance->SetBossState(DATA_ALGALON, DONE);
+=======
+                            instance->SetBossState(BOSS_ALGALON, DONE);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             break;
                         case EVENT_OUTRO_1:
                             me->RemoveAllAuras();

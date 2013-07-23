@@ -1307,6 +1307,7 @@ public:
     }
 };
 
+<<<<<<< HEAD
 /*######
 ## go_org_portal //193052
 ######*/
@@ -1617,4 +1618,45 @@ void AddSC_go_scripts()
     new go_org_portal;
     new go_sw_portal;
     new go_soothsaying_for_dummies();
+=======
+void AddSC_go_scripts()
+{
+    new go_cat_figurine();
+    new go_barov_journal();
+    new go_field_repair_bot_74A();
+    new go_gilded_brazier();
+    new go_orb_of_command();
+    new go_shrine_of_the_birds();
+    new go_southfury_moonstone();
+    new go_tablet_of_madness();
+    new go_tablet_of_the_seven();
+    new go_jump_a_tron();
+    new go_ethereum_prison();
+    new go_ethereum_stasis();
+    new go_resonite_cask();
+    new go_sacred_fire_of_life();
+    new go_tele_to_dalaran_crystal();
+    new go_tele_to_violet_stand();
+    new go_fel_crystalforge();
+    new go_bashir_crystalforge();
+    new go_matrix_punchograph();
+    new go_scourge_cage();
+    new go_arcane_prison();
+    new go_blood_filled_orb();
+    new go_jotunheim_cage();
+    new go_table_theka();
+    new go_inconspicuous_landmark();
+    new go_ethereal_teleport_pad();
+    new go_soulwell();
+    new go_tadpole_cage();
+    new go_dragonflayer_cage();
+    new go_amberpine_outhouse();
+    new go_hive_pod();
+    new go_massive_seaforium_charge();
+    new go_gjalerbron_cage();
+    new go_large_gjalerbron_cage();
+    new go_veil_skith_cage();
+    new go_frostblade_shrine();
+    new go_midsummer_bonfire();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }

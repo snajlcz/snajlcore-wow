@@ -605,7 +605,11 @@ void Channel::Say(uint64 guid, std::string const& what, uint32 lang)
         chatTag = player->GetChatTag();
 
     // TODO: Add proper RBAC check
+<<<<<<< HEAD
     if (sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHANNEL) || sAccountMgr->IsGMAccount || sAccountMgr->IsAdminAccount || sAccountMgr->IsModeratorAccount)
+=======
+    if (sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHANNEL))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         lang = LANG_UNIVERSAL;
 
     if (!IsOn(guid))

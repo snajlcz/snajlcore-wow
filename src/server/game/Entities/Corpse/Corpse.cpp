@@ -122,7 +122,11 @@ void Corpse::SaveToDB()
     stmt->setUInt32(index++, uint32(m_time));                                         // time
     stmt->setUInt8 (index++, GetType());                                              // corpseType
     stmt->setUInt32(index++, GetInstanceId());                                        // instanceId
+<<<<<<< HEAD
     stmt->setUInt16(index++, GetPhaseMask());                                         // phaseMask
+=======
+    stmt->setUInt32(index++, GetPhaseMask());                                         // phaseMask
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     trans->Append(stmt);
 
     CharacterDatabase.CommitTransaction(trans);
@@ -186,7 +190,11 @@ bool Corpse::LoadCorpseFromDB(uint32 guid, Field* fields)
     m_time = time_t(fields[12].GetUInt32());
 
     uint32 instanceId  = fields[14].GetUInt32();
+<<<<<<< HEAD
     uint32 phaseMask   = fields[15].GetUInt16();
+=======
+    uint32 phaseMask   = fields[15].GetUInt32();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
     // place
     SetLocationInstanceId(instanceId);

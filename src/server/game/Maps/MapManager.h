@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2008-2013 Trinity <http://www.trinitycore.org/>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,6 +17,23 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Updated by: Toba and Baeumchen (maddin)
+=======
+ * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
  */
 
 #ifndef TRINITY_MAPMANAGER_H
@@ -112,18 +130,24 @@ class MapManager
         void LoadTransports();
         void LoadTransportNPCs();
 
+<<<<<<< HEAD
         //Load transport to instance
         Transport* LoadTransportInMap(Map* instance, uint32 goEntry, uint32 period);
         void UnLoadTransportFromMap(Transport* t);
         void LoadTransportForPlayers(Player* player);
         void UnLoadTransportForPlayers(Player* player);
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         typedef std::set<Transport*> TransportSet;
         TransportSet m_Transports;
 
         typedef std::map<uint32, TransportSet> TransportMap;
         TransportMap m_TransportsByMap;
+<<<<<<< HEAD
         TransportMap m_TransportsByInstanceIdMap;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
         bool CanPlayerEnter(uint32 mapid, Player* player, bool loginCheck = false);
         void InitializeVisibilityDistanceInfo();

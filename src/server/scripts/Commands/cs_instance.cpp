@@ -43,8 +43,11 @@ public:
             { "unbind",         SEC_ADMINISTRATOR,  false,  &HandleInstanceUnbindCommand,       "", NULL },
             { "stats",          SEC_ADMINISTRATOR,  true,   &HandleInstanceStatsCommand,        "", NULL },
             { "savedata",       SEC_ADMINISTRATOR,  false,  &HandleInstanceSaveDataCommand,     "", NULL },
+<<<<<<< HEAD
             { "setdata",        SEC_ADMINISTRATOR,  false,  &HandleInstanceSetDataCommand,      "", NULL },
             { "getdata",        SEC_ADMINISTRATOR,  false,  &HandleInstanceGetDataCommand,      "", NULL },
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             { NULL,             0,                  false,  NULL,                               "", NULL }
         };
 
@@ -188,6 +191,7 @@ public:
 
         return true;
     }
+<<<<<<< HEAD
 
     static bool HandleInstanceSetDataCommand(ChatHandler* handler, char const* args)
     {
@@ -251,6 +255,8 @@ public:
         handler->PSendSysMessage("Instance data for field %i is %i.", field, value);
         return true;
     }
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 void AddSC_instance_commandscript()

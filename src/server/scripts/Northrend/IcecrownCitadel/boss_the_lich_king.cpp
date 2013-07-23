@@ -665,7 +665,10 @@ class boss_the_lich_king : public CreatureScript
                 if (events.IsInPhase(PHASE_ONE) && !HealthAbovePct(70))
                 {
                     events.SetPhase(PHASE_TRANSITION);
+<<<<<<< HEAD
                     SetImmuneToTaunt(true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     me->SetReactState(REACT_PASSIVE);
                     me->AttackStop();
                     me->GetMotionMaster()->MovePoint(POINT_CENTER_1, CenterPosition);
@@ -675,7 +678,10 @@ class boss_the_lich_king : public CreatureScript
                 if (events.IsInPhase(PHASE_TWO) && !HealthAbovePct(40))
                 {
                     events.SetPhase(PHASE_TRANSITION);
+<<<<<<< HEAD
                     SetImmuneToTaunt(true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     me->SetReactState(REACT_PASSIVE);
                     me->AttackStop();
                     me->GetMotionMaster()->MovePoint(POINT_CENTER_2, CenterPosition);
@@ -685,7 +691,10 @@ class boss_the_lich_king : public CreatureScript
                 if (events.IsInPhase(PHASE_THREE) && !HealthAbovePct(10))
                 {
                     me->SetReactState(REACT_PASSIVE);
+<<<<<<< HEAD
                     me->InterruptNonMeleeSpells(true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     me->AttackStop();
                     events.Reset();
                     events.SetPhase(PHASE_OUTRO);
@@ -823,7 +832,10 @@ class boss_the_lich_king : public CreatureScript
                         me->SetFacingTo(0.0f);
                         Talk(SAY_LK_REMORSELESS_WINTER);
                         SendMusicToPlayers(MUSIC_SPECIAL);
+<<<<<<< HEAD
                         SetImmuneToTaunt(false);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         DoCast(me, SPELL_REMORSELESS_WINTER_1);
                         events.DelayEvents(62500, EVENT_GROUP_BERSERK); // delay berserk timer, its not ticking during phase transitions
                         events.ScheduleEvent(EVENT_QUAKE, 62500, 0, PHASE_TRANSITION);
@@ -839,7 +851,10 @@ class boss_the_lich_king : public CreatureScript
                         me->SetFacingTo(0.0f);
                         Talk(SAY_LK_REMORSELESS_WINTER);
                         SendMusicToPlayers(MUSIC_SPECIAL);
+<<<<<<< HEAD
                         SetImmuneToTaunt(false);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         DoCast(me, SPELL_REMORSELESS_WINTER_2);
                         summons.DespawnEntry(NPC_VALKYR_SHADOWGUARD);
                         events.DelayEvents(62500, EVENT_GROUP_BERSERK); // delay berserk timer, its not ticking during phase transitions
@@ -1119,6 +1134,7 @@ class boss_the_lich_king : public CreatureScript
             }
 
         private:
+<<<<<<< HEAD
 
             void SetImmuneToTaunt(bool apply)
             {
@@ -1134,6 +1150,8 @@ class boss_the_lich_king : public CreatureScript
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_REDIRECT_THREAT, apply);
             }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             void SendMusicToPlayers(uint32 musicId) const
             {
                 WorldPacket data(SMSG_PLAY_MUSIC, 4);
@@ -1492,7 +1510,11 @@ class npc_valkyr_shadowguard : public CreatureScript
                 _events.Reset();
                 me->SetReactState(REACT_PASSIVE);
                 DoCast(me, SPELL_WINGS_OF_THE_DAMNED, false);
+<<<<<<< HEAD
                 me->SetSpeed(MOVE_FLIGHT, 0.5, true);
+=======
+                me->SetSpeed(MOVE_FLIGHT, 0.642857f, true);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
 
             void IsSummonedBy(Unit* /*summoner*/) OVERRIDE
@@ -1538,12 +1560,15 @@ class npc_valkyr_shadowguard : public CreatureScript
                 switch (id)
                 {
                     case POINT_DROP_PLAYER:
+<<<<<<< HEAD
                         me->GetPosition(&_current);
                         if (_current.GetPositionX() != _dropPoint.GetPositionX() || _current.GetPositionY() != _dropPoint.GetPositionY())
                         {
                             _events.ScheduleEvent(EVENT_MOVE_TO_DROP_POS, 0);
                             break;
                         }
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         DoCastAOE(SPELL_EJECT_ALL_PASSENGERS);
                         me->DespawnOrUnsummon(1000);
                         break;
@@ -1619,7 +1644,10 @@ class npc_valkyr_shadowguard : public CreatureScript
         private:
             EventMap _events;
             Position _dropPoint;
+<<<<<<< HEAD
             Position _current;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             uint64 _grabbedPlayer;
             InstanceScript* _instance;
         };
@@ -1644,7 +1672,11 @@ class npc_strangulate_vehicle : public CreatureScript
 
             void IsSummonedBy(Unit* summoner) OVERRIDE
             {
+<<<<<<< HEAD
                  me->SetFacingToObject(summoner);
+=======
+                me->SetFacingToObject(summoner);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 DoCast(summoner, SPELL_HARVEST_SOUL_VEHICLE);
                 _events.Reset();
                 _events.ScheduleEvent(EVENT_MOVE_TO_LICH_KING, 2000);
@@ -1962,6 +1994,7 @@ class npc_spirit_bomb : public CreatureScript
 
             void IsSummonedBy(Unit* /*summoner*/) OVERRIDE
             {
+<<<<<<< HEAD
                 float destX, destY, destZ, Z;
                 me->GetPosition(destX, destY, Z);
                 me->NearTeleportTo(destX, destY, Z+30.0f, me->GetOrientation());
@@ -1970,6 +2003,12 @@ class npc_spirit_bomb : public CreatureScript
                 destZ = 1055.0f;    // approximation, gets more precise later
                 me->UpdateGroundPositionZ(destX, destY, destZ);
                 me->SetSpeed(MOVE_FLIGHT, 0.5f, true);
+=======
+                float destX, destY, destZ;
+                me->GetPosition(destX, destY);
+                destZ = 1055.0f;    // approximation, gets more precise later
+                me->UpdateGroundPositionZ(destX, destY, destZ);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 me->GetMotionMaster()->MovePoint(POINT_GROUND, destX, destY, destZ);
             }
 
@@ -2513,14 +2552,21 @@ class spell_the_lich_king_summon_into_air : public SpellScriptLoader
 
             void ModDestHeight(SpellEffIndex effIndex)
             {
+<<<<<<< HEAD
                 static Position const offset = {0.0f, 0.0f, 5.0f, 0.0f};
+=======
+                static Position const offset = {0.0f, 0.0f, 15.0f, 0.0f};
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 WorldLocation* dest = const_cast<WorldLocation*>(GetExplTargetDest());
                 dest->RelocateOffset(offset);
                 GetHitDest()->RelocateOffset(offset);
                 // spirit bombs get higher
                 if (GetSpellInfo()->Effects[effIndex].MiscValue == NPC_SPIRIT_BOMB)
                 {
+<<<<<<< HEAD
                     static Position const offset = {0.0f, 0.0f, 25.0f, 0.0f};
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     dest->RelocateOffset(offset);
                     GetHitDest()->RelocateOffset(offset);
                 }
@@ -3240,7 +3286,11 @@ class spell_the_lich_king_play_movie : public SpellScriptLoader
 
             void Register() OVERRIDE
             {
+<<<<<<< HEAD
                 OnEffectHitTarget += SpellEffectFn(spell_the_lich_king_play_movie_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_ADD_HONOR);
+=======
+                OnEffectHitTarget += SpellEffectFn(spell_the_lich_king_play_movie_SpellScript::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             }
         };
 

@@ -50,7 +50,10 @@ enum HunterSpells
     SPELL_HUNTER_READINESS                          = 23989,
     SPELL_HUNTER_SNIPER_TRAINING_R1                 = 53302,
     SPELL_HUNTER_SNIPER_TRAINING_BUFF_R1            = 64418,
+<<<<<<< HEAD
     SPELL_HUNTER_SPELL_STEADY_SHOT_EFFECT           = 53220,
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     SPELL_DRAENEI_GIFT_OF_THE_NAARU                 = 59543,
 };
 
@@ -192,8 +195,11 @@ class spell_hun_chimera_shot : public SpellScriptLoader
                                 basePoint = caster->SpellDamageBonusDone(unitTarget, aura->GetSpellInfo(), aurEff->GetAmount(), DOT, aura->GetStackAmount());
                                 ApplyPct(basePoint, TickCount * 40);
                                 basePoint = unitTarget->SpellDamageBonusTaken(caster, aura->GetSpellInfo(), basePoint, DOT, aura->GetStackAmount());
+<<<<<<< HEAD
                                 if (caster->HasAura(SPELL_HUNTER_SPELL_STEADY_SHOT_EFFECT))
                                     basePoint *= 1.15f;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             }
                             // Viper Sting - Instantly restores mana to you equal to 60% of the total amount drained by your Viper Sting.
                             else if (familyFlag[1] & 0x00000080)
@@ -372,10 +378,13 @@ class spell_hun_masters_call : public SpellScriptLoader
                             TriggerCastFlags castMask = TriggerCastFlags(TRIGGERED_FULL_MASK & ~TRIGGERED_IGNORE_CASTER_AURASTATE);
                             target->CastSpell(ally, GetEffectValue(), castMask);
                             target->CastSpell(ally, GetSpellInfo()->Effects[EFFECT_0].CalcValue(), castMask);
+<<<<<<< HEAD
                             target->RemoveMovementImpairingAuras(); // remove already applied root and snare from pet
                             caster->RemoveMovementImpairingAuras(); // remove already applied root and snare from pet's target
                             caster->CastSpell(ally, GetEffectValue(), castMask); // this should remove already applied root and snare from pet's target, but not working
                             caster->CastSpell(ally, GetSpellInfo()->Effects[EFFECT_0].CalcValue(), castMask); // apply 4s root and snare immunity to pet's target
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         }
             }
 
@@ -421,8 +430,12 @@ class spell_hun_misdirection : public SpellScriptLoader
 
             void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
+<<<<<<< HEAD
                 //if (GetTargetApplication()->GetRemoveMode() != AURA_REMOVE_BY_DEFAULT)
                 if (!GetDuration())
+=======
+                if (GetTargetApplication()->GetRemoveMode() != AURA_REMOVE_BY_DEFAULT)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     GetTarget()->ResetRedirectThreat();
             }
 
@@ -696,7 +709,11 @@ class spell_hun_sniper_training : public SpellScriptLoader
                         {
                             SpellInfo const* triggeredSpellInfo = sSpellMgr->GetSpellInfo(spellId);
                             Unit* triggerCaster = triggeredSpellInfo->NeedsToBeTriggeredByCaster() ? caster : target;
+<<<<<<< HEAD
                             triggerCaster->CastSpell(target, triggeredSpellInfo, true, 0, aurEff, aurEff->GetCasterGUID());
+=======
+                            triggerCaster->CastSpell(target, triggeredSpellInfo, true, 0, aurEff);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         }
                 }
             }

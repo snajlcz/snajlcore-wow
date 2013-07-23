@@ -103,7 +103,11 @@ class boss_general_vezax : public CreatureScript
 
         struct boss_general_vezaxAI : public BossAI
         {
+<<<<<<< HEAD
             boss_general_vezaxAI(Creature* creature) : BossAI(creature, DATA_VEZAX)
+=======
+            boss_general_vezaxAI(Creature* creature) : BossAI(creature, BOSS_VEZAX)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
             }
 
@@ -332,7 +336,11 @@ class boss_saronite_animus : public CreatureScript
 
             void JustDied(Unit* /*killer*/) OVERRIDE
             {
+<<<<<<< HEAD
                 if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(DATA_VEZAX)))
+=======
+                if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(BOSS_VEZAX)))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     Vezax->AI()->DoAction(ACTION_ANIMUS_DIE);
             }
 
@@ -427,7 +435,11 @@ class npc_saronite_vapors : public CreatureScript
                     DoCast(me, SPELL_SARONITE_VAPORS);
                     me->DespawnOrUnsummon(30000);
 
+<<<<<<< HEAD
                     if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(DATA_VEZAX)))
+=======
+                    if (Creature* Vezax = me->GetCreature(*me, instance->GetData64(BOSS_VEZAX)))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         Vezax->AI()->DoAction(ACTION_VAPORS_DIE);
                 }
             }

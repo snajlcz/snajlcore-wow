@@ -179,7 +179,11 @@ namespace utf8
           class iterator : public std::iterator <std::bidirectional_iterator_tag, uint32_t> { 
             octet_iterator it;
             public:
+<<<<<<< HEAD
             iterator () {};
+=======
+            iterator () {}
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             explicit iterator (const octet_iterator& octet_it): it(octet_it) {}
             // the default "big three" are OK
             octet_iterator base () const { return it; }

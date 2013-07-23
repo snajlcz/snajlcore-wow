@@ -282,7 +282,11 @@ void BattlegroundMgr::BuildPvpLogDataPacket(WorldPacket* data, Battleground* bg)
             Player* player = ObjectAccessor::FindPlayer(itr2->first);
             uint32 team = bg->GetPlayerTeam(itr2->first);
             if (!team && player)
+<<<<<<< HEAD
                 team = player->GetTeam();
+=======
+                team = player->GetBGTeam();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             *data << uint8(team == ALLIANCE ? 1 : 0); // green or yellow
         }
         *data << uint32(itr2->second->DamageDone);              // damage done
@@ -892,7 +896,11 @@ void BattlegroundMgr::SendToBattleground(Player* player, uint32 instanceId, Batt
     {
         float x, y, z, O;
         uint32 mapid = bg->GetMapId();
+<<<<<<< HEAD
         uint32 team = player->GetTeam();
+=======
+        uint32 team = player->GetBGTeam();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         if (team == 0)
             team = player->GetTeam();
 
@@ -1158,10 +1166,15 @@ BattlegroundTypeId BattlegroundMgr::GetRandomBG(BattlegroundTypeId bgTypeId)
 
     if (weight)
     {
+<<<<<<< HEAD
         uint32 selectedWeight = 0;
 
         // Select a random value
         selectedWeight = urand(0, weight - 1);
+=======
+        // Select a random value
+        uint32 selectedWeight = urand(0, weight - 1);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         // Select the correct bg (if we have in DB A(10), B(20), C(10), D(15) --> [0---A---9|10---B---29|30---C---39|40---D---54])
         weight = 0;
         for (BattlegroundSelectionWeightMap::const_iterator it = selectionWeights.begin(); it != selectionWeights.end(); ++it)
@@ -1209,3 +1222,7 @@ void BattlegroundMgr::RemoveBattleground(BattlegroundTypeId bgTypeId, uint32 ins
 {
     bgDataStore[bgTypeId].m_Battlegrounds.erase(instanceId);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67

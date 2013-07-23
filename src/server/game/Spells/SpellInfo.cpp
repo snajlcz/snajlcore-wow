@@ -417,8 +417,12 @@ int32 SpellEffectInfo::CalcValue(Unit const* caster, int32 const* bp, Unit const
             level = int32(_spellInfo->MaxLevel);
         else if (level < int32(_spellInfo->BaseLevel))
             level = int32(_spellInfo->BaseLevel);
+<<<<<<< HEAD
         if (!_spellInfo->IsPassive()) // not sure if it's good for all cases, fix for Magic Absorption
             level -= int32(_spellInfo->SpellLevel);
+=======
+        level -= int32(_spellInfo->SpellLevel);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         basePoints += int32(level * basePointsPerLevel);
     }
 
@@ -1555,6 +1559,7 @@ SpellCastResult SpellInfo::CheckTarget(Unit const* caster, WorldObject const* ta
             return SPELL_FAILED_BAD_TARGETS;
     }
 
+<<<<<<< HEAD
     // Check to see if the source could see the target, as some totem spells and whirlwind
     if ((Effects[0].TargetA.GetTarget() == TARGET_SRC_CASTER) & (Effects[0].TargetB.GetTarget() == TARGET_UNIT_SRC_AREA_ENEMY))
         if (!caster->IsWithinLOSInMap(target))
@@ -1564,6 +1569,8 @@ SpellCastResult SpellInfo::CheckTarget(Unit const* caster, WorldObject const* ta
         if (!caster->IsWithinLOSInMap(target))
             return SPELL_FAILED_LINE_OF_SIGHT;
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     // check GM mode and GM invisibility - only for player casts (npc casts are controlled by AI) and negative spells
     if (unitTarget != caster && (caster->IsControlledByPlayer() || !IsPositive()) && unitTarget->GetTypeId() == TYPEID_PLAYER)
     {
@@ -1703,11 +1710,14 @@ bool SpellInfo::CheckTargetCreatureType(Unit const* target) const
         else
             return true;
     }
+<<<<<<< HEAD
 
     // skip creature type check for Grounding Totem
     if (target->GetUInt32Value(UNIT_CREATED_BY_SPELL) == 8177)
         return true;
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     uint32 creatureType = target->GetCreatureTypeMask();
     return !TargetCreatureType || !creatureType || (creatureType & TargetCreatureType);
 }
@@ -1807,10 +1817,13 @@ AuraStateType SpellInfo::GetAuraState() const
     if (Category == 1133)
         return AURA_STATE_FAERIE_FIRE;
 
+<<<<<<< HEAD
     // Touch of Zanzil
     if (Id == 9991)
         return AURA_STATE_FAERIE_FIRE;
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     // Victorious
     if (SpellFamilyName == SPELLFAMILY_WARRIOR &&  SpellFamilyFlags[1] & 0x00040000)
         return AURA_STATE_WARRIOR_VICTORY_RUSH;
@@ -2064,11 +2077,18 @@ int32 SpellInfo::GetMaxDuration() const
     return (DurationEntry->Duration[2] == -1) ? -1 : abs(DurationEntry->Duration[2]);
 }
 
+<<<<<<< HEAD
 uint32 SpellInfo::CalcCastTime(Unit* caster, Spell* spell, bool istriggered) const
 {
     // not all spells have cast time index and this is all is passive abilities
     // triggered spells also have no cast time
     if (!CastTimeEntry || istriggered)
+=======
+uint32 SpellInfo::CalcCastTime(Unit* caster, Spell* spell) const
+{
+    // not all spells have cast time index and this is all is pasiive abilities
+    if (!CastTimeEntry)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         return 0;
 
     int32 castTime = CastTimeEntry->CastTime;
@@ -2342,7 +2362,10 @@ bool SpellInfo::_IsPositiveEffect(uint8 effIndex, bool deep) const
                 case 54836: // Wrath of the Plaguebringer
                 case 61987: // Avenging Wrath Marker
                 case 61988: // Divine Shield exclude aura
+<<<<<<< HEAD
                 case 63322: // Saronite Vapors
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     return false;
                 case 30877: // Tag Murloc
                 case 61716: // Rabbit Costume

@@ -264,7 +264,11 @@ class spell_warr_deep_wounds : public SpellScriptLoader
                     // apply percent damage mods
                     damage = caster->SpellDamageBonusDone(target, GetSpellInfo(), damage, SPELL_DIRECT_DAMAGE);
 
+<<<<<<< HEAD
                     ApplyPct(damage, 16 * sSpellMgr->GetSpellRank(GetSpellInfo()->Id));
+=======
+                    ApplyPct(damage, 16 * GetSpellInfo()->GetRank());
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
                     damage = target->SpellDamageBonusTaken(caster, GetSpellInfo(), damage, SPELL_DIRECT_DAMAGE);
 

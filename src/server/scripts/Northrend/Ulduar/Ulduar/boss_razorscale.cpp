@@ -15,6 +15,11 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+<<<<<<< HEAD
+=======
+/// @todo Harpoon chain from 62505 should not get removed when other chain is applied
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "ScriptedGossip.h"
@@ -228,7 +233,11 @@ class boss_razorscale_controller : public CreatureScript
 
             void DoAction(int32 action) OVERRIDE
             {
+<<<<<<< HEAD
                 if (instance->GetBossState(DATA_RAZORSCALE) != IN_PROGRESS)
+=======
+                if (instance->GetBossState(BOSS_RAZORSCALE) != IN_PROGRESS)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     return;
 
                 switch (action)
@@ -310,7 +319,11 @@ class go_razorscale_harpoon : public GameObjectScript
         bool OnGossipHello(Player* /*player*/, GameObject* go) OVERRIDE
         {
             InstanceScript* instance = go->GetInstanceScript();
+<<<<<<< HEAD
             if (ObjectAccessor::GetCreature(*go, instance ? instance->GetData64(DATA_RAZORSCALE) : 0))
+=======
+            if (ObjectAccessor::GetCreature(*go, instance ? instance->GetData64(BOSS_RAZORSCALE) : 0))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 go->SetFlag(GAMEOBJECT_FLAGS, GO_FLAG_NOT_SELECTABLE);
             return false;
         }
@@ -323,7 +336,11 @@ class boss_razorscale : public CreatureScript
 
         struct boss_razorscaleAI : public BossAI
         {
+<<<<<<< HEAD
             boss_razorscaleAI(Creature* creature) : BossAI(creature, DATA_RAZORSCALE)
+=======
+            boss_razorscaleAI(Creature* creature) : BossAI(creature, BOSS_RAZORSCALE)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
                 // Do not let Razorscale be affected by Battle Shout buff
                 me->ApplySpellImmune(0, IMMUNITY_ID, (SPELL_BATTLE_SHOUT), true);
@@ -649,7 +666,11 @@ class npc_expedition_commander : public CreatureScript
                     switch (Phase)
                     {
                         case 1:
+<<<<<<< HEAD
                             instance->SetBossState(DATA_RAZORSCALE, IN_PROGRESS);
+=======
+                            instance->SetBossState(BOSS_RAZORSCALE, IN_PROGRESS);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             summons.clear();
                             AttackStartTimer = 1000;
                             Phase = 2;
@@ -687,7 +708,11 @@ class npc_expedition_commander : public CreatureScript
                             Phase = 5;
                             break;
                         case 5:
+<<<<<<< HEAD
                             if (Creature* Razorscale = ObjectAccessor::GetCreature(*me, instance ? instance->GetData64(DATA_RAZORSCALE) : 0))
+=======
+                            if (Creature* Razorscale = ObjectAccessor::GetCreature(*me, instance ? instance->GetData64(BOSS_RAZORSCALE) : 0))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             {
                                 Razorscale->AI()->DoAction(ACTION_EVENT_START);
                                 me->SetInCombatWith(Razorscale);
@@ -718,7 +743,11 @@ class npc_expedition_commander : public CreatureScript
         bool OnGossipHello(Player* player, Creature* creature) OVERRIDE
         {
             InstanceScript* instance = creature->GetInstanceScript();
+<<<<<<< HEAD
             if (instance && instance->GetBossState(DATA_RAZORSCALE) == NOT_STARTED)
+=======
+            if (instance && instance->GetBossState(BOSS_RAZORSCALE) == NOT_STARTED)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
                 player->PrepareGossipMenu(creature);
 

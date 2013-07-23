@@ -10,8 +10,11 @@
 
 set(scripts_STAT_SRCS
   ${scripts_STAT_SRCS}
+<<<<<<< HEAD
   Custom/Transmogrification.cpp
   Custom/Transmogrification.h
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 )
 
 message("  -> Prepared: Custom")

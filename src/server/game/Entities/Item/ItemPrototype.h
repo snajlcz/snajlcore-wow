@@ -746,8 +746,11 @@ struct ItemTemplate
 // Benchmarked: Faster than std::map (insert/find)
 typedef UNORDERED_MAP<uint32, ItemTemplate> ItemTemplateContainer;
 
+<<<<<<< HEAD
 typedef UNORDERED_MAP<uint32, uint32> ItemFakeEntryContainer; // custom
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 struct ItemLocale
 {
     StringVector Name;

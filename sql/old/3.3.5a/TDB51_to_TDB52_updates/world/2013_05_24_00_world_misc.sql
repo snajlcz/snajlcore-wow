@@ -1,5 +1,9 @@
 -- Halls Of Reflexion WIP
+<<<<<<< HEAD
 /* 
+=======
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 DELETE FROM `creature` WHERE `guid` IN (202308,202294,202301,202293);
 -- extra spawned Uther -- 202294
 -- extra LK spawn -- 202301
@@ -19,7 +23,11 @@ UPDATE `creature_template` SET `InhabitType`=4,`flags_extra`=128 WHERE `entry`=3
 UPDATE `creature_template` SET `ScriptName`='npc_frostworn_general' WHERE `entry`=36723;
 UPDATE `creature_template` SET `faction_A`=16,`faction_H`=16 WHERE `entry`=37720; -- for hc
 -- Spiritual Reflection
+<<<<<<< HEAD
 UPDATE `creature_template` SET `ScriptName`='npc_spiritual_reflection' WHERE `entry`=37068;
+=======
+UPDATE `creature_template` SET /*`modelid1`=57,*/`ScriptName`='npc_spiritual_reflection' WHERE `entry`=37068;
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 -- Falric and Marwyn bind players to instance on heroic
 UPDATE `creature_template` SET `flags_extra`=1 WHERE `entry` IN (38599,38603);
 
@@ -77,7 +85,11 @@ INSERT INTO `creature_text` (`entry`,`groupid`,`id`,`text`,`type`,`language`,`pr
 -- Sky-Reaver Korm Blackscar
 (30824,0,0,'FIRE! FIRE!',14,0,100,0,0,0,'Korm SAY_KORM_FIRE'),
 (30824,1,0,'Quickly, climb aboard! We mustn''t tarry here. There''s no telling when this whole mountainside will collapse!',14,0,100,0,0,0,'Korm SAY_KORM_FINAL_1');
+<<<<<<< HEAD
 */
+=======
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 /*
 # 3+4+4+5 +4+4+5+5 = 16+18
 # if 1st boss is dead and we wipe counter starts at wave 6

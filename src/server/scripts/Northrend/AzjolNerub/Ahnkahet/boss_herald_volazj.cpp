@@ -216,7 +216,11 @@ public:
 
         void SummonedCreatureDespawn(Creature* summon) OVERRIDE
         {
+<<<<<<< HEAD
             uint32 phase= summon->GetPhaseMask();
+=======
+            uint32 phase = summon->GetPhaseMask();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             uint32 nextPhase = 0;
             Summons.Despawn(summon);
 

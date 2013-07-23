@@ -108,7 +108,10 @@ set(scripts_STAT_SRCS
   Outland/GruulsLair/instance_gruuls_lair.cpp
   Outland/zone_netherstorm.cpp
   Outland/zone_zangarmarsh.cpp
+<<<<<<< HEAD
   Outland/boss_ahune.cpp
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 )
 
 message("  -> Prepared: Outland")

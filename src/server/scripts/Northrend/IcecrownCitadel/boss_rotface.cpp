@@ -163,6 +163,7 @@ class boss_rotface : public CreatureScript
                 // don't enter combat
             }
 
+<<<<<<< HEAD
             bool CanAlwaysSee(const Creature * who)
             {
                 return (who && who->GetEntry() == 37986);
@@ -171,6 +172,11 @@ class boss_rotface : public CreatureScript
             void UpdateAI(uint32 diff) OVERRIDE
             {
                 if (!me->IsInCombat() || !CheckInRoom())
+=======
+            void UpdateAI(uint32 diff) OVERRIDE
+            {
+                if (!UpdateVictim() || !CheckInRoom())
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                     return;
 
                 events.Update(diff);
@@ -178,11 +184,14 @@ class boss_rotface : public CreatureScript
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
+<<<<<<< HEAD
                 if (!UpdateVictim())
                     return;
 
                 me->SetTarget(me->GetVictim() ? me->GetVictim()->GetGUID() : 0);
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 while (uint32 eventId = events.ExecuteEvent())
                 {
                     switch (eventId)
@@ -190,6 +199,7 @@ class boss_rotface : public CreatureScript
                         case EVENT_SLIME_SPRAY:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 0.0f, true))
                             {
+<<<<<<< HEAD
                                 if (Creature * stalker = DoSummon(NPC_OOZE_SPRAY_STALKER, *target, 8000, TEMPSUMMON_TIMED_DESPAWN))
                                 {
                                     me->SetTarget(0);
@@ -197,6 +207,11 @@ class boss_rotface : public CreatureScript
                                     Talk(EMOTE_SLIME_SPRAY);
                                     DoCast(SPELL_SLIME_SPRAY);
                                 }
+=======
+                                DoSummon(NPC_OOZE_SPRAY_STALKER, *target, 8000, TEMPSUMMON_TIMED_DESPAWN);
+                                Talk(EMOTE_SLIME_SPRAY);
+                                DoCast(me, SPELL_SLIME_SPRAY);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                             }
                             events.ScheduleEvent(EVENT_SLIME_SPRAY, 20000);
                             break;
@@ -243,8 +258,11 @@ class npc_little_ooze : public CreatureScript
 
             void IsSummonedBy(Unit* summoner) OVERRIDE
             {
+<<<<<<< HEAD
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 DoCast(me, SPELL_LITTLE_OOZE_COMBINE, true);
                 DoCast(me, SPELL_WEAK_RADIATING_OOZE, true);
                 events.ScheduleEvent(EVENT_STICKY_OOZE, 5000);
@@ -295,8 +313,11 @@ class npc_big_ooze : public CreatureScript
 
             void IsSummonedBy(Unit* /*summoner*/) OVERRIDE
             {
+<<<<<<< HEAD
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 DoCast(me, SPELL_LARGE_OOZE_COMBINE, true);
                 DoCast(me, SPELL_LARGE_OOZE_BUFF_COMBINE, true);
                 DoCast(me, SPELL_RADIATING_OOZE, true);
@@ -369,8 +390,11 @@ class npc_precious_icc : public CreatureScript
 
             void Reset() OVERRIDE
             {
+<<<<<<< HEAD
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK_DEST, true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 _events.Reset();
                 _events.ScheduleEvent(EVENT_DECIMATE, urand(20000, 25000));
                 _events.ScheduleEvent(EVENT_MORTAL_WOUND, urand(3000, 7000));

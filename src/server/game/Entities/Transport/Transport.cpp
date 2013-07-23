@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2008-2013 Trinity <http://www.trinitycore.org/>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,6 +17,23 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Updated by: Toba and Baeumchen (maddin)
+=======
+ * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
  */
 
 #include "Common.h"
@@ -29,6 +47,7 @@
 #include "World.h"
 #include "GameObjectAI.h"
 #include "Player.h"
+<<<<<<< HEAD
 #include "Vehicle.h"
 
 Transport* MapManager::LoadTransportInMap(Map* instance, uint32 goEntry, uint32 period)
@@ -146,6 +165,8 @@ void MapManager::UnLoadTransportForPlayers(Player* player)
     transData.BuildPacket(&packet);
     player->SendDirectMessage(&packet);
 }
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
 void MapManager::LoadTransports()
 {
@@ -204,8 +225,13 @@ void MapManager::LoadTransports()
         uint32 mapid = t->m_WayPoints[0].mapid;
         float o = 1.0f;
 
+<<<<<<< HEAD
         // creates the Gameobject -- Gunship
         if (!t->Create(lowguid, entry, mapid, x, y, z, o, 100, 0))
+=======
+         // creates the Gameobject
+        if (!t->Create(lowguid, entry, mapid, x, y, z, o, 255, 0))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         {
             delete t;
             continue;
@@ -328,8 +354,12 @@ bool Transport::Create(uint32 guidlow, uint32 entry, uint32 mapid, float x, floa
     SetObjectScale(goinfo->size);
 
     SetUInt32Value(GAMEOBJECT_FACTION, goinfo->faction);
+<<<<<<< HEAD
     //SetUInt32Value(GAMEOBJECT_FLAGS, goinfo->flags); -- gunship
     SetUInt32Value(GAMEOBJECT_FLAGS, MAKE_PAIR32(0x28, 0x64));
+=======
+    SetUInt32Value(GAMEOBJECT_FLAGS, goinfo->flags);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     SetUInt32Value(GAMEOBJECT_LEVEL, m_period);
     SetEntry(goinfo->entry);
 
@@ -669,8 +699,11 @@ void Transport::Update(uint32 p_diff)
         {
             Relocate(m_curr->second.x, m_curr->second.y, m_curr->second.z, GetAngle(m_next->second.x, m_next->second.y) + float(M_PI));
             UpdatePassengerPositions(); // COME BACK MARKER
+<<<<<<< HEAD
             // This forces the server to update positions in transportation for players -- gunship
             UpdatePlayerPositions();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         }
 
         sScriptMgr->OnRelocate(this, m_curr->first, m_curr->second.mapid, m_curr->second.x, m_curr->second.y, m_curr->second.z);
@@ -790,12 +823,16 @@ uint32 Transport::AddNPCPassenger(uint32 tguid, uint32 entry, float x, float y, 
     else
         currenttguid = std::max(tguid, currenttguid);
 
+<<<<<<< HEAD
     creature->setActive(true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     creature->SetGUIDTransport(tguid);
     sScriptMgr->OnAddCreaturePassenger(this, creature);
     return tguid;
 }
 
+<<<<<<< HEAD
 // gunship data
 Creature* Transport::AddNPCPassengerInInstance(uint32 entry, float x, float y, float z, float o, uint32 anim)
 {
@@ -835,6 +872,8 @@ Creature* Transport::AddNPCPassengerInInstance(uint32 entry, float x, float y, f
     return creature;
 }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 void Transport::UpdatePosition(MovementInfo* mi)
 {
     float transport_o = mi->pos.GetOrientation() - mi->transport.pos.GetOrientation();
@@ -844,7 +883,10 @@ void Transport::UpdatePosition(MovementInfo* mi)
 
     Relocate(transport_x, transport_y, transport_z, transport_o);
     UpdatePassengerPositions();
+<<<<<<< HEAD
     UpdatePlayerPositions();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 void Transport::UpdatePassengerPositions()
@@ -863,6 +905,7 @@ void Transport::UpdatePassengerPositions()
     }
 }
 
+<<<<<<< HEAD
 // gunship Data
 void Transport::UpdatePlayerPositions()
 {
@@ -883,6 +926,8 @@ void Transport::UpdatePlayerPositions()
     }
 }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 void Transport::CalculatePassengerPosition(float& x, float& y, float& z, float* o /*= NULL*/) const
 {
     float inx = x, iny = y, inz = z;

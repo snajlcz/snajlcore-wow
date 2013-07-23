@@ -895,9 +895,12 @@ uint32 GetLiquidFlags(uint32 liquidType)
     return 0;
 }
 
+<<<<<<< HEAD
 // script support functions
 DBCStorage <AchievementEntry>   const* GetAchievementStore()    { return &sAchievementStore;    }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 CharStartOutfitEntry const* GetCharStartOutfitEntry(uint8 race, uint8 class_, uint8 gender)
 {
     std::map<uint32, CharStartOutfitEntry const*>::const_iterator itr = sCharStartOutfitMap.find(race | (class_ << 8) | (gender << 16));

@@ -388,6 +388,7 @@ class spell_winter_veil_px_238_winter_wondervolt : public SpellScriptLoader
         }
 };
 
+<<<<<<< HEAD
 enum brazierhit
 {
     SPELL_TORCH_TOSSING_TRAINING_SUCCESS_H = 46651,
@@ -444,6 +445,8 @@ class spell_brazier_hit : public SpellScriptLoader
         }
 };
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 void AddSC_holiday_spell_scripts()
 {
     // Love is in the Air
@@ -455,6 +458,9 @@ void AddSC_holiday_spell_scripts()
     // Winter Veil
     new spell_winter_veil_mistletoe();
     new spell_winter_veil_px_238_winter_wondervolt();
+<<<<<<< HEAD
     // Midsummer Fire Festival
     new spell_brazier_hit();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }

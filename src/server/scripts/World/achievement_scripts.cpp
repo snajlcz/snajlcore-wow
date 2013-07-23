@@ -315,6 +315,7 @@ class achievement_not_even_a_scratch : public AchievementCriteriaScript
         }
 };
 
+<<<<<<< HEAD
 class achievement_food_fight : public AchievementCriteriaScript
 {
     public:
@@ -336,6 +337,8 @@ class achievement_food_fight : public AchievementCriteriaScript
         }
 };
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 enum FlirtWithDisaster
 {
     AURA_PERFUME_FOREVER           = 70235,
@@ -378,6 +381,9 @@ void AddSC_achievement_scripts()
     new achievement_bg_sa_defense_of_ancients();
     new achievement_tilted();
     new achievement_not_even_a_scratch();
+<<<<<<< HEAD
     new achievement_food_fight();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     new achievement_flirt_with_disaster_perf_check();
 }

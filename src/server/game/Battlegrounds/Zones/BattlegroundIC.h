@@ -950,7 +950,10 @@ class BattlegroundIC : public Battleground
             return uws;
         }
 
+<<<<<<< HEAD
         void RealocatePlayers(ICNodePointType nodeType);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         void UpdateNodeWorldState(ICNodePoint* nodePoint);
         void HandleCapturedNodes(ICNodePoint* nodePoint, bool recapture);
         void HandleContestedNodes(ICNodePoint* nodePoint);

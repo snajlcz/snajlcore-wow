@@ -46,8 +46,12 @@ enum BG_SA_GateState
 {
     BG_SA_GATE_OK           = 1,
     BG_SA_GATE_DAMAGED      = 2,
+<<<<<<< HEAD
     BG_SA_GATE_DESTROYED    = 3,
     BG_SA_GATE_DAMAGE       = 4
+=======
+    BG_SA_GATE_DESTROYED    = 3
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 enum BG_SA_EventIdGate
@@ -186,6 +190,7 @@ uint32 const BG_SA_NpcEntries[BG_SA_MAXNPC] =
     NPC_GORGRIL_RIGSPARK
 };
 
+<<<<<<< HEAD
 enum GameOjects
 {
     BG_SA_GO_GREEN_GATE             = 190722,
@@ -196,6 +201,8 @@ enum GameOjects
     BG_SA_GO_ANCIENT_GATE           = 192549
 };
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 float const BG_SA_NpcSpawnlocs[BG_SA_MAXNPC + BG_SA_DEMOLISHER_AMOUNT][4] =
 {
     // Cannons
@@ -483,7 +490,11 @@ class BattlegroundSA : public Battleground
         /// Called when a player use a gamobject (relic)
         void EventPlayerUsedGO(Player* Source, GameObject* object);
         /// Return gate id, relative to bg data, according to gameobject id
+<<<<<<< HEAD
         uint32 getGateIdFromEventId(uint32 id)
+=======
+        uint32 getGateIdFromDamagedOrDestroyEventId(uint32 id)
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         {
             switch (id)
             {
@@ -516,6 +527,7 @@ class BattlegroundSA : public Battleground
             }
             return 0;
         }
+<<<<<<< HEAD
         uint32 getGateIdFromEntry(uint32 entry)
         {
             switch (entry)
@@ -543,6 +555,8 @@ class BattlegroundSA : public Battleground
             }
             return 0;
         }
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         /// Return worldstate id, according to door id
         uint32 getWorldStateFromGateId(uint32 id)
         {

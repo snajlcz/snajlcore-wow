@@ -16,6 +16,7 @@
  */
 
 #include "ScriptMgr.h"
+<<<<<<< HEAD
 #include "ScriptedCreature.h"
 #include "SpellScript.h"
 #include "ulduar.h"
@@ -24,6 +25,10 @@
 #include "VehicleDefines.h"
 
 
+=======
+#include "SpellScript.h"
+#include "ulduar.h"
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
 enum Yells
 {
@@ -41,6 +46,7 @@ enum Yells
     SAY_V07TRON_ACTIVATE                        = 11,
     SAY_V07TRON_SLAY                            = 12,
     SAY_V07TRON_DEATH                           = 13,
+<<<<<<< HEAD
     SAY_BERSERK                                 = 14,
     //Computer
     SAY_HARDMODE                                = 0,
@@ -65,10 +71,14 @@ enum MimironDatas
 {
     DATA_GET_HARD_MODE,
     DATA_SET_UP_US_THE_BOMB           = 29893237,
+=======
+    SAY_BERSERK                                 = 14
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 enum Spells
 {
+<<<<<<< HEAD
     // Leviathan MK II
     SPELL_MINES_SPAWN                           = 65347,
     SPELL_PROXIMITY_MINES                       = 63027,
@@ -1948,6 +1958,47 @@ class npc_mimiron_flame_spread : public CreatureScript
         {
             return GetUlduarAI<npc_mimiron_flame_spreadAI>(creature);
         }
+=======
+    SPELL_JETPACK                               = 63341,
+    SPELL_EMERGENCY_MODE                        = 64582,
+    SPELL_SELF_REPAIR                           = 64383,
+    SPELL_MAGNETIC_CORE                         = 64444,
+    // Leviathan MK II
+    SPELL_FLAME_SUPPRESSANT_MK                  = 64570,
+    SPELL_NAPALM_SHELL                          = 63666,
+    SPELL_PLASMA_BLAST                          = 62977,
+    SPELL_PROXIMITY_MINES                       = 63027,
+    SPELL_SHOCK_BLAST                           = 63631,
+    // VX 001
+    SPELL_FLAME_SUPPRESSANT_VX                  = 65192,
+    SPELL_FROSTBOMB                             = 64623,
+    SPELL_HAND_PULSE                            = 64348,
+    SPELL_SPINNING_UP                           = 63414,
+    SPELL_RAPID_BURST                           = 63387,
+    SPELL_P3WX2_LASER_BARRAGE                   = 63293,
+    SPELL_ROCKET_STRIKE                         = 63041,
+    SPELL_HEAT_WAVE                             = 63677,
+    // Aerial Command Unit
+    SPELL_PLASMA_BALL                           = 63689,
+    // Additonal spells
+    SPELL_MAGNETIC_FIELD                        = 64668,
+    SPELL_DEAFENING_SIREN                       = 64616,
+    SPELL_WATER_SPRAY                           = 64619,
+    SPELL_FROST_BOMB_HARD_MODE                  = 64627,
+    SPELL_EXPLOSION                             = 66351,
+    SPELL_DISARM                                = 1842,
+    SPELL_RIDE_VEHICLE                          = 46598,
+    SPELL_TRIGGER_MISSILE                       = 65347,
+};
+
+enum Npc
+{
+    NPC_ASSAULT_BOT                             = 34057,
+    NPC_BOMB_BOT                                = 33836,
+    NPC_JUNK_BOT                                = 33855,
+    NPC_EMERGENCE_FIRE_BOT                      = 34147,
+    NPC_FROST_BOMB                              = 34149,
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 class spell_ulduar_proximity_mines : public SpellScriptLoader
@@ -1978,6 +2029,7 @@ class spell_ulduar_proximity_mines : public SpellScriptLoader
         }
 };
 
+<<<<<<< HEAD
 class spell_rapid_burst : public SpellScriptLoader
 {
     public:
@@ -2090,4 +2142,9 @@ void AddSC_boss_mimiron()
     new spell_rapid_burst();
     new go_not_push_button();
     new achievement_mimiron_firefighter();
+=======
+void AddSC_boss_mimiron()
+{
+    new spell_ulduar_proximity_mines();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }

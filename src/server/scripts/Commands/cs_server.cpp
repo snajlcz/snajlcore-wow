@@ -106,6 +106,11 @@ public:
 
     static bool HandleServerInfoCommand(ChatHandler* handler, char const* /*args*/)
     {
+<<<<<<< HEAD
+=======
+        uint32 playersNum           = sWorld->GetPlayerCount();
+        uint32 maxPlayersNum        = sWorld->GetMaxPlayerCount();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         uint32 activeClientsNum     = sWorld->GetActiveSessionCount();
         uint32 queuedClientsNum     = sWorld->GetQueuedSessionCount();
         uint32 maxActiveClientsNum  = sWorld->GetMaxActiveSessionCount();
@@ -114,6 +119,10 @@ public:
         uint32 updateTime           = sWorld->GetUpdateTime();
 
         handler->SendSysMessage(_FULLVERSION);
+<<<<<<< HEAD
+=======
+        handler->PSendSysMessage(LANG_CONNECTED_PLAYERS, playersNum, maxPlayersNum);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         handler->PSendSysMessage(LANG_CONNECTED_USERS, activeClientsNum, maxActiveClientsNum, queuedClientsNum, maxQueuedClientsNum);
         handler->PSendSysMessage(LANG_UPTIME, uptime.c_str());
         handler->PSendSysMessage(LANG_UPDATE_DIFF, updateTime);

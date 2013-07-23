@@ -352,12 +352,15 @@ class Item : public Object
 
         void BuildUpdate(UpdateDataMapType&);
 
+<<<<<<< HEAD
         // custom
         uint32 GetFakeEntry();
         bool DeleteFakeEntry();
         static void DeleteFakeFromDB(uint32 lowGUID);
         void SetFakeEntry(uint32 entry);
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         uint32 GetScriptId() const { return GetTemplate()->ScriptId; }
     private:
         std::string m_text;

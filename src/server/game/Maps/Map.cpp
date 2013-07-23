@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
  * Copyright (C) 2008-2013 Trinity <http://www.trinitycore.org/>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,6 +17,23 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Updated by: Toba and Baeumchen (maddin)
+=======
+ * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
  */
 
 #include "Map.h"
@@ -822,8 +840,11 @@ void Map::MoveAllCreaturesInMoveList()
         {
             // update pos
             c->Relocate(c->_newPosition);
+<<<<<<< HEAD
             if (c->IsVehicle())
                 c->GetVehicleKit()->RelocatePassengers();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             //CreatureRelocationNotify(c, new_cell, new_cell.cellCoord());
             c->UpdateObjectVisibility(false);
         }
@@ -1677,6 +1698,7 @@ float Map::GetHeight(float x, float y, float z, bool checkVMap /*= true*/, float
         else
             return vmapHeight;                              // we have only vmapHeight (if have)
     }
+<<<<<<< HEAD
     else
     {
         if (!checkVMap)
@@ -1688,6 +1710,10 @@ float Map::GetHeight(float x, float y, float z, bool checkVMap /*= true*/, float
     }
 
     //return mapHeight;                                // explicitly use map data
+=======
+
+    return mapHeight;                               // explicitly use map data
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }
 
 inline bool IsOutdoorWMO(uint32 mogpFlags, int32 /*adtId*/, int32 /*rootId*/, int32 /*groupId*/, WMOAreaTableEntry const* wmoEntry, AreaTableEntry const* atEntry)

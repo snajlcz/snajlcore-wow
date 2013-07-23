@@ -44,6 +44,7 @@ void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T* owner, bool up
     {
         if (!i_offset)
         {
+<<<<<<< HEAD
             float dist_min; // Min Contact Dist
             dist_min = i_target->GetCombatReach() - (i_target->GetObjectSize() + 2.5f); // Get min Dist
 
@@ -51,10 +52,15 @@ void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T* owner, bool up
                dist_min = 0.2f;
             // to nearest contact position
             i_target->GetContactPoint(owner, x, y, z, dist_min);
+=======
+            // to nearest contact position
+            i_target->GetContactPoint(owner, x, y, z);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         }
         else
         {
             float dist;
+<<<<<<< HEAD
 
             // Pets need special handling.
             // We need to subtract GetObjectSize() because it gets added back further down the chain
@@ -78,6 +84,33 @@ void TargetedMovementGeneratorMedium<T, D>::_setTargetLocation(T* owner, bool up
             i_target->GetClosePoint(x, y, z, dist, i_offset, i_angle);
         }
 
+=======
+            float size;
+
+            // Pets need special handling.
+            // We need to subtract GetObjectSize() because it gets added back further down the chain
+            //  and that makes pets too far away. Subtracting it allows pets to properly
+            //  be (GetCombatReach() + i_offset) away.
+            // Only applies when i_target is pet's owner otherwise pets and mobs end up
+            //   doing a "dance" while fighting
+            if (owner->IsPet() && i_target->GetTypeId() == TYPEID_PLAYER)
+            {
+                dist = i_target->GetCombatReach();
+                size = i_target->GetCombatReach() - i_target->GetObjectSize();
+            }
+            else
+            {
+                dist = i_offset + 1.0f;
+                size = owner->GetObjectSize();
+            }
+
+            if (i_target->IsWithinDistInMap(owner, dist))
+                return;
+
+            // to at i_offset distance from target and i_angle from target facing
+            i_target->GetClosePoint(x, y, z, size, i_offset, i_angle);
+        }
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     }
     else
     {

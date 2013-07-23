@@ -234,6 +234,11 @@ class Aura
         bool CallScriptEffectProcHandlers(AuraEffect const* aurEff, AuraApplication const* aurApp, ProcEventInfo& eventInfo);
         void CallScriptAfterEffectProcHandlers(AuraEffect const* aurEff, AuraApplication const* aurApp, ProcEventInfo& eventInfo);
 
+<<<<<<< HEAD
+=======
+        AuraScript* GetScriptByName(std::string const& scriptName) const;
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         std::list<AuraScript*> m_loadedScripts;
     private:
         void _DeleteRemovedApplications();

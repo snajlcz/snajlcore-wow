@@ -258,7 +258,11 @@ public:
         if (!unit || (unit->GetTypeId() != TYPEID_PLAYER))
             player = handler->GetSession()->GetPlayer();
         else
+<<<<<<< HEAD
             player = (Player*)unit;
+=======
+            player = unit->ToPlayer();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
         if (!unit)
             unit = player;

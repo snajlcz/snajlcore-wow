@@ -952,4 +952,8 @@ uint32 BattlegroundEY::GetPrematureWinner()
         return HORDE;
 
     return Battleground::GetPrematureWinner();
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67

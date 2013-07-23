@@ -48,6 +48,7 @@ UsableSeatNum(0), _me(unit), _vehicleInfo(vehInfo), _creatureEntry(creatureEntry
             }
     }
 
+<<<<<<< HEAD
     // Vehicle Immunities
     switch (GetVehicleInfo()->m_ID)
     {
@@ -81,6 +82,8 @@ UsableSeatNum(0), _me(unit), _vehicleInfo(vehInfo), _creatureEntry(creatureEntry
             break;
     }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     // Set or remove correct flags based on available seats. Will overwrite db data (if wrong).
     if (UsableSeatNum)
         _me->SetFlag(UNIT_NPC_FLAGS, (_me->GetTypeId() == TYPEID_PLAYER ? UNIT_NPC_FLAG_PLAYER_VEHICLE : UNIT_NPC_FLAG_SPELLCLICK));
@@ -269,9 +272,12 @@ void Vehicle::ApplyAllImmunities()
             // why we need to apply this? we can simple add immunities to slow mechanic in DB
             _me->ApplySpellImmune(0, IMMUNITY_STATE, SPELL_AURA_MOD_DECREASE_SPEED, true);
             break;
+<<<<<<< HEAD
         case 321: // Pilgrims Bounty: Chair
             _me->SetControlled(true, UNIT_STATE_ROOT);
             break;
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         default:
             break;
     }
@@ -462,10 +468,13 @@ void Vehicle::InstallAccessory(uint32 entry, int8 seatId, bool minion, uint8 typ
 
 bool Vehicle::AddPassenger(Unit* unit, int8 seatId)
 {
+<<<<<<< HEAD
     // don't allow vehicles in arena
     if (unit->GetTypeId() == TYPEID_PLAYER && unit->GetMap()->IsBattleArena())
         return false;
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     /// @Prevent adding passengers when vehicle is uninstalling. (Bad script in OnUninstall/OnRemovePassenger/PassengerBoarded hook.)
     if (_status == STATUS_UNINSTALLING)
     {
@@ -884,7 +893,10 @@ bool VehicleJoinEvent::Execute(uint64, uint32)
         Passenger->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
     Passenger->AddUnitMovementFlag(MOVEMENTFLAG_ONTRANSPORT);
+<<<<<<< HEAD
     Passenger->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_GRIP, true);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     VehicleSeatEntry const* veSeat = Seat->second.SeatInfo;
     Passenger->m_movementInfo.transport.pos.Relocate(veSeat->m_attachmentOffsetX, veSeat->m_attachmentOffsetY, veSeat->m_attachmentOffsetZ);
     Passenger->m_movementInfo.transport.time = 0;

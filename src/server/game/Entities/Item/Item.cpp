@@ -278,6 +278,7 @@ bool Item::Create(uint32 guidlow, uint32 itemid, Player const* owner)
 
     SetUInt32Value(ITEM_FIELD_DURATION, itemProto->Duration);
     SetUInt32Value(ITEM_FIELD_CREATE_PLAYED_TIME, 0);
+<<<<<<< HEAD
     /** World of Warcraft Armory **/
     if (sWorld->getBoolConfig(CONFIG_ARMORY_ENABLE))
     {
@@ -289,6 +290,8 @@ bool Item::Create(uint32 guidlow, uint32 itemid, Player const* owner)
         }
     }
     /** World of Warcraft Armory **/
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     return true;
 }
 
@@ -490,7 +493,10 @@ bool Item::LoadFromDB(uint32 guid, uint64 owner_guid, Field* fields, uint32 entr
 /*static*/
 void Item::DeleteFromDB(SQLTransaction& trans, uint32 itemGuid)
 {
+<<<<<<< HEAD
     DeleteFakeFromDB(itemGuid);
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_ITEM_INSTANCE);
     stmt->setUInt32(0, itemGuid);
     trans->Append(stmt);
@@ -1239,6 +1245,7 @@ bool Item::CheckSoulboundTradeExpire()
     return false;
 }
 
+<<<<<<< HEAD
 uint32 Item::GetFakeEntry() // custom
 {
     ItemFakeEntryContainer::const_iterator itr = sObjectMgr->_itemFakeEntryStore.find(GetGUIDLow());
@@ -1268,6 +1275,8 @@ void Item::SetFakeEntry(uint32 entry) // custom
     CharacterDatabase.PExecute("REPLACE INTO custom_transmogrification (GUID, FakeEntry) VALUES (%u, %u)", GetGUIDLow(), entry);
 }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 void Item::ItemContainerSaveLootToDB()
 {
     // Saves the money and item loot associated with an openable item to the DB

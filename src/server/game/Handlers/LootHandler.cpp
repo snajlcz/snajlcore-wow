@@ -367,9 +367,12 @@ void WorldSession::DoLootRelease(uint64 lguid)
             // skip pickpocketing loot for speed, skinning timer reduction is no-op in fact
             if (!creature->IsAlive())
                 creature->AllLootRemovedFromCorpse();
+<<<<<<< HEAD
             // Anti-Rollback
             if (player)
                 player->SaveToDB();
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
             creature->RemoveFlag(UNIT_DYNAMIC_FLAGS, UNIT_DYNFLAG_LOOTABLE);
             loot->clear();

@@ -48,6 +48,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
     recvData >> type;
     recvData >> lang;
 
+<<<<<<< HEAD
     if (sWorld->getBoolConfig(BATTLEGROUND_CROSSFACTION_ENABLED) && lang != LANG_ADDON)
     {
         switch (type)
@@ -60,6 +61,8 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
         }
     }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     if (type >= MAX_CHAT_MSG_TYPE)
     {
         TC_LOG_ERROR(LOG_FILTER_NETWORKIO, "CHAT: Wrong message type received: %u", type);
@@ -137,8 +140,12 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
     else
     {
         // send in universal language if player in .gmon mode (ignore spell effects)
+<<<<<<< HEAD
         // and allow players interact in chat on specific area
         if (sender->IsGameMaster() || sender->GetAreaId() == sWorld->getIntConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_CHAT_AREA))
+=======
+        if (sender->IsGameMaster())
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             lang = LANG_UNIVERSAL;
         else
         {
@@ -178,6 +185,7 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
             return;
         }
 
+<<<<<<< HEAD
         if ((sender->GetTotalPlayedTime() <= sWorld->getIntConfig(CONFIG_INT_CHAT_DISABLE_TIME)) && sender->GetSession()->GetSecurity() == SEC_PLAYER)
         {
             std::string adStr = secsToTimeString(sWorld->getIntConfig(CONFIG_INT_CHAT_DISABLE_TIME) - sender->GetTotalPlayedTime());
@@ -186,6 +194,8 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
             return;
         }
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         if (type != CHAT_MSG_AFK && type != CHAT_MSG_DND)
             sender->UpdateSpeakTime();
     }
@@ -257,9 +267,12 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
         }
     }
 
+<<<<<<< HEAD
     if (sender->isGMChat() && sWorld->getBoolConfig(CONFIG_GM_BLUE_CHAT_ENABLE) && !msg.empty())
         msg = "|cff2998ff" + msg + "|r";
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     switch (type)
     {
         case CHAT_MSG_SAY:
@@ -272,10 +285,13 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
                 return;
             }
 
+<<<<<<< HEAD
             if (!GetPlayer()->IsGameMaster())
                 if (GetPlayer()->SendBattleGroundChat(type, msg))
                     return;
 
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             if (type == CHAT_MSG_SAY)
                 sender->Say(msg, lang);
             else if (type == CHAT_MSG_EMOTE)
@@ -292,9 +308,13 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
             }
 
             Player* receiver = sObjectAccessor->FindPlayerByName(to);
+<<<<<<< HEAD
             if (!receiver || (!HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) &&
                 receiver->GetSession()->HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) &&
                 !receiver->isAcceptWhispers() && !receiver->IsInWhisperWhiteList(sender->GetGUID())))
+=======
+            if (!receiver || (!receiver->isAcceptWhispers() && receiver->GetSession()->HasPermission(RBAC_PERM_CAN_FILTER_WHISPERS) && !receiver->IsInWhisperWhiteList(sender->GetGUID())))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
                 SendPlayerNotFoundNotice(to);
                 return;
@@ -305,7 +325,11 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket& recvData)
                 return;
             }
 
+<<<<<<< HEAD
             if (GetPlayer()->GetTeam() != receiver->GetTeam() && !HasPermission(RBAC_PERM_TWO_SIDE_INTERACTION_CHAT) && !receiver->GetSession()->HasPermission(RBAC_PERM_TWO_SIDE_INTERACTION_CHAT))
+=======
+            if (GetPlayer()->GetTeam() != receiver->GetTeam() && !HasPermission(RBAC_PERM_TWO_SIDE_INTERACTION_CHAT) && !receiver->IsInWhisperWhiteList(sender->GetGUID()))
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             {
                 SendWrongFactionNotice();
                 return;

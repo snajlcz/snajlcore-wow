@@ -16,6 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+<<<<<<< HEAD
 /* ScriptData
 SDName: Icecrown
 SD%Complete: 100
@@ -33,6 +34,15 @@ EndContentData */
 #include "TemporarySummon.h"
 #include "CombatAI.h"
 #define CAST_PLR(a)     (dynamic_cast<Player*>(a))
+=======
+#include "ScriptMgr.h"
+#include "ScriptedCreature.h"
+#include "ScriptedGossip.h"
+#include "SpellAuras.h"
+#include "Player.h"
+#include "TemporarySummon.h"
+#include "CombatAI.h"
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
 /*######
 ## npc_arete
@@ -120,7 +130,11 @@ public:
 };
 
 /*######
+<<<<<<< HEAD
 ## npc_argent_squire
+=======
+## npc_squire_david
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 ######*/
 
 enum SquireDavid
@@ -128,6 +142,7 @@ enum SquireDavid
     QUEST_THE_ASPIRANT_S_CHALLENGE_H                    = 13680,
     QUEST_THE_ASPIRANT_S_CHALLENGE_A                    = 13679,
 
+<<<<<<< HEAD
     QUEST_THE_VALIANT_S_CHALLENGE_SM                    = 13731,
     QUEST_THE_VALIANT_S_CHALLENGE_UC                    = 13729,
     QUEST_THE_VALIANT_S_CHALLENGE_TB                    = 13728,
@@ -148,12 +163,16 @@ enum SquireDavid
     NPC_ARGENT_VALIANT                                  = 33448,
     NPC_ARGENT_CHAMPION                                 = 33707,
     NPC_BLACK_KNIGHT                                    = 33785,
+=======
+    NPC_ARGENT_VALIANT                                  = 33448,
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
     GOSSIP_TEXTID_SQUIRE                                = 14407
 };
 
 #define GOSSIP_SQUIRE_ITEM_1 "I am ready to fight!"
 #define GOSSIP_SQUIRE_ITEM_2 "How do the Argent Crusader raiders fight?"
+<<<<<<< HEAD
 #define GOSSIP_SQUIRE_ITEM_3 "Estoy listo para enfrentarme al Caballero Negro!"
 
 class npc_argent_squire : public CreatureScript
@@ -200,6 +219,21 @@ public:
             {
                 player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_SQUIRE_ITEM_3, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+3);
             }
+=======
+
+class npc_squire_david : public CreatureScript
+{
+public:
+    npc_squire_david() : CreatureScript("npc_squire_david") { }
+
+    bool OnGossipHello(Player* player, Creature* creature) OVERRIDE
+    {
+        if (player->GetQuestStatus(QUEST_THE_ASPIRANT_S_CHALLENGE_H) == QUEST_STATUS_INCOMPLETE ||
+            player->GetQuestStatus(QUEST_THE_ASPIRANT_S_CHALLENGE_A) == QUEST_STATUS_INCOMPLETE)//We need more info about it.
+        {
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_SQUIRE_ITEM_1, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+1);
+            player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_SQUIRE_ITEM_2, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+2);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         }
 
         player->SEND_GOSSIP_MENU(GOSSIP_TEXTID_SQUIRE, creature->GetGUID());
@@ -212,25 +246,34 @@ public:
         if (action == GOSSIP_ACTION_INFO_DEF+1)
         {
             player->CLOSE_GOSSIP_MENU();
+<<<<<<< HEAD
             if (creature->GetEntry() == NPC_SQUIRE_DAVID)
                 creature->SummonCreature(NPC_ARGENT_VALIANT, 8575.451f, 952.472f, 547.554f, 0.38f);
             else if (creature->GetEntry() == NPC_SQUIRE_DANNY)
                 creature->SummonCreature(NPC_ARGENT_CHAMPION, 8534.675781f, 1069.993042f, 552.022827f, 1.274804f);
             else if (creature->GetEntry() == NPC_SQUIRE_CAVIN)
                 creature->SummonCreature(NPC_BLACK_KNIGHT, 8430.082031f, 912.130127f, 544.674500f, 1.635092f);
+=======
+            creature->SummonCreature(NPC_ARGENT_VALIANT, 8575.451f, 952.472f, 547.554f, 0.38f);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         }
         return true;
     }
 };
 
 /*######
+<<<<<<< HEAD
 ## npc_argent_combatant
+=======
+## npc_argent_valiant
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 ######*/
 
 enum ArgentValiant
 {
     SPELL_CHARGE                = 63010,
     SPELL_SHIELD_BREAKER        = 65147,
+<<<<<<< HEAD
     SPELL_DEFEND                = 62719,
     SPELL_THRUST                = 62544,
 
@@ -257,11 +300,27 @@ public:
                 creature->GetMotionMaster()->MovePoint(0, 8557.131836f, 1109.635742f, 556.787476f);
                 creature->SetHomePosition(8557.131836f, 1109.635742f, 556.787476f, 1.27f);
             }
+=======
+    SPELL_KILL_CREDIT           = 63049
+};
+
+class npc_argent_valiant : public CreatureScript
+{
+public:
+    npc_argent_valiant() : CreatureScript("npc_argent_valiant") { }
+
+    struct npc_argent_valiantAI : public ScriptedAI
+    {
+        npc_argent_valiantAI(Creature* creature) : ScriptedAI(creature)
+        {
+            creature->GetMotionMaster()->MovePoint(0, 8599.258f, 963.951f, 547.553f);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             creature->setFaction(35); //wrong faction in db?
         }
 
         uint32 uiChargeTimer;
         uint32 uiShieldBreakerTimer;
+<<<<<<< HEAD
         uint32 uiShieldTimer;
         uint32 uiThrustTimer;
         bool bCharge;
@@ -279,6 +338,13 @@ public:
         {
             for (uint8 i = 0; i < 3; ++i)
                 DoCast(me, SPELL_DEFEND, true);
+=======
+
+        void Reset() OVERRIDE
+        {
+            uiChargeTimer = 7000;
+            uiShieldBreakerTimer = 10000;
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         }
 
         void MovementInform(uint32 uiType, uint32 /*uiId*/) OVERRIDE
@@ -286,6 +352,7 @@ public:
             if (uiType != POINT_MOTION_TYPE)
                 return;
 
+<<<<<<< HEAD
             // charge after moving away from the victim
             if (me->IsInCombat() && me->GetVictim() && bCharge)
             {
@@ -299,10 +366,14 @@ public:
             }
             else
                 me->setFaction(14);
+=======
+            me->setFaction(14);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         }
 
         void DamageTaken(Unit* pDoneBy, uint32& uiDamage) OVERRIDE
         {
+<<<<<<< HEAD
             if (uiDamage >= me->GetHealth() && pDoneBy->GetTypeId() == TYPEID_PLAYER)
             {
                 uiDamage = 0;
@@ -310,6 +381,12 @@ public:
                     CAST_PLR(pDoneBy)->KilledMonsterCredit(NPC_ARGENT_VALIANT_CREDIT, 0);
                 if (me->GetEntry() == NPC_ARGENT_CHAMPION)
                     CAST_PLR(pDoneBy)->KilledMonsterCredit(NPC_ARGENT_CHAMPION_CREDIT, 0);
+=======
+            if (uiDamage > me->GetHealth() && pDoneBy->GetTypeId() == TYPEID_PLAYER)
+            {
+                uiDamage = 0;
+                pDoneBy->CastSpell(pDoneBy, SPELL_KILL_CREDIT, true);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 me->setFaction(35);
                 me->DespawnOrUnsummon(5000);
                 me->SetHomePosition(me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), me->GetOrientation());
@@ -322,6 +399,7 @@ public:
             if (!UpdateVictim())
                 return;
 
+<<<<<<< HEAD
             if (uiShieldTimer <= uiDiff)
             {
                 me->CastSpell(me, SPELL_DEFEND);
@@ -348,12 +426,21 @@ public:
             if (bCharge)
                 return;
 
+=======
+            if (uiChargeTimer <= uiDiff)
+            {
+                DoCastVictim(SPELL_CHARGE);
+                uiChargeTimer = 7000;
+            } else uiChargeTimer -= uiDiff;
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
             if (uiShieldBreakerTimer <= uiDiff)
             {
                 DoCastVictim(SPELL_SHIELD_BREAKER);
                 uiShieldBreakerTimer = 10000;
             } else uiShieldBreakerTimer -= uiDiff;
 
+<<<<<<< HEAD
             if (me->IsWithinMeleeRange(me->GetVictim()))
             {
                 if (uiThrustTimer <= uiDiff)
@@ -846,12 +933,19 @@ public:
                 }
                 else uiThrustTimer -= uiDiff;
             }
+=======
+            DoMeleeAttackIfReady();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
         }
     };
 
     CreatureAI* GetAI(Creature* creature) const OVERRIDE
     {
+<<<<<<< HEAD
         return new npc_argent_faction_riderAI(creature);
+=======
+        return new npc_argent_valiantAI(creature);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     }
 };
 
@@ -1109,6 +1203,7 @@ class npc_tournament_training_dummy : public CreatureScript
         {
             return new npc_tournament_training_dummyAI(creature);
         }
+<<<<<<< HEAD
 };
 
 /*######
@@ -1511,6 +1606,9 @@ public:
         pPlayer->SEND_GOSSIP_MENU(pPlayer->GetGossipTextId(pCreature), pCreature->GetGUID());
         return true;
     }
+=======
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 };
 
 // Battle for Crusaders' Pinnacle
@@ -1974,16 +2072,217 @@ class npc_frostbrood_skytalon : public CreatureScript
         }
 };
 
+<<<<<<< HEAD
 void AddSC_icecrown()
 {
     new npc_arete;
     new npc_argent_squire;
     new npc_argent_combatant;
     new npc_argent_faction_rider;
+=======
+/*######
+## The Flesh Giant Champion - Id: 13235
+######*/
+enum FleshGiant
+{
+    QUEST_FLESH_GIANT_CHAMPION = 13235,
+
+    NPC_MORBIDUS = 30698,
+    NPC_LICH_KING = 31301,
+    NPC_OLAKIN = 31428,
+    NPC_DHAKAR = 31306,
+
+    FACTION_HOSTILE = 14,
+    FACTION_BASIC = 2102,
+
+    EVENT_INTRO = 1,
+    EVENT_LK_SAY_1 = 2,
+    EVENT_LK_SAY_2 = 3,
+    EVENT_LK_SAY_3 = 4,
+    EVENT_LK_SAY_4 = 5,
+    EVENT_LK_SAY_5 = 6,
+    EVENT_OUTRO = 7,
+    EVENT_START = 8,
+
+    SPELL_SIMPLE_TELEPORT = 64195,
+
+    SAY_DHAKAR_START = 0,
+    SAY_LK_1 = 0,
+    SAY_LK_2 = 1,
+    SAY_LK_3 = 2,
+    SAY_LK_4 = 3,
+    SAY_LK_5 = 4,
+    SAY_OLAKIN_PAY = 0
+};
+
+class npc_margrave_dhakar : public CreatureScript
+{
+    public:
+        npc_margrave_dhakar() : CreatureScript("npc_margrave_dhakar") { }
+
+        struct npc_margrave_dhakarAI : public ScriptedAI
+        {
+            npc_margrave_dhakarAI(Creature* creature) : ScriptedAI(creature) , _summons(me), _lichKingGuid(0) { }
+
+            void Reset() OVERRIDE
+            {
+                me->SetFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_GOSSIP);
+                me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_NONE);
+
+                _events.Reset();
+                _summons.DespawnAll();
+            }
+
+            void sGossipSelect(Player* player, uint32 sender, uint32 action) OVERRIDE
+            {
+                if (player->GetQuestStatus(QUEST_FLESH_GIANT_CHAMPION) == QUEST_STATUS_INCOMPLETE && !player->IsInCombat())
+                {
+                    if (me->GetCreatureTemplate()->GossipMenuId == sender && !action)
+                    {
+                        _events.ScheduleEvent(EVENT_INTRO, 1000);
+                        me->RemoveFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_GOSSIP);
+                    }
+                }
+            }
+
+            void UpdateAI(uint32 diff) OVERRIDE
+            {
+                _events.Update(diff);
+
+                while (uint32 eventId = _events.ExecuteEvent())
+                {
+                    switch (eventId)
+                    {
+                        case EVENT_INTRO:
+                        {
+                            Talk(SAY_DHAKAR_START);
+                            me->SetUInt32Value(UNIT_NPC_EMOTESTATE, EMOTE_STATE_READY2H);
+
+                            if (Creature* morbidus = me->FindNearestCreature(NPC_MORBIDUS, 50.0f, true))
+                            {
+                                if (Creature* lichKing = me->SummonCreature(NPC_LICH_KING, morbidus->GetPositionX() + 10.0f, morbidus->GetPositionY(), morbidus->GetPositionZ()))
+                                {
+                                    _lichKingGuid = lichKing->GetGUID();
+                                    lichKing->SetFacingTo(morbidus->GetOrientation());
+                                    lichKing->CastSpell(lichKing, SPELL_SIMPLE_TELEPORT, true);
+                                }
+                            }
+
+                            _events.ScheduleEvent(EVENT_LK_SAY_1, 5000);
+                            break;
+                        }
+                        case EVENT_LK_SAY_1:
+                        {
+                            if (Creature* lichKing = Unit::GetCreature(*me, _lichKingGuid))
+                                lichKing->AI()->Talk(SAY_LK_1);
+                            _events.ScheduleEvent(EVENT_LK_SAY_2, 5000);
+                            break;
+                        }
+                        case EVENT_LK_SAY_2:
+                        {
+                            if (Creature* lichKing = Unit::GetCreature(*me, _lichKingGuid))
+                                lichKing->AI()->Talk(SAY_LK_2);
+                            _events.ScheduleEvent(EVENT_LK_SAY_3, 5000);
+                            break;
+                        }
+                        case EVENT_LK_SAY_3:
+                        {
+                            if (Creature* lichKing = Unit::GetCreature(*me, _lichKingGuid))
+                                lichKing->AI()->Talk(SAY_LK_3);
+                            _events.ScheduleEvent(EVENT_LK_SAY_4, 5000);
+                            break;
+                        }
+                        case EVENT_LK_SAY_4:
+                        {
+                            if (Creature* lichKing = Unit::GetCreature(*me, _lichKingGuid))
+                                lichKing->AI()->Talk(SAY_LK_4);
+                            _events.ScheduleEvent(EVENT_OUTRO, 12000);
+                            break;
+                        }
+                        case EVENT_LK_SAY_5:
+                        {
+                            if (Creature* lichKing = Unit::GetCreature(*me, _lichKingGuid))
+                                lichKing->AI()->Talk(SAY_LK_5);
+                            _events.ScheduleEvent(EVENT_OUTRO, 8000);
+                            break;
+                        }
+                        case EVENT_OUTRO:
+                        {
+                            if (Creature* olakin = me->FindNearestCreature(NPC_OLAKIN, 50.0f, true))
+                                olakin->AI()->Talk(SAY_OLAKIN_PAY);
+
+                            if (Creature* lichKing = Unit::GetCreature(*me, _lichKingGuid))
+                                lichKing->DespawnOrUnsummon(0);
+
+                            _events.ScheduleEvent(EVENT_START, 5000);
+                            break;
+                        }
+                        case EVENT_START:
+                        {
+                            if (Creature* morbidus = me->FindNearestCreature(NPC_MORBIDUS, 50.0f, true))
+                            {
+                                morbidus->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_ATTACKABLE_1 | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_DISABLE_MOVE);
+                                morbidus->setFaction(FACTION_HOSTILE);
+                            }
+
+                            break;
+                        }
+                    }
+                }
+
+                DoMeleeAttackIfReady();
+            }
+
+        private:
+            EventMap _events;
+            SummonList _summons;
+            uint64 _lichKingGuid;
+    };
+
+    CreatureAI* GetAI(Creature* creature) const OVERRIDE
+    {
+        return new npc_margrave_dhakarAI(creature);
+    }
+};
+
+class npc_morbidus : public CreatureScript
+{
+    public:
+        npc_morbidus() : CreatureScript("npc_morbidus") { }
+
+        struct npc_morbidusAI : public ScriptedAI
+        {
+            npc_morbidusAI(Creature* creature) : ScriptedAI(creature) { }
+
+            void Reset() OVERRIDE
+            {
+                if (Creature* dhakar = me->FindNearestCreature(NPC_DHAKAR, 50.0f, true))
+                    dhakar->AI()->Reset();
+
+                // this will prevent the event to start without morbidus being alive
+                me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
+                me->SetReactState(REACT_PASSIVE);
+                me->setFaction(FACTION_BASIC);
+            }
+        };
+
+        CreatureAI* GetAI(Creature* creature) const OVERRIDE
+        {
+            return new npc_morbidusAI(creature);
+        }
+};
+
+void AddSC_icecrown()
+{
+    new npc_arete;
+    new npc_squire_david;
+    new npc_argent_valiant;
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
     new npc_guardian_pavilion;
     new npc_vereth_the_cunning;
     new npc_tournament_training_dummy;
     new npc_blessed_banner();
+<<<<<<< HEAD
     new quest_givers_argent_tournament;
     new npc_quest_givers_for_crusaders;
     new npc_justicar_mariel_trueheart;
@@ -1991,4 +2290,9 @@ void AddSC_icecrown()
     new npc_eadric_the_pure;
     new npc_crok_scourgebane_argent;
     new npc_frostbrood_skytalon();
+=======
+    new npc_frostbrood_skytalon();
+    new npc_margrave_dhakar();
+    new npc_morbidus();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 }

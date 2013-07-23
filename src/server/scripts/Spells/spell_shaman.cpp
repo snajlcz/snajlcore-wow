@@ -302,12 +302,19 @@ class spell_sha_earth_shield : public SpellScriptLoader
                 }
             }
 
+<<<<<<< HEAD
             bool CheckProc(ProcEventInfo& /*eventInfo*/)
             {
+=======
+            void HandleProc(AuraEffect const* aurEff, ProcEventInfo& /*eventInfo*/)
+            {
+                PreventDefaultAction();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 
                 //! HACK due to currenct proc system implementation
                 if (Player* player = GetTarget()->ToPlayer())
                     if (player->HasSpellCooldown(SPELL_SHAMAN_EARTH_SHIELD_HEAL))
+<<<<<<< HEAD
                         return false;
                 return true;
             }
@@ -319,13 +326,24 @@ class spell_sha_earth_shield : public SpellScriptLoader
                 GetTarget()->CastCustomSpell(SPELL_SHAMAN_EARTH_SHIELD_HEAL, SPELLVALUE_BASE_POINT0, aurEff->GetAmount(), GetTarget(), true, NULL, aurEff, GetCasterGUID());
 
                 /// @ HACK due to currenct proc system implementation
+=======
+                        return;
+
+                GetTarget()->CastCustomSpell(SPELL_SHAMAN_EARTH_SHIELD_HEAL, SPELLVALUE_BASE_POINT0, aurEff->GetAmount(), GetTarget(), true, NULL, aurEff, GetCasterGUID());
+
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 if (Player* player = GetTarget()->ToPlayer())
                     player->AddSpellCooldown(SPELL_SHAMAN_EARTH_SHIELD_HEAL, 0, time(NULL) + 3);
             }
 
+<<<<<<< HEAD
             void Register()
             {
                 DoCheckProc += AuraCheckProcFn(spell_sha_earth_shield_AuraScript::CheckProc);
+=======
+            void Register() OVERRIDE
+            {
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_sha_earth_shield_AuraScript::CalculateAmount, EFFECT_0, SPELL_AURA_DUMMY);
                 OnEffectProc += AuraEffectProcFn(spell_sha_earth_shield_AuraScript::HandleProc, EFFECT_0, SPELL_AURA_DUMMY);
             }
@@ -448,10 +466,18 @@ class spell_sha_fire_nova : public SpellScriptLoader
 
             bool Validate(SpellInfo const* spellInfo) OVERRIDE
             {
+<<<<<<< HEAD
                 if (!sSpellMgr->GetSpellInfo(SPELL_SHAMAN_FIRE_NOVA_R1) || sSpellMgr->GetFirstSpellInChain(SPELL_SHAMAN_FIRE_NOVA_R1) != sSpellMgr->GetFirstSpellInChain(spellInfo->Id))
                     return false;
 
                 uint8 rank = sSpellMgr->GetSpellRank(spellInfo->Id);
+=======
+                SpellInfo const* firstRankSpellInfo = sSpellMgr->GetSpellInfo(SPELL_SHAMAN_FIRE_NOVA_R1);
+                if (!firstRankSpellInfo || !spellInfo->IsRankOf(firstRankSpellInfo))
+                    return false;
+
+                uint8 rank = spellInfo->GetRank();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 if (!sSpellMgr->GetSpellWithRank(SPELL_SHAMAN_FIRE_NOVA_TRIGGERED_R1, rank, true))
                     return false;
                 return true;
@@ -471,6 +497,7 @@ class spell_sha_fire_nova : public SpellScriptLoader
 
             void HandleDummy(SpellEffIndex /*effIndex*/)
             {
+<<<<<<< HEAD
                 if (Unit* caster = GetCaster())
                 {
                     uint8 rank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
@@ -480,6 +507,14 @@ class spell_sha_fire_nova : public SpellScriptLoader
                         if (totem && totem->IsTotem())
                             caster->CastSpell(totem, spellId, true);
                     }
+=======
+                Unit* caster = GetCaster();
+                if (Creature* totem = caster->GetMap()->GetCreature(caster->m_SummonSlot[1]))
+                {
+                    uint8 rank = GetSpellInfo()->GetRank();
+                    if (totem->IsTotem())
+                        caster->CastSpell(totem, sSpellMgr->GetSpellWithRank(SPELL_SHAMAN_FIRE_NOVA_TRIGGERED_R1, rank), true);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                 }
             }
 
@@ -521,10 +556,18 @@ class spell_sha_flame_shock : public SpellScriptLoader
                     // Lava Flows
                     if (AuraEffect const* aurEff = caster->GetDummyAuraEffect(SPELLFAMILY_SHAMAN, SHAMAN_ICON_ID_SHAMAN_LAVA_FLOW, EFFECT_0))
                     {
+<<<<<<< HEAD
                         if (sSpellMgr->GetFirstSpellInChain(SPELL_SHAMAN_LAVA_FLOWS_R1) != sSpellMgr->GetFirstSpellInChain(aurEff->GetId()))
                             return;
 
                         uint8 rank = sSpellMgr->GetSpellRank(aurEff->GetId());
+=======
+                        SpellInfo const* firstRankSpellInfo = sSpellMgr->GetSpellInfo(SPELL_SHAMAN_LAVA_FLOWS_R1);
+                        if (!aurEff->GetSpellInfo()->IsRankOf(firstRankSpellInfo))
+                            return;
+
+                        uint8 rank = aurEff->GetSpellInfo()->GetRank();
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
                         caster->CastSpell(caster, sSpellMgr->GetSpellWithRank(SPELL_SHAMAN_LAVA_FLOWS_TRIGGERED_R1, rank), true);
                     }
             }
