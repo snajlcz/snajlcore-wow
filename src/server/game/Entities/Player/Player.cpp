@@ -16,14 +16,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "AnticheatMgr.h"
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-#include "AnticheatMgr.h"
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "Player.h"
 #include "AccountMgr.h"
 #include "AchievementMgr.h"
@@ -86,14 +79,7 @@
 #include "World.h"
 #include "WorldPacket.h"
 #include "WorldSession.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "../../../scripts/Custom/Transmogrification.h"
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-#include "../../../scripts/Custom/Transmogrification.h"
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 #define ZONE_UPDATE_INTERVAL (1*IN_MILLISECONDS)
 
@@ -666,20 +652,11 @@ Player::Player(WorldSession* session): Unit(true)
 #pragma warning(default:4355)
 #endif
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     m_FakeRace = 0;
     m_RealRace = 0;
     m_ForgetBGPlayers = false;
     m_ForgetInListPlayers = false;
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     m_speakTime = 0;
     m_speakCount = 0;
 
@@ -1009,21 +986,12 @@ bool Player::Create(uint32 guidlow, CharacterCreateInfo* createInfo)
     uint32 RaceClassGender = (createInfo->Race) | (createInfo->Class << 8) | (createInfo->Gender << 16);
 
     SetUInt32Value(UNIT_FIELD_BYTES_0, (RaceClassGender | (powertype << 24)));
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     SetORace();
     m_team = TeamForRace(getORace());
     SetFakeRace(); // m_team must be set before this can be used.
     setFactionForRace(getORace());
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     InitDisplayIds();
     if (sWorld->getIntConfig(CONFIG_GAME_TYPE) == REALM_TYPE_PVP || sWorld->getIntConfig(CONFIG_GAME_TYPE) == REALM_TYPE_RPPVP)
     {
@@ -2134,10 +2102,6 @@ bool Player::TeleportTo(uint32 mapid, float x, float y, float z, float orientati
         return false;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Remove unit lost control before teleport
     if (HasUnitState(UNIT_STATE_LOST_CONTROL))
     {
@@ -2145,11 +2109,6 @@ bool Player::TeleportTo(uint32 mapid, float x, float y, float z, float orientati
         GetMotionMaster()->Clear();
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (!GetSession()->HasPermission(RBAC_PERM_SKIP_CHECK_DISABLE_MAP) && DisableMgr::IsDisabledFor(DISABLE_TYPE_MAP, mapid, this))
     {
         TC_LOG_ERROR(LOG_FILTER_MAPS, "Player (GUID: %u, name: %s) tried to enter a forbidden map %u", GetGUIDLow(), GetName().c_str(), mapid);
@@ -2258,18 +2217,8 @@ bool Player::TeleportTo(uint32 mapid, float x, float y, float z, float orientati
     }
     else
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        /* if (getClass() == CLASS_DEATH_KNIGHT && GetMapId() == 609 && !IsGameMaster() && !HasSpell(50977))
-            return false; */
-=======
         if (getClass() == CLASS_DEATH_KNIGHT && GetMapId() == 609 && !IsGameMaster() && !HasSpell(50977))
             return false;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        /* if (getClass() == CLASS_DEATH_KNIGHT && GetMapId() == 609 && !IsGameMaster() && !HasSpell(50977))
-            return false; */
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         // far teleport to another map
         Map* oldmap = IsInWorld() ? GetMap() : NULL;
@@ -3071,10 +3020,6 @@ void Player::GiveXP(uint32 xp, Unit* victim, float group_rate)
     else
         bonus_xp = victim ? GetXPRestBonus(xp) : 0; // XP resting bonus
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // check if double rates is enabled
     if(HasAtLoginFlag(CUSTOMFLAG_DOUBLE_RATE))
     {
@@ -3084,11 +3029,6 @@ void Player::GiveXP(uint32 xp, Unit* victim, float group_rate)
             RemoveAtLoginFlag(CUSTOMFLAG_DOUBLE_RATE);
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SendLogXPGain(xp, victim, bonus_xp, recruitAFriend, group_rate);
 
     uint32 curXP = GetUInt32Value(PLAYER_XP);
@@ -3121,16 +3061,7 @@ void Player::GiveLevel(uint8 level)
         guild->UpdateMemberData(this, GUILD_MEMBER_DATA_LEVEL, level);
 
     PlayerLevelInfo info;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    sObjectMgr->GetPlayerLevelInfo(getORace(), getClass(), level, &info);
-=======
     sObjectMgr->GetPlayerLevelInfo(getRace(), getClass(), level, &info);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    sObjectMgr->GetPlayerLevelInfo(getORace(), getClass(), level, &info);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-
     PlayerClassLevelInfo classInfo;
     sObjectMgr->GetPlayerClassLevelInfo(getClass(), level, &classInfo);
 
@@ -3267,16 +3198,7 @@ void Player::InitStatsForLevel(bool reapplyMods)
     sObjectMgr->GetPlayerClassLevelInfo(getClass(), getLevel(), &classInfo);
 
     PlayerLevelInfo info;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    sObjectMgr->GetPlayerLevelInfo(getORace(), getClass(), getLevel(), &info);
-=======
     sObjectMgr->GetPlayerLevelInfo(getRace(), getClass(), getLevel(), &info);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    sObjectMgr->GetPlayerLevelInfo(getORace(), getClass(), getLevel(), &info);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-
     SetUInt32Value(PLAYER_FIELD_MAX_LEVEL, sWorld->getIntConfig(CONFIG_MAX_PLAYER_LEVEL));
     SetUInt32Value(PLAYER_NEXT_LEVEL_XP, sObjectMgr->GetXPForLevel(getLevel()));
 
@@ -4281,21 +4203,12 @@ void Player::removeSpell(uint32 spell_id, bool disabled, bool learn_low_rank)
     }
 
     if (spell_id == 46917 && m_canTitanGrip)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     {
         SetCanTitanGrip(false);
         // Remove Titan's Grip damage penalty now
         RemoveAurasDueToSpell(49152);
     }
-<<<<<<< HEAD
-=======
         SetCanTitanGrip(false);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (spell_id == 674 && m_canDualWield)
         SetCanDualWield(false);
 
@@ -5108,20 +5021,11 @@ void Player::DeleteFromDB(uint64 playerguid, uint32 accountId, bool updateRealmC
             stmt->setUInt32(0, guid);
             trans->Append(stmt);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             /* World of Warcraft Armory */
             trans->PAppend("DELETE FROM armory_character_stats WHERE guid = '%u'",guid);
             trans->PAppend("DELETE FROM character_feed_log WHERE guid = '%u'",guid);
             /* World of Warcraft Armory */
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             CharacterDatabase.CommitTransaction(trans);
             break;
         }
@@ -5382,15 +5286,7 @@ void Player::CreateCorpse()
         return;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     _uf = getORace();
-=======
-    _uf = GetUInt32Value(UNIT_FIELD_BYTES_0);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    _uf = getORace();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     _pb = GetUInt32Value(PLAYER_BYTES);
     _pb2 = GetUInt32Value(PLAYER_BYTES_2);
 
@@ -5705,19 +5601,10 @@ void Player::RepopAtGraveyard()
 
 bool Player::CanJoinConstantChannelInZone(ChatChannelsEntry const* channel, AreaTableEntry const* zone)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Player can join LFG anywhere
     if (channel->flags & CHANNEL_DBC_FLAG_LFG && sWorld->getBoolConfig(CONFIG_LFG_LOCATION_ALL))
         return true;
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (channel->flags & CHANNEL_DBC_FLAG_ZONE_DEP && zone->flags & AREA_FLAG_ARENA_INSTANCE)
         return false;
 
@@ -7073,22 +6960,9 @@ uint32 Player::TeamForRace(uint8 race)
 
 void Player::setFactionForRace(uint8 race)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
     SetBGTeam(TeamForRace(race));
     ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(race);
     setFaction(rEntry ? rEntry->FactionID : getFaction());
-=======
-    m_team = TeamForRace(race);
-
-    ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(race);
-    setFaction(rEntry ? rEntry->FactionID : 0);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    SetBGTeam(TeamForRace(race));
-    ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(race);
-    setFaction(rEntry ? rEntry->FactionID : getFaction());
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }
 
 ReputationRank Player::GetReputationRank(uint32 faction) const
@@ -7186,10 +7060,6 @@ void Player::RewardReputation(Unit* victim, float rate)
     if (!Rep)
         return;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     uint32 repfaction1 = Rep->RepFaction1;
     uint32 repfaction2 = Rep->RepFaction2;
 
@@ -7211,11 +7081,6 @@ void Player::RewardReputation(Unit* victim, float rate)
         }
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     uint32 ChampioningFaction = 0;
 
     if (GetChampioningFaction())
@@ -7230,53 +7095,12 @@ void Player::RewardReputation(Unit* victim, float rate)
 
     uint32 team = GetTeam();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (repfaction1 && (!Rep->TeamDependent || team == ALLIANCE))
     {
         int32 donerep1 = CalculateReputationGain(REPUTATION_SOURCE_KILL, victim->getLevel(), Rep->RepValue1, ChampioningFaction ? ChampioningFaction : repfaction1);
         donerep1 = int32(donerep1 * rate);
 
         FactionEntry const* factionEntry1 = sFactionStore.LookupEntry(ChampioningFaction ? ChampioningFaction : repfaction1);
-<<<<<<< HEAD
-=======
-    if (Rep->RepFaction1 && (!Rep->TeamDependent || team == ALLIANCE))
-    {
-        int32 donerep1 = CalculateReputationGain(REPUTATION_SOURCE_KILL, victim->getLevel(), Rep->RepValue1, ChampioningFaction ? ChampioningFaction : Rep->RepFaction1);
-        donerep1 = int32(donerep1 * rate);
-
-        FactionEntry const* factionEntry1 = sFactionStore.LookupEntry(ChampioningFaction ? ChampioningFaction : Rep->RepFaction1);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-        uint32 current_reputation_rank1 = GetReputationMgr().GetRank(factionEntry1);
-        if (factionEntry1 && current_reputation_rank1 <= Rep->ReputationMaxCap1)
-            GetReputationMgr().ModifyReputation(factionEntry1, donerep1);
-    }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-    if (repfaction2 && (!Rep->TeamDependent || team == HORDE))
-    {
-        int32 donerep2 = CalculateReputationGain(REPUTATION_SOURCE_KILL, victim->getLevel(), Rep->RepValue2, ChampioningFaction ? ChampioningFaction : repfaction2);
-        donerep2 = int32(donerep2 * rate);
-
-        FactionEntry const* factionEntry2 = sFactionStore.LookupEntry(ChampioningFaction ? ChampioningFaction : repfaction2);
-<<<<<<< HEAD
-=======
-    if (Rep->RepFaction2 && (!Rep->TeamDependent || team == HORDE))
-    {
-        int32 donerep2 = CalculateReputationGain(REPUTATION_SOURCE_KILL, victim->getLevel(), Rep->RepValue2, ChampioningFaction ? ChampioningFaction : Rep->RepFaction2);
-        donerep2 = int32(donerep2 * rate);
-
-        FactionEntry const* factionEntry2 = sFactionStore.LookupEntry(ChampioningFaction ? ChampioningFaction : Rep->RepFaction2);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         uint32 current_reputation_rank2 = GetReputationMgr().GetRank(factionEntry2);
         if (factionEntry2 && current_reputation_rank2 <= Rep->ReputationMaxCap2)
             GetReputationMgr().ModifyReputation(factionEntry2, donerep2);
@@ -7369,15 +7193,7 @@ bool Player::RewardHonor(Unit* victim, uint32 groupsize, int32 honor, bool pvpto
         if (!victim || victim == this || victim->GetTypeId() != TYPEID_PLAYER)
             return false;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (GetTeam() == victim->ToPlayer()->GetTeam())
-=======
         if (GetBGTeam() == victim->ToPlayer()->GetBGTeam())
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        if (GetTeam() == victim->ToPlayer()->GetTeam())
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             return false;
 
         return true;
@@ -7389,14 +7205,7 @@ bool Player::RewardHonor(Unit* victim, uint32 groupsize, int32 honor, bool pvpto
 
     uint64 victim_guid = 0;
     uint32 victim_rank = 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
     uint32 rank_diff = 0;
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    uint32 rank_diff = 0;
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     // need call before fields update to have chance move yesterday data to appropriate fields before today data change.
     UpdateHonorFields();
@@ -7439,10 +7248,6 @@ bool Player::RewardHonor(Unit* victim, uint32 groupsize, int32 honor, bool pvpto
             //  title[1..14]  -> rank[5..18]
             //  title[15..28] -> rank[5..18]
             //  title[other]  -> 0
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             // PLAYER__FIELD_KNOWN_TITLES describe which titles player can use,
             // so we must find biggest pvp title , even for killer to find extra honor value
             uint32 vtitle = victim->GetUInt32Value(PLAYER__FIELD_KNOWN_TITLES);
@@ -7490,8 +7295,6 @@ bool Player::RewardHonor(Unit* victim, uint32 groupsize, int32 honor, bool pvpto
 
             honor_f = ceil(Trinity::Honor::hk_honor_at_level_f(k_level) * (v_level - k_grey) / (k_level - k_grey));
             honor *= 1 + sWorld->getRate(RATE_PVP_RANK_EXTRA_HONOR)*(((float)rank_diff) / 10.0f);
-<<<<<<< HEAD
-=======
             if (victim_title == 0)
                 victim_guid = 0;                        // Don't show HK: <rank> message, only log.
             else if (victim_title < 15)
@@ -7502,9 +7305,6 @@ bool Player::RewardHonor(Unit* victim, uint32 groupsize, int32 honor, bool pvpto
                 victim_guid = 0;                        // Don't show HK: <rank> message, only log.
 
             honor_f = ceil(Trinity::Honor::hk_honor_at_level_f(k_level) * (v_level - k_grey) / (k_level - k_grey));
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             // count the number of playerkills in one day
             ApplyModUInt32Value(PLAYER_FIELD_KILLS, 1, true);
@@ -7513,14 +7313,7 @@ bool Player::RewardHonor(Unit* victim, uint32 groupsize, int32 honor, bool pvpto
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_EARN_HONORABLE_KILL);
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HK_CLASS, victim->getClass());
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HK_RACE, victim->getRace());
-<<<<<<< HEAD
-<<<<<<< HEAD
             UpdateKnownTitles();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-            UpdateKnownTitles();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HONORABLE_KILL_AT_AREA, GetAreaId());
             UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_HONORABLE_KILL, 1, 0, victim);
         }
@@ -7614,10 +7407,6 @@ void Player::SetArenaPoints(uint32 value)
         AddKnownCurrency(ITEM_ARENA_POINTS_ID);
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void Player::UpdateKnownTitles()
 {
     uint32 new_title = 0;
@@ -7642,11 +7431,6 @@ void Player::UpdateKnownTitles()
         SetUInt32Value(PLAYER_CHOSEN_TITLE,new_title);
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void Player::ModifyHonorPoints(int32 value, SQLTransaction* trans /*=NULL*/)
 {
     int32 newValue = int32(GetHonorPoints()) + value;
@@ -7806,15 +7590,7 @@ void Player::UpdateArea(uint32 newArea)
 
     // previously this was in UpdateZone (but after UpdateArea) so nothing will break
     pvpInfo.IsInNoPvPArea = false;
-<<<<<<< HEAD
-<<<<<<< HEAD
     if (area && area->IsSanctuary() || newArea == 415 || newArea == 2397)    // in sanctuary
-=======
-    if (area && area->IsSanctuary())    // in sanctuary
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    if (area && area->IsSanctuary() || newArea == 415 || newArea == 2397)    // in sanctuary
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     {
         SetByteFlag(UNIT_FIELD_BYTES_2, 1, UNIT_BYTE2_FLAG_SANCTUARY);
         pvpInfo.IsInNoPvPArea = true;
@@ -7891,15 +7667,7 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea)
 
     if (zone->flags & AREA_FLAG_CAPITAL)                     // Is in a capital city
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
         if (!pvpInfo.IsHostile || zone->IsSanctuary() || newArea == 415)
-=======
-        if (!pvpInfo.IsHostile || zone->IsSanctuary())
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        if (!pvpInfo.IsHostile || zone->IsSanctuary() || newArea == 415)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         {
             SetFlag(PLAYER_FLAGS, PLAYER_FLAGS_RESTING);
             SetRestType(REST_TYPE_IN_CITY);
@@ -8371,15 +8139,9 @@ void Player::_ApplyItemBonuses(ItemTemplate const* proto, uint8 slot, bool apply
     if (proto->Block)
         HandleBaseModValue(SHIELD_BLOCK_VALUE, FLAT_MOD, float(proto->Block), apply);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     if (proto->HolyRes)
         HandleStatModifier(UNIT_MOD_RESISTANCE_HOLY, BASE_VALUE, float(proto->HolyRes), apply);
 
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (proto->FireRes)
         HandleStatModifier(UNIT_MOD_RESISTANCE_FIRE, BASE_VALUE, float(proto->FireRes), apply);
 
@@ -12311,10 +12073,6 @@ InventoryResult Player::CanUseItem(ItemTemplate const* proto) const
 
     if (proto)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if ((proto->Flags2 & ITEM_FLAGS_EXTRA_HORDE_ONLY) && GetOTeam() != HORDE)
             return EQUIP_ERR_YOU_CAN_NEVER_USE_THAT_ITEM;
 
@@ -12322,18 +12080,6 @@ InventoryResult Player::CanUseItem(ItemTemplate const* proto) const
             return EQUIP_ERR_YOU_CAN_NEVER_USE_THAT_ITEM;
 
         if ((proto->AllowableClass & getClassMask()) == 0 || (proto->AllowableRace & getORaceMask()) == 0)
-<<<<<<< HEAD
-=======
-        if ((proto->Flags2 & ITEM_FLAGS_EXTRA_HORDE_ONLY) && GetTeam() != HORDE)
-            return EQUIP_ERR_YOU_CAN_NEVER_USE_THAT_ITEM;
-
-        if ((proto->Flags2 & ITEM_FLAGS_EXTRA_ALLIANCE_ONLY) && GetTeam() != ALLIANCE)
-            return EQUIP_ERR_YOU_CAN_NEVER_USE_THAT_ITEM;
-
-        if ((proto->AllowableClass & getClassMask()) == 0 || (proto->AllowableRace & getRaceMask()) == 0)
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             return EQUIP_ERR_YOU_CAN_NEVER_USE_THAT_ITEM;
 
         if (proto->RequiredSkill != 0)
@@ -12791,19 +12537,9 @@ Item* Player::EquipItem(uint16 pos, Item* pItem, bool update)
 
         return pItem2;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
     // Apply Titan's Grip damage penalty if necessary
     if ((slot == EQUIPMENT_SLOT_MAINHAND || slot == EQUIPMENT_SLOT_OFFHAND) && CanTitanGrip() && HasTwoHandWeaponInOneHand() && !HasAura(49152))
         CastSpell(this, 49152, true);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    // Apply Titan's Grip damage penalty if necessary
-    if ((slot == EQUIPMENT_SLOT_MAINHAND || slot == EQUIPMENT_SLOT_OFFHAND) && CanTitanGrip() && HasTwoHandWeaponInOneHand() && !HasAura(49152))
-        CastSpell(this, 49152, true);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-
     // only for full equip instead adding to stack
     UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_EQUIP_ITEM, pItem->GetEntry());
     UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_EQUIP_EPIC_ITEM, pItem->GetEntry(), slot);
@@ -12826,19 +12562,9 @@ void Player::QuickEquipItem(uint16 pos, Item* pItem)
             pItem->AddToWorld();
             pItem->SendUpdateToPlayer(this);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
         // Apply Titan's Grip damage penalty if necessary
         if ((slot == EQUIPMENT_SLOT_MAINHAND || slot == EQUIPMENT_SLOT_OFFHAND) && CanTitanGrip() && HasTwoHandWeaponInOneHand() && !HasAura(49152))
            CastSpell(this, 49152, true);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        // Apply Titan's Grip damage penalty if necessary
-        if ((slot == EQUIPMENT_SLOT_MAINHAND || slot == EQUIPMENT_SLOT_OFFHAND) && CanTitanGrip() && HasTwoHandWeaponInOneHand() && !HasAura(49152))
-           CastSpell(this, 49152, true);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-
         UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_EQUIP_ITEM, pItem->GetEntry());
         UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_EQUIP_EPIC_ITEM, pItem->GetEntry(), slot);
     }
@@ -12848,21 +12574,11 @@ void Player::SetVisibleItemSlot(uint8 slot, Item* pItem)
 {
     if (pItem)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // custom
         if (pItem->GetFakeEntry())
             SetUInt32Value(PLAYER_VISIBLE_ITEM_1_ENTRYID + (slot * 2), pItem->GetFakeEntry());
         else
             SetUInt32Value(PLAYER_VISIBLE_ITEM_1_ENTRYID + (slot * 2), pItem->GetEntry());
-<<<<<<< HEAD
-=======
-        SetUInt32Value(PLAYER_VISIBLE_ITEM_1_ENTRYID + (slot * 2), pItem->GetEntry());
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         SetUInt16Value(PLAYER_VISIBLE_ITEM_1_ENCHANTMENT + (slot * 2), 0, pItem->GetEnchantmentId(PERM_ENCHANTMENT_SLOT));
         SetUInt16Value(PLAYER_VISIBLE_ITEM_1_ENCHANTMENT + (slot * 2), 1, pItem->GetEnchantmentId(TEMP_ENCHANTMENT_SLOT));
     }
@@ -12970,22 +12686,12 @@ void Player::RemoveItem(uint8 bag, uint8 slot, bool update)
             SetUInt64Value(PLAYER_FIELD_INV_SLOT_HEAD + (slot * 2), 0);
 
             if (slot < EQUIPMENT_SLOT_END)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 SetVisibleItemSlot(slot, NULL);
                 // Remove Titan's Grip damage penalty if necessary
                 if ((slot == EQUIPMENT_SLOT_MAINHAND || slot == EQUIPMENT_SLOT_OFFHAND) && CanTitanGrip() && !HasTwoHandWeaponInOneHand())
                     RemoveAurasDueToSpell(49152);
             }
-<<<<<<< HEAD
-=======
-                SetVisibleItemSlot(slot, NULL);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
         else if (Bag* pBag = GetBagByPos(bag))
             pBag->RemoveItem(slot, update);
@@ -13003,14 +12709,7 @@ void Player::MoveItemFromInventory(uint8 bag, uint8 slot, bool update)
 {
     if (Item* it = GetItemByPos(bag, slot))
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
         it->DeleteFakeFromDB(it->GetGUIDLow()); // custom
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        it->DeleteFakeFromDB(it->GetGUIDLow()); // custom
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         ItemRemovedQuestCheck(it->GetEntry(), it->GetCount());
         RemoveItem(bag, slot, update);
         it->SetNotRefundable(this, false);
@@ -14833,22 +14532,13 @@ void Player::PrepareGossipMenu(WorldObject* source, uint32 menuId /*= 0*/, bool 
                     canTalk = false;
                     break;
                 case GOSSIP_OPTION_TRAINER:
-<<<<<<< HEAD
-<<<<<<< HEAD
                     if (!creature->IsCanTrainingOf(this, false))
                         canTalk = false;
                     break;
-=======
                     if (getClass() != creature->GetCreatureTemplate()->trainer_class && creature->GetCreatureTemplate()->trainer_type == TRAINER_TYPE_CLASS)
                         TC_LOG_ERROR(LOG_FILTER_SQL, "GOSSIP_OPTION_TRAINER:: Player %s (GUID: %u) request wrong gossip menu: %u with wrong class: %u at Creature: %s (Entry: %u, Trainer Class: %u)",
                         GetName().c_str(), GetGUIDLow(), menu->GetGossipMenu().GetMenuId(), getClass(), creature->GetName().c_str(), creature->GetEntry(), creature->GetCreatureTemplate()->trainer_class);
                     // no break;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                    if (!creature->IsCanTrainingOf(this, false))
-                        canTalk = false;
-                    break;
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 case GOSSIP_OPTION_GOSSIP:
                 case GOSSIP_OPTION_SPIRITGUIDE:
                 case GOSSIP_OPTION_INNKEEPER:
@@ -17412,16 +17102,8 @@ bool Player::LoadFromDB(uint32 guid, SQLQueryHolder *holder)
         CharacterDatabase.Execute(stmt);
         return false;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
     // Cleanup old Wowarmory feeds
     InitWowarmoryFeeds();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    // Cleanup old Wowarmory feeds
-    InitWowarmoryFeeds();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     // overwrite possible wrong/corrupted guid
     SetUInt64Value(OBJECT_FIELD_GUID, MAKE_NEW_GUID(guid, 0, HIGHGUID_PLAYER));
@@ -17440,20 +17122,11 @@ bool Player::LoadFromDB(uint32 guid, SQLQueryHolder *holder)
     bytes0 |= Gender << 16;                                 // gender
     SetUInt32Value(UNIT_FIELD_BYTES_0, bytes0);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SetORace();
     m_team = TeamForRace(getORace());
     SetFakeRace(); // m_team must be set before this can be used.
     setFactionForRace(getORace());
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SetUInt32Value(UNIT_FIELD_LEVEL, fields[6].GetUInt8());
     SetUInt32Value(PLAYER_XP, fields[7].GetUInt32());
 
@@ -17500,16 +17173,10 @@ bool Player::LoadFromDB(uint32 guid, SQLQueryHolder *holder)
     TC_LOG_DEBUG(LOG_FILTER_PLAYER_LOADING, "Load Basic value of player %s is: ", m_name.c_str());
     outDebugValues();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     //Need to call it to initialize m_team (m_team can be calculated from race)
     //Other way is to saves m_team into characters table.
     setFactionForRace(getRace());
 
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // load home bind and check in same time class/race pair, it used later for restore broken positions
     if (!_LoadHomeBind(holder->GetPreparedResult(PLAYER_LOGIN_QUERY_LOAD_HOME_BIND)))
         return false;
@@ -18055,27 +17722,13 @@ bool Player::isAllowedToLoot(const Creature* creature)
         case FREE_FOR_ALL:
             return true;
         case ROUND_ROBIN:
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         case MASTER_LOOT:
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             // may only loot if the player is the loot roundrobin player
             // or if there are free/quest/conditional item for the player
             if (loot->roundRobinPlayer == 0 || loot->roundRobinPlayer == GetGUID())
                 return true;
 
             return loot->hasItemFor(this);
-<<<<<<< HEAD
-<<<<<<< HEAD
-        case MASTER_LOOT:
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        case MASTER_LOOT:
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         case GROUP_LOOT:
         case NEED_BEFORE_GREED:
             // may only loot if the player is the loot roundrobin player
@@ -19319,15 +18972,7 @@ void Player::AddInstanceEnterTime(uint32 instanceId, time_t enterTime)
 
 bool Player::_LoadHomeBind(PreparedQueryResult result)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getORace(), getClass());
-=======
     PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getRace(), getClass());
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getORace(), getClass());
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (!info)
     {
         TC_LOG_ERROR(LOG_FILTER_PLAYER, "Player (Name %s) has incorrect race/class pair. Can't be loaded.", GetName().c_str());
@@ -19417,15 +19062,7 @@ void Player::SaveToDB(bool create /*=false*/)
         stmt->setUInt32(index++, GetGUIDLow());
         stmt->setUInt32(index++, GetSession()->GetAccountId());
         stmt->setString(index++, GetName());
-<<<<<<< HEAD
-<<<<<<< HEAD
-        stmt->setUInt8(index++, getORace());
-=======
         stmt->setUInt8(index++, getRace());
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        stmt->setUInt8(index++, getORace());
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         stmt->setUInt8(index++, getClass());
         stmt->setUInt8(index++, getGender());
         stmt->setUInt8(index++, getLevel());
@@ -19522,15 +19159,7 @@ void Player::SaveToDB(bool create /*=false*/)
         // Update query
         stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_CHARACTER);
         stmt->setString(index++, GetName());
-<<<<<<< HEAD
-<<<<<<< HEAD
-        stmt->setUInt8(index++, getORace());
-=======
         stmt->setUInt8(index++, getRace());
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        stmt->setUInt8(index++, getORace());
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         stmt->setUInt8(index++, getClass());
         stmt->setUInt8(index++, getGender());
         stmt->setUInt8(index++, getLevel());
@@ -19675,10 +19304,6 @@ void Player::SaveToDB(bool create /*=false*/)
 
     CharacterDatabase.CommitTransaction(trans);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // we save the data here to prevent spamming
     sAnticheatMgr->SavePlayerData(this);
 
@@ -19708,12 +19333,6 @@ void Player::SaveToDB(bool create /*=false*/)
         CharacterDatabase.PExecute(ps.str().c_str());
     }
     /* World of Warcraft Armory */
-
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // save pet (hunter pet level and experience and all type pets health/mana).
     if (Pet* pet = GetPet())
         pet->SavePetToDB(PET_SAVE_AS_CURRENT);
@@ -20796,15 +20415,7 @@ void Player::StopCastingCharm()
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-void Player::BuildPlayerChat(WorldPacket* data, uint8 msgtype, const std::string& text, uint32 language) const
-=======
 inline void Player::BuildPlayerChat(WorldPacket* data, uint8 msgtype, const std::string& text, uint32 language) const
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-void Player::BuildPlayerChat(WorldPacket* data, uint8 msgtype, const std::string& text, uint32 language) const
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 {
     *data << uint8(msgtype);
     *data << uint32(language);
@@ -21822,56 +21433,23 @@ void Player::InitDataForForm(bool reapplyMods)
 
 void Player::InitDisplayIds()
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getORace(), getClass());
-=======
     PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getRace(), getClass());
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getORace(), getClass());
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (!info)
     {
         TC_LOG_ERROR(LOG_FILTER_PLAYER, "Player %u has incorrect race/class pair. Can't init display ids.", GetGUIDLow());
         return;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     bool isMorphed = GetNativeDisplayId() != GetDisplayId();
-
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    bool isMorphed = GetNativeDisplayId() != GetDisplayId();
-
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     uint8 gender = getGender();
     switch (gender)
     {
         case GENDER_FEMALE:
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-            if (!isMorphed)
-                SetDisplayId(info->displayId_f);
-            SetNativeDisplayId(info->displayId_f);
-            break;
-        case GENDER_MALE:
-            if (!isMorphed)
-                SetDisplayId(info->displayId_m);
-<<<<<<< HEAD
-=======
             SetDisplayId(info->displayId_f);
             SetNativeDisplayId(info->displayId_f);
             break;
         case GENDER_MALE:
             SetDisplayId(info->displayId_m);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             SetNativeDisplayId(info->displayId_m);
             break;
         default:
@@ -22582,17 +22160,11 @@ void Player::SetBGTeam(uint32 team)
     SetByteValue(PLAYER_BYTES_3, 3, uint8(team == ALLIANCE ? 1 : 0));
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 uint32 Player::GetBGTeam() const
 {
     return m_bgData.bgTeam ? m_bgData.bgTeam : GetTeam();
 }
 
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void Player::LeaveBattleground(bool teleportToEntryPoint)
 {
     if (Battleground* bg = GetBattleground())
@@ -23330,18 +22902,8 @@ void Player::resetSpells(bool myClassOnly)
                 continue;
 
             // skip spells with first rank learned as talent (and all talents then also)
-<<<<<<< HEAD
-<<<<<<< HEAD
-            uint32 first_rank = sSpellMgr->GetFirstSpellInChain(spellInfo->Id);
-            if (GetTalentSpellCost(first_rank) > 0)
-=======
             uint32 firstRank = spellInfo->GetFirstRankSpell()->Id;
             if (GetTalentSpellCost(firstRank) > 0)
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-            uint32 first_rank = sSpellMgr->GetFirstSpellInChain(spellInfo->Id);
-            if (GetTalentSpellCost(first_rank) > 0)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 continue;
 
             // skip broken spells
@@ -23360,25 +22922,11 @@ void Player::resetSpells(bool myClassOnly)
 void Player::learnDefaultSpells()
 {
     // learn default race/class spells
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-    PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getORace(), getClass());
-    for (PlayerCreateInfoSpells::const_iterator itr = info->spell.begin(); itr != info->spell.end(); ++itr)
-    {
-        uint32 tspell = *itr;
-        TC_LOG_DEBUG(LOG_FILTER_PLAYER_LOADING, "PLAYER (Class: %u Race: %u): Adding initial spell, id = %u", uint32(getClass()), uint32(getORace()), tspell);
-<<<<<<< HEAD
-=======
     PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getRace(), getClass());
     for (PlayerCreateInfoSpells::const_iterator itr = info->spell.begin(); itr != info->spell.end(); ++itr)
     {
         uint32 tspell = *itr;
         TC_LOG_DEBUG(LOG_FILTER_PLAYER_LOADING, "PLAYER (Class: %u Race: %u): Adding initial spell, id = %u", uint32(getClass()), uint32(getRace()), tspell);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         if (!IsInWorld())                                    // will send in INITIAL_SPELLS in list anyway at map add
             addSpell(tspell, true, true, true, false);
         else                                                // but send in normal spell in game learn case
@@ -23425,34 +22973,19 @@ void Player::learnQuestRewardedSpells(Quest const* quest)
     uint32 learned_0 = spellInfo->Effects[0].TriggerSpell;
     if (sSpellMgr->GetSpellRank(learned_0) > 1 && !HasSpell(learned_0))
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // not have first rank learned (unlearned prof?)
         uint32 first_spell = sSpellMgr->GetFirstSpellInChain(learned_0);
         if (!HasSpell(first_spell))
             return;
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         SpellInfo const* learnedInfo = sSpellMgr->GetSpellInfo(learned_0);
         if (!learnedInfo)
             return;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         // not have first rank learned (unlearned prof?)
         if (!HasSpell(learnedInfo->GetFirstRankSpell()->Id))
             return;
 
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         SpellsRequiringSpellMapBounds spellsRequired = sSpellMgr->GetSpellsRequiredForSpellBounds(learned_0);
         for (SpellsRequiringSpellMap::const_iterator itr2 = spellsRequired.first; itr2 != spellsRequired.second; ++itr2)
         {
@@ -24007,10 +23540,6 @@ bool Player::HasItemFitToSpellRequirements(SpellInfo const* spellInfo, Item cons
         case ITEM_CLASS_WEAPON:
         {
             for (uint8 i = EQUIPMENT_SLOT_MAINHAND; i < EQUIPMENT_SLOT_TABARD; ++i)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 // Make Thunder clap not require a weapon equiped
                 if (spellInfo->SpellFamilyFlags[0] & 0x00000080)
@@ -24019,14 +23548,9 @@ bool Player::HasItemFitToSpellRequirements(SpellInfo const* spellInfo, Item cons
                     if (item != ignoreItem && item->IsFitToSpellRequirements(spellInfo))
                         return true;
             }
-<<<<<<< HEAD
-=======
                 if (Item* item = GetUseableItemByPos(INVENTORY_SLOT_BAG_0, i))
                     if (item != ignoreItem && item->IsFitToSpellRequirements(spellInfo))
                         return true;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             break;
         }
         case ITEM_CLASS_ARMOR:
@@ -24096,10 +23620,6 @@ void Player::RemoveItemDependentAurasAndCasts(Item* pItem)
             continue;
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // Bladestorm
         if (HasAura(46924))
         {
@@ -24107,11 +23627,6 @@ void Player::RemoveItemDependentAurasAndCasts(Item* pItem)
             continue;
         }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // no alt item, remove aura, restart check
         RemoveOwnedAura(itr);
     }
@@ -26816,10 +26331,6 @@ void Player::_SaveInstanceTimeRestrictions(SQLTransaction& trans)
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 /** World of Warcraft Armory **/
 void Player::InitWowarmoryFeeds() {
     // Clear feeds
@@ -26861,11 +26372,6 @@ void Player::CreateWowarmoryFeed(uint32 type, uint32 data, uint32 item_guid, uin
 }
 /** World of Warcraft Armory **/
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 bool Player::IsInWhisperWhiteList(uint64 guid)
 {
     for (WhisperListContainer::const_iterator itr = WhisperList.begin(); itr != WhisperList.end(); ++itr)
@@ -26875,10 +26381,6 @@ bool Player::IsInWhisperWhiteList(uint64 guid)
     return false;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void Player::HandleRates()
 {
     Player* player = this;
@@ -26902,11 +26404,6 @@ void Player::HandleRates()
         GetSession()->SendAreaTriggerMessage("Experience rates change is available only below level 60.","");
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 bool Player::SetDisableGravity(bool disable, bool packetOnly /*= false*/)
 {
     if (!packetOnly && !Unit::SetDisableGravity(disable))
@@ -27143,10 +26640,6 @@ Pet* Player::SummonPet(uint32 entry, float x, float y, float z, float ang, PetTy
 
     return pet;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 uint32 Player::SuitableForTransmogrification(Item* oldItem, Item* newItem) // custom
 {
@@ -27192,8 +26685,3 @@ uint32 Player::SuitableForTransmogrification(Item* oldItem, Item* newItem) // cu
             return ERR_FAKE_BAD_SUBLCASS;
     return ERR_FAKE_BAD_CLASS;
 }
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e

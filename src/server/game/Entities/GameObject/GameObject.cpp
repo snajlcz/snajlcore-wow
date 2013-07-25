@@ -712,15 +712,7 @@ void GameObject::SaveToDB(uint32 mapid, uint8 spawnMask, uint32 phaseMask)
     stmt->setUInt32(index++, GetEntry());
     stmt->setUInt16(index++, uint16(mapid));
     stmt->setUInt8(index++, spawnMask);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    stmt->setUInt16(index++, uint16(GetPhaseMask()));
-=======
     stmt->setUInt32(index++, GetPhaseMask());
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    stmt->setUInt16(index++, uint16(GetPhaseMask()));
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     stmt->setFloat(index++, GetPositionX());
     stmt->setFloat(index++, GetPositionY());
     stmt->setFloat(index++, GetPositionZ());
@@ -1852,16 +1844,8 @@ void GameObject::ModifyHealth(int32 change, Unit* attackerOrHealer /*= NULL*/, u
                                                     // change >= 0 triggers SPELL_BUILDING_DAMAGE event
         data << uint32(spellId);
         player->GetSession()->SendPacket(&data);
-<<<<<<< HEAD
-<<<<<<< HEAD
         if (Battleground* bg = player->GetBattleground())
             bg->EventPlayerDamagedGO(player, this, m_goInfo->building.damageEvent);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        if (Battleground* bg = player->GetBattleground())
-            bg->EventPlayerDamagedGO(player, this, m_goInfo->building.damageEvent);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     }
 
     GameObjectDestructibleState newState = GetDestructibleState();

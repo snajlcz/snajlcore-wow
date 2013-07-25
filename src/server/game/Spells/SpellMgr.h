@@ -126,25 +126,11 @@ enum ProcFlags
     PROC_FLAG_DONE_SPELL_RANGED_DMG_CLASS     = 0x00000100,    // 08 Done attack by Spell that has dmg class ranged
     PROC_FLAG_TAKEN_SPELL_RANGED_DMG_CLASS    = 0x00000200,    // 09 Taken attack by Spell that has dmg class ranged
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     PROC_FLAG_DONE_SPELL_NONE_DMG_CLASS_POS   = 0x00000400,    // 10 Done positive spell that has dmg class none (aoe heal done)
     PROC_FLAG_TAKEN_SPELL_NONE_DMG_CLASS_POS  = 0x00000800,    // 11 Taken positive spell that has dmg class none (aoe heal taken)
 
     PROC_FLAG_DONE_SPELL_NONE_DMG_CLASS_NEG   = 0x00001000,    // 12 Done negative spell that has dmg class none (aoe damage done)
     PROC_FLAG_TAKEN_SPELL_NONE_DMG_CLASS_NEG  = 0x00002000,    // 13 Taken negative spell that has dmg class none (aoe damage taken)
-<<<<<<< HEAD
-=======
-    PROC_FLAG_DONE_SPELL_NONE_DMG_CLASS_POS   = 0x00000400,    // 10 Done positive spell that has dmg class none
-    PROC_FLAG_TAKEN_SPELL_NONE_DMG_CLASS_POS  = 0x00000800,    // 11 Taken positive spell that has dmg class none
-
-    PROC_FLAG_DONE_SPELL_NONE_DMG_CLASS_NEG   = 0x00001000,    // 12 Done negative spell that has dmg class none
-    PROC_FLAG_TAKEN_SPELL_NONE_DMG_CLASS_NEG  = 0x00002000,    // 13 Taken negative spell that has dmg class none
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     PROC_FLAG_DONE_SPELL_MAGIC_DMG_CLASS_POS  = 0x00004000,    // 14 Done positive spell that has dmg class magic
     PROC_FLAG_TAKEN_SPELL_MAGIC_DMG_CLASS_POS = 0x00008000,    // 15 Taken positive spell that has dmg class magic
@@ -710,14 +696,7 @@ class SpellMgr
     public:
 
         // Loading data at server startup
-<<<<<<< HEAD
-<<<<<<< HEAD
         void LoadSpellTalentRanks();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        void LoadSpellTalentRanks();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         void LoadSpellRanks();
         void LoadSpellRequired();
         void LoadSpellLearnSkills();
