@@ -385,6 +385,16 @@ class Spell
         SpellCastResult CheckCast(bool strict);
         SpellCastResult CheckPetCast(Unit* target);
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+        static uint32 GetCCDelay(SpellInfo const* _spell);
+
+=======
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        static uint32 GetCCDelay(SpellInfo const* _spell);
+
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // handlers
         void handle_immediate();
         uint64 handle_delayed(uint64 t_offset);

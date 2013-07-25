@@ -141,7 +141,15 @@ class UnitAI
         virtual void SetGUID(uint64 /*guid*/, int32 /*id*/ = 0) {}
         virtual uint64 GetGUID(int32 /*id*/ = 0) const { return 0; }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+        Unit* SelectTarget(SelectAggroTarget targetType, uint32 position = 0, float dist = 0.0f, bool playerOnly = true, int32 aura = 0);
+=======
         Unit* SelectTarget(SelectAggroTarget targetType, uint32 position = 0, float dist = 0.0f, bool playerOnly = false, int32 aura = 0);
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+        Unit* SelectTarget(SelectAggroTarget targetType, uint32 position = 0, float dist = 0.0f, bool playerOnly = true, int32 aura = 0);
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // Select the targets satifying the predicate.
         // predicate shall extend std::unary_function<Unit*, bool>
         template <class PREDICATE> Unit* SelectTarget(SelectAggroTarget targetType, uint32 position, PREDICATE const& predicate)

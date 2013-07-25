@@ -444,7 +444,15 @@ public:
 
     uint32 GetMaxTicks() const;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    uint32 CalcCastTime(Unit* caster = NULL, Spell* spell = NULL, bool istriggered = false) const;
+=======
     uint32 CalcCastTime(Unit* caster = NULL, Spell* spell = NULL) const;
+>>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
+=======
+    uint32 CalcCastTime(Unit* caster = NULL, Spell* spell = NULL, bool istriggered = false) const;
+>>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     uint32 GetRecoveryTime() const;
 
     int32 CalcPowerCost(Unit const* caster, SpellSchoolMask schoolMask) const;
