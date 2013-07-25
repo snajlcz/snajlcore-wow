@@ -55,17 +55,9 @@ endif()
 # Fixes a compiler-problem when using PCH - the /Ym flag is adjusted by the compiler in MSVC2012, hence we need to set an upper limit with /Zm to avoid discrepancies)
 # (And yes, this is a verified , unresolved bug with MSVC... *sigh*)
 string(REGEX REPLACE "/Zm[0-9]+ *" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zm500" CACHE STRING "" FORCE)
-=======
-if(MSVC_VERSION LESS 1800) # MSVC2012 and below
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zm500" CACHE STRING "" FORCE)
-endif()
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zm500" CACHE STRING "" FORCE)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
+
 
 # Enable and treat as errors the following warnings to easily detect virtual function signature failures:
 # 'function' : member function does not override any base class virtual member function
