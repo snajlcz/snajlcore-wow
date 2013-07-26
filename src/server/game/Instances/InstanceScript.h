@@ -202,18 +202,9 @@ class InstanceScript : public ZoneScript
         // Send Notify to all players in instance
         void DoSendNotifyToInstance(char const* format, ...);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         // Complete Achievement for all players in instance
         void DoCompleteAchievement(uint32 achievement);
 
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        // Complete Achievement for all players in instance
-        void DoCompleteAchievement(uint32 achievement);
-
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // Update Achievement Criteria for all players in instance
         void DoUpdateAchievementCriteria(AchievementCriteriaTypes type, uint32 miscValue1 = 0, uint32 miscValue2 = 0, Unit* unit = NULL);
 
@@ -230,19 +221,10 @@ class InstanceScript : public ZoneScript
         // Return wether server allow two side groups or not
         bool ServerAllowsTwoSideGroups() { return sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GROUP); }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         // Returns which team has a majority in the current instance map. Uses ServerAllowsTwoSideGroups() for config-check, thus returns the
         // team in the instance if two-side-interaction is not allowed.
         uint32 GetMajorityTeam(void);
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         virtual bool SetBossState(uint32 id, EncounterState state);
         EncounterState GetBossState(uint32 id) const { return id < bosses.size() ? bosses[id].state : TO_BE_DECIDED; }
         BossBoundaryMap const* GetBossBoundary(uint32 id) const { return id < bosses.size() ? &bosses[id].boundary : NULL; }

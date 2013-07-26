@@ -2049,21 +2049,12 @@ void AchievementMgr::CompletedAchievement(AchievementEntry const* achievement)
         achievement->ID, m_player->GetName().c_str(), m_player->GetGUIDLow());
 
     SendAchievementEarned(achievement);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     /** World of Warcraft Armory **/
     if (sWorld->getBoolConfig(CONFIG_ARMORY_ENABLE))
         GetPlayer()->CreateWowarmoryFeed(1, achievement->ID, 0, 0);
     /** World of Warcraft Armory **/
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     CompletedAchievementData& ca = m_completedAchievements[achievement->ID];
     ca.date = time(NULL);
     ca.changed = true;
