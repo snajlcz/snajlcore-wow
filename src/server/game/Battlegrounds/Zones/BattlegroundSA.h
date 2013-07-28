@@ -46,17 +46,8 @@ enum BG_SA_GateState
 {
     BG_SA_GATE_OK           = 1,
     BG_SA_GATE_DAMAGED      = 2,
-<<<<<<< HEAD
-<<<<<<< HEAD
     BG_SA_GATE_DESTROYED    = 3,
     BG_SA_GATE_DAMAGE       = 4
-=======
-    BG_SA_GATE_DESTROYED    = 3
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    BG_SA_GATE_DESTROYED    = 3,
-    BG_SA_GATE_DAMAGE       = 4
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum BG_SA_EventIdGate
@@ -195,10 +186,7 @@ uint32 const BG_SA_NpcEntries[BG_SA_MAXNPC] =
     NPC_GORGRIL_RIGSPARK
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
+
 enum GameOjects
 {
     BG_SA_GO_GREEN_GATE             = 190722,
