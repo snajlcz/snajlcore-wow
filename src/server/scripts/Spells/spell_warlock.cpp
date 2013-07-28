@@ -51,16 +51,8 @@ enum WarlockSpells
     SPELL_WARLOCK_LIFE_TAP_ENERGIZE_2               = 32553,
     SPELL_WARLOCK_SOULSHATTER                       = 32835,
     SPELL_WARLOCK_SIPHON_LIFE_HEAL                  = 63106,
-<<<<<<< HEAD
-<<<<<<< HEAD
     SPELL_WARLOCK_GLYPH_OF_SUCCUBUS                 = 56250,
     SPELL_PRIEST_SHADOW_WORD_DEATH                  = 32409,
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    SPELL_WARLOCK_GLYPH_OF_SUCCUBUS                 = 56250,
-    SPELL_PRIEST_SHADOW_WORD_DEATH                  = 32409,
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SPELL_WARLOCK_UNSTABLE_AFFLICTION_DISPEL        = 31117
 };
 
@@ -145,15 +137,7 @@ class spell_warl_create_healthstone : public SpellScriptLoader
             {
                 if (Player* caster = GetCaster()->ToPlayer())
                 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    uint8 spellRank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
-=======
                     uint8 spellRank = GetSpellInfo()->GetRank();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                    uint8 spellRank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     ItemPosCountVec dest;
                     InventoryResult msg = caster->CanStoreNewItem(NULL_BAG, NULL_SLOT, dest, iTypes[spellRank - 1][0], 1, NULL);
                     if (msg != EQUIP_ERR_OK)
@@ -183,15 +167,7 @@ class spell_warl_create_healthstone : public SpellScriptLoader
                                 break;
                         }
                     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    uint8 spellRank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
-=======
                     uint8 spellRank = GetSpellInfo()->GetRank();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                    uint8 spellRank = sSpellMgr->GetSpellRank(GetSpellInfo()->Id);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     if (spellRank > 0 && spellRank <= 8)
                         CreateItem(effIndex, iTypes[spellRank - 1][rank]);
                 }
@@ -432,25 +408,7 @@ class spell_warl_everlasting_affliction : public SpellScriptLoader
                 if (Unit* unitTarget = GetHitUnit())
                     // Refresh corruption on target
                     if (AuraEffect* aur = unitTarget->GetAuraEffect(SPELL_AURA_PERIODIC_DAMAGE, SPELLFAMILY_WARLOCK, 0x2, 0, 0, GetCaster()->GetGUID()))
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-                        {
-                       Unit* caster = GetCaster();
-                       int32 maxTicks = aur->GetTotalTicks();
-                       for (uint8 i = 0; i < MAX_SPELL_EFFECTS; ++i)
-                           if (aur->GetBase()->HasEffect(i))
-                               aur->GetBase()->GetEffect(i)->CalculatePeriodic(caster, false, false);
-                       aur->GetBase()->SetMaxDuration(aur->GetAmplitude() * maxTicks);
-                       aur->GetBase()->RefreshDuration();
-                       }
-<<<<<<< HEAD
-=======
                         aur->GetBase()->RefreshDuration();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
 
             void Register() OVERRIDE
@@ -864,10 +822,6 @@ class spell_warl_soulshatter : public SpellScriptLoader
         }
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 // 6358 - Seduction (Glyph of Succubus)
 class spell_warl_seduction : public SpellScriptLoader
 {
@@ -904,11 +858,6 @@ class spell_warl_seduction : public SpellScriptLoader
         }
 };
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 // -30108 - Unstable Affliction
 class spell_warl_unstable_affliction : public SpellScriptLoader
 {
@@ -967,13 +916,6 @@ void AddSC_warlock_spell_scripts()
     new spell_warl_shadow_ward();
     new spell_warl_siphon_life();
     new spell_warl_soulshatter();
-<<<<<<< HEAD
-<<<<<<< HEAD
     new spell_warl_seduction();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    new spell_warl_seduction();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     new spell_warl_unstable_affliction();
 }

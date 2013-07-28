@@ -388,71 +388,6 @@ class spell_winter_veil_px_238_winter_wondervolt : public SpellScriptLoader
         }
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-enum brazierhit
-{
-    SPELL_TORCH_TOSSING_TRAINING_SUCCESS_H = 46651,
-    SPELL_TORCH_TOSSING_TRAINING_SUCCESS_A = 45719,
-    SPELL_TORCH_CATCHING_TRAINING_SUCCESS_H = 46654,
-    SPELL_TORCH_CATCHING_TRAINING_SUCCESS_A = 46081
-};
-
-class spell_brazier_hit : public SpellScriptLoader
-{
-    public:
-        spell_brazier_hit() : SpellScriptLoader("spell_brazier_hit") { }
-
-        class spell_brazier_hit_AuraScript : public AuraScript
-        {
-            PrepareAuraScript(spell_brazier_hit_AuraScript);
-
-            void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
-            {
-                Unit* target = GetTarget();
-                 if (AuraEffect* pAura = target->GetAuraEffect(45724,EFFECT_0))
-                {
-                        if (pAura->GetAmount() >= 8)
-                        {
-                                target->CastSpell(target, SPELL_TORCH_TOSSING_TRAINING_SUCCESS_H, true);
-                                target->CastSpell(target, SPELL_TORCH_TOSSING_TRAINING_SUCCESS_A, true);
-                                target->RemoveAurasDueToSpell(45724);
-                        }
-                }
-                if (AuraEffect* pAura = target->GetAuraEffect(45724,EFFECT_0))
-                {
-                        if (pAura->GetAmount() >= 4)
-                        {
-                                target->CastSpell(target, SPELL_TORCH_CATCHING_TRAINING_SUCCESS_H, true);
-                                target->CastSpell(target, SPELL_TORCH_CATCHING_TRAINING_SUCCESS_A, true);
-                                target->RemoveAurasDueToSpell(45693);
-                        }
-                }
-            }
-
-            void Register()
-            {
-                OnEffectApply += AuraEffectApplyFn(spell_brazier_hit_AuraScript::OnApply, EFFECT_0, SPELL_AURA_PERIODIC_DUMMY, AURA_EFFECT_HANDLE_REAL);
-
-            }
-
-        private:
-
-        };
-
-        AuraScript* GetAuraScript() const
-        {
-            return new spell_brazier_hit_AuraScript();
-        }
-};
-
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_holiday_spell_scripts()
 {
     // Love is in the Air
@@ -464,14 +399,4 @@ void AddSC_holiday_spell_scripts()
     // Winter Veil
     new spell_winter_veil_mistletoe();
     new spell_winter_veil_px_238_winter_wondervolt();
-<<<<<<< HEAD
-<<<<<<< HEAD
-    // Midsummer Fire Festival
-    new spell_brazier_hit();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    // Midsummer Fire Festival
-    new spell_brazier_hit();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }
