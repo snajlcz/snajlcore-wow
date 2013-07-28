@@ -302,27 +302,12 @@ class spell_sha_earth_shield : public SpellScriptLoader
                 }
             }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
             bool CheckProc(ProcEventInfo& /*eventInfo*/)
             {
-=======
-            void HandleProc(AuraEffect const* aurEff, ProcEventInfo& /*eventInfo*/)
-            {
-                PreventDefaultAction();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-            bool CheckProc(ProcEventInfo& /*eventInfo*/)
-            {
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                 //! HACK due to currenct proc system implementation
                 if (Player* player = GetTarget()->ToPlayer())
                     if (player->HasSpellCooldown(SPELL_SHAMAN_EARTH_SHIELD_HEAL))
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         return false;
                 return true;
             }
@@ -334,33 +319,13 @@ class spell_sha_earth_shield : public SpellScriptLoader
                 GetTarget()->CastCustomSpell(SPELL_SHAMAN_EARTH_SHIELD_HEAL, SPELLVALUE_BASE_POINT0, aurEff->GetAmount(), GetTarget(), true, NULL, aurEff, GetCasterGUID());
 
                 /// @ HACK due to currenct proc system implementation
-<<<<<<< HEAD
-=======
-                        return;
-
-                GetTarget()->CastCustomSpell(SPELL_SHAMAN_EARTH_SHIELD_HEAL, SPELLVALUE_BASE_POINT0, aurEff->GetAmount(), GetTarget(), true, NULL, aurEff, GetCasterGUID());
-
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 if (Player* player = GetTarget()->ToPlayer())
                     player->AddSpellCooldown(SPELL_SHAMAN_EARTH_SHIELD_HEAL, 0, time(NULL) + 3);
             }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
             void Register()
             {
                 DoCheckProc += AuraCheckProcFn(spell_sha_earth_shield_AuraScript::CheckProc);
-=======
-            void Register() OVERRIDE
-            {
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-            void Register()
-            {
-                DoCheckProc += AuraCheckProcFn(spell_sha_earth_shield_AuraScript::CheckProc);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_sha_earth_shield_AuraScript::CalculateAmount, EFFECT_0, SPELL_AURA_DUMMY);
                 OnEffectProc += AuraEffectProcFn(spell_sha_earth_shield_AuraScript::HandleProc, EFFECT_0, SPELL_AURA_DUMMY);
             }
