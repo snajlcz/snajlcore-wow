@@ -65,9 +65,6 @@ enum BattlegroundQueueGroupTypes
     BG_QUEUE_MIXED              = 4
 };
 #define BG_QUEUE_GROUP_TYPES_COUNT 5
-    BG_QUEUE_NORMAL_HORDE       = 3
-};
-#define BG_QUEUE_GROUP_TYPES_COUNT 4
 class Battleground;
 class BattlegroundQueue
 {

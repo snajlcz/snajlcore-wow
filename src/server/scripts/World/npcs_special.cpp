@@ -1842,10 +1842,6 @@ public:
             // here should be auras (not present in client dbc): 35657, 35658, 35659, 35660 selfcasted by mirror images (stats related?)
             // Clone Me!
             owner->CastSpell(me, 45204, false);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             if (owner->ToPlayer() && owner->ToPlayer()->GetSelectedUnit())
                 me->AI()->AttackStart(owner->ToPlayer()->GetSelectedUnit());
@@ -1904,11 +1900,6 @@ public:
                 uint32 casttime = me->GetCurrentSpellCastTime(spellId);
                 events.ScheduleEvent(spellId, (casttime ? casttime : 500) + GetAISpellInfo(spellId)->realCooldown);
             }
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         }
 
         // Do not reload Creature templates on evade mode enter - prevent visual lost
@@ -1948,30 +1939,11 @@ public:
         void InitializeAI() OVERRIDE
         {
             CasterAI::InitializeAI();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-              // Not needed to be despawned now
-            despawnTimer = 0;
-            // Do no seach target here because aura is not applied yet and owner is not set
-        }
-
-        void FindVictim()
-        {
-            uint64 ownerGuid = me->GetOwnerGUID();
-            if (!ownerGuid)
-                return;
-<<<<<<< HEAD
-=======
             uint64 ownerGuid = me->GetOwnerGUID();
             if (!ownerGuid)
                 return;
             // Not needed to be despawned now
             despawnTimer = 0;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             // Find victim of Summon Gargoyle spell
             std::list<Unit*> targets;
             Trinity::AnyUnfriendlyUnitInObjectRangeCheck u_check(me, me, 30);
@@ -1980,14 +1952,7 @@ public:
             for (std::list<Unit*>::const_iterator iter = targets.begin(); iter != targets.end(); ++iter)
                 if ((*iter)->GetAura(49206, ownerGuid))
                 {
-<<<<<<< HEAD
-<<<<<<< HEAD
                     me->AddThreat((*iter), 100000.0f);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                    me->AddThreat((*iter), 100000.0f);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     me->Attack((*iter), false);
                     break;
                 }
@@ -2034,10 +1999,6 @@ public:
 
         void UpdateAI(uint32 diff) OVERRIDE
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             uint64 ownerGuid = me->GetOwnerGUID();
             std::list<Unit*> targets;
             Trinity::AnyUnfriendlyUnitInObjectRangeCheck u_check(me, me, 30);
@@ -2049,14 +2010,9 @@ public:
                     me->AddThreat((*iter), 1000000.0f);
                     break;
                 }
-            if (me->GetVictim() == NULL)
-               FindVictim();
+            //if (me->GetVictim() == NULL)
+            //   FindVictim();
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (despawnTimer > 0)
             {
                 if (despawnTimer > diff)
@@ -3094,10 +3050,6 @@ public:
     };
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 // Achievement: The Turkinator
 enum WildTurkey
 {
@@ -3434,11 +3386,6 @@ public:
 };
 
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_npcs_special()
 {
     new npc_air_force_bots();
@@ -3470,17 +3417,8 @@ void AddSC_npcs_special()
     new npc_earth_elemental();
     new npc_firework();
     new npc_spring_rabbit();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     new npc_lonely_turkey();
     new npc_wild_turkey();
     new npc_argent_pet();
     new npc_risen_ally();
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

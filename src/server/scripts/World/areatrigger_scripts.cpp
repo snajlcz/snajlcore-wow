@@ -33,14 +33,7 @@ at_nats_landing                 q11209
 at_bring_your_orphan_to         q910 q910 q1800 q1479 q1687 q1558 q10951 q10952
 at_brewfest
 at_area_52_entrance
-<<<<<<< HEAD
-<<<<<<< HEAD
 at_azure_dragons_sanctuary      q12107 q12110
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-at_azure_dragons_sanctuary      q12107 q12110
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 EndContentData */
 
 #include "ScriptMgr.h"
@@ -433,10 +426,6 @@ class AreaTrigger_at_area_52_entrance : public AreaTriggerScript
         std::map<uint32, time_t> _triggerTimes;
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 /*#####
 ## at_azure_dragons_sanctuary
 ######*/
@@ -464,11 +453,6 @@ class AreaTrigger_at_azure_dragons_sanctuary : public AreaTriggerScript
         }
 };
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 /*######
  ## at_frostgrips_hollow
  ######*/
@@ -545,13 +529,6 @@ void AddSC_areatrigger_scripts()
     new AreaTrigger_at_nats_landing();
     new AreaTrigger_at_brewfest();
     new AreaTrigger_at_area_52_entrance();
-<<<<<<< HEAD
-<<<<<<< HEAD
     new AreaTrigger_at_azure_dragons_sanctuary();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    new AreaTrigger_at_azure_dragons_sanctuary();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     new AreaTrigger_at_frostgrips_hollow();
 }

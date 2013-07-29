@@ -16,25 +16,12 @@
  */
 
 #include "ScriptMgr.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "ScriptedCreature.h"
 #include "SpellScript.h"
 #include "ulduar.h"
 #include "Unit.h"
 #include "Vehicle.h"
 #include "VehicleDefines.h"
-
-
-<<<<<<< HEAD
-=======
-#include "SpellScript.h"
-#include "ulduar.h"
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 enum Yells
 {
@@ -52,10 +39,6 @@ enum Yells
     SAY_V07TRON_ACTIVATE                        = 11,
     SAY_V07TRON_SLAY                            = 12,
     SAY_V07TRON_DEATH                           = 13,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SAY_BERSERK                                 = 14,
     //Computer
     SAY_HARDMODE                                = 0,
@@ -80,20 +63,10 @@ enum MimironDatas
 {
     DATA_GET_HARD_MODE,
     DATA_SET_UP_US_THE_BOMB           = 29893237,
-<<<<<<< HEAD
-=======
-    SAY_BERSERK                                 = 14
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum Spells
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Leviathan MK II
     SPELL_MINES_SPAWN                           = 65347,
     SPELL_PROXIMITY_MINES                       = 63027,
@@ -281,7 +254,7 @@ class boss_mimiron : public CreatureScript
 
         struct boss_mimironAI : public BossAI
         {
-            boss_mimironAI(Creature* creature) : BossAI(creature, DATA_MIMIRON)
+            boss_mimironAI(Creature* creature) : BossAI(creature, BOSS_MIMIRON)
             {
                 crawl=1;
                 me->ApplySpellImmune(0, IMMUNITY_ID, SPELL_ROCKET_STRIKE_DMG, true);
@@ -356,7 +329,7 @@ class boss_mimiron : public CreatureScript
             void EnterCombat(Unit * /*who*/)
             {
                 _EnterCombat();
-                instance->SetBossState(DATA_MIMIRON, IN_PROGRESS);
+                instance->SetBossState(BOSS_MIMIRON, IN_PROGRESS);
                 events.CancelEvent(EVENT_CRAWL);
                 events.SetPhase(PHASE_INTRO);
                 if (MimironHardMode)
@@ -387,7 +360,7 @@ class boss_mimiron : public CreatureScript
 
                 if (instance)
                 {
-                    instance->SetBossState(DATA_MIMIRON, DONE);
+                    instance->SetBossState(BOSS_MIMIRON, DONE);
                     if (MimironHardMode)
                     {
                         DespawnCreatures(NPC_FLAME_SPREAD, 100);
@@ -856,7 +829,7 @@ class boss_leviathan_mk : public CreatureScript
                         me->SetHealth(me->GetMaxHealth());
                         events.SetPhase(PHASE_NULL);
                         phase = PHASE_NULL;
-                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(DATA_MIMIRON)))
+                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(BOSS_MIMIRON)))
                             Mimiron->AI()->DoAction(DO_ACTIVATE_VX001);
                         if (Creature* turret = CAST_CRE(me->GetVehicleKit()->GetPassenger(3)))
                             turret->Kill(turret, false);
@@ -876,14 +849,14 @@ class boss_leviathan_mk : public CreatureScript
                         me->SetStandState(UNIT_STAND_STATE_DEAD);
                         events.SetPhase(PHASE_NULL);
                         phase = PHASE_NULL;
-                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(DATA_MIMIRON)))
+                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(BOSS_MIMIRON)))
                             Mimiron->AI()->DoAction(DO_ACTIVATE_DEATH_TIMER);
                     }
             }
 
             void EnterCombat(Unit* who)
             {
-                if (Creature* Mimiron = me->GetCreature(*me, instance ? instance->GetData64(DATA_MIMIRON) : 0))
+                if (Creature* Mimiron = me->GetCreature(*me, instance ? instance->GetData64(BOSS_MIMIRON) : 0))
                     MimironHardMode = Mimiron->AI()->GetData(DATA_GET_HARD_MODE);
 
                 if (MimironHardMode)
@@ -1132,7 +1105,7 @@ class boss_vx_001 : public CreatureScript
 
         struct boss_vx_001AI : public BossAI
         {
-            boss_vx_001AI(Creature* creature) : BossAI(creature, DATA_MIMIRON), phase(PHASE_NULL)
+            boss_vx_001AI(Creature* creature) : BossAI(creature, BOSS_MIMIRON), phase(PHASE_NULL)
             {
                 me->ApplySpellImmune(0, IMMUNITY_ID, SPELL_ROCKET_STRIKE_DMG, true);
                 me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
@@ -1174,7 +1147,7 @@ class boss_vx_001 : public CreatureScript
 
             void EnterCombat(Unit * /*who*/)
             {
-                if (Creature* Mimiron = me->GetCreature(*me, instance ? instance->GetData64(DATA_MIMIRON) : 0))
+                if (Creature* Mimiron = me->GetCreature(*me, instance ? instance->GetData64(BOSS_MIMIRON) : 0))
                     MimironHardMode = Mimiron->AI()->GetData(DATA_GET_HARD_MODE);
 
                 if (MimironHardMode)
@@ -1241,7 +1214,7 @@ class boss_vx_001 : public CreatureScript
                         me->SetStandState(UNIT_STAND_STATE_DEAD);
                         phase = PHASE_NULL;
                         events.SetPhase(PHASE_NULL);
-                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(DATA_MIMIRON)))
+                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(BOSS_MIMIRON)))
                             Mimiron->AI()->DoAction(DO_ACTIVATE_AERIAL);
                     }
 
@@ -1257,7 +1230,7 @@ class boss_vx_001 : public CreatureScript
                         me->SetStandState(UNIT_STAND_STATE_DEAD);
                         events.SetPhase(PHASE_NULL);
                         phase = PHASE_NULL;
-                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(DATA_MIMIRON)))
+                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(BOSS_MIMIRON)))
                             Mimiron->AI()->DoAction(DO_ACTIVATE_DEATH_TIMER);
                     }
             }
@@ -1418,7 +1391,7 @@ class boss_aerial_unit : public CreatureScript
 
         struct boss_aerial_unitAI : public BossAI
         {
-            boss_aerial_unitAI(Creature* creature) : BossAI(creature, DATA_MIMIRON), phase(PHASE_NULL)
+            boss_aerial_unitAI(Creature* creature) : BossAI(creature, BOSS_MIMIRON), phase(PHASE_NULL)
             {
                 me->ApplySpellImmune(0, IMMUNITY_ID, SPELL_ROCKET_STRIKE_DMG, true);
                 me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
@@ -1453,7 +1426,7 @@ class boss_aerial_unit : public CreatureScript
 
             void EnterCombat(Unit * /*who*/)
             {
-                if (Creature* Mimiron = me->GetCreature(*me, instance ? instance->GetData64(DATA_MIMIRON) : 0))
+                if (Creature* Mimiron = me->GetCreature(*me, instance ? instance->GetData64(BOSS_MIMIRON) : 0))
                     MimironHardMode = Mimiron->AI()->GetData(DATA_GET_HARD_MODE);
 
                 if (MimironHardMode)
@@ -1619,7 +1592,7 @@ class boss_aerial_unit : public CreatureScript
                         events.CancelEvent(EVENT_SUMMON_BOTS);
                         phase = PHASE_NULL;
                         events.SetPhase(PHASE_NULL);
-                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(DATA_MIMIRON)))
+                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(BOSS_MIMIRON)))
                             Mimiron->AI()->DoAction(DO_ACTIVATE_V0L7R0N);
                     }
 
@@ -1635,7 +1608,7 @@ class boss_aerial_unit : public CreatureScript
                         me->SetStandState(UNIT_STAND_STATE_DEAD);
                         events.SetPhase(PHASE_NULL);
                         phase = PHASE_NULL;
-                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(DATA_MIMIRON)))
+                        if (Creature* Mimiron = me->GetCreature(*me, instance->GetData64(BOSS_MIMIRON)))
                             Mimiron->AI()->DoAction(DO_ACTIVATE_DEATH_TIMER);
                     }
             }
@@ -1961,7 +1934,7 @@ class npc_mimiron_flame_spread : public CreatureScript
 
             void UpdateAI(uint32 uiDiff)
             {
-                if (instance && instance->GetBossState(DATA_MIMIRON) != IN_PROGRESS)
+                if (instance && instance->GetBossState(BOSS_MIMIRON) != IN_PROGRESS)
                     me->DespawnOrUnsummon();
             }
 
@@ -1973,50 +1946,6 @@ class npc_mimiron_flame_spread : public CreatureScript
         {
             return GetUlduarAI<npc_mimiron_flame_spreadAI>(creature);
         }
-<<<<<<< HEAD
-=======
-    SPELL_JETPACK                               = 63341,
-    SPELL_EMERGENCY_MODE                        = 64582,
-    SPELL_SELF_REPAIR                           = 64383,
-    SPELL_MAGNETIC_CORE                         = 64444,
-    // Leviathan MK II
-    SPELL_FLAME_SUPPRESSANT_MK                  = 64570,
-    SPELL_NAPALM_SHELL                          = 63666,
-    SPELL_PLASMA_BLAST                          = 62977,
-    SPELL_PROXIMITY_MINES                       = 63027,
-    SPELL_SHOCK_BLAST                           = 63631,
-    // VX 001
-    SPELL_FLAME_SUPPRESSANT_VX                  = 65192,
-    SPELL_FROSTBOMB                             = 64623,
-    SPELL_HAND_PULSE                            = 64348,
-    SPELL_SPINNING_UP                           = 63414,
-    SPELL_RAPID_BURST                           = 63387,
-    SPELL_P3WX2_LASER_BARRAGE                   = 63293,
-    SPELL_ROCKET_STRIKE                         = 63041,
-    SPELL_HEAT_WAVE                             = 63677,
-    // Aerial Command Unit
-    SPELL_PLASMA_BALL                           = 63689,
-    // Additonal spells
-    SPELL_MAGNETIC_FIELD                        = 64668,
-    SPELL_DEAFENING_SIREN                       = 64616,
-    SPELL_WATER_SPRAY                           = 64619,
-    SPELL_FROST_BOMB_HARD_MODE                  = 64627,
-    SPELL_EXPLOSION                             = 66351,
-    SPELL_DISARM                                = 1842,
-    SPELL_RIDE_VEHICLE                          = 46598,
-    SPELL_TRIGGER_MISSILE                       = 65347,
-};
-
-enum Npc
-{
-    NPC_ASSAULT_BOT                             = 34057,
-    NPC_BOMB_BOT                                = 33836,
-    NPC_JUNK_BOT                                = 33855,
-    NPC_EMERGENCE_FIRE_BOT                      = 34147,
-    NPC_FROST_BOMB                              = 34149,
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 class spell_ulduar_proximity_mines : public SpellScriptLoader
@@ -2047,10 +1976,6 @@ class spell_ulduar_proximity_mines : public SpellScriptLoader
         }
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 class spell_rapid_burst : public SpellScriptLoader
 {
     public:
@@ -2106,9 +2031,9 @@ class go_not_push_button : public GameObjectScript
             if (!_instance)
                 return false;
 
-            if ((_instance->GetBossState(DATA_MIMIRON) != IN_PROGRESS || _instance->GetBossState(DATA_MIMIRON) != DONE) && player)
+            if ((_instance->GetBossState(BOSS_MIMIRON) != IN_PROGRESS || _instance->GetBossState(BOSS_MIMIRON) != DONE) && player)
             {
-                if (Creature* mimiron = player->GetCreature((*player), _instance->GetData64(DATA_MIMIRON)))
+                if (Creature* mimiron = player->GetCreature((*player), _instance->GetData64(BOSS_MIMIRON)))
                 {
                     if (Creature* computer = mimiron->FindNearestCreature(NPC_COMPUTER,100.0f))
                     {
@@ -2135,7 +2060,7 @@ class achievement_mimiron_firefighter : public AchievementCriteriaScript
                 return false;
 
             if (InstanceScript* instance = player->GetInstanceScript())
-                if (Creature* mimiron = ObjectAccessor::GetCreature(*player, instance->GetData64(DATA_MIMIRON)))
+                if (Creature* mimiron = ObjectAccessor::GetCreature(*player, instance->GetData64(BOSS_MIMIRON)))
                     if (mimiron->AI()->GetData(DATA_GET_HARD_MODE))
                         return true;
 
@@ -2163,12 +2088,4 @@ void AddSC_boss_mimiron()
     new spell_rapid_burst();
     new go_not_push_button();
     new achievement_mimiron_firefighter();
-<<<<<<< HEAD
-=======
-void AddSC_boss_mimiron()
-{
-    new spell_ulduar_proximity_mines();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

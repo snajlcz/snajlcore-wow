@@ -20,13 +20,7 @@
 #include "ScriptedGossip.h"
 #include "ulduar.h"
 #include "InstanceScript.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 #include "Player.h"
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 /*
 The teleporter appears to be active and stable.
@@ -40,10 +34,6 @@ The teleporter appears to be active and stable.
 - Conservatory of Life
 */
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #define MAP_ULDUAR 603
 
 enum UlduarTeleportTargets
@@ -71,36 +61,12 @@ float TeleportPointsUlduarGOs[9][3] =
     {2086.27f, -24.3134f, 421.239f},    // Conservatory
     {2518.13f, 2569.34f, 421.382f},     // Spark
     {1855.03f, -11.629f, 334.58f},      // Descent into Madness
-<<<<<<< HEAD
-=======
-enum UlduarTeleporter
-{
-    BASE_CAMP                                    = 200,
-    GROUNDS                                      = 201,
-    FORGE                                        = 202,
-    SCRAPYARD                                    = 203,
-    ANTECHAMBER                                  = 204,
-    WALKWAY                                      = 205,
-    CONSERVATORY                                 = 206,
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 class ulduar_teleporter : public GameObjectScript
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
 public:
     ulduar_teleporter() : GameObjectScript("ulduar_teleporter") { }
-=======
-    public:
-        ulduar_teleporter() : GameObjectScript("ulduar_teleporter") { }
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-public:
-    ulduar_teleporter() : GameObjectScript("ulduar_teleporter") { }
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         bool OnGossipSelect(Player* player, GameObject* /*gameObject*/, uint32 sender, uint32 action) OVERRIDE
         {
@@ -110,20 +76,6 @@ public:
             if (!player->getAttackers().empty())
                 return false;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-        int pos = action - GOSSIP_ACTION_INFO_DEF;
-        if (pos >= 0 && pos < MAX)
-            player->TeleportTo(MAP_ULDUAR, TeleportPointsUlduarGOs[pos][0], TeleportPointsUlduarGOs[pos][1], TeleportPointsUlduarGOs[pos][2], 0.0f);
-        player->CLOSE_GOSSIP_MENU();
-
-        return true;
-    }
-
-<<<<<<< HEAD
-=======
             switch (action)
             {
                 case BASE_CAMP:
@@ -158,43 +110,12 @@ public:
 
             return true;
         }
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         bool OnGossipHello(Player* player, GameObject* gameObject) OVERRIDE
         {
             player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Expedition Base Camp", GOSSIP_SENDER_MAIN, BASE_CAMP);
             if (InstanceScript* instance = gameObject->GetInstanceScript())
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-            if (instance->GetData(DATA_COLOSSUS) == 2) //count of 2 collossus death
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Formation Grounds", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + GROUNDS);
-            if (instance->GetBossState(DATA_LEVIATHAN) == DONE)
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Colossal Forge", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + FORGE);
-            if (instance->GetBossState(DATA_XT002) == DONE)
-            {
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Scrapyard", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + SCRAPYARD);
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Antechamber of Ulduar", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + ANTECHAMBER);
-            }
-            if (instance->GetBossState(DATA_KOLOGARN) == DONE)
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Shattered Walkway", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + WALKWAY);
-            if (instance->GetBossState(DATA_AURIAYA) == DONE)
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Conservatory of Life", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + CONSERVATORY);
-            if (instance->GetBossState(DATA_FREYA) == DONE)
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Spark of Imagination", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + SPARK);
-            if (instance->GetBossState(DATA_VEZAX) == DONE)
-                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to Descent into Madness", GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + MADNESS);
-            }
-        player->SEND_GOSSIP_MENU(gameObject->GetGOInfo()->GetGossipMenuId(), gameObject->GetGUID());
-        return true;
-    }
-
-<<<<<<< HEAD
-=======
                 if (instance->GetData(DATA_COLOSSUS) == 2) //count of 2 collossus death
                     player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Teleport to the Formation Grounds", GOSSIP_SENDER_MAIN, GROUNDS);
                 if (instance->GetBossState(BOSS_LEVIATHAN) == DONE)
@@ -213,20 +134,9 @@ public:
             player->SEND_GOSSIP_MENU(gameObject->GetGOInfo()->GetGossipMenuId(), gameObject->GetGUID());
             return true;
         }
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 void AddSC_ulduar_teleporter()
 {
     new ulduar_teleporter();
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-}
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e

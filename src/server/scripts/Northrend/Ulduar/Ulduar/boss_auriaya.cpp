@@ -105,15 +105,7 @@ class boss_auriaya : public CreatureScript
 
         struct boss_auriayaAI : public BossAI
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            boss_auriayaAI(Creature* creature) : BossAI(creature, DATA_AURIAYA)
-=======
             boss_auriayaAI(Creature* creature) : BossAI(creature, BOSS_AURIAYA)
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-            boss_auriayaAI(Creature* creature) : BossAI(creature, DATA_AURIAYA)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
             }
 
@@ -313,15 +305,7 @@ class npc_auriaya_seeping_trigger : public CreatureScript
 
             void UpdateAI(uint32 /*diff*/) OVERRIDE
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                if (instance->GetBossState(DATA_AURIAYA) != IN_PROGRESS)
-=======
                 if (instance->GetBossState(BOSS_AURIAYA) != IN_PROGRESS)
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                if (instance->GetBossState(DATA_AURIAYA) != IN_PROGRESS)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     me->DespawnOrUnsummon();
             }
 
@@ -395,15 +379,7 @@ class npc_sanctum_sentry : public CreatureScript
 
             void JustDied(Unit* /*killer*/) OVERRIDE
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                if (Creature* Auriaya = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_AURIAYA)))
-=======
                 if (Creature* Auriaya = ObjectAccessor::GetCreature(*me, instance->GetData64(BOSS_AURIAYA)))
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                if (Creature* Auriaya = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_AURIAYA)))
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     Auriaya->AI()->DoAction(ACTION_CRAZY_CAT_LADY);
             }
 
@@ -479,15 +455,7 @@ class npc_feral_defender : public CreatureScript
             void JustDied(Unit* /*killer*/) OVERRIDE
             {
                 DoCast(me, SPELL_SUMMON_ESSENCE);
-<<<<<<< HEAD
-<<<<<<< HEAD
-                if (Creature* Auriaya = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_AURIAYA)))
-=======
                 if (Creature* Auriaya = ObjectAccessor::GetCreature(*me, instance->GetData64(BOSS_AURIAYA)))
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                if (Creature* Auriaya = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_AURIAYA)))
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     Auriaya->AI()->DoAction(ACTION_RESPAWN_DEFENDER);
             }
 

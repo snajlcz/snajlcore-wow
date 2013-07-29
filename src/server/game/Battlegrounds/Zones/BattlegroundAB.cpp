@@ -120,15 +120,7 @@ void BattlegroundAB::PostUpdateImpl(uint32 diff)
                 m_ReputationScoreTics[team] += BG_AB_TickPoints[points];
                 if (m_ReputationScoreTics[team] >= m_ReputationTics)
                 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    RewardReputationToTeam(509, 510, 10, team == ALLIANCE ? ALLIANCE : HORDE);
-=======
                     (team == TEAM_ALLIANCE) ? RewardReputationToTeam(509, 10, ALLIANCE) : RewardReputationToTeam(510, 10, HORDE);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                    RewardReputationToTeam(509, 510, 10, team == ALLIANCE ? ALLIANCE : HORDE);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     m_ReputationScoreTics[team] -= m_ReputationTics;
                 }
                 if (m_HonorScoreTics[team] >= m_HonorTics)
@@ -405,10 +397,6 @@ void BattlegroundAB::_NodeDeOccupied(uint8 node)
     if (node < BG_AB_DYNAMIC_NODES_COUNT)//only dynamic nodes, no start points
         DelCreature(node+7);//NULL checks are in DelCreature! 0-6 spirit guides
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Those who are waiting to resurrect at this node are taken to the closest own node's graveyard
     std::vector<uint64> ghost_list = m_ReviveQueue[BgCreatures[node]];
     if (!ghost_list.empty())
@@ -427,12 +415,6 @@ void BattlegroundAB::_NodeDeOccupied(uint8 node)
                 player->TeleportTo(GetMapId(), ClosestGrave->x, ClosestGrave->y, ClosestGrave->z, player->GetOrientation());
         }
     }
-<<<<<<< HEAD
-=======
-    RelocateDeadPlayers(BgCreatures[node]);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     if (BgCreatures[node])
         DelCreature(node);

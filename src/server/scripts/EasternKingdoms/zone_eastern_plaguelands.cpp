@@ -177,15 +177,7 @@ public:
         if (creature->IsQuestGiver())
             player->PrepareQuestMenu(creature->GetGUID());
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (player->GetQuestStatus(5742) == QUEST_STATUS_INCOMPLETE)
-=======
         if (player->GetQuestStatus(5742) == QUEST_STATUS_INCOMPLETE && player->getStandState() == UNIT_STAND_STATE_SIT)
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        if (player->GetQuestStatus(5742) == QUEST_STATUS_INCOMPLETE)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_HELLO, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF+1);
 
         player->SEND_GOSSIP_MENU(player->GetGossipTextId(creature), creature->GetGUID());

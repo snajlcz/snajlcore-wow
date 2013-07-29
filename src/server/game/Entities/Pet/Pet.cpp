@@ -372,15 +372,7 @@ void Pet::SavePetToDB(PetSaveMode mode)
     if (!IS_PLAYER_GUID(GetOwnerGUID()))
         return;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    Player* owner = (Player*)GetOwner();
-=======
     Player* owner = GetOwner();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    Player* owner = (Player*)GetOwner();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     if (!owner)
         return;
 
@@ -874,31 +866,6 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
 
     //scale
     CreatureFamilyEntry const* cFamily = sCreatureFamilyStore.LookupEntry(cinfo->family);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-    if (cFamily && petType == HUNTER_PET)
-    {
-        float scale, minscale, maxscale, maxlevel;
-        minscale = 0.8f;
-        maxscale = 1.2f;
-        if (getLevel() > 70)
-        {
-            if (cinfo->type_flags & CREATURE_TYPEFLAGS_EXOTIC)
-                if (getLevel() > 80)
-                    maxlevel = 80; //for gms and fun servers
-                else
-                    maxlevel = getLevel();
-            else
-                maxlevel = 70;
-        }
-        else
-            maxlevel = getLevel();
-
-        scale = minscale + (maxlevel * ((maxscale - minscale) / 80));
-<<<<<<< HEAD
-=======
     if (cFamily && cFamily->minScale > 0.0f && petType == HUNTER_PET)
     {
         float scale;
@@ -909,9 +876,6 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
         else
             scale = cFamily->minScale + float(getLevel() - cFamily->minScaleLevel) / cFamily->maxScaleLevel * (cFamily->maxScale - cFamily->minScale);
 
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         SetObjectScale(scale);
     }
 
@@ -965,10 +929,6 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
             SetBaseWeaponDamage(BASE_ATTACK, MAXDAMAGE, float(petlevel + (petlevel / 4)));
 
             //SetModifierValue(UNIT_MOD_ATTACK_POWER, BASE_VALUE, float(cinfo->attackpower));
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
             if (GetEntry() == 26125)
             {
@@ -980,11 +940,6 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
                 m_modMeleeHitChance = GetOwner()->m_modMeleeHitChance;
             }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             break;
         }
         case HUNTER_PET:
@@ -996,16 +951,8 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
             //damage range is then petlevel / 2
             SetBaseWeaponDamage(BASE_ATTACK, MAXDAMAGE, float(petlevel + (petlevel / 4)));
             //damage is increased afterwards as strength and pet scaling modify attack power
-<<<<<<< HEAD
-<<<<<<< HEAD
             SetModifierValue(UNIT_MOD_STAT_STAMINA, BASE_VALUE, float(GetOwner()->GetStat(STAT_STAMINA)) * 0.3f);
             //  Bonus Stamina (30% of player stamina)
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-            SetModifierValue(UNIT_MOD_STAT_STAMINA, BASE_VALUE, float(GetOwner()->GetStat(STAT_STAMINA)) * 0.3f);
-            //  Bonus Stamina (30% of player stamina)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             break;
         }
         default:
@@ -1021,10 +968,6 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
                 {
                     if (!pInfo)
                         SetCreateHealth(30 + 30*petlevel);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                     float bonusDmg = GetOwner()->SpellBaseDamageBonusDone(SPELL_SCHOOL_MASK_NATURE) * 0.15f;
                     float minDmg = float(petlevel * 2.5f - (petlevel / 2) + bonusDmg);
@@ -1053,14 +996,6 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
 
                     SetBaseWeaponDamage(BASE_ATTACK, MINDAMAGE, minDmg);
                     SetBaseWeaponDamage(BASE_ATTACK, MAXDAMAGE, maxDmg);
-<<<<<<< HEAD
-=======
-                    float bonusDmg = GetOwner()->SpellBaseDamageBonusDone(SPELL_SCHOOL_MASK_NATURE) * 0.15f;
-                    SetBaseWeaponDamage(BASE_ATTACK, MINDAMAGE, float(petlevel * 2.5f - (petlevel / 2) + bonusDmg));
-                    SetBaseWeaponDamage(BASE_ATTACK, MAXDAMAGE, float(petlevel * 2.5f + (petlevel / 2) + bonusDmg));
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     break;
                 }
                 case 15352: //earth elemental 36213
@@ -1143,10 +1078,6 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
                         SetCreateMana(28 + 10*petlevel);
                         SetCreateHealth(28 + 30*petlevel);
                     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                     // convert DK melee haste into the gargoyles spell haste, should it be like that? /tibbi
                     float ownerHaste = ((Player*)m_owner)->GetRatingBonusValue(CR_HASTE_MELEE);
@@ -1157,12 +1088,6 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
                     ApplyCastTimePercentMod(meleeHaste, true);
 
                     SetBonusDamage(int32(GetOwner()->GetTotalAttackPowerValue(BASE_ATTACK) * 0.33f));
-<<<<<<< HEAD
-=======
-                    SetBonusDamage(int32(GetOwner()->GetTotalAttackPowerValue(BASE_ATTACK) * 0.5f));
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     SetBaseWeaponDamage(BASE_ATTACK, MINDAMAGE, float(petlevel - (petlevel / 4)));
                     SetBaseWeaponDamage(BASE_ATTACK, MAXDAMAGE, float(petlevel + (petlevel / 4)));
                     break;
@@ -1264,15 +1189,7 @@ void Pet::_LoadSpellCooldowns()
         while (result->NextRow());
 
         if (!m_CreatureSpellCooldowns.empty() && GetOwner())
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ((Player*)GetOwner())->GetSession()->SendPacket(&data);
-=======
             GetOwner()->GetSession()->SendPacket(&data);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-            ((Player*)GetOwner())->GetSession()->SendPacket(&data);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     }
 }
 

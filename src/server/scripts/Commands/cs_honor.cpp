@@ -90,19 +90,9 @@ public:
         }
 
         // check online security
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (target->GetTypeId() == TYPEID_PLAYER && handler->HasLowerSecurity((Player*)target, 0))
-            return false;
-=======
         if (Player* player = target->ToPlayer())
             if (handler->HasLowerSecurity(player, 0))
                 return false;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        if (target->GetTypeId() == TYPEID_PLAYER && handler->HasLowerSecurity((Player*)target, 0))
-            return false;
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
         handler->GetSession()->GetPlayer()->RewardHonor(target, 1);
         return true;

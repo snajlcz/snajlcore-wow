@@ -48,10 +48,6 @@ UsableSeatNum(0), _me(unit), _vehicleInfo(vehInfo), _creatureEntry(creatureEntry
             }
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Vehicle Immunities
     switch (GetVehicleInfo()->m_ID)
     {
@@ -85,11 +81,6 @@ UsableSeatNum(0), _me(unit), _vehicleInfo(vehInfo), _creatureEntry(creatureEntry
             break;
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Set or remove correct flags based on available seats. Will overwrite db data (if wrong).
     if (UsableSeatNum)
         _me->SetFlag(UNIT_NPC_FLAGS, (_me->GetTypeId() == TYPEID_PLAYER ? UNIT_NPC_FLAG_PLAYER_VEHICLE : UNIT_NPC_FLAG_SPELLCLICK));
@@ -278,18 +269,9 @@ void Vehicle::ApplyAllImmunities()
             // why we need to apply this? we can simple add immunities to slow mechanic in DB
             _me->ApplySpellImmune(0, IMMUNITY_STATE, SPELL_AURA_MOD_DECREASE_SPEED, true);
             break;
-<<<<<<< HEAD
-<<<<<<< HEAD
         case 321: // Pilgrims Bounty: Chair
             _me->SetControlled(true, UNIT_STATE_ROOT);
             break;
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-        case 321: // Pilgrims Bounty: Chair
-            _me->SetControlled(true, UNIT_STATE_ROOT);
-            break;
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         default:
             break;
     }
@@ -480,19 +462,10 @@ void Vehicle::InstallAccessory(uint32 entry, int8 seatId, bool minion, uint8 typ
 
 bool Vehicle::AddPassenger(Unit* unit, int8 seatId)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // don't allow vehicles in arena
     if (unit->GetTypeId() == TYPEID_PLAYER && unit->GetMap()->IsBattleArena())
         return false;
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     /// @Prevent adding passengers when vehicle is uninstalling. (Bad script in OnUninstall/OnRemovePassenger/PassengerBoarded hook.)
     if (_status == STATUS_UNINSTALLING)
     {
@@ -911,14 +884,7 @@ bool VehicleJoinEvent::Execute(uint64, uint32)
         Passenger->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
     Passenger->AddUnitMovementFlag(MOVEMENTFLAG_ONTRANSPORT);
-<<<<<<< HEAD
-<<<<<<< HEAD
     Passenger->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_GRIP, true);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    Passenger->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_GRIP, true);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     VehicleSeatEntry const* veSeat = Seat->second.SeatInfo;
     Passenger->m_movementInfo.transport.pos.Relocate(veSeat->m_attachmentOffsetX, veSeat->m_attachmentOffsetY, veSeat->m_attachmentOffsetZ);
     Passenger->m_movementInfo.transport.time = 0;

@@ -710,33 +710,6 @@ void Battleground::RewardHonorToTeam(uint32 Honor, uint32 TeamID)
             UpdatePlayerScore(player, SCORE_BONUS_HONOR, Honor);
 }
 
-void Battleground::RewardReputationToTeam(uint32 a_faction_id, uint32 h_faction_id, uint32 Reputation, uint32 teamId)
-{
-    FactionEntry const* a_factionEntry = sFactionStore.LookupEntry(a_faction_id);
-    FactionEntry const* h_factionEntry = sFactionStore.LookupEntry(h_faction_id);
-
-    if (!a_factionEntry || !h_factionEntry)
-        return;
-
-    for (BattlegroundPlayerMap::const_iterator itr = m_Players.begin(); itr != m_Players.end(); ++itr)
-    {
-        if (itr->second.OfflineRemoveTime)
-            continue;
-
-        Player* plr = ObjectAccessor::FindPlayer(itr->first);
-
-        if (!plr)
-        {
-            sLog->outError(LOG_FILTER_GENERAL, "BattleGround:RewardReputationToTeam: %u not found!", itr->first);
-            continue;
-        }
-
-        uint32 team = plr->GetTeam();
-
-        if (team == teamId)
-            plr->GetReputationMgr().ModifyReputation(plr->GetOTeam() == ALLIANCE ? a_factionEntry : h_factionEntry, Reputation);
-    }
-
 void Battleground::RewardReputationToTeam(uint32 faction_id, uint32 Reputation, uint32 TeamID)
 {
     if (FactionEntry const* factionEntry = sFactionStore.LookupEntry(faction_id))

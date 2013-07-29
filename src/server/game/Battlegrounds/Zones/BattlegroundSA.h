@@ -484,7 +484,7 @@ class BattlegroundSA : public Battleground
         /// Called when a player use a gamobject (relic)
         void EventPlayerUsedGO(Player* Source, GameObject* object);
         /// Return gate id, relative to bg data, according to gameobject id
-        uint32 getGateIdFromEventId(uint32 id)
+        uint32 getGateIdFromEventId(uint32 id);
         uint32 getGateIdFromDamagedOrDestroyEventId(uint32 id)
         {
             switch (id)
