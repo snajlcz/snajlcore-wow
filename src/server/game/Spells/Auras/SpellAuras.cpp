@@ -340,10 +340,6 @@ m_isRemoved(false), m_isSingleTarget(false), m_isUsingCharges(false)
     if (m_spellInfo->ManaPerSecond || m_spellInfo->ManaPerSecondPerLevel)
         m_timeCla = 1 * IN_MILLISECONDS;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     switch (m_spellInfo->Id)
     {
         // some auras should have max stacks at applying
@@ -352,11 +348,6 @@ m_isRemoved(false), m_isSingleTarget(false), m_isUsingCharges(false)
             break;
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     m_maxDuration = CalcMaxDuration(caster);
     m_duration = m_maxDuration;
     m_procCharges = CalcMaxCharges(caster);
@@ -364,9 +355,6 @@ m_isRemoved(false), m_isSingleTarget(false), m_isUsingCharges(false)
     // m_casterLevel = cast item level/caster level, caster level should be saved to db, confirmed with sniffs
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 AuraScript* Aura::GetScriptByName(std::string const& scriptName) const
 {
     for (std::list<AuraScript*>::const_iterator itr = m_loadedScripts.begin(); itr != m_loadedScripts.end(); ++itr)
@@ -375,9 +363,6 @@ AuraScript* Aura::GetScriptByName(std::string const& scriptName) const
     return NULL;
 }
 
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void Aura::_InitEffects(uint8 effMask, Unit* caster, int32 *baseAmount)
 {
     // shouldn't be in constructor - functions in AuraEffect::AuraEffect use polymorphism
@@ -388,10 +373,6 @@ void Aura::_InitEffects(uint8 effMask, Unit* caster, int32 *baseAmount)
         else
             m_effects[i] = NULL;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Mixology - duration boost
        if(caster && caster->GetTypeId() == TYPEID_PLAYER && m_spellInfo->SpellFamilyName == SPELLFAMILY_POTION && caster->HasAura(53042))
        {
@@ -411,11 +392,6 @@ void Aura::_InitEffects(uint8 effMask, Unit* caster, int32 *baseAmount)
            }
        }
     }
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }
 
 Aura::~Aura()
@@ -1130,15 +1106,7 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
         for (SpellAreaForAreaMap::const_iterator itr = saBounds.first; itr != saBounds.second; ++itr)
         {
             // some auras remove at aura remove
-<<<<<<< HEAD
-<<<<<<< HEAD
-            if (!itr->second->IsFitToRequirements((Player*)target, zone, area))
-=======
             if (!itr->second->IsFitToRequirements(target->ToPlayer(), zone, area))
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-            if (!itr->second->IsFitToRequirements((Player*)target, zone, area))
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 target->RemoveAurasDueToSpell(itr->second->spellId);
             // some auras applied at aura apply
             else if (itr->second->autocast)
@@ -1524,15 +1492,7 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                                 if (caster->ToPlayer()->GetSpellCooldownDelay(aura->GetId()) <= 11)
                                     break;
                             }
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            else // and add if needed
-=======
                             else    // and add if needed
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                            else // and add if needed
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                                 caster->ToPlayer()->AddSpellCooldown(aura->GetId(), 0, uint32(time(NULL) + 12));
                         }
 
@@ -1697,10 +1657,6 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
             }
             break;
         case SPELLFAMILY_PALADIN:
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             // retribution aura works fine by default, dont do anything to it
             if (GetSpellInfo()->GetSpellSpecific() == SPELL_SPECIFIC_AURA && GetSpellInfo()->SpellIconID != 555)
             {
@@ -1726,11 +1682,6 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                 }
             }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             switch (GetId())
             {
                 case 19746:
@@ -1774,10 +1725,6 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     }
                     break;
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (GetSpellInfo()->GetSpellSpecific() == SPELL_SPECIFIC_AURA && target == caster)
             {
                 // Improved concentration aura - linked aura
@@ -1796,30 +1743,6 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                 {
                     if (apply)
                         target->CastSpell(target, 63531, true);
-<<<<<<< HEAD
-=======
-            if (GetSpellInfo()->GetSpellSpecific() == SPELL_SPECIFIC_AURA)
-            {
-                if (!caster)
-                    break;
-
-                // Improved devotion aura
-                if (caster->HasAura(20140) || caster->HasAura(20138) || caster->HasAura(20139))
-                {
-                    if (apply)
-                        caster->CastSpell(target, 63514, true);
-                    else
-                        target->RemoveAura(63514);
-                }
-                // 63531 - linked aura for both Sanctified Retribution and Swift Retribution talents
-                // Not allow for Retribution Aura (prevent stacking)
-                if ((GetSpellInfo()->SpellIconID != 555) && (caster->HasAura(53648) || caster->HasAura(53484) || caster->HasAura(53379) || caster->HasAura(31869)))
-                {
-                    if (apply)
-                        caster->CastSpell(target, 63531, true);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     else
                         target->RemoveAura(63531);
                 }
@@ -1913,10 +1836,6 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     }
                 }
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             // Improved Blood Presence
             else if (GetSpellInfo()->SpellIconID == 2636 && GetSpellInfo()->IsPassive())
             {
@@ -1965,11 +1884,6 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     target->RemoveAurasDueToSpell(49772);
                 return;
             }
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             break;
         case SPELLFAMILY_WARLOCK:
             // Drain Soul - If the target is at or below 25% health, Drain Soul causes four times the normal damage

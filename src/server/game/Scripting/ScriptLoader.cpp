@@ -16,14 +16,7 @@
  */
 
 #include "ScriptLoader.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "AnticheatMgr.h"
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-#include "AnticheatMgr.h"
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 //examples
 void AddSC_example_creature();
@@ -32,18 +25,9 @@ void AddSC_example_gossip_codebox();
 void AddSC_example_misc();
 void AddSC_example_commandscript();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 //Transmogrification
 void AddSC_NPC_Transmogrify();
 
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-//Transmogrification
-void AddSC_NPC_Transmogrify();
-
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 // spells
 void AddSC_deathknight_spell_scripts();
 void AddSC_druid_spell_scripts();
@@ -64,14 +48,7 @@ void AddSC_holiday_spell_scripts();
 void AddSC_SmartSCripts();
 
 //Commands
-<<<<<<< HEAD
-<<<<<<< HEAD
 void AddSC_anticheat_commandscript();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-void AddSC_anticheat_commandscript();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_account_commandscript();
 void AddSC_achievement_commandscript();
 void AddSC_arena_commandscript();
@@ -108,18 +85,9 @@ void AddSC_tele_commandscript();
 void AddSC_ticket_commandscript();
 void AddSC_titles_commandscript();
 void AddSC_wp_commandscript();
-<<<<<<< HEAD
-<<<<<<< HEAD
 void AddSC_rates_commandscript();
 void AddSC_character_commandscript();
 void AddSC_mmaps_commandscript();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-void AddSC_rates_commandscript();
-void AddSC_character_commandscript();
-void AddSC_mmaps_commandscript();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 #ifdef SCRIPTS
 //world
@@ -487,14 +455,7 @@ void AddSC_boss_general_vezax();
 void AddSC_ulduar_teleporter();
 void AddSC_boss_mimiron();
 void AddSC_boss_hodir();
-<<<<<<< HEAD
-<<<<<<< HEAD
 void AddSC_boss_thorim();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-void AddSC_boss_thorim();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_boss_freya();
 void AddSC_boss_yogg_saron();
 void AddSC_boss_algalon_the_observer();
@@ -541,24 +502,12 @@ void AddSC_instance_halls_of_reflection();   // Halls of Reflection
 void AddSC_halls_of_reflection();
 void AddSC_boss_falric();
 void AddSC_boss_marwyn();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_npc_the_lich_king_hor();
 void AddSC_boss_lich_king_hr();
 void AddSC_boss_lord_marrowgar();       // Icecrown Citadel
 void AddSC_boss_lady_deathwhisper();
 void AddSC_boss_deathbringer_saurfang();
 void AddSC_boss_gunship_battle();
-<<<<<<< HEAD
-=======
-void AddSC_boss_lord_marrowgar();       // Icecrown Citadel
-void AddSC_boss_lady_deathwhisper();
-void AddSC_boss_deathbringer_saurfang();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_boss_festergut();
 void AddSC_boss_rotface();
 void AddSC_boss_professor_putricide();
@@ -591,14 +540,7 @@ void AddSC_crystalsong_forest();
 void AddSC_isle_of_conquest();
 
 //outland
-<<<<<<< HEAD
-<<<<<<< HEAD
 void AddSC_boss_ahune();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-void AddSC_boss_ahune();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_boss_exarch_maladaar();           //Auchindoun Auchenai Crypts
 void AddSC_boss_shirrak_the_dead_watcher();
 void AddSC_boss_nexusprince_shaffar();       //Auchindoun Mana Tombs
@@ -709,27 +651,14 @@ void AddScripts()
     AddSpellScripts();
     AddSC_SmartSCripts();
     AddCommandScripts();
-<<<<<<< HEAD
-<<<<<<< HEAD
     sAnticheatMgr->StartScripts();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    sAnticheatMgr->StartScripts();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #ifdef SCRIPTS
     AddWorldScripts();
     AddEasternKingdomsScripts();
     AddKalimdorScripts();
     AddOutlandScripts();
     AddNorthrendScripts();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     AddEventScripts();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     AddBattlegroundScripts();
     AddOutdoorPvPScripts();
     AddCustomScripts();
@@ -766,14 +695,7 @@ void AddSpellScripts()
 
 void AddCommandScripts()
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
     AddSC_anticheat_commandscript();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    AddSC_anticheat_commandscript();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     AddSC_account_commandscript();
     AddSC_achievement_commandscript();
     AddSC_arena_commandscript();
@@ -810,18 +732,9 @@ void AddCommandScripts()
     AddSC_ticket_commandscript();
     AddSC_titles_commandscript();
     AddSC_wp_commandscript();
-<<<<<<< HEAD
-<<<<<<< HEAD
     AddSC_rates_commandscript();
     AddSC_character_commandscript();
     AddSC_mmaps_commandscript();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    AddSC_rates_commandscript();
-    AddSC_character_commandscript();
-    AddSC_mmaps_commandscript();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }
 
 void AddWorldScripts()
@@ -1124,14 +1037,7 @@ void AddKalimdorScripts()
 void AddOutlandScripts()
 {
 #ifdef SCRIPTS
-<<<<<<< HEAD
-<<<<<<< HEAD
     AddSC_boss_ahune();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    AddSC_boss_ahune();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     AddSC_boss_exarch_maladaar();           //Auchindoun Auchenai Crypts
     AddSC_boss_shirrak_the_dead_watcher();
     AddSC_boss_nexusprince_shaffar();       //Auchindoun Mana Tombs
@@ -1145,15 +1051,7 @@ void AddOutlandScripts()
     AddSC_boss_grandmaster_vorpil();
     AddSC_boss_murmur();
     AddSC_black_temple();                   //Black Temple
-<<<<<<< HEAD
-<<<<<<< HEAD
- AddSC_boss_illidan();
-=======
     AddSC_boss_illidan();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
- AddSC_boss_illidan();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     AddSC_boss_shade_of_akama();
     AddSC_boss_supremus();
     AddSC_boss_gurtogg_bloodboil();
@@ -1311,14 +1209,7 @@ void AddNorthrendScripts()
     AddSC_ulduar_teleporter();
     AddSC_boss_mimiron();
     AddSC_boss_hodir();
-<<<<<<< HEAD
-<<<<<<< HEAD
     AddSC_boss_thorim();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    AddSC_boss_thorim();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     AddSC_boss_freya();
     AddSC_boss_yogg_saron();
     AddSC_boss_algalon_the_observer();
@@ -1368,14 +1259,7 @@ void AddNorthrendScripts()
     AddSC_boss_lord_marrowgar();        // Icecrown Citadel
     AddSC_boss_lady_deathwhisper();
     AddSC_boss_deathbringer_saurfang();
-<<<<<<< HEAD
-<<<<<<< HEAD
     AddSC_boss_gunship_battle();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    AddSC_boss_gunship_battle();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     AddSC_boss_festergut();
     AddSC_boss_rotface();
     AddSC_boss_professor_putricide();
@@ -1443,18 +1327,7 @@ void AddCustomScripts()
 {
 #ifdef SCRIPTS
     /* This is where custom scripts should be added. */
-<<<<<<< HEAD
-<<<<<<< HEAD
     //Transmogrification
     AddSC_NPC_Transmogrify();
- #endif
-=======
-
 #endif
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    //Transmogrification
-    AddSC_NPC_Transmogrify();
- #endif
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

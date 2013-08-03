@@ -19,14 +19,7 @@
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "ScriptedEscortAI.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "ScriptedFollowerAI.h"
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-#include "ScriptedFollowerAI.h"
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "Player.h"
 #include "SpellInfo.h"
 #include "CreatureTextMgr.h"
@@ -703,15 +696,7 @@ public:
 };
 
 /*######
-<<<<<<< HEAD
-<<<<<<< HEAD
-## Quest 13666 & 13673:  A blade fit for a champion!
-=======
 ## Quest: A Blade Fit For A Champion
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-## Quest 13666 & 13673:  A blade fit for a champion!
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 ######*/
 
 enum LakeFrog
@@ -856,13 +841,5 @@ void AddSC_grizzly_hills()
     new npc_wounded_skirmisher();
     new npc_lightning_sentry();
     new npc_venture_co_straggler();
-<<<<<<< HEAD
-<<<<<<< HEAD
-    new npc_lake_frog;
-=======
     new npc_lake_frog();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    new npc_lake_frog;
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

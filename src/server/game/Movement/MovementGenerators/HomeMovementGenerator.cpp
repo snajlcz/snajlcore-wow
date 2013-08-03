@@ -22,14 +22,7 @@
 #include "WorldPacket.h"
 #include "MoveSplineInit.h"
 #include "MoveSpline.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "MovementGenerator.h"
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-#include "MovementGenerator.h"
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 void HomeMovementGenerator<Creature>::DoInitialize(Creature* owner)
 {
@@ -57,23 +50,9 @@ void HomeMovementGenerator<Creature>::_setTargetLocation(Creature* owner)
         return;
 
     Movement::MoveSplineInit init(owner);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-    float x = owner->GetPositionX();
-    float y = owner->GetPositionY();
-    float z = owner->GetPositionZ();
-    float o = owner->GetOrientation();
-    if (owner->GetMotionMaster()->empty())
-<<<<<<< HEAD
-=======
     float x, y, z, o;
     // at apply we can select more nice return points base at current movegen
     if (owner->GetMotionMaster()->empty() || !owner->GetMotionMaster()->top()->GetResetPosition(owner, x, y, z))
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     {
         owner->GetHomePosition(x, y, z, o);
         init.SetFacing(o);

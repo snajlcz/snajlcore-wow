@@ -171,11 +171,11 @@ class boss_devourer_of_souls : public CreatureScript
 
             void DamageTaken(Unit* /*pDoneBy*/, uint32 &uiDamage) OVERRIDE
             {
-                if (mirroredSoulTarget && me->HasAura(SPELL_MIRRORED_SOUL))
+                if (mirroredSoulTarget && me->HasAura(SPELL_MIRRORED_SOUL_BUFF))
                 {
                     if (Player* player = Unit::GetPlayer(*me, mirroredSoulTarget))
                     {
-                        if (player->GetAura(SPELL_MIRRORED_SOUL))
+                        if (player->GetAura(SPELL_MIRRORED_SOUL_BUFF))
                         {
                             int32 mirrorDamage = (uiDamage* 45)/100;
                             me->CastCustomSpell(player, 69034, &mirrorDamage, 0, 0, true);
@@ -277,7 +277,7 @@ class boss_devourer_of_souls : public CreatureScript
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 0, true))
                             {
                                 mirroredSoulTarget = target->GetGUID();
-                                DoCast(target, SPELL_MIRRORED_SOUL);
+                                DoCast(target, SPELL_MIRRORED_SOUL_BUFF);
                                 Talk(EMOTE_MIRRORED_SOUL);
                             }
                             DoCastAOE(SPELL_MIRRORED_SOUL_TARGET_SELECTOR);

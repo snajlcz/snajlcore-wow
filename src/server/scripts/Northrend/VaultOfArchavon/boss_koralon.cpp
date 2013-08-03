@@ -17,14 +17,8 @@
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 #include "SpellAuraEffects.h"
 #include "SpellScript.h"
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "vault_of_archavon.h"
 
 enum Events
@@ -32,29 +26,12 @@ enum Events
     // Koralon
     EVENT_BURNING_BREATH    = 1,
     EVENT_BURNING_FURY      = 2,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-    EVENT_FLAME_CINDER_A    = 3,
-    EVENT_METEOR_FISTS_A    = 4,
-    EVENT_METEOR_FISTS_B    = 5,
-
-    // Flame Warder
-    EVENT_FW_LAVA_BIRST     = 6,
-    EVENT_FW_METEOR_FISTS_A = 7,
-    EVENT_FW_METEOR_FISTS_B = 8,
-<<<<<<< HEAD
-=======
     EVENT_FLAME_CINDER      = 3,
     EVENT_METEOR_FISTS      = 4,
 
     // Flame Warder
     EVENT_FW_LAVA_BIRST     = 5,
     EVENT_FW_METEOR_FISTS   = 6
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum Spells
@@ -64,19 +41,6 @@ enum Spells
     SPELL_BURNING_FURY                          = 66721,
     SPELL_FLAME_CINDER_A                        = 66684,
     SPELL_FLAME_CINDER_B                        = 66681, // don't know the real relation to SPELL_FLAME_CINDER_A atm.
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-    SPELL_METEOR_FISTS_A                        = 66725,
-    SPELL_METEOR_FISTS_B                        = 67333,
-
-    // Spells Flame Warder
-    SPELL_FW_LAVA_BIRST                         = 66813,
-    SPELL_FW_METEOR_FISTS_A                     = 66808,
-    SPELL_FW_METEOR_FISTS_B                     = 67331,
-<<<<<<< HEAD
-=======
     SPELL_METEOR_FISTS                          = 66725,
     SPELL_METEOR_FISTS_DAMAGE                   = 66765,
 
@@ -84,9 +48,6 @@ enum Spells
     SPELL_FW_LAVA_BIRST                         = 66813,
     SPELL_FW_METEOR_FISTS                       = 66808,
     SPELL_FW_METEOR_FISTS_DAMAGE                = 66809
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 class boss_koralon : public CreatureScript
@@ -106,18 +67,8 @@ class boss_koralon : public CreatureScript
 
                 events.ScheduleEvent(EVENT_BURNING_FURY, 20000);    /// @todo check timer
                 events.ScheduleEvent(EVENT_BURNING_BREATH, 15000);  // 1st after 15sec, then every 45sec
-<<<<<<< HEAD
-<<<<<<< HEAD
-                events.ScheduleEvent(EVENT_METEOR_FISTS_A, 75000);  // 1st after 75sec, then every 45sec
-                events.ScheduleEvent(EVENT_FLAME_CINDER_A, 30000);  /// @todo check timer
-=======
                 events.ScheduleEvent(EVENT_METEOR_FISTS, 75000);    // 1st after 75sec, then every 45sec
                 events.ScheduleEvent(EVENT_FLAME_CINDER, 30000);    /// @todo check timer
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                events.ScheduleEvent(EVENT_METEOR_FISTS_A, 75000);  // 1st after 75sec, then every 45sec
-                events.ScheduleEvent(EVENT_FLAME_CINDER_A, 30000);  /// @todo check timer
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                 _EnterCombat();
             }
@@ -144,23 +95,6 @@ class boss_koralon : public CreatureScript
                             DoCast(me, SPELL_BURNING_BREATH);
                             events.ScheduleEvent(EVENT_BURNING_BREATH, 45000);
                             break;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-                        case EVENT_METEOR_FISTS_A:
-                            DoCast(me, SPELL_METEOR_FISTS_A);
-                            events.ScheduleEvent(EVENT_METEOR_FISTS_B, 1500);
-                            break;
-                        case EVENT_METEOR_FISTS_B:
-                            DoCast(me, SPELL_METEOR_FISTS_B);
-                            events.ScheduleEvent(EVENT_METEOR_FISTS_A, 45000);
-                            break;
-                        case EVENT_FLAME_CINDER_A:
-                            DoCast(me, SPELL_FLAME_CINDER_A);
-                            events.ScheduleEvent(EVENT_FLAME_CINDER_A, 30000);
-<<<<<<< HEAD
-=======
                         case EVENT_METEOR_FISTS:
                             DoCast(me, SPELL_METEOR_FISTS);
                             events.ScheduleEvent(EVENT_METEOR_FISTS, 45000);
@@ -168,9 +102,6 @@ class boss_koralon : public CreatureScript
                         case EVENT_FLAME_CINDER:
                             DoCast(me, SPELL_FLAME_CINDER_A);
                             events.ScheduleEvent(EVENT_FLAME_CINDER, 30000);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             break;
                         default:
                             break;
@@ -188,15 +119,7 @@ class boss_koralon : public CreatureScript
 };
 
 /*######
-<<<<<<< HEAD
-<<<<<<< HEAD
-##  Mob Flame Warder
-=======
 ##  Npc Flame Warder
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-##  Mob Flame Warder
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 ######*/
 class npc_flame_warder : public CreatureScript
 {
@@ -219,15 +142,7 @@ class npc_flame_warder : public CreatureScript
                 DoZoneInCombat();
 
                 events.ScheduleEvent(EVENT_FW_LAVA_BIRST, 5000);
-<<<<<<< HEAD
-<<<<<<< HEAD
-                events.ScheduleEvent(EVENT_FW_METEOR_FISTS_A, 10000);
-=======
                 events.ScheduleEvent(EVENT_FW_METEOR_FISTS, 10000);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                events.ScheduleEvent(EVENT_FW_METEOR_FISTS_A, 10000);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
 
             void UpdateAI(uint32 diff) OVERRIDE
@@ -245,25 +160,9 @@ class npc_flame_warder : public CreatureScript
                             DoCastVictim(SPELL_FW_LAVA_BIRST);
                             events.ScheduleEvent(EVENT_FW_LAVA_BIRST, 15000);
                             break;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-                        case EVENT_FW_METEOR_FISTS_A:
-                            DoCast(me, SPELL_FW_METEOR_FISTS_A);
-                            events.ScheduleEvent(EVENT_FW_METEOR_FISTS_B, 1500);
-                            break;
-                        case EVENT_FW_METEOR_FISTS_B:
-                            DoCast(me, SPELL_FW_METEOR_FISTS_B);
-                            events.ScheduleEvent(EVENT_FW_METEOR_FISTS_A, 20000);
-<<<<<<< HEAD
-=======
                         case EVENT_FW_METEOR_FISTS:
                             DoCast(me, SPELL_FW_METEOR_FISTS);
                             events.ScheduleEvent(EVENT_FW_METEOR_FISTS, 20000);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             break;
                         default:
                             break;
@@ -283,9 +182,6 @@ class npc_flame_warder : public CreatureScript
         }
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 class spell_koralon_meteor_fists : public SpellScriptLoader
 {
     public:
@@ -396,20 +292,11 @@ class spell_flame_warder_meteor_fists : public SpellScriptLoader
         }
 };
 
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_boss_koralon()
 {
     new boss_koralon();
     new npc_flame_warder();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     new spell_koralon_meteor_fists();
     new spell_koralon_meteor_fists_damage();
     new spell_flame_warder_meteor_fists();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }

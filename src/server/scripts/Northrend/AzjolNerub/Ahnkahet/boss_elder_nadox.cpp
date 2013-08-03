@@ -35,15 +35,7 @@ enum Spells
     H_SPELL_BROOD_RAGE          = 59465,
     SPELL_ENRAGE                = 26662, // Enraged if too far away from home
     SPELL_SUMMON_SWARMERS       = 56119, // 2x 30178  -- 2x every 10secs
-<<<<<<< HEAD
-<<<<<<< HEAD
-    SPELL_SUMMON_SWARM_GUARD    = 56120, // 1x 30176  -- at 50%
-=======
     SPELL_SUMMON_SWARM_GUARD    = 56120, // 1x 30176  -- every 25%
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    SPELL_SUMMON_SWARM_GUARD    = 56120, // 1x 30176  -- at 50%
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     // Spells Adds
     SPELL_SPRINT                = 56354,
     SPELL_GUARDIAN_AURA         = 56151
@@ -77,18 +69,8 @@ class boss_elder_nadox : public CreatureScript
                 instance = creature->GetInstanceScript();
             }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-            bool HasSpawnedGuardian;
-            bool GuardianDied;
-=======
             bool GuardianDied;
             uint8 AmountHealthModifier;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-            bool HasSpawnedGuardian;
-            bool GuardianDied;
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             InstanceScript* instance;
             SummonList summons;
             EventMap events;
@@ -98,15 +80,7 @@ class boss_elder_nadox : public CreatureScript
                 events.Reset();
                 summons.DespawnAll();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                HasSpawnedGuardian = false;
-=======
                 AmountHealthModifier = 1;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                HasSpawnedGuardian = false;
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 GuardianDied = false;
 
                 if (instance)
@@ -202,25 +176,11 @@ class boss_elder_nadox : public CreatureScript
                     }
                 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-                if (!HasSpawnedGuardian && me->HealthBelowPct(50))
-                {
-                    Talk(EMOTE_HATCHES, me->GetGUID());
-                    DoCast(me, SPELL_SUMMON_SWARM_GUARD);
-                    HasSpawnedGuardian = true;
-<<<<<<< HEAD
-=======
                 if (me->HealthBelowPct(100 - AmountHealthModifier * 25))
                 {
                     Talk(EMOTE_HATCHES, me->GetGUID());
                     DoCast(me, SPELL_SUMMON_SWARM_GUARD);
                     ++AmountHealthModifier;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 }
 
                 DoMeleeAttackIfReady();
