@@ -270,10 +270,6 @@ void WorldSession::HandlePetActionHelper(Unit* pet, uint64 guid1, uint32 spellid
             {
                 case REACT_PASSIVE:                         //passive
                     pet->AttackStop();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     pet->InterruptNonMeleeSpells(false);
 
                     if (charmInfo->HasCommandState(COMMAND_FOLLOW))
@@ -282,11 +278,6 @@ void WorldSession::HandlePetActionHelper(Unit* pet, uint64 guid1, uint32 spellid
                         pet->GetMotionMaster()->MoveFollow(pet->GetCharmerOrOwner(), PET_FOLLOW_DIST, pet->GetFollowAngle());
                         charmInfo->SetIsReturning(false);
                     }
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
                 case REACT_DEFENSIVE:                       //recovery
                 case REACT_AGGRESSIVE:                      //activete
@@ -346,35 +337,12 @@ void WorldSession::HandlePetActionHelper(Unit* pet, uint64 guid1, uint32 spellid
                 if (unit_target)
                 {
                     pet->SetInFront(unit_target);
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    if (unit_target->GetTypeId() == TYPEID_PLAYER)
-                        pet->SendUpdateToPlayer((Player*)unit_target);
-=======
                     if (Player* player = unit_target->ToPlayer())
                         pet->SendUpdateToPlayer(player);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                    if (unit_target->GetTypeId() == TYPEID_PLAYER)
-                        pet->SendUpdateToPlayer((Player*)unit_target);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 }
                 else if (Unit* unit_target2 = spell->m_targets.GetUnitTarget())
                 {
                     pet->SetInFront(unit_target2);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-                    if (unit_target2->GetTypeId() == TYPEID_PLAYER)
-                        pet->SendUpdateToPlayer((Player*)unit_target2);
-                }
-
-                if (Unit* powner = pet->GetCharmerOrOwner())
-                    if (powner->GetTypeId() == TYPEID_PLAYER)
-                        pet->SendUpdateToPlayer(powner->ToPlayer());
-<<<<<<< HEAD
-=======
                     if (Player* player = unit_target2->ToPlayer())
                         pet->SendUpdateToPlayer(player);
                 }
@@ -382,10 +350,6 @@ void WorldSession::HandlePetActionHelper(Unit* pet, uint64 guid1, uint32 spellid
                 if (Unit* powner = pet->GetCharmerOrOwner())
                     if (Player* player = powner->ToPlayer())
                         pet->SendUpdateToPlayer(player);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-
                 result = SPELL_CAST_OK;
             }
 
@@ -663,22 +627,9 @@ void WorldSession::HandlePetRename(WorldPacket& recvData)
 
     pet->SetName(name);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    Unit* owner = pet->GetOwner();
-    if (owner && (owner->GetTypeId() == TYPEID_PLAYER) && owner->ToPlayer()->GetGroup())
-        owner->ToPlayer()->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_NAME);
-=======
     Player* owner = pet->GetOwner();
     if (owner && owner->GetGroup())
         owner->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_NAME);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    Unit* owner = pet->GetOwner();
-    if (owner && (owner->GetTypeId() == TYPEID_PLAYER) && owner->ToPlayer()->GetGroup())
-        owner->ToPlayer()->SetGroupUpdateFlag(GROUP_UPDATE_FLAG_PET_NAME);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-
     pet->RemoveByteFlag(UNIT_FIELD_BYTES_2, 2, UNIT_CAN_BE_RENAMED);
 
     if (isdeclined)

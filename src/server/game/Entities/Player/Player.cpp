@@ -7060,27 +7060,6 @@ void Player::RewardReputation(Unit* victim, float rate)
     if (!Rep)
         return;
 
-    uint32 repfaction1 = Rep->RepFaction1;
-    uint32 repfaction2 = Rep->RepFaction2;
-
-    if (!IsPlayingNative())
-    {
-        if (GetOTeam() == ALLIANCE)
-        {
-            if (repfaction1 == 729)
-                repfaction1 = 730;
-            if (repfaction2 == 729)
-                repfaction2 = 730;
-        }
-        else
-        {
-            if (repfaction1 == 730)
-                repfaction1 = 729;
-            if (repfaction2 == 730)
-                repfaction2 = 729;
-        }
-    }
-
     uint32 ChampioningFaction = 0;
 
     if (GetChampioningFaction())
@@ -7095,12 +7074,23 @@ void Player::RewardReputation(Unit* victim, float rate)
 
     uint32 team = GetTeam();
 
-    if (repfaction1 && (!Rep->TeamDependent || team == ALLIANCE))
+    if (Rep->RepFaction1 && (!Rep->TeamDependent || team == ALLIANCE))
     {
-        int32 donerep1 = CalculateReputationGain(REPUTATION_SOURCE_KILL, victim->getLevel(), Rep->RepValue1, ChampioningFaction ? ChampioningFaction : repfaction1);
+        int32 donerep1 = CalculateReputationGain(REPUTATION_SOURCE_KILL, victim->getLevel(), Rep->RepValue1, ChampioningFaction ? ChampioningFaction : Rep->RepFaction1);
         donerep1 = int32(donerep1 * rate);
 
-        FactionEntry const* factionEntry1 = sFactionStore.LookupEntry(ChampioningFaction ? ChampioningFaction : repfaction1);
+        FactionEntry const* factionEntry1 = sFactionStore.LookupEntry(ChampioningFaction ? ChampioningFaction : Rep->RepFaction1);
+        uint32 current_reputation_rank1 = GetReputationMgr().GetRank(factionEntry1);
+        if (factionEntry1 && current_reputation_rank1 <= Rep->ReputationMaxCap1)
+            GetReputationMgr().ModifyReputation(factionEntry1, donerep1);
+    }
+
+    if (Rep->RepFaction2 && (!Rep->TeamDependent || team == HORDE))
+    {
+        int32 donerep2 = CalculateReputationGain(REPUTATION_SOURCE_KILL, victim->getLevel(), Rep->RepValue2, ChampioningFaction ? ChampioningFaction : Rep->RepFaction2);
+        donerep2 = int32(donerep2 * rate);
+
+        FactionEntry const* factionEntry2 = sFactionStore.LookupEntry(ChampioningFaction ? ChampioningFaction : Rep->RepFaction2);
         uint32 current_reputation_rank2 = GetReputationMgr().GetRank(factionEntry2);
         if (factionEntry2 && current_reputation_rank2 <= Rep->ReputationMaxCap2)
             GetReputationMgr().ModifyReputation(factionEntry2, donerep2);

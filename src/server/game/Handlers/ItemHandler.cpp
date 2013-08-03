@@ -784,16 +784,8 @@ void WorldSession::SendListInventory(uint64 vendorGuid)
                     continue;
                 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
                 ++count;
 
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                ++count;
-
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 // reputation discount
                 int32 price = item->IsGoldRequired(itemTemplate) ? uint32(floor(itemTemplate->BuyPrice * discountMod)) : 0;
 
@@ -805,15 +797,9 @@ void WorldSession::SendListInventory(uint64 vendorGuid)
                 data << uint32(itemTemplate->MaxDurability);
                 data << uint32(itemTemplate->BuyCount);
                 data << uint32(item->ExtendedCost);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
                 if (++count >= MAX_VENDOR_ITEMS)
                     break;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
         }
     }

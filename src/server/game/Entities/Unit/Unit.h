@@ -1312,7 +1312,7 @@ class Unit : public WorldObject
         bool Attack(Unit* victim, bool meleeAttack);
         void CastStop(uint32 except_spellid = 0);
         bool AttackStop();
-        void RemoveAllAttackers(bool stopAttacks = false);
+        void RemoveAllAttackers();
         AttackerSet const& getAttackers() const { return m_attackers; }
         bool isAttackingPlayer() const;
         Unit* GetVictim() const { return m_attacking; }

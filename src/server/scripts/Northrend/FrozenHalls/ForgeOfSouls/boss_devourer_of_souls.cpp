@@ -17,23 +17,11 @@
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
-#include "forge_of_souls.h"
-#include "Player.h"
-#include "SpellInfo.h"
-=======
 #include "Player.h"
 #include "SpellInfo.h"
 #include "SpellAuraEffects.h"
 #include "SpellScript.h"
 #include "forge_of_souls.h"
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-#include "forge_of_souls.h"
-#include "Player.h"
-#include "SpellInfo.h"
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
 /*
  * @todo
@@ -62,18 +50,10 @@ enum Spells
 {
     SPELL_PHANTOM_BLAST                         = 68982,
     H_SPELL_PHANTOM_BLAST                       = 70322,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    SPELL_MIRRORED_SOUL                         = 69051,
-=======
     SPELL_MIRRORED_SOUL_PROC_AURA               = 69023,
     SPELL_MIRRORED_SOUL_DAMAGE                  = 69034,
     SPELL_MIRRORED_SOUL_TARGET_SELECTOR         = 69048,
     SPELL_MIRRORED_SOUL_BUFF                    = 69051,
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    SPELL_MIRRORED_SOUL                         = 69051,
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     SPELL_WELL_OF_SOULS                         = 68820,
     SPELL_UNLEASHED_SOULS                       = 68939,
     SPELL_WAILING_SOULS_STARTING                = 68912,  // Initial spell cast at begining of wailing souls phase
@@ -170,15 +150,7 @@ class boss_devourer_of_souls : public CreatureScript
                 summons.DespawnAll();
 
                 threeFaced = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
                 mirroredSoulTarget = 0;
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                mirroredSoulTarget = 0;
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-
                 instance->SetData(DATA_DEVOURER_EVENT, NOT_STARTED);
             }
 
@@ -197,10 +169,6 @@ class boss_devourer_of_souls : public CreatureScript
                 instance->SetData(DATA_DEVOURER_EVENT, IN_PROGRESS);
             }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             void DamageTaken(Unit* /*pDoneBy*/, uint32 &uiDamage) OVERRIDE
             {
                 if (mirroredSoulTarget && me->HasAura(SPELL_MIRRORED_SOUL))
@@ -218,11 +186,6 @@ class boss_devourer_of_souls : public CreatureScript
                 }
             }
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             void KilledUnit(Unit* victim) OVERRIDE
             {
                 if (victim->GetTypeId() != TYPEID_PLAYER)
@@ -311,23 +274,14 @@ class boss_devourer_of_souls : public CreatureScript
                             events.ScheduleEvent(EVENT_PHANTOM_BLAST, 5000);
                             break;
                         case EVENT_MIRRORED_SOUL:
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 0, true))
                             {
                                 mirroredSoulTarget = target->GetGUID();
                                 DoCast(target, SPELL_MIRRORED_SOUL);
                                 Talk(EMOTE_MIRRORED_SOUL);
                             }
-<<<<<<< HEAD
-=======
                             DoCastAOE(SPELL_MIRRORED_SOUL_TARGET_SELECTOR);
                             Talk(EMOTE_MIRRORED_SOUL);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             events.ScheduleEvent(EVENT_MIRRORED_SOUL, urand(15000, 30000));
                             break;
                         case EVENT_WELL_OF_SOULS:
@@ -410,16 +364,7 @@ class boss_devourer_of_souls : public CreatureScript
             float beamAngle;
             float beamAngleDiff;
             int8 wailingSoulTick;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
             uint64 mirroredSoulTarget;
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-
-            uint64 mirroredSoulTarget;
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
         };
 
         CreatureAI* GetAI(Creature* creature) const OVERRIDE
@@ -428,9 +373,6 @@ class boss_devourer_of_souls : public CreatureScript
         }
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 // 69051 - Mirrored Soul
 class spell_devourer_of_souls_mirrored_soul : public SpellScriptLoader
 {
@@ -564,9 +506,6 @@ class spell_devourer_of_souls_mirrored_soul_target_selector : public SpellScript
         }
 };
 
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 class achievement_three_faced : public AchievementCriteriaScript
 {
     public:
@@ -590,14 +529,8 @@ class achievement_three_faced : public AchievementCriteriaScript
 void AddSC_boss_devourer_of_souls()
 {
     new boss_devourer_of_souls();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     new spell_devourer_of_souls_mirrored_soul();
     new spell_devourer_of_souls_mirrored_soul_proc();
     new spell_devourer_of_souls_mirrored_soul_target_selector();
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
     new achievement_three_faced();
 }

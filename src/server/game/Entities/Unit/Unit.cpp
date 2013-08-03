@@ -9245,12 +9245,12 @@ void Unit::CombatStop(bool includingCast)
     ClearInCombat();
 }
 
-void Unit::CombatStopWithPets(bool includingCast, bool includingAttacks)
+void Unit::CombatStopWithPets(bool includingCast)
 {
-    CombatStop(includingCast, includingAttacks);
+    CombatStop(includingCast);
 
     for (ControlList::const_iterator itr = m_Controlled.begin(); itr != m_Controlled.end(); ++itr)
-        (*itr)->CombatStop(includingCast, includingAttacks);
+        (*itr)->CombatStop(includingCast);
 }
 
 bool Unit::isAttackingPlayer() const
@@ -9276,8 +9276,6 @@ void Unit::RemoveAllAttackers()
     while (!m_attackers.empty())
     {
         AttackerSet::iterator iter = m_attackers.begin();
-        if (stopAttacks)
-            (*iter)->SuspendDelayedSwing();
         if (!(*iter)->AttackStop())
         {
             TC_LOG_ERROR(LOG_FILTER_UNITS, "WORLD: Unit has an attacker that isn't attacking it!");
@@ -13734,7 +13732,7 @@ void Unit::CleanupBeforeRemoveFromMap(bool finalCleanup)
         m_cleanupDone = true;
 
     m_Events.KillAllEvents(false);                      // non-delatable (currently casted spells) will not deleted now but it will deleted at call in Map::RemoveAllObjectsInRemoveList
-    CombatStop(false, true);
+    CombatStop();
     ClearComboPointHolders();
     DeleteThreatList();
     getHostileRefManager().setOnlineOfflineState(false);
