@@ -29,7 +29,6 @@
 #define ICCScriptName "instance_icecrown_citadel"
 
 uint32 const EncounterCount = 13;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
 uint32 const WeeklyNPCs = 9;
 uint32 const MaxHeroicAttempts = 50;
 

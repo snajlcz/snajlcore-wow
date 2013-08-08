@@ -1,8 +1,4 @@
 /*
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
  * Copyright (C) 2008-2013 Trinity <http://www.trinitycore.org/>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,25 +16,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Updated by: Toba and Baeumchen (maddin)
-<<<<<<< HEAD
-=======
- * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation; either version 2 of the License, or (at your
- * option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
- * more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program. If not, see <http://www.gnu.org/licenses/>.
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
  */
 
 #include "ObjectMgr.h"
@@ -156,14 +133,7 @@ enum Spells
     SPELL_IMPALING_SPEAR            = 71443,
     SPELL_AETHER_SHIELD             = 71463,
     SPELL_HURL_SPEAR                = 71466,
-<<<<<<< HEAD
-<<<<<<< HEAD
     SPELL_DIVINE_SURGE              = 71465,
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    SPELL_DIVINE_SURGE              = 71465,
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 
     // Captain Arnath
     SPELL_DOMINATE_MIND             = 14515,
@@ -289,20 +259,11 @@ enum EventTypes
 
     // Invisible Stalker (Float, Uninteractible, LargeAOI)
     EVENT_SOUL_MISSILE                  = 55,
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
-
+    
     // Sindragosas Ward
     EVENT_SUB_WAVE_1                    = 56,
     EVENT_SUB_WAVE_2                    = 57,
     EVENT_UPDATE_CHECK                  = 58,
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 };
 
 enum DataTypesICC
@@ -333,10 +294,6 @@ enum MovementPoints
     POINT_LAND  = 1,
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 const Position SvalnaLandPos = {4356.71f, 2484.33f, 358.5f, 1.571f};
 
 const Position SindragosaGauntletSpawn[12] =
@@ -356,11 +313,6 @@ const Position SindragosaGauntletSpawn[12] =
 };
 
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 class FrostwingVrykulSearcher
 {
     public:
@@ -685,14 +637,7 @@ class npc_rotting_frost_giant : public CreatureScript
             void JustDied(Unit* /*killer*/) OVERRIDE
             {
                 _events.Reset();
-<<<<<<< HEAD
-<<<<<<< HEAD
-  DoCast(me, 72959, true);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-  DoCast(me, 72959, true);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
+		DoCast(me, 72959, true);
             }
 
             void UpdateAI(uint32 diff) OVERRIDE
@@ -854,22 +799,10 @@ class boss_sister_svalna : public CreatureScript
                 _EnterCombat();
                 if (Creature* crok = ObjectAccessor::GetCreature(*me, instance->GetData64(DATA_CROK_SCOURGEBANE)))
                     crok->AI()->Talk(SAY_CROK_COMBAT_SVALNA);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 events.ScheduleEvent(EVENT_SVALNA_COMBAT, 1);
                 events.ScheduleEvent(EVENT_IMPALING_SPEAR, urand(40000, 50000));
                 events.ScheduleEvent(EVENT_AETHER_SHIELD, urand(100000, 110000));
                 DoCast(SPELL_DIVINE_SURGE);
-<<<<<<< HEAD
-=======
-                events.ScheduleEvent(EVENT_SVALNA_COMBAT, 9000);
-                events.ScheduleEvent(EVENT_IMPALING_SPEAR, urand(40000, 50000));
-                events.ScheduleEvent(EVENT_AETHER_SHIELD, urand(100000, 110000));
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
 
             void KilledUnit(Unit* victim) OVERRIDE
@@ -901,16 +834,7 @@ class boss_sister_svalna : public CreatureScript
             {
                 _JustReachedHome();
                 me->SetReactState(REACT_PASSIVE);
-<<<<<<< HEAD
-<<<<<<< HEAD
                 me->SetCanFly(false);
-=======
-                me->SetDisableGravity(false);
-                me->SetHover(false);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                me->SetCanFly(false);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
 
             void DoAction(int32 action) OVERRIDE
@@ -923,15 +847,7 @@ class boss_sister_svalna : public CreatureScript
                     case ACTION_START_GAUNTLET:
                         me->setActive(true);
                         _isEventInProgress = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
                         me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_NON_ATTACKABLE);
-=======
-                        me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                        me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_NON_ATTACKABLE);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         events.ScheduleEvent(EVENT_SVALNA_START, 25000);
                         break;
                     case ACTION_RESURRECT_CAPTAINS:
@@ -960,36 +876,16 @@ class boss_sister_svalna : public CreatureScript
 
             void MovementInform(uint32 type, uint32 id) OVERRIDE
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 if (type != POINT_MOTION_TYPE || id != POINT_LAND)
-=======
-                if (type != EFFECT_MOTION_TYPE || id != POINT_LAND)
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                if (type != POINT_MOTION_TYPE || id != POINT_LAND)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     return;
 
                 _isEventInProgress = false;
                 me->setActive(false);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_NON_ATTACKABLE);
                 me->SetDisableGravity(false);
                 me->SetHover(false);
                 me->SendMovementFlagUpdate();
                 DoZoneInCombat(me, 150.0f);
-<<<<<<< HEAD
-=======
-                me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC);
-                me->SetDisableGravity(false);
-                me->SetHover(false);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
 
             void SpellHitTarget(Unit* target, SpellInfo const* spell) OVERRIDE
@@ -1087,10 +983,6 @@ class npc_crok_scourgebane : public CreatureScript
                 _events.ScheduleEvent(EVENT_SCOURGE_STRIKE, urand(7500, 12500));
                 _events.ScheduleEvent(EVENT_DEATH_STRIKE, urand(25000, 30000));
                 me->SetReactState(REACT_DEFENSIVE);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 _isEventActive = false;
 
                 if (_instance)
@@ -1101,13 +993,6 @@ class npc_crok_scourgebane : public CreatureScript
                 _wipeCheckTimer = 1000;
                 _aliveTrash.clear();
                 _currentWPid = 0;
-<<<<<<< HEAD
-=======
-                _didUnderTenPercentText = false;
-                _wipeCheckTimer = 1000;
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
 
             void DoAction(int32 action) OVERRIDE
@@ -1153,14 +1038,7 @@ class npc_crok_scourgebane : public CreatureScript
                         if (_currentWPid == 4 && _isEventActive)
                         {
                             _isEventActive = false;
-<<<<<<< HEAD
-<<<<<<< HEAD
                             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                            me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             me->setActive(false);
                             Talk(SAY_CROK_FINAL_WP);
                             if (Creature* svalna = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_SISTER_SVALNA)))
@@ -1189,14 +1067,7 @@ class npc_crok_scourgebane : public CreatureScript
                         if (_aliveTrash.empty() && _isEventActive)
                         {
                             _isEventActive = false;
-<<<<<<< HEAD
-<<<<<<< HEAD
                             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                            me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             me->setActive(false);
                             Talk(SAY_CROK_FINAL_WP);
                             if (Creature* svalna = ObjectAccessor::GetCreature(*me, _instance->GetData64(DATA_SISTER_SVALNA)))
@@ -1281,15 +1152,7 @@ class npc_crok_scourgebane : public CreatureScript
                     }
                 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
                 if (HealthBelowPct(10) || damage >= me->GetHealth())
-=======
-                if (HealthBelowPct(10))
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                if (HealthBelowPct(10) || damage >= me->GetHealth())
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                 {
                     if (!_didUnderTenPercentText)
                     {
@@ -1333,14 +1196,7 @@ class npc_crok_scourgebane : public CreatureScript
                             Talk(SAY_CROK_INTRO_3);
                             break;
                         case EVENT_START_PATHING:
-<<<<<<< HEAD
-<<<<<<< HEAD
                             me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                            me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             Start(true, true);
                             break;
                         case EVENT_SCOURGE_STRIKE:
@@ -1459,22 +1315,11 @@ struct npc_argent_captainAI : public ScriptedAI
 
         void EnterEvadeMode() OVERRIDE
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             if (IsUndead)
                 me->DespawnOrUnsummon();
 
             // not yet following
             if (me->GetMotionMaster()->GetMotionSlotType(MOTION_SLOT_IDLE) != CHASE_MOTION_TYPE)
-<<<<<<< HEAD
-=======
-            // not yet following
-            if (me->GetMotionMaster()->GetMotionSlotType(MOTION_SLOT_IDLE) != CHASE_MOTION_TYPE || IsUndead)
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             {
                 ScriptedAI::EnterEvadeMode();
                 return;
@@ -1521,16 +1366,8 @@ struct npc_argent_captainAI : public ScriptedAI
                 Talk(SAY_CAPTAIN_RESURRECTED);
                 me->UpdateEntry(newEntry, instance->GetData(DATA_TEAM_IN_INSTANCE), me->GetCreatureData());
                 DoCast(me, SPELL_UNDEATH, true);
-<<<<<<< HEAD
-<<<<<<< HEAD
                 me->SetReactState(REACT_AGGRESSIVE);
                 DoZoneInCombat(me, 150.0f);
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                me->SetReactState(REACT_AGGRESSIVE);
-                DoZoneInCombat(me, 150.0f);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
         }
 
@@ -1901,18 +1738,8 @@ class npc_arthas_teleport_visual : public CreatureScript
             {
                 _events.Reset();
                 if (_instance->GetBossState(DATA_PROFESSOR_PUTRICIDE) == DONE &&
-<<<<<<< HEAD
-<<<<<<< HEAD
                     _instance->GetBossState(DATA_BLOOD_QUEEN_LANA_THEL) == DONE/* &&
                     _instance->GetBossState(DATA_SINDRAGOSA) == DONE*/)
-=======
-                    _instance->GetBossState(DATA_BLOOD_QUEEN_LANA_THEL) == DONE &&
-                    _instance->GetBossState(DATA_SINDRAGOSA) == DONE)
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                    _instance->GetBossState(DATA_BLOOD_QUEEN_LANA_THEL) == DONE/* &&
-                    _instance->GetBossState(DATA_SINDRAGOSA) == DONE*/)
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     _events.ScheduleEvent(EVENT_SOUL_MISSILE, urand(1000, 6000));
             }
 
@@ -2031,15 +1858,7 @@ class spell_icc_sprit_alarm : public SpellScriptLoader
                     {
                         (*itr)->AI()->Talk(SAY_TRAP_ACTIVATE);
                         (*itr)->RemoveAurasDueToSpell(SPELL_STONEFORM);
-<<<<<<< HEAD
-<<<<<<< HEAD
                         if (Unit* target = (*itr)->SelectNearestTarget(80.0f))
-=======
-                        if (Unit* target = (*itr)->SelectNearestTarget(150.0f))
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                        if (Unit* target = (*itr)->SelectNearestTarget(80.0f))
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                             (*itr)->AI()->AttackStart(target);
                         break;
                     }
@@ -2208,23 +2027,8 @@ class spell_svalna_revive_champion : public SpellScriptLoader
                 if (!caster)
                     return;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
                 caster->SetHomePosition(SvalnaLandPos);
                 caster->GetMotionMaster()->MovePoint(POINT_LAND, SvalnaLandPos);
-=======
-                Position pos;
-                caster->GetPosition(&pos);
-                caster->GetNearPosition(pos, 5.0f, 0.0f);
-                //pos.m_positionZ = caster->GetBaseMap()->GetHeight(caster->GetPhaseMask(), pos.GetPositionX(), pos.GetPositionY(), caster->GetPositionZ(), true, 50.0f);
-                //pos.m_positionZ += 0.05f;
-                caster->SetHomePosition(pos);
-                caster->GetMotionMaster()->MoveLand(POINT_LAND, pos);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                caster->SetHomePosition(SvalnaLandPos);
-                caster->GetMotionMaster()->MovePoint(POINT_LAND, SvalnaLandPos);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
             }
 
             void Register() OVERRIDE
@@ -2374,10 +2178,6 @@ class at_icc_start_frostwing_gauntlet : public AreaTriggerScript
         }
 };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 class npc_sindragosas_ward : public CreatureScript
 {
     public:
@@ -2587,11 +2387,6 @@ class at_icc_start_sindragosa_gauntlet : public AreaTriggerScript
 };
 
 
-<<<<<<< HEAD
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 void AddSC_icecrown_citadel()
 {
     new npc_highlord_tirion_fordring_lh();
@@ -2619,14 +2414,6 @@ void AddSC_icecrown_citadel()
     new at_icc_shutdown_traps();
     new at_icc_start_blood_quickening();
     new at_icc_start_frostwing_gauntlet();
-<<<<<<< HEAD
-<<<<<<< HEAD
     new npc_sindragosas_ward();
     new at_icc_start_sindragosa_gauntlet();
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-    new npc_sindragosas_ward();
-    new at_icc_start_sindragosa_gauntlet();
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 }
