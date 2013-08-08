@@ -3087,9 +3087,6 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_INITIAL_AGGRO;
                 spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_DONE_BONUS;
                 break;
-            case 49838: // Stop Time
-                spellInfo->AttributesEx3 |= SPELL_ATTR3_NO_INITIAL_AGGRO;
-                break;
             case 61407: // Energize Cores
             case 62136: // Energize Cores
             case 54069: // Energize Cores
@@ -3180,10 +3177,6 @@ void SpellMgr::LoadDbcDataCorrections()
                spellInfo->EffectBasePoints[EFFECT_0] = 0;
                spellInfo->Effect[EFFECT_0] = SPELL_EFFECT_NORMALIZED_WEAPON_DMG;
                break;
-            case 38310: // Multi-Shot
-            case 53385: // Divine Storm (Damage)
-                spellInfo->MaxAffectedTargets = 4;
-                break;
             case 42005: // Bloodboil
             case 38296: // Spitfire Totem
             case 37676: // Insidious Whisper
@@ -3225,11 +3218,8 @@ void SpellMgr::LoadDbcDataCorrections()
                 spellInfo->procCharges = 1;
                 break;
             case 61851: // Killing Spree
-    		spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
-    		break;
-            case 61851: // Killing Spree
-    		spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
-    		break;
+    		    spellInfo->AttributesEx |= SPELL_ATTR1_DISPEL_AURAS_ON_IMMUNITY;
+    		    break;
             case 44544: // Fingers of Frost
                 spellInfo->EffectSpellClassMask[0] = flag96(685904631, 1151048, 0);
                 break;
@@ -3709,9 +3699,6 @@ void SpellMgr::LoadDbcDataCorrections()
             case 24259: // Spell Lock silence
                 spellInfo->speed = 80.0f;
                 break;
-            case 24259: // Spell Lock silence
-                spellInfo->speed = 80.0f;
-                break;
             case 72762: // Defile
                 spellInfo->DurationIndex = 559; // 53 seconds
                 break;
@@ -3907,8 +3894,6 @@ void SpellMgr::LoadDbcDataCorrections()
             case 52410: //Seaforium Charge
                 spellInfo->EffectImplicitTargetA[0] = TARGET_DEST_DEST;
                 break;
-            case 24314: // Threatening Gaze
-                spellInfo->AuraInterruptFlags |= AURA_INTERRUPT_FLAG_CAST | AURA_INTERRUPT_FLAG_MOVE | AURA_INTERRUPT_FLAG_JUMP;
             default:
                 break;
         }

@@ -16,14 +16,8 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 #include "AnticheatMgr.h"
-=======
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-#include "AnticheatMgr.h"
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
 #include "Common.h"
 #include "DatabaseEnv.h"
 #include "WorldPacket.h"
@@ -558,15 +552,8 @@ void Spell::EffectSchoolDMG(SpellEffIndex effIndex)
                                         unitTarget->RemoveAuraFromStack(spellId, m_caster->GetGUID());
 
                                 damage *= doses;
-<<<<<<< HEAD
-<<<<<<< HEAD
                                 damage += int32(player->GetTotalAttackPowerValue(BASE_ATTACK) * 0.11f * combo);
-=======
-                                damage += int32(player->GetTotalAttackPowerValue(BASE_ATTACK) * 0.09f * combo);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                                damage += int32(player->GetTotalAttackPowerValue(BASE_ATTACK) * 0.11f * combo);
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
+
                             }
 
                             // Eviscerate and Envenom Bonus Damage (item set effect)
@@ -578,21 +565,9 @@ void Spell::EffectSchoolDMG(SpellEffIndex effIndex)
                 // Eviscerate
                 else if (m_spellInfo->SpellFamilyFlags[0] & 0x00020000)
                 {
-<<<<<<< HEAD
-<<<<<<< HEAD
                     if (m_caster->GetTypeId() == TYPEID_PLAYER)
                     {
                         if (uint32 combo = ((Player*)m_caster)->GetComboPoints())
-=======
-                    if (Player* player = m_caster->ToPlayer())
-                    {
-                        if (uint32 combo = player->GetComboPoints())
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
-                    if (m_caster->GetTypeId() == TYPEID_PLAYER)
-                    {
-                        if (uint32 combo = ((Player*)m_caster)->GetComboPoints())
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                         {
                             float ap = m_caster->GetTotalAttackPowerValue(BASE_ATTACK);
                             damage += irand(int32(ap * combo * 0.03f), int32(ap * combo * 0.07f));
@@ -656,10 +631,6 @@ void Spell::EffectSchoolDMG(SpellEffIndex effIndex)
                 if (m_spellInfo->SpellFamilyFlags[1]&0x00040000)
                 {
                     // Add main hand dps * effect[2] amount
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     if (m_caster->HasAura(31884)) // Avenging Wrath
                     {
                         float average = (m_caster->GetFloatValue(UNIT_FIELD_MINDAMAGE) + m_caster->GetFloatValue(UNIT_FIELD_MAXDAMAGE)) / 2.4; // decrease by 20% to prevent aura stacking with itself
@@ -672,14 +643,6 @@ void Spell::EffectSchoolDMG(SpellEffIndex effIndex)
                          int32 count = m_caster->CalculateSpellDamage(unitTarget, m_spellInfo, EFFECT_2);
                          damage += count * int32(average * IN_MILLISECONDS) / m_caster->GetAttackTime(BASE_ATTACK);
                     }
-<<<<<<< HEAD
-=======
-                    float average = (m_caster->GetFloatValue(UNIT_FIELD_MINDAMAGE) + m_caster->GetFloatValue(UNIT_FIELD_MAXDAMAGE)) / 2;
-                    int32 count = m_caster->CalculateSpellDamage(unitTarget, m_spellInfo, EFFECT_2);
-                    damage += count * int32(average * IN_MILLISECONDS) / m_caster->GetAttackTime(BASE_ATTACK);
->>>>>>> ce79e3a078e6617c7ca515ecf28fc671a5283b67
-=======
->>>>>>> cb6558f2cc00f8ffcbbcd3565ab9b7b29c913e3e
                     break;
                 }
                 // Shield of Righteousness
