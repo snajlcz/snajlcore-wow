@@ -66,7 +66,7 @@ enum CrystalSpells
 
 enum Events
 {
-    EVENT_ACTIVATE_CRYSTAL                          = 20001
+    EVENT_ACTIVATE_CRYSTAL = 20001
 };
 
 const Position PortalLocation[] =

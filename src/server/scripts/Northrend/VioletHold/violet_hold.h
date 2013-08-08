@@ -103,4 +103,9 @@ enum WorldStateIds
     WORLD_STATE_VH_WAVE_COUNT   = 3810,
 };
 
+enum Events
+{
+    EVENT_ACTIVATE_CRYSTAL = 20001
+};
+
 #endif
