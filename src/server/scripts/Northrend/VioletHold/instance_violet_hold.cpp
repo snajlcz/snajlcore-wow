@@ -64,11 +64,6 @@ enum CrystalSpells
     SPELL_ARCANE_LIGHTNING                          = 57912
 };
 
-enum Events
-{
-    EVENT_ACTIVATE_CRYSTAL = 20001
-};
-
 const Position PortalLocation[] =
 {
     {1877.51f, 850.104f, 44.6599f, 4.7822f },     // WP 1
