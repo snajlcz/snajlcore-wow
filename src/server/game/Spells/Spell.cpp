@@ -4805,10 +4805,6 @@ SpellCastResult Spell::CheckCast(bool strict)
             if (m_triggeredByAuraSpell)
                 return SPELL_FAILED_DONT_REPORT;
             else
-            {
-                // Return spell fizzle for shadowform, returning not ready causes it to bug out client side.
-                return m_spellInfo->Id == 15473 ? SPELL_FAILED_FIZZLE : SPELL_FAILED_NOT_READY;
-            }
                 return SPELL_FAILED_NOT_READY;
         }
     }
@@ -4821,10 +4817,6 @@ SpellCastResult Spell::CheckCast(bool strict)
 
     // Check global cooldown
     if (strict && !(_triggeredCastFlags & TRIGGERED_IGNORE_GCD) && HasGlobalCooldown())
-    {
-        // Return spell fizzle for shadowform, returning not ready causes it to bug out client side.
-        return m_spellInfo->Id == 15473 ? SPELL_FAILED_FIZZLE : SPELL_FAILED_NOT_READY;
-    }
         return SPELL_FAILED_NOT_READY;
 
     // only triggered spells can be processed an ended battleground
@@ -4998,7 +4990,7 @@ SpellCastResult Spell::CheckCast(bool strict)
         {
             if (!m_caster->GetGuardianPet())
             {
-                if (m_triggeredByAuraSpell)              // not report pet not existence for triggered spells
+                if (m_triggeredByAuraSpell) // not report pet not existence for triggered spells
                     return SPELL_FAILED_DONT_REPORT;
                 else
                     return SPELL_FAILED_NO_PET;
@@ -5008,7 +5000,7 @@ SpellCastResult Spell::CheckCast(bool strict)
     }
 
     // Spell casted only on battleground
-    if ((m_spellInfo->AttributesEx3 & SPELL_ATTR3_BATTLEGROUND) &&  m_caster->GetTypeId() == TYPEID_PLAYER)
+    if ((m_spellInfo->AttributesEx3 & SPELL_ATTR3_BATTLEGROUND) && m_caster->GetTypeId() == TYPEID_PLAYER)
         if (!m_caster->ToPlayer()->InBattleground())
             return SPELL_FAILED_ONLY_BATTLEGROUNDS;
 
@@ -5114,25 +5106,6 @@ SpellCastResult Spell::CheckCast(bool strict)
         // for effects of spells that have only one target
         switch (m_spellInfo->Effects[i].Effect)
         {
-            case SPELL_EFFECT_DUMMY:
-            {
-                if (m_spellInfo->Id == 19938) // Awaken Peon
-                {
-                    Unit* unit = m_targets.GetUnitTarget();
-                    if (!unit || !unit->HasAura(17743))
-                        return SPELL_FAILED_BAD_TARGETS;
-                }
-                if (m_spellInfo->Id == 31789) // Righteous Defense
-                {
-                    if (m_caster->GetTypeId() != TYPEID_PLAYER)
-                        return SPELL_FAILED_DONT_REPORT;
-
-                    Unit* target = m_targets.GetUnitTarget();
-                    if (!target || !target->IsFriendlyTo(m_caster) || target->getAttackers().empty())
-                        return SPELL_FAILED_BAD_TARGETS;
-                }
-                break;
-            }
             case SPELL_EFFECT_LEARN_SPELL:
             {
                 if (m_caster->GetTypeId() != TYPEID_PLAYER)
@@ -5286,7 +5259,7 @@ SpellCastResult Spell::CheckCast(bool strict)
                     m_spellInfo->Effects[i].TargetA.GetTarget() != TARGET_GAMEOBJECT_ITEM_TARGET)
                     break;
 
-                if (m_caster->GetTypeId() != TYPEID_PLAYER  // only players can open locks, gather etc.
+                if (m_caster->GetTypeId() != TYPEID_PLAYER // only players can open locks, gather etc.
                     // we need a go target in case of TARGET_GAMEOBJECT_TARGET
                     || (m_spellInfo->Effects[i].TargetA.GetTarget() == TARGET_GAMEOBJECT_TARGET && !m_targets.GetGOTarget()))
                     return SPELL_FAILED_BAD_TARGETS;
@@ -5384,11 +5357,11 @@ SpellCastResult Spell::CheckCast(bool strict)
             }
             case SPELL_EFFECT_SUMMON_PET:
             {
-                if (m_caster->GetPetGUID())                  //let warlock do a replacement summon
+                if (m_caster->GetPetGUID()) //let warlock do a replacement summon
                 {
                     if (m_caster->GetTypeId() == TYPEID_PLAYER && m_caster->getClass() == CLASS_WARLOCK)
                     {
-                        if (strict)                         //starting cast, trigger pet stun (cast by pet so it doesn't attack player)
+                        if (strict) //starting cast, trigger pet stun (cast by pet so it doesn't attack player)
                             if (Pet* pet = m_caster->ToPlayer()->GetPet())
                                 pet->CastSpell(pet, 32752, true, NULL, NULL, pet->GetGUID());
                     }
@@ -5493,68 +5466,6 @@ SpellCastResult Spell::CheckCast(bool strict)
     {
         switch (m_spellInfo->Effects[i].ApplyAuraName)
         {
-            case SPELL_AURA_DUMMY:
-            {
-                //custom check
-                switch (m_spellInfo->Id)
-                {
-                    case 52610: //Savage Roar
-                    {
-                        if (m_caster->GetTypeId() != TYPEID_PLAYER || m_caster->ToPlayer()->GetShapeshiftForm()!=FORM_CAT)
-                                return SPELL_FAILED_ONLY_SHAPESHIFT;
-                        break;
-                    }
-                    // Tag Murloc
-                    case 30877:
-                    {
-                        Unit* target = m_targets.GetUnitTarget();
-                        if (!target || target->GetEntry() != 17326)
-                            return SPELL_FAILED_BAD_TARGETS;
-                        break;
-                    }
-                    case 61336:
-                        if (m_caster->GetTypeId() != TYPEID_PLAYER || !m_caster->ToPlayer()->IsInFeralForm())
-                            return SPELL_FAILED_ONLY_SHAPESHIFT;
-                        break;
-                    case 1515:
-                    {
-                        if (m_caster->GetTypeId() != TYPEID_PLAYER)
-                            return SPELL_FAILED_BAD_TARGETS;
-
-                        if (!m_targets.GetUnitTarget() || m_targets.GetUnitTarget()->GetTypeId() == TYPEID_PLAYER)
-                            return SPELL_FAILED_BAD_IMPLICIT_TARGETS;
-
-                        Creature* target = m_targets.GetUnitTarget()->ToCreature();
-
-                        if (target->getLevel() > m_caster->getLevel())
-                            return SPELL_FAILED_HIGHLEVEL;
-
-                        // use SMSG_PET_TAME_FAILURE?
-                        if (!target->GetCreatureTemplate()->IsTameable (m_caster->ToPlayer()->CanTameExoticPets()))
-                            return SPELL_FAILED_BAD_TARGETS;
-
-                        if (m_caster->GetPetGUID())
-                            return SPELL_FAILED_ALREADY_HAVE_SUMMON;
-
-                        if (m_caster->GetCharmGUID())
-                            return SPELL_FAILED_ALREADY_HAVE_CHARM;
-
-                        break;
-                    }
-                    case 44795: // Parachute
-                    {
-                        float x, y, z;
-                        m_caster->GetPosition(x, y, z);
-                        float ground_Z = m_caster->GetMap()->GetHeight(m_caster->GetPhaseMask(), x, y, z);
-                        if (fabs(ground_Z - z) < 0.1f)
-                            return SPELL_FAILED_DONT_REPORT;
-                        break;
-                    }
-                    default:
-                        break;
-                }
-                break;
-            }
             case SPELL_AURA_MOD_POSSESS_PET:
             {
                 if (m_caster->GetTypeId() != TYPEID_PLAYER)
@@ -5638,13 +5549,13 @@ SpellCastResult Spell::CheckCast(bool strict)
             case SPELL_AURA_FLY:
             case SPELL_AURA_MOD_INCREASE_MOUNTED_FLIGHT_SPEED:
             {
-                // not allow cast fly spells if not have req. skills  (all spells is self target)
+                // not allow cast fly spells if not have req. skills (all spells is self target)
                 // allow always ghost flight spells
                 if (m_originalCaster && m_originalCaster->GetTypeId() == TYPEID_PLAYER && m_originalCaster->IsAlive())
                 {
                     Battlefield* Bf = sBattlefieldMgr->GetBattlefieldToZoneId(m_originalCaster->GetZoneId());
                     if (AreaTableEntry const* area = GetAreaEntryByAreaID(m_originalCaster->GetAreaId()))
-                        if (area->flags & AREA_FLAG_NO_FLY_ZONE  || (Bf && !Bf->CanFlyIn()))
+                        if (area->flags & AREA_FLAG_NO_FLY_ZONE || (Bf && !Bf->CanFlyIn()))
                             return (_triggeredCastFlags & TRIGGERED_DONT_REPORT_CAST_ERROR) ? SPELL_FAILED_DONT_REPORT : SPELL_FAILED_NOT_HERE;
                 }
                 break;
@@ -5702,7 +5613,6 @@ SpellCastResult Spell::CheckCast(bool strict)
     // all ok
     return SPELL_CAST_OK;
 }
-
 SpellCastResult Spell::CheckPetCast(Unit* target)
 {
     if (m_caster->HasUnitState(UNIT_STATE_CASTING) && !(_triggeredCastFlags & TRIGGERED_IGNORE_CAST_IN_PROGRESS))              //prevent spellcast interruption by another spellcast
