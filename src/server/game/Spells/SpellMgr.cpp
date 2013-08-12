@@ -3928,7 +3928,7 @@ void SpellMgr::LoadDbcDataCorrections()
                    case 31226: // Master Poisoner crit %
                    case 31227:
                    case 58410:
-                       spellInfo->Effect[EFFECT_1] = SPELL_AURA_ADD_FLAT_MODIFIER;
+                       spellInfo->Effect[EFFECT_0] = SPELL_AURA_ADD_FLAT_MODIFIER;
                        break;
                    default:
                        break;
