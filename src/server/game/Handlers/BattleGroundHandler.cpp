@@ -546,7 +546,7 @@ void WorldSession::HandleBattlefieldStatusOpcode(WorldPacket & /*recvData*/)
             {
                 // this line is checked, i only don't know if GetStartTime is changing itself after bg end!
                 // send status in Battleground
-                sBattlegroundMgr->BuildBattlegroundStatusPacket(&data, bg, i, STATUS_IN_PROGRESS, bg->GetEndTime(), bg->GetStartTime(), arenaType, _player->GetBGTeam());
+                sBattlegroundMgr->BuildBattlegroundStatusPacket(&data, bg, i, STATUS_IN_PROGRESS, bg->GetEndTime(), bg->GetStartTime(), arenaType, _player->GetTeam());
                 SendPacket(&data);
                 continue;
             }
@@ -580,7 +580,7 @@ void WorldSession::HandleBattlefieldStatusOpcode(WorldPacket & /*recvData*/)
 
             uint32 avgTime = bgQueue.GetAverageQueueWaitTime(&ginfo, bracketEntry->GetBracketId());
             // send status in Battleground Queue
-            sBattlegroundMgr->BuildBattlegroundStatusPacket(&data, bg, i, STATUS_IN_PROGRESS, bg->GetEndTime(), bg->GetStartTime(), arenaType, _player->GetTeam());
+            sBattlegroundMgr->BuildBattlegroundStatusPacket(&data, bg, i, STATUS_WAIT_QUEUE, avgTime, getMSTimeDiff(ginfo.JoinTime, getMSTime()), arenaType, 0);
             SendPacket(&data);
         }
     }
