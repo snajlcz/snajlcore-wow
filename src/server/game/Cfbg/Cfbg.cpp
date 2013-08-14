@@ -21,8 +21,8 @@ uint8 Unit::getRace(bool forceoriginal) const
         if (pPlayer->InArena())
             return GetByteValue(UNIT_FIELD_BYTES_0, 0);
 
-        if (!pPlayer->IsPlayingNative())
-            return pPlayer->getFRace();
+        /*if (!pPlayer->IsPlayingNative())
+            return pPlayer->getFRace();*/
     }
 
     return GetByteValue(UNIT_FIELD_BYTES_0, 0);
@@ -46,10 +46,10 @@ bool Player::SendRealNameQuery()
     return true;
 }
 
-void Player::SetFakeRace()
-{
-    m_FakeRace = GetOTeam() == ALLIANCE ? RACE_BLOODELF : RACE_HUMAN;
-}
+//void Player::SetFakeRace()
+//{
+//    m_FakeRace = GetOTeam() == ALLIANCE ? RACE_BLOODELF : RACE_HUMAN;
+//}
 
 bool Player::SendBattleGroundChat(uint32 msgtype, std::string message)
 {
@@ -84,48 +84,48 @@ bool Player::SendBattleGroundChat(uint32 msgtype, std::string message)
         return false;
 }
 
-void Player::MorphFit(bool value)
-{
-    if (!IsPlayingNative() && value)
-    {
-        if (GetOTeam() == ALLIANCE)
-        {
-            if (getGender() == GENDER_MALE)
-            {
-       	uint32 A_M2[5] = {19723, 20317, 21105, 20580, 20318};
-    		uint32 A_M = A_M2[urand(0, 4)];
-                SetDisplayId(A_M);
-                SetNativeDisplayId(A_M);
-            }
-            else
-            {
-       	uint32 A_F2[3] = {19724, 20581, 20323};
-   		uint32 A_F = A_F2[urand(0, 2)];
-                SetDisplayId(A_F);
-                SetNativeDisplayId(A_F);
-            }
-        }
-        else
-        {
-            if (getGender() == GENDER_MALE)
-            {
-       	uint32 H_M2[4] = {20585, 20321, 20369, 21267};
-    		uint32 H_M = H_M2[urand(0, 3)];
-                SetDisplayId(H_M);
-                SetNativeDisplayId(H_M);
-            }
-            else
-            {
-       	uint32 H_F2[3] = {20316, 20584, 20579};
-    		uint32 H_F = H_F2[urand(0, 2)];
-                SetDisplayId(H_F);
-                SetNativeDisplayId(H_F);
-            }
-        }
-    }
-    else
-        InitDisplayIds();
-}
+//void Player::MorphFit(bool value)
+//{
+//    if (!IsPlayingNative() && value)
+//    {
+//        if (GetOTeam() == ALLIANCE)
+//        {
+//            if (getGender() == GENDER_MALE)
+//            {
+//       	uint32 A_M2[5] = {19723, 20317, 21105, 20580, 20318};
+//    		uint32 A_M = A_M2[urand(0, 4)];
+//                SetDisplayId(A_M);
+//                SetNativeDisplayId(A_M);
+//            }
+//            else
+//            {
+//       	uint32 A_F2[3] = {19724, 20581, 20323};
+//   		uint32 A_F = A_F2[urand(0, 2)];
+//                SetDisplayId(A_F);
+//                SetNativeDisplayId(A_F);
+//            }
+//        }
+//        else
+//        {
+//            if (getGender() == GENDER_MALE)
+//            {
+//       	uint32 H_M2[4] = {20585, 20321, 20369, 21267};
+//    		uint32 H_M = H_M2[urand(0, 3)];
+//                SetDisplayId(H_M);
+//                SetNativeDisplayId(H_M);
+//            }
+//            else
+//            {
+//       	uint32 H_F2[3] = {20316, 20584, 20579};
+//    		uint32 H_F = H_F2[urand(0, 2)];
+//                SetDisplayId(H_F);
+//                SetNativeDisplayId(H_F);
+//            }
+//        }
+//    }
+//    else
+//        InitDisplayIds();
+//}
 
 void Player::FitPlayerInTeam(bool action, Battleground* pBattleGround)
 {
@@ -145,7 +145,7 @@ void Player::FitPlayerInTeam(bool action, Battleground* pBattleGround)
     else
         SetForgetInListPlayers(true);
 
-    MorphFit(action);
+    /*MorphFit(action);*/
 
     if (pBattleGround && action)
         SendChatMessage("%sYou are playing for the %s%s in this %s", MSG_COLOR_WHITE, GetTeam() == ALLIANCE ? MSG_COLOR_DARKBLUE"alliance" : MSG_COLOR_RED"horde", MSG_COLOR_WHITE, pBattleGround->GetName());

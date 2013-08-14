@@ -1130,14 +1130,14 @@ class Player : public Unit, public GridObject<Player>
         void DoForgetPlayersInBG(Battleground* pBattleGround);
         uint8 getORace() const { return m_RealRace; }
         void SetORace() { m_RealRace = GetByteValue(UNIT_FIELD_BYTES_0, 0); }; // SHOULD ONLY BE CALLED ON LOGIN
-        void SetFakeRace(); // SHOULD ONLY BE CALLED ON LOGIN
+        //void SetFakeRace(); // SHOULD ONLY BE CALLED ON LOGIN
         uint8 getFRace() const { return m_FakeRace; }
         void SetForgetBGPlayers(bool value) { m_ForgetBGPlayers = value; }
         bool ShouldForgetBGPlayers() { return m_ForgetBGPlayers; }
         void SetForgetInListPlayers(bool value) { m_ForgetInListPlayers = value; }
         bool ShouldForgetInListPlayers() { return m_ForgetInListPlayers; }
         bool SendBattleGroundChat(uint32 msgtype, std::string message);
-        void MorphFit(bool value);
+        /*void MorphFit(bool value);*/
         bool IsPlayingNative() const { return GetTeam() == m_team; }
         uint32 GetOTeam() const { return m_team; }
         uint32 GetTeam() const { return m_bgData.bgTeam && GetBattleground() ? m_bgData.bgTeam : m_team; }
