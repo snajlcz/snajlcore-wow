@@ -1252,11 +1252,6 @@ void ScriptMgr::OnPlayerBindToInstance(Player* player, Difficulty difficulty, ui
     FOREACH_SCRIPT(PlayerScript)->OnBindToInstance(player, difficulty, mapid, permanent);
 }
 
-void ScriptMgr::OnPlayerJoinedBattleground(Player* player, Battleground* bg)
-{
-    FOREACH_SCRIPT(PlayerScript)->OnPlayerJoinedBattleground(player, bg);
-}
-
 void ScriptMgr::OnPlayerFirstKillBattleground(Player* player, Battleground* bg)
 {
     FOREACH_SCRIPT(PlayerScript)->OnPlayerFirstKillBattleground(player, bg);

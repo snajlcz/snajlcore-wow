@@ -2112,7 +2112,8 @@ class Player : public Unit, public GridObject<Player>
         void SetBattlegroundEntryPoint();
 
         void SetBGTeam(uint32 team);
-        uint32 GetBGTeam() const;
+        uint32 GetBGTeam() const; 
+ 
         void LeaveBattleground(bool teleportToEntryPoint = true);
         bool CanJoinToBattleground(Battleground const* bg) const;
         bool CanReportAfkDueToLimit();

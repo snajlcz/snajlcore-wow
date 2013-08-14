@@ -339,7 +339,7 @@ void BattlegroundQueue::RemovePlayer(uint64 guid, bool decreaseInvitedCount)
     {
         //we must check premade and normal team's queue - because when players from premade are joining bg,
         //they leave groupinfo so we can't use its players size to find out index
-        for (uint32 j = index; j < BG_QUEUE_GROUP_TYPES_COUNT; j += BG_TEAMS_COUNT)
+        for (uint8 j = 0; j < BG_QUEUE_GROUP_TYPES_COUNT; ++j) 
         {
             GroupsQueueType::iterator k = m_QueuedGroups[bracket_id_tmp][j].begin();
             for (; k != m_QueuedGroups[bracket_id_tmp][j].end(); ++k)
@@ -780,7 +780,8 @@ void BattlegroundQueue::BattlegroundQueueUpdate(uint32 /*diff*/, BattlegroundTyp
     if (m_QueuedGroups[bracket_id][BG_QUEUE_PREMADE_ALLIANCE].empty() &&
         m_QueuedGroups[bracket_id][BG_QUEUE_PREMADE_HORDE].empty() &&
         m_QueuedGroups[bracket_id][BG_QUEUE_NORMAL_ALLIANCE].empty() &&
-        m_QueuedGroups[bracket_id][BG_QUEUE_NORMAL_HORDE].empty())
+        m_QueuedGroups[bracket_id][BG_QUEUE_NORMAL_HORDE].empty() &&
+        m_QueuedGroups[bracket_id][BG_QUEUE_MIXED].empty()) 
         return;
 
     // battleground with free slot for player should be always in the beggining of the queue
@@ -871,7 +872,8 @@ void BattlegroundQueue::BattlegroundQueueUpdate(uint32 /*diff*/, BattlegroundTyp
     {
         // if there are enough players in pools, start new battleground or non rated arena
         if (CheckNormalMatch(bg_template, bracket_id, MinPlayersPerTeam, MaxPlayersPerTeam)
-            || (bg_template->isArena() && CheckSkirmishForSameFaction(bracket_id, MinPlayersPerTeam)))
+            || (bg_template->isArena() && CheckSkirmishForSameFaction(bracket_id, MinPlayersPerTeam))
+-           || CheckCrossFactionMatch(bracket_id, bg_template))
         {
             // we successfully created a pool
             Battleground* bg2 = sBattlegroundMgr->CreateNewBattleground(bgTypeId, bracketEntry, arenaType, false);
