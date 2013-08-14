@@ -1075,7 +1075,7 @@ void Battleground::RemovePlayerAtLeave(uint64 guid, bool Transport, bool SendPac
         {
             player->ClearAfkReports();
 
-            if (!team) team = player->GetTeam();
+            if (!team) team = player->GetBGTeam();
 
             // if arena, remove the specific arena auras
             if (isArena())
@@ -1209,7 +1209,7 @@ void Battleground::AddPlayer(Player* player)
     // score struct must be created in inherited class
 
     uint64 guid = player->GetGUID();
-    uint32 team = player->GetTeam();
+    uint32 team = player->GetBGTeam();
     BattlegroundPlayer bp;
     bp.OfflineRemoveTime = 0;
     bp.Team = team;
