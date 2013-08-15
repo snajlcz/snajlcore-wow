@@ -48,7 +48,7 @@ bool Player::SendRealNameQuery()
 
 void Player::SetFakeRace()
 {
-    m_FakeRace = GetOTeam() == ALLIANCE ? RACE_BLOODELF : RACE_HUMAN;
+    m_FakeRace = GetOTeam() == ALLIANCE;
 }
 
 bool Player::SendBattleGroundChat(uint32 msgtype, std::string message)
