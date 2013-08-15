@@ -320,7 +320,7 @@ inline void Battleground::_CheckSafePositions(uint32 diff)
             if (Player* player = ObjectAccessor::FindPlayer(itr->first))
             {
                 player->GetPosition(&pos);
-                GetTeamStartLoc(player->GetBGTeam(), x, y, z, o);
+                GetTeamStartLoc(player->GetTeam(), x, y, z, o);
                 if (pos.GetExactDistSq(x, y, z) > maxDist)
                 {
                     TC_LOG_DEBUG(LOG_FILTER_BATTLEGROUND, "BATTLEGROUND: Sending %s back to start location (map: %u) (possible exploit)", player->GetName().c_str(), GetMapId());

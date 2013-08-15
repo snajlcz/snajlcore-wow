@@ -318,6 +318,7 @@ void BattlegroundWS::EventPlayerCapturedFlag(Player* Source)
         PlaySoundToAll(BG_WS_SOUND_FLAG_CAPTURED_HORDE);
         RewardReputationToTeam(889, m_ReputationCapture, HORDE);
     }
+    //RewardReputationToTeam(890, 889, m_ReputationCapture, Source->GetTeam()); 
     //for flag capture is reward 2 honorable kills
     RewardHonorToTeam(GetBonusHonorFromKill(2), Source->GetTeam());
 
