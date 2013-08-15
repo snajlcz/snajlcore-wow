@@ -22,7 +22,7 @@ uint8 Unit::getRace(bool forceoriginal) const
             return GetByteValue(UNIT_FIELD_BYTES_0, 0);
 
         if (!pPlayer->IsPlayingNative())
-            return pPlayer->getFRace();
+            return pPlayer->getORace();
     }
 
     return GetByteValue(UNIT_FIELD_BYTES_0, 0);

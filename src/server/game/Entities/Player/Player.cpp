@@ -989,7 +989,7 @@ bool Player::Create(uint32 guidlow, CharacterCreateInfo* createInfo)
 
     SetORace();
     m_team = TeamForRace(getORace());
-    // SetFakeRace(); // m_team must be set before this can be used.
+    SetFakeRace(); // m_team must be set before this can be used.
     setFactionForRace(getORace());
 
     InitDisplayIds();
@@ -17114,7 +17114,7 @@ bool Player::LoadFromDB(uint32 guid, SQLQueryHolder *holder)
 
     SetORace();
     m_team = TeamForRace(getORace());
-    // SetFakeRace(); // m_team must be set before this can be used.
+    SetFakeRace(); // m_team must be set before this can be used.
     setFactionForRace(getORace());
 
     SetUInt32Value(UNIT_FIELD_LEVEL, fields[6].GetUInt8());
