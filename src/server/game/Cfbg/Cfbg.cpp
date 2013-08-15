@@ -48,7 +48,7 @@ bool Player::SendRealNameQuery()
 
 void Player::SetFakeRace()
 {
-    m_FakeRace = GetOTeam() == ALLIANCE;
+     m_FakeRace = GetOTeam(); 
 }
 
 bool Player::SendBattleGroundChat(uint32 msgtype, std::string message)
