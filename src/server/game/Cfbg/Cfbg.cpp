@@ -21,8 +21,8 @@ uint8 Unit::getRace(bool forceoriginal) const
         if (pPlayer->InArena())
             return GetByteValue(UNIT_FIELD_BYTES_0, 0);
 
-        /*if (!pPlayer->IsPlayingNative())
-            return pPlayer->getFRace();*/
+        if (!pPlayer->IsPlayingNative())
+            return pPlayer->getORace();
     }
 
     return GetByteValue(UNIT_FIELD_BYTES_0, 0);
