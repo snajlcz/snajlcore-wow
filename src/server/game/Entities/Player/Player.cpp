@@ -987,10 +987,10 @@ bool Player::Create(uint32 guidlow, CharacterCreateInfo* createInfo)
 
     SetUInt32Value(UNIT_FIELD_BYTES_0, (RaceClassGender | (powertype << 24)));
 
-    SetORace();
-    m_team = TeamForRace(getORace());
-    SetFakeRace(); // m_team must be set before this can be used.
-    setFactionForRace(getORace());
+    //SetORace();
+    //m_team = TeamForRace(getORace());
+    //SetFakeRace(); // m_team must be set before this can be used.
+    //setFactionForRace(getORace());
 
     InitDisplayIds();
     if (sWorld->getIntConfig(CONFIG_GAME_TYPE) == REALM_TYPE_PVP || sWorld->getIntConfig(CONFIG_GAME_TYPE) == REALM_TYPE_RPPVP)
@@ -17112,10 +17112,10 @@ bool Player::LoadFromDB(uint32 guid, SQLQueryHolder *holder)
     bytes0 |= Gender << 16;                                 // gender
     SetUInt32Value(UNIT_FIELD_BYTES_0, bytes0);
 
-    SetORace();
-    m_team = TeamForRace(getORace());
-    SetFakeRace(); // m_team must be set before this can be used.
-    setFactionForRace(getORace());
+    //SetORace();
+    //m_team = TeamForRace(getORace());
+    //SetFakeRace(); // m_team must be set before this can be used.
+    //setFactionForRace(getORace());
 
     SetUInt32Value(UNIT_FIELD_LEVEL, fields[6].GetUInt8());
     SetUInt32Value(PLAYER_XP, fields[7].GetUInt32());
