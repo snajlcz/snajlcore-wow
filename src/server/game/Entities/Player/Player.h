@@ -1131,7 +1131,7 @@ class Player : public Unit, public GridObject<Player>
         uint8 getORace() const { return m_RealRace; }
         void SetORace() { m_RealRace = GetByteValue(UNIT_FIELD_BYTES_0, 0); }; // SHOULD ONLY BE CALLED ON LOGIN
         void SetFakeRace(); // SHOULD ONLY BE CALLED ON LOGIN
-        uint8 getFRace() const { return m_FakeRace; }
+        uint8 getFRace() const { return m_RealRace; }
         void SetForgetBGPlayers(bool value) { m_ForgetBGPlayers = value; }
         bool ShouldForgetBGPlayers() { return m_ForgetBGPlayers; }
         void SetForgetInListPlayers(bool value) { m_ForgetInListPlayers = value; }
