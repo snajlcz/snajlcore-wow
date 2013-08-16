@@ -6962,7 +6962,8 @@ void Player::setFactionForRace(uint8 race)
 {
     m_team = TeamForRace(race);
     ChrRacesEntry const* rEntry = sChrRacesStore.LookupEntry(race);
-    setFaction(rEntry ? rEntry->FactionID : 0);
+    setFaction(rEntry ? rEntry->FactionID : getFaction());
+
 }
 
 ReputationRank Player::GetReputationRank(uint32 faction) const
