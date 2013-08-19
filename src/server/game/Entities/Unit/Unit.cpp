@@ -13272,7 +13272,12 @@ uint32 Unit::GetCreatureType() const
             return CREATURE_TYPE_HUMANOID;
     }
     else
-        return ToCreature()->GetCreatureTemplate()->type;
+    {
+        if (ToCreature())
+            return ToCreature()->GetCreatureTemplate()->type;
+        else
+            return CREATURE_TYPE_NOT_SPECIFIED;
+    }
 }
 
 uint32 Unit::GetCreatureTypeMask() const
