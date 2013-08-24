@@ -22919,6 +22919,7 @@ void Player::learnDefaultSpells()
     if (!info)
     {
         TC_LOG_ERROR(LOG_FILTER_PLAYER, "Player::learnDefaultSpells - player entry: %u, race: %u, class: %u", this->GetGUIDLow(), getRace(), getClass());
+        return;
     }
 
 
