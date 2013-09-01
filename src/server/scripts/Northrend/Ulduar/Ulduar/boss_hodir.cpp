@@ -76,6 +76,11 @@ enum HodirSpells
     // Shamans
     SPELL_LAVA_BURST                             = 61924,
     SPELL_STORM_CLOUD                            = 65123,
+	/**  soulcore  **/
+    SPELL_STORM_CLOUD_25                         = 65133,  
+    SPELL_STORM_POWER_10                         = 63711,	
+    SPELL_STORM_POWER_25                         = 65134,
+	/**\ soulcore  **/
 
     // Mages
     SPELL_FIREBALL                               = 61909,
@@ -103,6 +108,10 @@ enum HodirGameObjects
 {
     GO_TOASTY_FIRE                               = 194300,
     GO_SNOWDRIFT                                 = 194173,
+	/**  soulcore  **/
+    GO_RARE_CACHE_OF_WINTER_10                   = 194200,
+	GO_RARE_CACHE_OF_WINTER_25                   = 194201,
+	/**\ soulcore  **/
 };
 
 enum HodirEvents
@@ -135,6 +144,10 @@ enum HodirActions
 {
     ACTION_I_HAVE_THE_COOLEST_FRIENDS            = 1,
     ACTION_CHEESE_THE_FREEZE                     = 2,
+		/**  soulcore  **/
+    ACTION_GETTING_COLD_IN_HERE                  = 3,
+    ACTION_RARE_CACHE                            = 4,
+		/**\ soulcore  **/
 };
 
 #define ACHIEVEMENT_CHEESE_THE_FREEZE            RAID_MODE<uint8>(2961, 2962)
@@ -323,6 +336,20 @@ class boss_hodir : public CreatureScript
             {
                 _Reset();
                 me->SetReactState(REACT_PASSIVE);
+				
+				/*  soulcore - despawn truhel a npc v kostkach */
+				Creature * pTarget;
+
+                if (GameObject* Rare_cache = me->FindNearestGameObject(GO_RARE_CACHE_OF_WINTER_10, 200.0f))
+                        me->RemoveGameObject(Rare_cache, true);
+                if (GameObject* Rare_cache = me->FindNearestGameObject(GO_RARE_CACHE_OF_WINTER_25, 200.0f))
+                        me->RemoveGameObject(Rare_cache, true);
+                while( (pTarget = me->FindNearestCreature(NPC_ICE_BLOCK, 100.0f, true)) )
+                    pTarget->DespawnOrUnsummon(); 
+                while( (pTarget = me->FindNearestCreature(NPC_FLASH_FREEZE, 100.0f, true)) )
+                    pTarget->DespawnOrUnsummon();
+				
+				/*\ soulcore  */
 
                 for (uint8 n = 0; n < FRIENDS_COUNT; ++n)
                     if (Creature* FrozenHelper = me->SummonCreature(Entry[n], SummonPositions[n], TEMPSUMMON_MANUAL_DESPAWN))
@@ -333,7 +360,11 @@ class boss_hodir : public CreatureScript
             {
                 _EnterCombat();
                 Talk(SAY_AGGRO);
-                DoCast(me, SPELL_BITING_COLD, true);
+                DoCast(me, SPELL_BITING_COLD, true);				
+				/* soulcore  */
+				me->SetReactState(REACT_AGGRESSIVE);
+				me->SummonGameObject(RAID_MODE(GO_RARE_CACHE_OF_WINTER_10,GO_RARE_CACHE_OF_WINTER_25),2036.794800f,-200.473831f,432.686951f,0,4.671334f,0,0,0,0);             
+				/*\ soulcore  */
 
                 gettingColdInHereTimer = 1000;
                 gettingColdInHere = true;
@@ -389,6 +420,11 @@ class boss_hodir : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
+				/*  soulcore  */
+				if (Creature * ToastyFire = me->SelectVictim()->ToCreature())
+					if (ToastyFire->GetEntry() == NPC_TOASTY_FIRE)
+                        events.RescheduleEvent(EVENT_FLASH_FREEZE, 1);
+				/*\ soulcore  */
 
                 events.Update(diff);
 
@@ -643,9 +679,17 @@ class npc_hodir_priest : public CreatureScript
                             Trinity::UnitListSearcher<Trinity::AnyFriendlyUnitInObjectRangeCheck> searcher(me, TargetList, checker);
                             me->VisitNearbyObject(30.0f, searcher);
                             for (std::list<Unit*>::iterator itr = TargetList.begin(); itr != TargetList.end(); ++itr)
+							/*  soulcore - najdeme prvniho, zacastime dispell, naplanujeme dalsi cast */
+							{
                                 if ((*itr)->HasAura(SPELL_FREEZE))
+								{
                                     DoCast(*itr, SPELL_DISPEL_MAGIC, true);
-                            events.ScheduleEvent(EVENT_DISPEL_MAGIC, urand(15000, 20000));
+                                    events.ScheduleEvent(EVENT_DISPEL_MAGIC, urand(15000, 20000));
+                                    return;
+                                }
+							}
+                            events.ScheduleEvent(EVENT_DISPEL_MAGIC, urand(2500, 5000)); // dalsi planovani, nemam paru proc 
+							/*\ soulcore */
                             break;
                         }
                         default:
@@ -707,7 +751,9 @@ class npc_hodir_shaman : public CreatureScript
                     {
                         case EVENT_STORM_CLOUD:
                             if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 100.0f, true))
-                                DoCast(target, SPELL_STORM_CLOUD, true);
+								/*  soulcore  - sila storm cloud dle raid modu */
+                                DoCast(target, RAID_MODE<uint16>(SPELL_STORM_CLOUD, SPELL_STORM_CLOUD_25), true);
+								/*\ soulcore  */
                             events.ScheduleEvent(EVENT_STORM_CLOUD, urand(15000, 20000));
                             break;
                         default:
@@ -844,13 +890,22 @@ class npc_hodir_mage : public CreatureScript
                     {
                         case EVENT_CONJURE_FIRE:
                             if (summons.size() >= RAID_MODE<uint64>(2, 4))
+							/* soulcore - mame moc summonu tak naplanujeme dalsi event a ukoncime*/
+                            {
+                                events.ScheduleEvent(EVENT_CONJURE_FIRE, 3000);
                                 break;
+                            }
+							/*\ soulcore */
                             DoCast(me, SPELL_CONJURE_FIRE, true);
                             events.ScheduleEvent(EVENT_CONJURE_FIRE, urand(15000, 20000));
                             break;
                         case EVENT_MELT_ICE:
-                            if (Creature* FlashFreeze = me->FindNearestCreature(NPC_FLASH_FREEZE, 50.0f, true))
+                            if (Creature* FlashFreeze = me->FindNearestCreature(NPC_FLASH_FREEZE, 50.0f, true))       							
+								DoCast(FlashFreeze, SPELL_MELT_ICE, true);
+							/* soulcore - haze se i na ice blocky */
+                            else if (Creature* FlashFreeze = me->FindNearestCreature(NPC_ICE_BLOCK, 50.0f, true))                         
                                 DoCast(FlashFreeze, SPELL_MELT_ICE, true);
+							/*\ soulcore */
                             events.ScheduleEvent(EVENT_MELT_ICE, urand(10000, 15000));
                             break;
                     }
@@ -925,6 +980,11 @@ class spell_biting_cold : public SpellScriptLoader
                 Unit* target = GetTarget();
                 bool found = false;
 
+				/*  soulcore - neni player, tak nedotkujeme */
+				if ( target->GetTypeId() != TYPEID_PLAYER)
+                    return;
+				/*\ soulcore */
+
                 for (TargetList::iterator itr = listOfTargets.begin(); itr != listOfTargets.end(); ++itr)
                 {
                     if (itr->first != target->GetGUID())
@@ -985,6 +1045,10 @@ public:
             int32 damage = int32(200 * pow(2.0f, GetStackAmount()));
             caster->CastCustomSpell(caster, SPELL_BITING_COLD_DAMAGE, &damage, NULL, NULL, true);
 
+			/*  soulcore - wtf aura? */
+			if (caster->HasAura(SPELL_SINGED))
+				caster->RemoveAurasDueToSpell(SPELL_BITING_COLD_TRIGGERED);
+			/*\ soulcore */
             if (caster->isMoving())
                 caster->RemoveAuraFromStack(SPELL_BITING_COLD_TRIGGERED);
         }
@@ -1001,6 +1065,202 @@ public:
     }
 };
 
+/*  soulcore - copypaste */
+class spell_storm_cloud : public SpellScriptLoader
+{
+    public:
+        spell_storm_cloud() : SpellScriptLoader("spell_storm_cloud") { }
+
+        class spell_storm_cloud_AuraScript : public AuraScript
+        {
+            PrepareAuraScript(spell_storm_cloud_AuraScript);
+
+            void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
+            {
+                SetStackAmount(4 + (GetSpellInfo()->Id == SPELL_STORM_CLOUD_25) * 2);
+            }
+
+            void Register()
+            {
+                AfterEffectApply += AuraEffectApplyFn(spell_storm_cloud_AuraScript::OnApply, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL, AURA_EFFECT_HANDLE_REAL);
+            }
+        };
+
+        AuraScript* GetAuraScript() const
+        {
+            return new spell_storm_cloud_AuraScript();
+        }
+};
+
+class StormCloudTargetSelector : public std::unary_function<WorldObject*, bool>
+{
+    public:
+        StormCloudTargetSelector() {}
+
+        bool operator() (WorldObject* target)
+        {
+            if (target->ToUnit()->HasAura(SPELL_STORM_POWER_10) || target->ToUnit()->HasAura(SPELL_STORM_POWER_25))
+                return true;
+
+            return false;
+        }
+};
+
+class spell_storm_cloud_triggered : public SpellScriptLoader
+{
+    public:
+        spell_storm_cloud_triggered() : SpellScriptLoader("spell_storm_cloud_triggered") { }
+
+        class spell_storm_cloud_triggered_SpellScript : public SpellScript
+        {
+            PrepareSpellScript(spell_storm_cloud_triggered_SpellScript);
+
+            std::list<WorldObject*> m_unitList;
+
+            void FilterTargets(std::list<WorldObject*>& unitList)
+            {
+                unitList.remove_if (StormCloudTargetSelector());
+                Aura * aura = NULL;
+                if (Unit* caster = GetCaster())
+                    if (!(aura = caster->GetAura(SPELL_STORM_CLOUD)))
+                        if (!(aura = caster->GetAura(SPELL_STORM_CLOUD_25)))
+                            return;
+
+                uint32 maxTargets = aura->GetStackAmount();
+
+                while (maxTargets < unitList.size())
+                {
+                    std::list<WorldObject*>::iterator itr = unitList.begin();
+                    advance(itr, urand(0, unitList.size()-1));
+                    unitList.erase(itr); 
+                }
+                if (unitList.size() != 0)
+				{
+					if (uint32 stacks = aura->GetStackAmount() - unitList.size())
+						aura->SetStackAmount(stacks);
+					else aura->Remove();
+				}
+
+                m_unitList = unitList;
+            }
+
+            void FilterTargetsSubsequential(std::list<WorldObject*>& unitList)
+            {
+                unitList = m_unitList;
+            }
+
+            void Register()
+            {
+                OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_storm_cloud_triggered_SpellScript::FilterTargets, EFFECT_0, TARGET_UNIT_SRC_AREA_ALLY);
+                OnObjectAreaTargetSelect += SpellObjectAreaTargetSelectFn(spell_storm_cloud_triggered_SpellScript::FilterTargetsSubsequential, EFFECT_1, TARGET_UNIT_SRC_AREA_ALLY);
+            }
+        };
+
+        SpellScript* GetSpellScript() const
+        {
+            return new spell_storm_cloud_triggered_SpellScript();
+        }
+};
+
+class achievement_i_have_the_coolest_friends : public AchievementCriteriaScript
+{
+    public:
+        achievement_i_have_the_coolest_friends() : AchievementCriteriaScript("achievement_i_have_the_coolest_friends")
+        {
+        }
+
+        bool OnCheck(Player* player, Unit* /*target*/)
+        {
+            if (!player)
+                return false;
+            if (Unit * target = player->ToUnit())
+                if (InstanceMap* pInstance = target->GetMap()->ToInstanceMap())
+                    if (InstanceScript * instance = pInstance->GetInstanceScript())
+                        if (Creature* hodir = ObjectAccessor::GetCreature(*target, instance->GetData64(BOSS_HODIR)))
+                            return hodir->AI()->GetData(ACTION_I_HAVE_THE_COOLEST_FRIENDS);
+            return false;
+        }
+};
+
+class achievement_getting_cold_in_here : public AchievementCriteriaScript
+{
+    public:
+        achievement_getting_cold_in_here() : AchievementCriteriaScript("achievement_getting_cold_in_here")
+        {
+        }
+
+        bool OnCheck(Player* player, Unit* /*target*/)
+        {
+            if (!player)
+                return false;
+            if (Unit * target = player->ToUnit())
+                if (InstanceMap* pInstance = target->GetMap()->ToInstanceMap())
+                    if (InstanceScript * instance = pInstance->GetInstanceScript())
+                        if (Creature* hodir = ObjectAccessor::GetCreature(*target, instance->GetData64(BOSS_HODIR)))
+                            return hodir->AI()->GetData(ACTION_GETTING_COLD_IN_HERE);
+            return false;
+        }
+};
+
+class achievement_cheese_the_freeze : public AchievementCriteriaScript
+{
+    public:
+        achievement_cheese_the_freeze() : AchievementCriteriaScript("achievement_cheese_the_freeze")
+        {
+        }
+
+        bool OnCheck(Player* player, Unit* /*target*/)
+        {
+            if (!player)
+                return false;
+            if (Unit * target = player->ToUnit())
+                if (InstanceMap* pInstance = target->GetMap()->ToInstanceMap())
+                    if (InstanceScript * instance = pInstance->GetInstanceScript())
+                        if (Creature* hodir = ObjectAccessor::GetCreature(*target, instance->GetData64(BOSS_HODIR)))
+                            return hodir->AI()->GetData(ACTION_CHEESE_THE_FREEZE);
+            return false;
+        }
+};
+
+class achievement_i_could_say_that_this_cache_was_rare : public AchievementCriteriaScript
+{
+    public:
+        achievement_i_could_say_that_this_cache_was_rare() : AchievementCriteriaScript("achievement_i_could_say_that_this_cache_was_rare")
+        {
+        }
+
+        bool OnCheck(Player* player, Unit* /*target*/)
+        {
+            if (!player)
+                return false;
+            if (Unit * target = player->ToUnit())
+                if (InstanceMap* pInstance = target->GetMap()->ToInstanceMap())
+                    if (InstanceScript * instance = pInstance->GetInstanceScript())
+                        if (Creature* hodir = ObjectAccessor::GetCreature(*target, instance->GetData64(BOSS_HODIR)))
+                            return hodir->AI()->GetData(ACTION_RARE_CACHE);
+            return false;
+        }
+};
+
+class achievement_staying_buffed_all_winter : public AchievementCriteriaScript
+{
+    public:
+        achievement_staying_buffed_all_winter() : AchievementCriteriaScript("achievement_staying_buffed_all_winter")
+        {
+        }
+
+        bool OnCheck(Player* player, Unit* /*target*/)
+        {
+            if (!player)
+                return false;
+            if (Unit * pPlayer = player->ToUnit())
+				if (pPlayer->HasAura(SPELL_SINGED) && pPlayer->HasAura(SPELL_STARLIGHT) && (pPlayer->HasAura(SPELL_STORM_POWER_10) || pPlayer->HasAura(SPELL_STORM_POWER_25)))
+                    return true;
+            return false;
+        }
+};
+/*\ soulcore */
+
 void AddSC_boss_hodir()
 {
     new boss_hodir();
@@ -1015,4 +1275,13 @@ void AddSC_boss_hodir()
     new npc_flash_freeze();
     new spell_biting_cold();
     new spell_biting_cold_dot();
+	/* soulcore - copypaste */
+	new spell_storm_cloud();
+    new spell_storm_cloud_triggered();
+    new achievement_i_have_the_coolest_friends();
+    new achievement_getting_cold_in_here();
+    new achievement_cheese_the_freeze();
+    new achievement_i_could_say_that_this_cache_was_rare();
+    new achievement_staying_buffed_all_winter();
+	/*\ soulcore */
 }
