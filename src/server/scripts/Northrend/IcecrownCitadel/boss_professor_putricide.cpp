@@ -787,6 +787,7 @@ class npc_volatile_ooze : public CreatureScript
 
             void CastMainSpell()
             {
+                if (me->HasAura(!SPELL_GASEOUS_BLOAT))
                 me->CastSpell(me, SPELL_VOLATILE_OOZE_ADHESIVE, false);
             }
         };
