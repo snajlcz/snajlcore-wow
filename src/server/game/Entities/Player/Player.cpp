@@ -22914,6 +22914,15 @@ void Player::learnDefaultSpells()
 {
     // learn default race/class spells
     PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getRace(), getClass());
+    
+    //debug
+    if (!info)
+    {
+        TC_LOG_ERROR(LOG_FILTER_PLAYER, "Player::learnDefaultSpells - player entry: %u, race: %u, class: %u", this->GetGUIDLow(), getRace(), getClass());
+        return;
+    }
+
+
     for (PlayerCreateInfoSpells::const_iterator itr = info->spell.begin(); itr != info->spell.end(); ++itr)
     {
         uint32 tspell = *itr;
